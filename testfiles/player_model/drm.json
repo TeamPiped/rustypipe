@@ -1650,6 +1650,7 @@
     }
   ],
   "expires_in_seconds": 21540,
+  "valid_until": "2025-01-16T12:47:01Z",
   "hls_manifest_url": null,
   "dash_manifest_url": "https://manifest.googlevideo.com/api/manifest/dash/expire/1737003630/ei/Dj6IZ_uSLs3l6dsPjd_aWQ/ip/93.235.184.108/id/5c0488f533287530/source/youtube/requiressl/yes/xpc/EgVo2aDSNQ%3D%3D/playback_host/rr5---sn-h0jeener.googlevideo.com/met/1736982030%2C/mh/3d/mm/31%2C29/mn/sn-h0jeener%2Csn-h0jelnes/ms/au%2Crdu/mv/m/mvi/5/pl/26/rms/au%2Cau/tx/51357437/txs/51357435%2C51357436%2C51357437/ctier/A/as/fmp4_audio_cenc%2Cfmp4_sd_hd_cenc/pfa/5/gcr/de/initcwndbps/2801250/hightc/yes/siu/1/spc/9kzgDTo16Q_mO7TFjJcMOcNa4IBGqdJV3_zJD2blPLtGQWHzV12Pjt9HGSUEzE5EuxsT3KGLQTHgHKI/vprv/1/rqh/2/mt/1736981586/fvip/4/keepalive/yes/fexp/51326932%2C51335594%2C51353498%2C51355912%2C51384461/itag/0/sparams/expire%2Cei%2Cip%2Cid%2Csource%2Crequiressl%2Cxpc%2Ctx%2Ctxs%2Cctier%2Cas%2Cpfa%2Cgcr%2Chightc%2Csiu%2Cspc%2Cvprv%2Crqh%2Citag/sig/AJfQdSswRAIgRGOt6B9XX33VLI3cBW4IJBjHtjzvGSwSUz5lGrFpegsCIBSRvvj21BsdHibsMhod72dm_FCzt3VZtKP61w-r5n2-/lsparams/playback_host%2Cmet%2Cmh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Crms%2Cinitcwndbps/lsig/AGluJ3MwRQIhALUqrxIiML5XnPfd9h-nywvh8crYVxT_hobOiytW73FFAiBMWQt9t34-kNtSkoiYgyJRfl3Z1bwu6Ss8d2lOZp1ZjA%3D%3D",
   "preview_frames": [],

@@ -517,6 +517,7 @@ VideoPlayer(
     ),
   ],
   expires_in_seconds: 21540,
+  valid_until: "[date]",
   hls_manifest_url: None,
   dash_manifest_url: None,
   preview_frames: [

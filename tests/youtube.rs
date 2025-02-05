@@ -2844,6 +2844,7 @@ fn rp(lang: Language) -> RustyPipe {
         .storage_dir(env!("CARGO_MANIFEST_DIR"))
         .lang(lang)
         .visitor_data_opt(vdata)
+        .po_token_cache()
         .build()
         .unwrap()
 }

@@ -7,6 +7,7 @@ use std::{
 use once_cell::sync::Lazy;
 use regex::Regex;
 use serde::Serialize;
+use time::OffsetDateTime;
 use url::Url;
 
 use crate::{
@@ -25,7 +26,7 @@ use super::{
         self,
         player::{self, Format},
     },
-    ClientType, MapRespCtx, MapRespOptions, MapResponse, MapResult, RustyPipeQuery,
+    ClientType, MapRespCtx, MapRespOptions, MapResponse, MapResult, PoToken, RustyPipeQuery,
 };
 
 #[derive(Debug, Serialize)]
@@ -142,6 +143,34 @@ impl RustyPipeQuery {
         Err(last_e.unwrap_or(Error::Other("no clients".into())))
     }
 
+    async fn get_player_po_token(
+        &self,
+        video_id: &str,
+        visitor_data: &str,
+    ) -> Result<(Option<ServiceIntegrity>, Option<PoToken>), Error> {
+        if let Some(bg) = &self.client.inner.botguard {
+            if bg.po_token_cache {
+                let session_token = self.get_session_po_token(visitor_data).await?;
+                Ok((None, Some(session_token)))
+            } else {
+                let (po_tokens, valid_until) =
+                    self.get_po_tokens(&[video_id, visitor_data]).await?;
+                let mut po_tokens = po_tokens.into_iter();
+                let po_token = po_tokens.next().unwrap();
+                let session_po_token = po_tokens.next().unwrap();
+                Ok((
+                    Some(ServiceIntegrity { po_token }),
+                    Some(PoToken {
+                        po_token: session_po_token,
+                        valid_until,
+                    }),
+                ))
+            }
+        } else {
+            Ok((None, None))
+        }
+    }
+
     /// Get YouTube player data (video/audio streams + basic metadata) using the specified client
     #[tracing::instrument(skip(self), level = "error")]
     pub async fn player_from_client<S: AsRef<str> + Debug>(
@@ -150,7 +179,6 @@ impl RustyPipeQuery {
         client_type: ClientType,
     ) -> Result<VideoPlayer, Error> {
         let video_id = video_id.as_ref();
-
         let visitor_data = self.get_visitor_data(false).await?;
 
         let (deobf, (service_integrity_dimensions, session_po_token)) = tokio::try_join!(
@@ -163,15 +191,7 @@ impl RustyPipeQuery {
             },
             async {
                 if client_type.needs_po_token() {
-                    if let Some(po_tokens) = self.get_po_tokens(&[video_id, &visitor_data]).await? {
-                        let mut po_tokens = po_tokens.into_iter();
-                        let po_token = po_tokens.next().unwrap();
-                        let session_po_token = po_tokens.next().unwrap();
-
-                        Ok((Some(ServiceIntegrity { po_token }), Some(session_po_token)))
-                    } else {
-                        Ok((None, None))
-                    }
+                    self.get_player_po_token(video_id, &visitor_data).await
                 } else {
                     Ok((None, None))
                 }
@@ -203,7 +223,7 @@ impl RustyPipeQuery {
                 visitor_data: Some(&visitor_data),
                 deobf: deobf.as_ref(),
                 unlocalized: true,
-                session_po_token: session_po_token.as_deref(),
+                session_po_token,
                 ..Default::default()
             },
         )
@@ -369,7 +389,10 @@ impl MapResponse<VideoPlayer> for response::Player {
         };
 
         let streams = if !is_live {
-            let mut mapper = StreamsMapper::new(ctx.deobf, ctx.session_po_token)?;
+            let mut mapper = StreamsMapper::new(
+                ctx.deobf,
+                ctx.session_po_token.as_ref().map(|t| t.po_token.as_str()),
+            )?;
             mapper.map_streams(streaming_data.formats);
             mapper.map_streams(streaming_data.adaptive_formats);
             let mut res = mapper.output()?;
@@ -461,6 +484,12 @@ impl MapResponse<VideoPlayer> for response::Player {
                 drm_session_id,
             });
 
+        let mut valid_until = OffsetDateTime::now_utc()
+            + time::Duration::seconds(streaming_data.expires_in_seconds.into());
+        if let Some(pot) = &ctx.session_po_token {
+            valid_until = valid_until.min(pot.valid_until);
+        }
+
         Ok(MapResult {
             c: VideoPlayer {
                 details: video_info,
@@ -469,6 +498,7 @@ impl MapResponse<VideoPlayer> for response::Player {
                 audio_streams: streams.audio_streams,
                 subtitles,
                 expires_in_seconds: streaming_data.expires_in_seconds,
+                valid_until,
                 hls_manifest_url: streaming_data.hls_manifest_url,
                 dash_manifest_url: streaming_data.dash_manifest_url,
                 preview_frames,
@@ -940,17 +970,8 @@ mod tests {
             "deserialization/mapping warnings: {:?}",
             map_res.warnings
         );
-        let is_desktop = name == "desktop" || name == "desktopmusic";
         insta::assert_ron_snapshot!(format!("map_player_data_{name}"), map_res.c, {
-            ".details.publish_date" => insta::dynamic_redaction(move |value, _path| {
-                if is_desktop {
-                    assert!(value.as_str().unwrap().starts_with("2019-05-30T00:00:00"));
-                    "2019-05-30T00:00:00"
-                } else {
-                    assert_eq!(value, insta::internals::Content::None);
-                    "~"
-                }
-            }),
+            ".valid_until" => "[date]"
         });
     }
 

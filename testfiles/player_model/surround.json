@@ -506,6 +506,7 @@
   ],
   "subtitles": [],
   "expires_in_seconds": 21540,
+  "valid_until": "2025-01-16T12:47:01Z",
   "hls_manifest_url": null,
   "dash_manifest_url": null,
   "preview_frames": [

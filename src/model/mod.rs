@@ -136,7 +136,13 @@ pub struct VideoPlayer {
     /// List of subtitles
     pub subtitles: Vec<Subtitle>,
     /// Lifetime of the stream URLs in seconds
+    ///
+    /// **Note:** use the `valid_until` value to check if the stream URLs are still valid,
+    /// since it takes PO token lifetime into account.
     pub expires_in_seconds: u32,
+    /// Date until which the stream URLs are valid
+    #[serde(with = "time::serde::rfc3339")]
+    pub valid_until: OffsetDateTime,
     /// HLS manifest URL (for livestreams)
     pub hls_manifest_url: Option<String>,
     /// Dash manifest URL (for livestreams)

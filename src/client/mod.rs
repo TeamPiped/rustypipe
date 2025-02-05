@@ -403,11 +403,22 @@ pub struct RustyPipeBuilder {
     default_opts: RustyPipeOpts,
     storage_dir: Option<PathBuf>,
     botguard_bin: DefaultOpt<OsString>,
+    po_token_cache: bool,
 }
 
 struct BotguardCfg {
     program: OsString,
     snapshot_file: PathBuf,
+    po_token_cache: bool,
+}
+
+/// Proof-of-origin token
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct PoToken {
+    /// PO token value
+    pub po_token: String,
+    /// Date until which the token is valid
+    pub valid_until: OffsetDateTime,
 }
 
 enum DefaultOpt<T> {
@@ -643,6 +654,7 @@ impl RustyPipeBuilder {
             user_agent: None,
             storage_dir: None,
             botguard_bin: DefaultOpt::Default,
+            po_token_cache: false,
         }
     }
 
@@ -705,7 +717,7 @@ impl RustyPipeBuilder {
         })
         .collect::<HashMap<_, _>>();
 
-        let visitor_data_cache = VisitorDataCache::new(http.clone());
+        let visitor_data_cache = VisitorDataCache::new(http.clone(), 50, 20);
 
         let botguard_bin = self.botguard_bin.or_default_opt(|| {
             let n = OsString::from("rustypipe-botguard");
@@ -745,6 +757,7 @@ impl RustyPipeBuilder {
                     BotguardCfg {
                         program,
                         snapshot_file,
+                        po_token_cache: self.po_token_cache,
                     }
                 }),
             }),
@@ -941,6 +954,7 @@ impl RustyPipeBuilder {
     ///
     /// By default, RustyPipe uses the `rustypipe-botguard` binary if it is available. If you want to
     /// use RustyPipe without Botguard, you can disable it.
+    #[must_use]
     pub fn no_botguard(mut self) -> Self {
         self.botguard_bin = DefaultOpt::None;
         self
@@ -952,8 +966,22 @@ impl RustyPipeBuilder {
     /// By default, RustyPipe uses the `rustypipe-botguard` binary if it is available.
     ///
     /// More information: <https://codeberg.org/ThetaDev/rustypipe-botguard>
+    #[must_use]
     pub fn botguard_bin<S: Into<OsString>>(mut self, botguard_bin: S) -> Self {
         self.botguard_bin = DefaultOpt::Some(botguard_bin.into());
+        self
+    }
+
+    /// Enable caching for session-bound PO tokens
+    ///
+    /// By default, RustyPipe calls Botguard for every player request to fetch both a
+    /// content-bound and a session-bound PO token.
+    ///
+    /// With caching enabled, the session-bound PO tokens are stored and reused.
+    /// Content-bound PO tokens are not used (they are not mandatory at the moment).
+    #[must_use]
+    pub fn po_token_cache(mut self) -> Self {
+        self.po_token_cache = true;
         self
     }
 }
@@ -2057,11 +2085,14 @@ impl RustyPipeQuery {
     }
 
     /// Get PO tokens
-    async fn get_po_tokens(&self, idents: &[&str]) -> Result<Option<Vec<String>>, Error> {
-        let bg = match self.client.inner.botguard.as_ref() {
-            Some(bg) => bg,
-            None => return Ok(None),
-        };
+    async fn get_po_tokens(&self, idents: &[&str]) -> Result<(Vec<String>, OffsetDateTime), Error> {
+        let bg = self
+            .client
+            .inner
+            .botguard
+            .as_ref()
+            .ok_or(ExtractionError::Botguard("not enabled".into()))?;
+
         let start = std::time::Instant::now();
         let cmd = tokio::process::Command::new(&bg.program)
             .arg("--snapshot-file")
@@ -2079,28 +2110,62 @@ impl RustyPipeQuery {
 
         let output = String::from_utf8(cmd.stdout)
             .map_err(|e| Error::Extraction(ExtractionError::Botguard(e.to_string().into())))?;
-        let tokens = output
-            .split_whitespace()
-            .take(idents.len())
-            .map(str::to_owned)
-            .collect::<Vec<_>>();
-        if tokens.len() != idents.len() {
-            return Err(Error::Extraction(ExtractionError::Botguard(
-                "too few tokens returned".into(),
-            )));
+
+        let mut words = output.split_whitespace();
+        let mut tokens = Vec::with_capacity(idents.len());
+        for _ in 0..idents.len() {
+            tokens.push(
+                words
+                    .next()
+                    .ok_or(ExtractionError::Botguard("too few tokens returned".into()))?
+                    .to_owned(),
+            );
         }
+
+        let mut valid_until = None;
+        for word in words {
+            if let Some((k, v)) = word.split_once('=') {
+                if k == "valid_until" {
+                    valid_until = Some(
+                        v.parse::<i64>()
+                            .ok()
+                            .and_then(|x| OffsetDateTime::from_unix_timestamp(x).ok())
+                            .ok_or(ExtractionError::Botguard(
+                                format!("invalid validity date: {v}").into(),
+                            ))?,
+                    );
+                }
+            }
+        }
+
         tracing::debug!("generated PO token (took {:?})", start.elapsed());
-        Ok(Some(tokens))
+        Ok((
+            tokens,
+            valid_until.unwrap_or_else(|| OffsetDateTime::now_utc() + time::Duration::hours(12)),
+        ))
+    }
+
+    async fn get_session_po_token(&self, visitor_data: &str) -> Result<PoToken, Error> {
+        if let Some(po_token) = self.client.inner.visitor_data_cache.get_pot(visitor_data) {
+            return Ok(po_token);
+        }
+
+        let po_token = self.get_po_token(visitor_data).await?;
+        self.client
+            .inner
+            .visitor_data_cache
+            .store_pot(visitor_data, po_token.clone());
+        Ok(po_token)
     }
 
     /// Get a PO token
-    pub async fn get_po_token<S: AsRef<str>>(self, ident: S) -> Result<String, Error> {
-        self.get_po_tokens(&[ident.as_ref()])
-            .await?
-            .ok_or(Error::Extraction(ExtractionError::Botguard(
-                "not enabled".into(),
-            )))
-            .map(|res| res.into_iter().next().unwrap())
+    pub async fn get_po_token<S: AsRef<str>>(&self, ident: S) -> Result<PoToken, Error> {
+        let (tokens, valid_until) = self.get_po_tokens(&[ident.as_ref()]).await?;
+
+        Ok(PoToken {
+            po_token: tokens.into_iter().next().unwrap(),
+            valid_until,
+        })
     }
 
     async fn yt_request_attempt<R: DeserializeOwned + MapResponse<M> + Debug, M>(
@@ -2393,7 +2458,7 @@ struct MapRespCtx<'a> {
     client_type: ClientType,
     artist: Option<ArtistId>,
     authenticated: bool,
-    session_po_token: Option<&'a str>,
+    session_po_token: Option<PoToken>,
 }
 
 /// Options to give to the mapper when making requests;
@@ -2404,7 +2469,7 @@ struct MapRespOptions<'a> {
     deobf: Option<&'a DeobfData>,
     artist: Option<ArtistId>,
     unlocalized: bool,
-    session_po_token: Option<&'a str>,
+    session_po_token: Option<PoToken>,
 }
 
 #[allow(clippy::needless_lifetimes)]
@@ -2497,8 +2562,13 @@ mod tests {
         let po_token = rp.query().get_po_token(ident).await.unwrap();
 
         let token_bts = data_encoding::BASE64URL
-            .decode(po_token.as_bytes())
+            .decode(po_token.po_token.as_bytes())
             .unwrap();
         assert_eq!(token_bts.len(), ident.len() + 74);
+        assert!(
+            po_token.valid_until > OffsetDateTime::now_utc() + time::Duration::minutes(30),
+            "valid until {}",
+            po_token.valid_until
+        )
     }
 }
