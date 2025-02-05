@@ -29,9 +29,9 @@ impl DeobfData {
     /// Download and extract the latest deobfuscation data from YouTube
     ///
     /// Creates a report if the data could not be extracted
-    pub async fn extract(http: Client, reporter: Option<&dyn Reporter>) -> Result<Self, Error> {
-        let js_url = get_player_js_url(&http).await?;
-        let player_js = get_response(&http, &js_url).await?;
+    pub async fn extract(http: &Client, reporter: Option<&dyn Reporter>) -> Result<Self, Error> {
+        let js_url = get_player_js_url(http).await?;
+        let player_js = get_response(http, &js_url).await?;
         tracing::debug!("downloaded player.js from {}", js_url);
 
         let res = Self::extract_fns(&js_url, &player_js);
@@ -690,7 +690,7 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
     #[traced_test]
     async fn t_update() {
         let client = Client::new();
-        let deobf_data = DeobfData::extract(client, None).await.unwrap();
+        let deobf_data = DeobfData::extract(&client, None).await.unwrap();
         let deobf = Deobfuscator::new(&deobf_data).unwrap();
 
         let deobf_sig = deobf.deobfuscate_sig("GOqGOqGOq0QJ8wRAIgaryQHfplJ9xJSKFywyaSMHuuwZYsoMTAvRvfm51qIGECIA5061zWeyfMPX9hEl_U6f9J0tr7GTJMKyPf5XNrJb5fb5i").unwrap();

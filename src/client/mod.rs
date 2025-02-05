@@ -519,7 +519,6 @@ struct CacheHolder {
 #[serde(default)]
 struct CacheData {
     clients: HashMap<ClientType, CacheEntry<ClientData>>,
-    #[serde(skip_serializing_if = "CacheEntry::is_none")]
     deobf: CacheEntry<DeobfData>,
     #[serde(skip_serializing_if = "Option::is_none")]
     oauth_token: Option<OauthToken>,
@@ -541,6 +540,9 @@ struct CacheEntry<T> {
         skip_serializing_if = "Option::is_none"
     )]
     retry_at: Option<OffsetDateTime>,
+    /// RustyPipe version that failed to updated the entry
+    #[serde(skip_serializing_if = "Option::is_none")]
+    failed_version: Option<String>,
     data: Option<T>,
 }
 
@@ -575,10 +577,21 @@ impl<T> CacheEntry<T> {
         self.data.is_none()
     }
 
+    /// Retry updating a cache entry only after a delay or a RustyPipe update
     fn should_retry(&self) -> bool {
         self.retry_at
             .map(|d| OffsetDateTime::now_utc() > d)
             .unwrap_or(true)
+            || self
+                .failed_version
+                .as_deref()
+                .map(|v| crate::VERSION != v)
+                .unwrap_or(true)
+    }
+
+    fn retry_later(&mut self, delay_h: i64) {
+        self.retry_at = Some(util::now_sec() + time::Duration::hours(delay_h));
+        self.failed_version = Some(crate::VERSION.to_owned());
     }
 }
 
@@ -587,6 +600,7 @@ impl<T> From<T> for CacheEntry<T> {
         Self {
             last_update: Some(util::now_sec()),
             retry_at: None,
+            failed_version: None,
             data: Some(f),
         }
     }
@@ -1071,7 +1085,7 @@ impl RustyPipe {
                             return version.into();
                         }
                         Err(e) => {
-                            client.retry_at = Some(util::now_sec() + time::Duration::hours(1));
+                            client.retry_later(1);
                             drop(client);
                             self.store_cache().await;
                             tracing::warn!(
@@ -1108,11 +1122,7 @@ impl RustyPipe {
                 if deobf_data.should_retry() {
                     tracing::debug!("getting deobf data");
 
-                    match DeobfData::extract(
-                        self.inner.http.clone(),
-                        self.inner.reporter.as_deref(),
-                    )
-                    .await
+                    match DeobfData::extract(&self.inner.http, self.inner.reporter.as_deref()).await
                     {
                         Ok(new_data) => {
                             // Write new data to the cache
@@ -1123,7 +1133,7 @@ impl RustyPipe {
                         }
                         Err(e) => {
                             // Try to fall back to expired cache data if available, otherwise return error
-                            deobf_data.retry_at = Some(util::now_sec() + time::Duration::days(1));
+                            deobf_data.retry_later(24);
                             let res = match deobf_data.get_expired() {
                                 Some(d) => {
                                     tracing::warn!("could not get new deobf data ({e}), falling back to expired cache");
