@@ -27,10 +27,12 @@ jobs:
       - name: Download rustypipe-botguard
         run: |
           TARGET=$(rustc --version --verbose | grep "host:" | sed -e 's/^host: //')
-          curl -SsL -o rustypipe-botguard.gz "https://thetadev.de/dl/rustypipe-botguard-${TARGET}.gz"
-          gunzip rustypipe-botguard.gz
-          sudo install -Dm755 rustypipe-botguard /usr/local/bin/rustypipe-botguard
-          rm rustypipe-botguard
+          cd ~
+          curl -SsL -o rustypipe-botguard.tar.xz "https://codeberg.org/ThetaDev/rustypipe-botguard/releases/download/v0.1.0/rustypipe-botguard-v0.1.0-${TARGET}.tar.xz"
+          cd /usr/local/bin
+          sudo tar -xJf ~/rustypipe-botguard.tar.xz
+          rm ~/rustypipe-botguard.tar.xz
+          rustypipe-botguard --version
 
       - name: 📎 Clippy
         run: cargo clippy --all --tests --features=rss,indicatif,audiotag -- -D warnings
