@@ -104,8 +104,9 @@ impl RustyPipeQuery {
     ) -> Result<VideoPlayer, Error> {
         let video_id = video_id.as_ref();
         let mut last_e = None;
+        let mut clients_iter = clients.iter().peekable();
 
-        for client in clients {
+        while let Some(client) = clients_iter.next() {
             if self.opts.auth == Some(true) && !self.auth_enabled(*client) {
                 // If no client has auth enabled, return NoLogin error instead of "no clients"
                 if last_e.is_none() {
@@ -141,6 +142,9 @@ impl RustyPipeQuery {
                         }
                     } else if !e.switch_client() {
                         return Err(Error::Extraction(e));
+                    }
+                    if let Some(next_client) = clients_iter.peek() {
+                        tracing::warn!("error fetching player with {client:?} client: {e}; retrying with {next_client:?} client");
                     }
                     last_e = Some(Error::Extraction(e));
                 }
