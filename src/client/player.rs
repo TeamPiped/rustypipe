@@ -79,6 +79,13 @@ struct ServiceIntegrity {
     po_token: String,
 }
 
+#[derive(Default)]
+struct PlayerPoToken {
+    visitor_data: Option<String>,
+    session_po_token: Option<PoToken>,
+    content_po_token: Option<ServiceIntegrity>,
+}
+
 impl RustyPipeQuery {
     /// Get YouTube player data (video/audio streams + basic metadata)
     pub async fn player<S: AsRef<str> + Debug>(&self, video_id: S) -> Result<VideoPlayer, Error> {
@@ -143,31 +150,33 @@ impl RustyPipeQuery {
         Err(last_e.unwrap_or(Error::Other("no clients".into())))
     }
 
-    async fn get_player_po_token(
-        &self,
-        video_id: &str,
-        visitor_data: &str,
-    ) -> Result<(Option<ServiceIntegrity>, Option<PoToken>), Error> {
+    async fn get_player_po_token(&self, video_id: &str) -> Result<PlayerPoToken, Error> {
         if let Some(bg) = &self.client.inner.botguard {
+            let visitor_data = self.get_visitor_data(false).await?;
             if bg.po_token_cache {
-                let session_token = self.get_session_po_token(visitor_data).await?;
-                Ok((None, Some(session_token)))
+                let session_token = self.get_session_po_token(&visitor_data).await?;
+                Ok(PlayerPoToken {
+                    visitor_data: Some(visitor_data),
+                    session_po_token: Some(session_token),
+                    content_po_token: None,
+                })
             } else {
                 let (po_tokens, valid_until) =
-                    self.get_po_tokens(&[video_id, visitor_data]).await?;
+                    self.get_po_tokens(&[video_id, &visitor_data]).await?;
                 let mut po_tokens = po_tokens.into_iter();
                 let po_token = po_tokens.next().unwrap();
                 let session_po_token = po_tokens.next().unwrap();
-                Ok((
-                    Some(ServiceIntegrity { po_token }),
-                    Some(PoToken {
+                Ok(PlayerPoToken {
+                    visitor_data: Some(visitor_data),
+                    session_po_token: Some(PoToken {
                         po_token: session_po_token,
                         valid_until,
                     }),
-                ))
+                    content_po_token: Some(ServiceIntegrity { po_token }),
+                })
             }
         } else {
-            Ok((None, None))
+            Ok(PlayerPoToken::default())
         }
     }
 
@@ -179,9 +188,8 @@ impl RustyPipeQuery {
         client_type: ClientType,
     ) -> Result<VideoPlayer, Error> {
         let video_id = video_id.as_ref();
-        let visitor_data = self.get_visitor_data(false).await?;
 
-        let (deobf, (service_integrity_dimensions, session_po_token)) = tokio::try_join!(
+        let (deobf, player_po) = tokio::try_join!(
             async {
                 if client_type.needs_deobf() {
                     Ok::<_, Error>(Some(self.client.get_deobf_data().await?))
@@ -191,9 +199,9 @@ impl RustyPipeQuery {
             },
             async {
                 if client_type.needs_po_token() {
-                    self.get_player_po_token(video_id, &visitor_data).await
+                    self.get_player_po_token(video_id).await
                 } else {
-                    Ok((None, None))
+                    Ok(PlayerPoToken::default())
                 }
             }
         )?;
@@ -210,7 +218,7 @@ impl RustyPipeQuery {
             video_id,
             content_check_ok: true,
             racy_check_ok: true,
-            service_integrity_dimensions,
+            service_integrity_dimensions: player_po.content_po_token,
         };
 
         self.execute_request_ctx::<response::Player, _, _>(
@@ -220,10 +228,10 @@ impl RustyPipeQuery {
             "player",
             &request_body,
             MapRespOptions {
-                visitor_data: Some(&visitor_data),
+                visitor_data: player_po.visitor_data.as_deref(),
                 deobf: deobf.as_ref(),
                 unlocalized: true,
-                session_po_token,
+                session_po_token: player_po.session_po_token,
                 ..Default::default()
             },
         )

@@ -2170,7 +2170,11 @@ impl RustyPipeQuery {
         Ok(po_token)
     }
 
-    /// Get a PO token
+    /// Get a Proof-of-origin token
+    ///
+    /// PO tokens are used by the web-based YouTube clients for requesting player data and video streams.
+    ///
+    /// See <https://codeberg.org/ThetaDev/rustypipe-botguard> for more information
     pub async fn get_po_token<S: AsRef<str>>(&self, ident: S) -> Result<PoToken, Error> {
         let (tokens, valid_until) = self.get_po_tokens(&[ident.as_ref()]).await?;
 
@@ -2399,7 +2403,11 @@ impl RustyPipeQuery {
                                 })
                                 .collect(),
                         ),
-                        req_body: serde_json::to_string(&req_res.body).ok(),
+                        req_body: request
+                            .body()
+                            .as_ref()
+                            .and_then(|b| b.as_bytes())
+                            .map(|b| String::from_utf8_lossy(b).into_owned()),
                         status: req_res.status.into(),
                         resp_body: req_res.body,
                     },
