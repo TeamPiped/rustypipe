@@ -72,7 +72,7 @@ struct Cli {
     no_botguard: bool,
     /// Enable caching for session-bound PO tokens
     #[clap(long, global = true)]
-    po_token_cache: bool,
+    pot_cache: bool,
 }
 
 #[derive(Parser)]
@@ -916,7 +916,7 @@ async fn run() -> anyhow::Result<()> {
     if cli.no_botguard {
         rp = rp.no_botguard();
     }
-    if cli.po_token_cache {
+    if cli.pot_cache {
         rp = rp.po_token_cache();
     }
     if cli.auth {

@@ -13,8 +13,13 @@ pub enum DownloadError {
     #[error("http error: {0}")]
     Http(#[from] reqwest::Error),
     /// 403 error trying to download video
-    #[error("YouTube returned 403 error; visitor_data={}", .1.as_deref().unwrap_or_default())]
-    Forbidden(ClientType, Option<String>),
+    #[error("YouTube returned 403 error; visitor_data={}", .visitor_data.as_deref().unwrap_or_default())]
+    Forbidden {
+        /// Client type used to fetch the failed stream
+        client_type: ClientType,
+        /// Visitor data used to fetch the failed stream
+        visitor_data: Option<String>,
+    },
     /// File IO error
     #[error(transparent)]
     Io(#[from] std::io::Error),

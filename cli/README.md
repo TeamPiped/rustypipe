@@ -146,6 +146,7 @@ Fetch a list of all the items saved in your YouTube/YouTube Music profile.
   given path for generating PO tokens
 - `--no-botguard` Disable Botguard, only download videos using clients that dont require
   it
+- `--pot-cache` Enable caching for session-bound PO tokens
 
 ### Output format
 

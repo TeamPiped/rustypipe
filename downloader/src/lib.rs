@@ -660,9 +660,15 @@ impl DownloadQuery {
                 .await
             {
                 Ok(res) => return Ok(res),
-                Err(DownloadError::Forbidden(c, vd)) => {
-                    failed_client = Some(c);
-                    DownloadError::Forbidden(c, vd)
+                Err(DownloadError::Forbidden {
+                    client_type,
+                    visitor_data,
+                }) => {
+                    failed_client = Some(client_type);
+                    DownloadError::Forbidden {
+                        client_type,
+                        visitor_data,
+                    }
                 }
                 Err(DownloadError::Http(e)) => {
                     if !e.is_timeout() {
@@ -842,10 +848,10 @@ impl DownloadQuery {
                     if let Some(vd) = &player_data.visitor_data {
                         q.remove_visitor_data(vd);
                     }
-                    return DownloadError::Forbidden(
-                        player_data.client_type,
-                        player_data.visitor_data.clone(),
-                    );
+                    return DownloadError::Forbidden {
+                        client_type: player_data.client_type,
+                        visitor_data: player_data.visitor_data.clone(),
+                    };
                 }
             }
             e
