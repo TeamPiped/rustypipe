@@ -135,6 +135,12 @@ Fetch a list of all the items saved in your YouTube/YouTube Music profile.
   `--auth` flag you can use authentication for any request.
 - `--lang` Change the YouTube content language
 - `--country` Change the YouTube content country
+- `--tz` Use a specific
+  [timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (e.g.
+  Europe/Berlin, Australia/Sydney)
+
+  **Note:** this requires building rustypipe-cli with the `timezone` feature
+- `--local-tz` Use the local timezone instead of UTC
 - `--report` Generate a report on every request and store it in a `rustypipe_reports`
   folder in the current directory
 - `--cache-file` Change the RustyPipe cache file location (Default:

@@ -55,13 +55,13 @@ struct Cli {
     /// YouTube content country
     #[clap(long, global = true)]
     country: Option<String>,
-    /// UTC offset in minutes
+    /// Use a specific timezone (e.g. Europe/Berlin, Australia/Sydney)
     #[cfg(feature = "timezone")]
     #[clap(long, global = true)]
-    timezone: Option<String>,
+    tz: Option<String>,
     /// Use local timezone
     #[clap(long, global = true)]
-    timezone_local: bool,
+    tz_local: bool,
     /// Use authentication
     #[clap(long, global = true)]
     auth: bool,
@@ -920,12 +920,12 @@ async fn run() -> anyhow::Result<()> {
     if let Some(botguard_bin) = cli.botguard_bin {
         rp = rp.botguard_bin(botguard_bin);
     }
-    if cli.timezone_local {
+    if cli.tz_local {
         rp = rp.timezone_local();
     }
 
     #[cfg(feature = "timezone")]
-    if let Some(timezone) = cli.timezone {
+    if let Some(timezone) = cli.tz {
         use time::OffsetDateTime;
         use time_tz::{Offset, TimeZone};
 
