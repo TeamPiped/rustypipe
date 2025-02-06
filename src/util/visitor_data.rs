@@ -23,8 +23,7 @@ use crate::{
 /// After req_limit requests, a new token is requested asynchronously and added to the cache
 /// to prevent the IDs from being overused.
 ///
-/// The cache holds a maximum of 100 visitor data IDs. If more are added, the oldest ones
-/// are evicted.
+/// The cache's maximum size is limited. If more IDs are added, the oldest ones are evicted.
 #[derive(Clone)]
 pub struct VisitorDataCache {
     inner: Arc<VisitorDataCacheRef>,
@@ -59,7 +58,8 @@ impl VisitorDataCache {
         }
     }
 
-    async fn get_visitor_data(&self) -> Result<String, Error> {
+    /// Fetch a new visitor data ID from YouTube
+    async fn fetch_visitor_data(&self) -> Result<String, Error> {
         tracing::debug!("getting YT visitor data");
         let resp = self
             .inner
@@ -108,8 +108,9 @@ impl VisitorDataCache {
         }
     }
 
+    /// Fetch a new visitor data ID and store it in the cache
     pub async fn new_visitor_data(&self) -> Result<String, Error> {
-        let vd = self.get_visitor_data().await.unwrap();
+        let vd = self.fetch_visitor_data().await.unwrap();
 
         self.inner
             .req_counter
@@ -128,8 +129,9 @@ impl VisitorDataCache {
         Ok(vd)
     }
 
+    /// Get a visitor data ID from the cache
     pub async fn get(&self) -> Result<String, Error> {
-        // Request new visitor data in the background every 10 requests
+        // Request a new visitor data ID in the background after a set number of requests
         if self
             .inner
             .req_counter
@@ -156,6 +158,9 @@ impl VisitorDataCache {
         self.new_visitor_data().await
     }
 
+    /// Remove a visitor data ID from the cache.
+    ///
+    /// This also removes the PO token associated with that ID.
     pub fn remove(&self, visitor_data: &str) {
         let mut vds = self.inner.visitor_data.write().unwrap();
         if let Some(i) = vds.iter().position(|x| x == visitor_data) {
@@ -166,11 +171,13 @@ impl VisitorDataCache {
         }
     }
 
+    /// Store a session PO token in the cache
     pub fn store_pot(&self, visitor_data: &str, po_token: PoToken) {
         let mut pots = self.inner.session_potoken.write().unwrap();
         pots.insert(visitor_data.to_owned(), po_token);
     }
 
+    /// Get a session PO token from the cache
     pub fn get_pot(&self, visitor_data: &str) -> Option<PoToken> {
         let pots = self.inner.session_potoken.read().unwrap();
         if let Some(entry) = pots.get(visitor_data) {
