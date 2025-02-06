@@ -375,7 +375,7 @@ struct RustyPipeRef {
     http: Client,
     storage: Option<Box<dyn CacheStorage>>,
     reporter: Option<Box<dyn Reporter>>,
-    n_http_retries: u32,
+    n_request_attempts: u32,
     cache: CacheHolder,
     default_opts: RustyPipeOpts,
     user_agent: Cow<'static, str>,
@@ -397,7 +397,7 @@ struct RustyPipeOpts {
 pub struct RustyPipeBuilder {
     storage: DefaultOpt<Box<dyn CacheStorage>>,
     reporter: DefaultOpt<Box<dyn Reporter>>,
-    n_http_retries: u32,
+    n_request_attempts: u32,
     timeout: DefaultOpt<Duration>,
     user_agent: Option<String>,
     default_opts: RustyPipeOpts,
@@ -652,7 +652,7 @@ impl RustyPipeBuilder {
             storage: DefaultOpt::Default,
             reporter: DefaultOpt::Default,
             timeout: DefaultOpt::Default,
-            n_http_retries: 2,
+            n_request_attempts: 2,
             user_agent: None,
             storage_dir: None,
             botguard_bin: DefaultOpt::Default,
@@ -753,7 +753,7 @@ impl RustyPipeBuilder {
                     report_dir.push(DEFAULT_REPORT_DIR);
                     Box::new(FileReporter::new(report_dir))
                 }),
-                n_http_retries: self.n_http_retries,
+                n_request_attempts: self.n_request_attempts,
                 cache: CacheHolder {
                     clients: cache_clients,
                     deobf: AsyncRwLock::new(cdata.deobf),
@@ -840,18 +840,18 @@ impl RustyPipeBuilder {
         self
     }
 
-    /// Set the maximum number of attempts for HTTP requests.
+    /// Set the maximum number of attempts for HTTP requests (at least 1).
     ///
     /// If a HTTP requests fails because of a serverside error and retries are enabled,
     /// RustyPipe waits 1 second before the next attempt.
     ///
-    /// The waiting time is doubled for subsequent attempts (including a bit of
+    /// The wait time is doubled for subsequent attempts (including a bit of
     /// random jitter to be less predictable).
     ///
     /// **Default value**: 2
     #[must_use]
-    pub fn n_http_retries(mut self, n_retries: u32) -> Self {
-        self.n_http_retries = n_retries.max(1);
+    pub fn n_request_attempts(mut self, n_retries: u32) -> Self {
+        self.n_request_attempts = n_retries.max(1);
         self
     }
 
@@ -1034,7 +1034,7 @@ impl RustyPipe {
     /// Execute the given http request.
     async fn http_request(&self, request: &Request) -> Result<Response, reqwest::Error> {
         let mut last_resp = None;
-        for n in 0..=self.inner.n_http_retries {
+        for n in 0..=self.inner.n_request_attempts {
             let resp = self.inner.http.execute(request.try_clone().unwrap()).await;
 
             let err = match resp {
@@ -1060,7 +1060,7 @@ impl RustyPipe {
             };
 
             // Retry in case of a recoverable status code (server err, too many requests)
-            if n != self.inner.n_http_retries {
+            if n != self.inner.n_request_attempts {
                 let ms = util::retry_delay(n, 1000, 60000, 3);
                 tracing::warn!(
                     "Retry attempt #{}. Error: {}. Waiting {} ms",
@@ -2282,7 +2282,7 @@ impl RustyPipeQuery {
         ctx_src: &MapRespOptions<'_>,
     ) -> Result<RequestResult<M>, Error> {
         let mut last_resp = None;
-        for n in 0..=self.client.inner.n_http_retries {
+        for n in 0..=self.client.inner.n_request_attempts {
             let resp = self
                 .execute_request_attempt::<R, M, B>(ctype, id, endpoint, body, ctx_src)
                 .await?;
@@ -2300,7 +2300,7 @@ impl RustyPipeQuery {
             // Remove the used visitor data from cache if the request resulted in a recoverable error
             self.remove_visitor_data(&resp.visitor_data);
 
-            if n != self.client.inner.n_http_retries {
+            if n != self.client.inner.n_request_attempts {
                 let ms = util::retry_delay(n, 1000, 60000, 3);
                 tracing::warn!(
                     "Retry attempt #{}. Error: {}. Waiting {} ms",
