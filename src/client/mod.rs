@@ -725,11 +725,21 @@ impl RustyPipeBuilder {
                 .arg("--version")
                 .output()
                 .ok()?;
-            if out.status.success() {
-                Some(n)
-            } else {
-                None
+            if !out.status.success() {
+                return None;
             }
+            let output = String::from_utf8_lossy(&out.stdout);
+            let pat = "rustypipe-botguard-api ";
+            let pos = output.find(pat)? + pat.len();
+            let pos_end = output[pos..]
+                .char_indices()
+                .find(|(_, c)| !c.is_ascii_digit())
+                .map(|(p, _)| p + pos)
+                .unwrap_or(output.len());
+            if &output[pos..pos_end] != "1" {
+                return None;
+            }
+            Some(n)
         });
 
         Ok(RustyPipe {

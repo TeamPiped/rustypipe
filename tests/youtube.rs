@@ -2136,7 +2136,7 @@ async fn music_search_artists(rp: RustyPipe, unlocalized: bool) {
 #[rstest]
 #[tokio::test]
 async fn music_search_artists_cont(rp: RustyPipe) {
-    let res = rp.query().music_search_artists("band").await.unwrap();
+    let res = rp.query().music_search_artists("boys").await.unwrap();
 
     assert_eq!(res.corrected_query, None);
     assert_next(res.items, rp.query(), 15, 2, true).await;
