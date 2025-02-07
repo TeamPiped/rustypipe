@@ -64,3 +64,7 @@ dirs.workspace = true
 anstream = "0.6.15"
 owo-colors = "4.0.0"
 const_format = "0.2.33"
+
+[[bin]]
+name = "rustypipe"
+path = "src/main.rs"
