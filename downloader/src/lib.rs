@@ -1067,8 +1067,8 @@ impl DownloadQuery {
 }
 
 fn get_download_range(offset: u64, size: Option<u64>) -> Range<u64> {
-    let mut rng = rand::thread_rng();
-    let chunk_size = rng.gen_range(CHUNK_SIZE_MIN..CHUNK_SIZE_MAX);
+    let mut rng = rand::rng();
+    let chunk_size = rng.random_range(CHUNK_SIZE_MIN..CHUNK_SIZE_MAX);
     let mut chunk_end = offset + chunk_size;
 
     if let Some(size) = size {

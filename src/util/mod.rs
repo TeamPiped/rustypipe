@@ -75,10 +75,10 @@ pub fn get_cg_from_fancy_regexes(regexes: &[&str], text: &str, cg_name: &str) ->
 /// Generate a random string with given length and byte charset.
 fn random_string(charset: &[u8], length: usize) -> String {
     let mut result = String::with_capacity(length);
-    let mut rng = rand::thread_rng();
+    let mut rng = rand::rng();
 
     for _ in 0..length {
-        result.push(char::from(charset[rng.gen_range(0..charset.len())]));
+        result.push(char::from(charset[rng.random_range(0..charset.len())]));
     }
 
     result
@@ -90,14 +90,14 @@ pub fn generate_content_playback_nonce() -> String {
 }
 
 pub fn random_uuid() -> String {
-    let mut rng = rand::thread_rng();
+    let mut rng = rand::rng();
     format!(
         "{:08x}-{:04x}-{:04x}-{:04x}-{:012x}",
-        rng.gen::<u32>(),
-        rng.gen::<u16>(),
-        rng.gen::<u16>(),
-        rng.gen::<u16>(),
-        rng.gen::<u64>() & 0xffff_ffff_ffff,
+        rng.random::<u32>(),
+        rng.random::<u16>(),
+        rng.random::<u16>(),
+        rng.random::<u16>(),
+        rng.random::<u64>() & 0xffff_ffff_ffff,
     )
 }
 
@@ -229,7 +229,7 @@ pub fn retry_delay(
     backoff_base: u32,
 ) -> u32 {
     let unjittered_delay = backoff_base.checked_pow(n_past_retries).unwrap_or(u32::MAX);
-    let jitter_factor = rand::thread_rng().gen_range(800..1500);
+    let jitter_factor = rand::rng().random_range(800..1500);
     let jittered_delay = unjittered_delay
         .checked_mul(jitter_factor)
         .unwrap_or(u32::MAX);

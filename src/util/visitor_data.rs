@@ -148,8 +148,8 @@ impl VisitorDataCache {
         {
             let vds = self.inner.visitor_data.read().unwrap();
             if !vds.is_empty() {
-                let mut rng = rand::thread_rng();
-                let vd = vds[rng.gen_range(0..vds.len())].to_owned();
+                let mut rng = rand::rng();
+                let vd = vds[rng.random_range(0..vds.len())].to_owned();
                 tracing::debug!("visitor data {vd} picked from cache");
                 return Ok(vd);
             }
