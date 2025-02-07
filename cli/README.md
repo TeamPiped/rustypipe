@@ -8,7 +8,17 @@ The RustyPipe CLI is a powerful YouTube client for the command line. It allows y
 access most of the features of the RustyPipe crate: getting data from YouTube and
 downloading videos.
 
-The following subcommands are included:
+## Installation
+
+You can download a compiled version of RustyPipe here:
+<https://codeberg.org/ThetaDev/rustypipe/releases>
+
+Alternatively, you can compile it yourself by installing [Rust](https://rustup.rs/) and
+running `cargo install rustypipe-cli`.
+
+To be able to download streams from web-based clients (Desktop, Mobile) you need to
+download [rustypipe-botguard](https://codeberg.org/ThetaDev/rustypipe-botguard/releases)
+and place the binary either in the PATH or the current working directory.
 
 ## `get`: Fetch information
 
@@ -140,6 +150,7 @@ Fetch a list of all the items saved in your YouTube/YouTube Music profile.
   Europe/Berlin, Australia/Sydney)
 
   **Note:** this requires building rustypipe-cli with the `timezone` feature
+
 - `--local-tz` Use the local timezone instead of UTC
 - `--report` Generate a report on every request and store it in a `rustypipe_reports`
   folder in the current directory

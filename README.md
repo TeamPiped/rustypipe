@@ -181,6 +181,19 @@ Subscribers: 1780000
 ...
 ```
 
+## Crate features
+
+Some features of RustyPipe are gated behind features to avoid compiling unneeded
+dependencies.
+
+- `rss` Fetch a channel's RSS feed, which is faster than fetching the channel page
+- `userdata` Add functions to fetch YouTube user data (watch history, subscriptions,
+  music library)
+
+You can also choose the TLS library used for making web requests using the same features
+as the reqwest crate (`default-tls`, `native-tls`, `native-tls-alpn`,
+`native-tls-vendored`, `rustls-tls-webpki-roots`, `rustls-tls-native-roots`).
+
 ## Cache storage
 
 The RustyPipe cache holds the current version numbers for all clients, the JavaScript
@@ -212,6 +225,21 @@ RustyPipe reports come in 3 severity levels:
 - WRN (parts of the response could not be deserialized/parsed, response data may be
   incomplete)
 - ERR (entire response could not be deserialized/parsed, RustyPipe returned an error)
+
+## PO tokens
+
+Since August 2024 YouTube requires PO tokens to access streams from web-based clients
+(Desktop, Mobile). Otherwise streams will return a 403 error.
+
+Generating PO tokens requires a simulated browser environment, which would be too large
+to include in RustyPipe directly.
+
+Therefore, the PO token generation is handled by a seperate CLI application
+([rustypipe-botguard](https://codeberg.org/ThetaDev/rustypipe-botguard)) which is called
+by the RustyPipe crate. RustyPipe automatically detects the rustypipe-botguard binary if
+it is located in PATH or the current working directory. If your rustypipe-botguard
+binary is located at a different path, you can specify it with the `.botguard_bin(path)`
+option.
 
 ## Authentication
 
