@@ -181,7 +181,7 @@ impl VisitorDataCache {
     pub fn get_pot(&self, visitor_data: &str) -> Option<PoToken> {
         let pots = self.inner.session_potoken.read().unwrap();
         if let Some(entry) = pots.get(visitor_data) {
-            if entry.valid_until > OffsetDateTime::now_utc() {
+            if entry.valid_until > OffsetDateTime::now_utc() + time::Duration::minutes(10) {
                 return Some(entry.clone());
             }
         }

@@ -508,6 +508,26 @@ impl<T> DefaultOpt<T> {
 ///   - [`music_new_albums`](RustyPipeQuery::music_new_albums)
 ///   - [`music_new_videos`](RustyPipeQuery::music_new_videos)
 ///
+/// ### User data (🔒 Feature `userdata`)
+///
+/// - **Playback history**
+///   - [`history`](RustyPipeQuery::history)
+///   - [`history_search`](RustyPipeQuery::history_search)
+///   - [`music_history`](RustyPipeQuery::music_history)
+/// - **YouTube library**
+///   - [`liked_videos`](RustyPipeQuery::liked_videos)
+///   - [`watch_later`](RustyPipeQuery::watch_later)
+///   - [`saved_playlists`](RustyPipeQuery::saved_playlists)
+/// - **Music library**
+///   - [`music_saved_artists`](RustyPipeQuery::music_saved_artists)
+///   - [`music_saved_albums`](RustyPipeQuery::music_saved_albums)
+///   - [`music_saved_tracks`](RustyPipeQuery::music_saved_tracks)
+///   - [`music_saved_playlists`](RustyPipeQuery::music_saved_playlists)
+///   - [`music_liked_tracks`](RustyPipeQuery::music_liked_tracks)
+/// - **Subscriptions**
+///   - [`subscriptions`](RustyPipeQuery::subscriptions)
+///   - [`subscription_feed`](RustyPipeQuery::subscription_feed)
+///
 /// ## Options
 ///
 /// You can set the language, country and visitor data ID for individual requests.
@@ -848,9 +868,9 @@ impl RustyPipeBuilder {
         self
     }
 
-    /// Set the maximum number of attempts for HTTP requests (at least 1).
+    /// Set the maximum number of attempts for YouTube requests (at least 1).
     ///
-    /// If a HTTP requests fails because of a serverside error and retries are enabled,
+    /// If a request fails because of a serverside error and retries are enabled,
     /// RustyPipe waits 1 second before the next attempt.
     ///
     /// The wait time is doubled for subsequent attempts (including a bit of
@@ -2196,26 +2216,38 @@ impl RustyPipeQuery {
         }
 
         let mut valid_until = None;
+        let mut from_snapshot = false;
         for word in words {
             if let Some((k, v)) = word.split_once('=') {
-                if k == "valid_until" {
-                    valid_until = Some(
-                        v.parse::<i64>()
-                            .ok()
-                            .and_then(|x| OffsetDateTime::from_unix_timestamp(x).ok())
-                            .ok_or(ExtractionError::Botguard(
-                                format!("invalid validity date: {v}").into(),
-                            ))?,
-                    );
+                match k {
+                    "valid_until" => {
+                        valid_until = Some(
+                            v.parse::<i64>()
+                                .ok()
+                                .and_then(|x| OffsetDateTime::from_unix_timestamp(x).ok())
+                                .ok_or(ExtractionError::Botguard(
+                                    format!("invalid validity date: {v}").into(),
+                                ))?,
+                        );
+                    }
+                    "from_snapshot" => {
+                        from_snapshot = v.eq_ignore_ascii_case("true") || v == "1";
+                    }
+                    _ => {}
                 }
             }
         }
 
-        tracing::debug!("generated PO token (took {:?})", start.elapsed());
-        Ok((
-            tokens,
-            valid_until.unwrap_or_else(|| OffsetDateTime::now_utc() + time::Duration::hours(12)),
-        ))
+        let valid_until =
+            valid_until.unwrap_or_else(|| OffsetDateTime::now_utc() + time::Duration::hours(12));
+
+        tracing::debug!(
+            "generated PO token (valid_until {}, from_snapshot={}, took {}ms)",
+            valid_until,
+            from_snapshot,
+            start.elapsed().as_millis()
+        );
+        Ok((tokens, valid_until))
     }
 
     async fn get_session_po_token(&self, visitor_data: &str) -> Result<PoToken, Error> {
