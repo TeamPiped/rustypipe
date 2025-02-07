@@ -1,11 +1,10 @@
 use serde::Deserialize;
 use serde_with::{rust::deserialize_ignore_any, serde_as, DefaultOnError, VecSkipError};
-use time::UtcOffset;
 
 use crate::{
     model::{
         self, traits::FromYtItem, AlbumId, AlbumItem, AlbumType, ArtistId, ArtistItem, ChannelId,
-        HistoryItem, MusicItem, MusicItemType, MusicPlaylistItem, TrackItem, UserItem,
+        MusicItem, MusicItemType, MusicPlaylistItem, TrackItem, UserItem,
     },
     param::Language,
     serializer::{
@@ -22,6 +21,11 @@ use super::{
     ContentsRenderer, ContinuationActionWrap, ContinuationEndpoint, MusicContinuationData,
     SimpleHeaderRenderer, Thumbnails, ThumbnailsWrap,
 };
+
+#[cfg(feature = "userdata")]
+use crate::model::HistoryItem;
+#[cfg(feature = "userdata")]
+use time::UtcOffset;
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -40,6 +44,7 @@ pub(crate) enum ItemSection {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct MusicShelf {
+    #[cfg(feature = "userdata")]
     #[serde_as(as = "Option<Text>")]
     pub title: Option<String>,
     /// Playlist ID (only for playlists)
@@ -1270,6 +1275,7 @@ impl MusicListMapper {
         }
     }
 
+    #[cfg(feature = "userdata")]
     pub fn conv_history_items(
         self,
         date_txt: Option<String>,

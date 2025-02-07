@@ -7,7 +7,7 @@ use crate::{
     error::{Error, ExtractionError},
     model::{
         paginator::{ContinuationEndpoint, Paginator},
-        ChannelItem, HistoryItem, PlaylistItem, VideoItem,
+        ChannelItem, HistoryItem, Playlist, PlaylistItem, VideoItem,
     },
     serializer::MapResult,
 };
@@ -148,6 +148,28 @@ impl RustyPipeQuery {
             )
             .await
     }
+
+    /// Get all liked videos of the logged-in user
+    ///
+    /// Requires authentication cookies.
+    pub async fn liked_videos(&self) -> Result<Playlist, Error> {
+        self.clone()
+            .authenticated()
+            .playlist("LL")
+            .await
+            .map_err(crate::util::map_internal_playlist_err)
+    }
+
+    /// Get the "Watch later" playlist of the logged-in user
+    ///
+    /// Requires authentication cookies.
+    pub async fn watch_later(&self) -> Result<Playlist, Error> {
+        self.clone()
+            .authenticated()
+            .playlist("WL")
+            .await
+            .map_err(crate::util::map_internal_playlist_err)
+    }
 }
 
 impl MapResponse<Paginator<HistoryItem<VideoItem>>> for response::History {
@@ -258,7 +280,7 @@ mod tests {
 
     #[test]
     fn map_history() {
-        let json_path = path!(*TESTFILES / "history" / "history.json");
+        let json_path = path!(*TESTFILES / "userdata" / "history.json");
         let json_file = File::open(json_path).unwrap();
 
         let history: response::History =
@@ -278,7 +300,7 @@ mod tests {
 
     #[test]
     fn map_subscription_feed() {
-        let json_path = path!(*TESTFILES / "history" / "subscription_feed.json");
+        let json_path = path!(*TESTFILES / "userdata" / "subscription_feed.json");
         let json_file = File::open(json_path).unwrap();
 
         let history: response::History =

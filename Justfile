@@ -1,19 +1,19 @@
 test:
-    # cargo test --features=rss
-    cargo nextest run --workspace --features=rss --no-fail-fast --retries 1 -- --skip 'cookie_auth::'
+    # cargo test --features=rss,userdata
+    cargo nextest run --workspace --features=rss,userdata --no-fail-fast --retries 1 -- --skip 'user_data::'
 
 unittest:
-    cargo nextest run --features=rss --no-fail-fast --lib
+    cargo nextest run --features=rss,userdata --no-fail-fast --lib
 
 testyt:
-    cargo nextest run --features=rss --no-fail-fast --retries 1 --test youtube -- --skip 'cookie_auth::'
+    cargo nextest run --features=rss,userdata --no-fail-fast --retries 1 --test youtube -- --skip 'user_data::'
 
 testyt-cookie:
-    cargo nextest run --features=rss --no-fail-fast --retries 1 --test youtube
+    cargo nextest run --features=rss,userdata --no-fail-fast --retries 1 --test youtube
 
 testyt-localized:
-    YT_LANG=th cargo nextest run --features=rss --no-fail-fast --retries 1 --test youtube -- \
-        --skip 'cookie_auth::' --skip 'search_suggestion' --skip 'isrc_search_languages'
+    YT_LANG=th cargo nextest run --features=rss,userdata --no-fail-fast --retries 1 --test youtube -- \
+        --skip 'user_data::' --skip 'search_suggestion' --skip 'isrc_search_languages'
 
 testintl:
     #!/usr/bin/env bash
@@ -33,7 +33,7 @@ testintl:
         echo "---TESTS FOR $YT_LANG ---"
 
         if YT_LANG="$YT_LANG" cargo nextest run --no-fail-fast --retries 1 --test-threads 4 --test youtube -- \
-            --skip 'cookie_auth::' --skip 'search_suggestion' --skip 'isrc_search_languages' --skip 'resolve_'; then
+            --skip 'user_data::' --skip 'search_suggestion' --skip 'isrc_search_languages' --skip 'resolve_'; then
             echo "--- $YT_LANG COMPLETED ---"
         else
             echo "--- $YT_LANG FAILED ---"

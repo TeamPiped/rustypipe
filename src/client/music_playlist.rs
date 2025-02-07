@@ -122,20 +122,6 @@ impl RustyPipeQuery {
         }
         Ok(album)
     }
-
-    /// Get all liked YouTube Music tracks of the logged-in user
-    ///
-    /// The difference to [`RustyPipeQuery::music_saved_tracks`] is that this function only returns
-    /// tracks that were explicitly liked by the user.
-    ///
-    /// Requires authentication cookies.
-    pub async fn music_liked_tracks(&self) -> Result<MusicPlaylist, Error> {
-        self.clone()
-            .authenticated()
-            .music_playlist("LM")
-            .await
-            .map_err(util::map_internal_playlist_err)
-    }
 }
 
 impl MapResponse<MusicPlaylist> for response::MusicPlaylist {

@@ -2,14 +2,11 @@ use serde::Deserialize;
 use serde_with::{
     rust::deserialize_ignore_any, serde_as, DefaultOnError, DisplayFromStr, VecSkipError,
 };
-use time::{OffsetDateTime, UtcOffset};
+use time::OffsetDateTime;
 
-use super::{
-    ChannelBadge, ContentImage, ContinuationEndpoint, PhMetadataView, SimpleHeaderRenderer,
-    Thumbnails,
-};
+use super::{ChannelBadge, ContentImage, ContinuationEndpoint, PhMetadataView, Thumbnails};
 use crate::{
-    model::{Channel, ChannelItem, ChannelTag, HistoryItem, PlaylistItem, VideoItem, YouTubeItem},
+    model::{Channel, ChannelItem, ChannelTag, PlaylistItem, VideoItem, YouTubeItem},
     param::Language,
     serializer::{
         text::{AttributedText, Text, TextComponent},
@@ -17,6 +14,11 @@ use crate::{
     },
     util::{self, timeago, TryRemove},
 };
+
+#[cfg(feature = "userdata")]
+use crate::{client::response::SimpleHeaderRenderer, model::HistoryItem};
+#[cfg(feature = "userdata")]
+use time::UtcOffset;
 
 #[serde_as]
 #[derive(Debug, Deserialize)]
@@ -66,6 +68,7 @@ pub(crate) enum YouTubeListItem {
     /// GridRenderer: contains videos on channel page
     #[serde(alias = "expandedShelfContentsRenderer", alias = "gridRenderer")]
     ItemSectionRenderer {
+        #[cfg(feature = "userdata")]
         header: Option<ItemSectionHeader>,
         #[serde(alias = "items")]
         contents: MapResult<Vec<YouTubeListItem>>,
@@ -298,6 +301,7 @@ pub(crate) struct YouTubeListRenderer {
     pub contents: MapResult<Vec<YouTubeListItem>>,
 }
 
+#[cfg(feature = "userdata")]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct ItemSectionHeader {
@@ -904,6 +908,7 @@ impl YouTubeListMapper<VideoItem> {
         res.c.into_iter().for_each(|item| self.map_item(item));
     }
 
+    #[cfg(feature = "userdata")]
     pub(crate) fn conv_history_items(
         self,
         date_txt: Option<String>,

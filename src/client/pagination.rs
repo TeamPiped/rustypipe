@@ -6,12 +6,15 @@ use crate::model::{
     traits::FromYtItem,
     Comment, MusicItem, YouTubeItem,
 };
-use crate::model::{HistoryItem, TrackItem, VideoItem};
 use crate::serializer::MapResult;
 
-use self::response::YouTubeListItem;
+#[cfg(feature = "userdata")]
+use crate::model::{HistoryItem, TrackItem, VideoItem};
 
-use super::response::music_item::{map_queue_item, MusicListMapper, PlaylistPanelVideo};
+use super::response::{
+    music_item::{map_queue_item, MusicListMapper, PlaylistPanelVideo},
+    YouTubeListItem,
+};
 use super::{
     response, ClientType, MapRespCtx, MapRespOptions, MapResponse, QContinuation, RustyPipeQuery,
 };
@@ -225,6 +228,7 @@ impl MapResponse<Paginator<MusicItem>> for response::MusicContinuation {
     }
 }
 
+#[cfg(feature = "userdata")]
 impl MapResponse<Paginator<HistoryItem<VideoItem>>> for response::Continuation {
     fn map_response(
         self,
@@ -270,6 +274,7 @@ impl MapResponse<Paginator<HistoryItem<VideoItem>>> for response::Continuation {
     }
 }
 
+#[cfg(feature = "userdata")]
 impl MapResponse<Paginator<HistoryItem<TrackItem>>> for response::MusicContinuation {
     fn map_response(
         self,
@@ -422,6 +427,8 @@ impl Paginator<Comment> {
     }
 }
 
+#[cfg(feature = "userdata")]
+#[cfg_attr(docsrs, doc(cfg(feature = "userdata")))]
 impl Paginator<HistoryItem<VideoItem>> {
     /// Get the next page from the paginator (or `None` if the paginator is exhausted)
     pub async fn next<Q: AsRef<RustyPipeQuery>>(&self, query: Q) -> Result<Option<Self>, Error> {
@@ -437,6 +444,8 @@ impl Paginator<HistoryItem<VideoItem>> {
     }
 }
 
+#[cfg(feature = "userdata")]
+#[cfg_attr(docsrs, doc(cfg(feature = "userdata")))]
 impl Paginator<HistoryItem<TrackItem>> {
     /// Get the next page from the paginator (or `None` if the paginator is exhausted)
     pub async fn next<Q: AsRef<RustyPipeQuery>>(&self, query: Q) -> Result<Option<Self>, Error> {
@@ -533,7 +542,11 @@ macro_rules! paginator {
 }
 
 paginator!(Comment);
+#[cfg(feature = "userdata")]
+#[cfg_attr(docsrs, doc(cfg(feature = "userdata")))]
 paginator!(HistoryItem<VideoItem>);
+#[cfg(feature = "userdata")]
+#[cfg_attr(docsrs, doc(cfg(feature = "userdata")))]
 paginator!(HistoryItem<TrackItem>);
 
 #[cfg(test)]
@@ -620,7 +633,7 @@ mod tests {
     }
 
     #[rstest]
-    #[case::subscriptions("subscriptions", path!("history" / "subscriptions.json"))]
+    #[case::subscriptions("subscriptions", path!("userdata" / "subscriptions.json"))]
     fn map_continuation_channels(#[case] name: &str, #[case] path: PathBuf) {
         let json_path = path!(*TESTFILES / path);
         let json_file = File::open(json_path).unwrap();
@@ -644,7 +657,7 @@ mod tests {
     #[case::playlist_tracks("playlist_tracks", path!("music_playlist" / "playlist_cont.json"))]
     #[case::search_tracks("search_tracks", path!("music_search" / "tracks_cont.json"))]
     #[case::radio_tracks("radio_tracks", path!("music_details" / "radio_cont.json"))]
-    #[case::saved_tracks("saved_tracks", path!("music_history" / "saved_tracks.json"))]
+    #[case::saved_tracks("saved_tracks", path!("music_userdata" / "saved_tracks.json"))]
     fn map_continuation_tracks(#[case] name: &str, #[case] path: PathBuf) {
         let json_path = path!(*TESTFILES / path);
         let json_file = File::open(json_path).unwrap();
@@ -665,7 +678,7 @@ mod tests {
     }
 
     #[rstest]
-    #[case::saved_artists("saved_artists", path!("music_history" / "saved_artists.json"))]
+    #[case::saved_artists("saved_artists", path!("music_userdata" / "saved_artists.json"))]
     fn map_continuation_artists(#[case] name: &str, #[case] path: PathBuf) {
         let json_path = path!(*TESTFILES / path);
         let json_file = File::open(json_path).unwrap();
@@ -686,7 +699,7 @@ mod tests {
     }
 
     #[rstest]
-    #[case::saved_albums("saved_albums", path!("music_history" / "saved_albums.json"))]
+    #[case::saved_albums("saved_albums", path!("music_userdata" / "saved_albums.json"))]
     fn map_continuation_albums(#[case] name: &str, #[case] path: PathBuf) {
         let json_path = path!(*TESTFILES / path);
         let json_file = File::open(json_path).unwrap();
@@ -708,7 +721,7 @@ mod tests {
 
     #[rstest]
     #[case::playlist_related("playlist_related", path!("music_playlist" / "playlist_related.json"))]
-    #[case::saved_playlists("saved_playlists", path!("music_history" / "saved_playlists.json"))]
+    #[case::saved_playlists("saved_playlists", path!("music_userdata" / "saved_playlists.json"))]
     fn map_continuation_music_playlists(#[case] name: &str, #[case] path: PathBuf) {
         let json_path = path!(*TESTFILES / path);
         let json_file = File::open(json_path).unwrap();

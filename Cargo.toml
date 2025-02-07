@@ -84,6 +84,7 @@ rustypipe-downloader = { path = "./downloader", version = "0.2.1", default-featu
 default = ["default-tls"]
 
 rss = ["dep:quick-xml"]
+userdata = []
 
 # Reqwest TLS options
 default-tls = ["reqwest/default-tls"]
@@ -126,6 +127,6 @@ tracing-test.workspace = true
 
 [package.metadata.docs.rs]
 # To build locally:
-# RUSTDOCFLAGS="--cfg docsrs" cargo +nightly doc --features rss --no-deps --open
-features = ["rss"]
+# RUSTDOCFLAGS="--cfg docsrs" cargo +nightly doc --features rss,userdata --no-deps --open
+features = ["rss", "userdata"]
 rustdoc-args = ["--cfg", "docsrs"]

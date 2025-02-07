@@ -347,6 +347,7 @@ pub fn parse_textual_date_to_dt(
 /// Parse a textual date (e.g. "29 minutes ago" "Jul 2, 2014") into a Date object.
 ///
 /// Returns None if the date could not be parsed.
+#[cfg(feature = "userdata")]
 pub fn parse_textual_date_to_d(
     lang: Language,
     utc_offset: UtcOffset,

@@ -5,7 +5,7 @@ use std::fmt::Display;
 use std::str::FromStr;
 
 use rstest::{fixture, rstest};
-use rustypipe::model::{HistoryItem, TrackItem, TrackType, VideoItem};
+use rustypipe::model::TrackType;
 use rustypipe::param::{AlbumOrder, LANGUAGES};
 use time::{macros::date, OffsetDateTime};
 
@@ -2728,8 +2728,11 @@ async fn isrc_search_languages(rp: RustyPipe) {
     }
 }
 
-mod cookie_auth {
+#[cfg(feature = "userdata")]
+mod user_data {
     use super::*;
+
+    use rustypipe::model::{HistoryItem, TrackItem, VideoItem};
 
     #[rstest]
     #[tokio::test]
@@ -2813,6 +2816,30 @@ mod cookie_auth {
     async fn music_liked_tracks(rp: RustyPipe) {
         let tracks = rp.query().music_liked_tracks().await.unwrap();
         assert_next_items(tracks.tracks, rp.query(), 5).await;
+    }
+
+    /// Assert that the history paginator produces at least n items
+    async fn assert_next_history<Q: AsRef<RustyPipeQuery>>(
+        paginator: Paginator<HistoryItem<VideoItem>>,
+        query: Q,
+        n_items: usize,
+    ) {
+        let mut p = paginator;
+        let query = query.as_ref();
+        p.extend_limit(query, n_items).await.unwrap();
+        assert_gte(p.items.len(), n_items, "items");
+    }
+
+    /// Assert that the music history paginator produces at least n items
+    async fn assert_next_music_history<Q: AsRef<RustyPipeQuery>>(
+        paginator: Paginator<HistoryItem<TrackItem>>,
+        query: Q,
+        n_items: usize,
+    ) {
+        let mut p = paginator;
+        let query = query.as_ref();
+        p.extend_limit(query, n_items).await.unwrap();
+        assert_gte(p.items.len(), n_items, "items");
     }
 }
 
@@ -2940,30 +2967,6 @@ async fn assert_next_items<T: FromYtItem, Q: AsRef<RustyPipeQuery>>(
     assert_gte(p.items.len(), n_items, "items");
 }
 
-/// Assert that the history paginator produces at least n items
-async fn assert_next_history<Q: AsRef<RustyPipeQuery>>(
-    paginator: Paginator<HistoryItem<VideoItem>>,
-    query: Q,
-    n_items: usize,
-) {
-    let mut p = paginator;
-    let query = query.as_ref();
-    p.extend_limit(query, n_items).await.unwrap();
-    assert_gte(p.items.len(), n_items, "items");
-}
-
-/// Assert that the music history paginator produces at least n items
-async fn assert_next_music_history<Q: AsRef<RustyPipeQuery>>(
-    paginator: Paginator<HistoryItem<TrackItem>>,
-    query: Q,
-    n_items: usize,
-) {
-    let mut p = paginator;
-    let query = query.as_ref();
-    p.extend_limit(query, n_items).await.unwrap();
-    assert_gte(p.items.len(), n_items, "items");
-}
-
 #[track_caller]
 fn assert_frameset(frameset: &Frameset) {
     assert_gte(frameset.frame_height, 20, "frame height");
@@ -3025,10 +3028,6 @@ async fn all_send_and_sync() {
         rp.query()
             .drm_license("", rustypipe::model::DrmSystem::Widevine, "", "", &[]),
     );
-    send_and_sync(rp.query().history());
-    send_and_sync(rp.query().history_continuation("", None));
-    send_and_sync(rp.query().history_search(""));
-    send_and_sync(rp.query().liked_videos());
     send_and_sync(rp.query().music_album(""));
     send_and_sync(rp.query().music_artist("", false));
     send_and_sync(rp.query().music_artist_albums("", None, None));
@@ -3037,9 +3036,6 @@ async fn all_send_and_sync() {
     send_and_sync(rp.query().music_details(""));
     send_and_sync(rp.query().music_genre(""));
     send_and_sync(rp.query().music_genres());
-    send_and_sync(rp.query().music_history());
-    send_and_sync(rp.query().music_history_continuation("", None));
-    send_and_sync(rp.query().music_liked_tracks());
     send_and_sync(rp.query().music_lyrics(""));
     send_and_sync(rp.query().music_new_albums());
     send_and_sync(rp.query().music_new_videos());
@@ -3048,10 +3044,6 @@ async fn all_send_and_sync() {
     send_and_sync(rp.query().music_radio_playlist(""));
     send_and_sync(rp.query().music_radio_track(""));
     send_and_sync(rp.query().music_related(""));
-    send_and_sync(rp.query().music_saved_albums());
-    send_and_sync(rp.query().music_saved_artists());
-    send_and_sync(rp.query().music_saved_playlists());
-    send_and_sync(rp.query().music_saved_tracks());
     send_and_sync(rp.query().music_search::<MusicItem, _>("", None));
     send_and_sync(rp.query().music_search_albums(""));
     send_and_sync(rp.query().music_search_artists(""));
@@ -3068,17 +3060,32 @@ async fn all_send_and_sync() {
     send_and_sync(rp.query().raw(ClientType::Desktop, "", ""));
     send_and_sync(rp.query().resolve_string("", false));
     send_and_sync(rp.query().resolve_url("", false));
-    send_and_sync(rp.query().saved_playlists());
     send_and_sync(rp.query().search::<YouTubeItem, _>(""));
     send_and_sync(
         rp.query()
             .search_filter::<YouTubeItem, _>("", &SearchFilter::default()),
     );
     send_and_sync(rp.query().search_suggestion(""));
-    send_and_sync(rp.query().subscription_feed());
-    send_and_sync(rp.query().subscriptions());
     send_and_sync(rp.query().trending());
     send_and_sync(rp.query().video_comments("", None));
     send_and_sync(rp.query().video_details(""));
-    send_and_sync(rp.query().watch_later());
+
+    #[cfg(feature = "userdata")]
+    {
+        send_and_sync(rp.query().history());
+        send_and_sync(rp.query().history_continuation("", None));
+        send_and_sync(rp.query().history_search(""));
+        send_and_sync(rp.query().liked_videos());
+        send_and_sync(rp.query().watch_later());
+        send_and_sync(rp.query().music_history());
+        send_and_sync(rp.query().music_history_continuation("", None));
+        send_and_sync(rp.query().music_saved_albums());
+        send_and_sync(rp.query().music_saved_artists());
+        send_and_sync(rp.query().music_saved_playlists());
+        send_and_sync(rp.query().music_saved_tracks());
+        send_and_sync(rp.query().saved_playlists());
+        send_and_sync(rp.query().subscription_feed());
+        send_and_sync(rp.query().subscriptions());
+        send_and_sync(rp.query().music_liked_tracks());
+    }
 }

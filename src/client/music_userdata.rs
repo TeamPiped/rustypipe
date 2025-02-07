@@ -8,7 +8,7 @@ use crate::{
     error::{Error, ExtractionError},
     model::{
         paginator::{ContinuationEndpoint, Paginator},
-        AlbumItem, ArtistItem, HistoryItem, MusicPlaylistItem, TrackItem,
+        AlbumItem, ArtistItem, HistoryItem, MusicPlaylist, MusicPlaylistItem, TrackItem,
     },
     serializer::MapResult,
 };
@@ -127,6 +127,20 @@ impl RustyPipeQuery {
             )
             .await
     }
+
+    /// Get all liked YouTube Music tracks of the logged-in user
+    ///
+    /// The difference to [`RustyPipeQuery::music_saved_tracks`] is that this function only returns
+    /// tracks that were explicitly liked by the user.
+    ///
+    /// Requires authentication cookies.
+    pub async fn music_liked_tracks(&self) -> Result<MusicPlaylist, Error> {
+        self.clone()
+            .authenticated()
+            .music_playlist("LM")
+            .await
+            .map_err(crate::util::map_internal_playlist_err)
+    }
 }
 
 impl MapResponse<Paginator<HistoryItem<TrackItem>>> for response::MusicHistory {
@@ -195,7 +209,7 @@ mod tests {
 
     #[test]
     fn map_history() {
-        let json_path = path!(*TESTFILES / "music_history" / "music_history.json");
+        let json_path = path!(*TESTFILES / "music_userdata" / "music_history.json");
         let json_file = File::open(json_path).unwrap();
 
         let history: response::MusicHistory =

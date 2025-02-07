@@ -3,12 +3,10 @@
 pub(crate) mod response;
 
 mod channel;
-mod history;
 mod music_artist;
 mod music_charts;
 mod music_details;
 mod music_genres;
-mod music_history;
 mod music_new;
 mod music_playlist;
 mod music_search;
@@ -19,6 +17,13 @@ mod search;
 mod trends;
 mod url_resolver;
 mod video_details;
+
+#[cfg(feature = "userdata")]
+#[cfg_attr(docsrs, doc(cfg(feature = "userdata")))]
+mod music_userdata;
+#[cfg(feature = "userdata")]
+#[cfg_attr(docsrs, doc(cfg(feature = "userdata")))]
+mod userdata;
 
 #[cfg(feature = "rss")]
 #[cfg_attr(docsrs, doc(cfg(feature = "rss")))]

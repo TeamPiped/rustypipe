@@ -9,7 +9,7 @@ repository.workspace = true
 publish = false
 
 [dependencies]
-rustypipe = { path = "../" }
+rustypipe = { path = "../", features = ["userdata"] }
 reqwest.workspace = true
 tokio = { workspace = true, features = ["rt-multi-thread"] }
 futures-util.workspace = true

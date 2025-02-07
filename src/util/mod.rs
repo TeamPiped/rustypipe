@@ -21,7 +21,7 @@ use regex::Regex;
 use url::Url;
 
 use crate::{
-    error::{AuthError, Error, ExtractionError},
+    error::Error,
     param::{Country, Language, COUNTRIES},
     serializer::text::TextComponent,
 };
@@ -581,9 +581,10 @@ where
 ///
 /// If no user is logged in, YouTube returns a "NotFound" error. This has to be corrected
 /// into a NoLogin error.
+#[cfg(feature = "userdata")]
 pub fn map_internal_playlist_err(e: Error) -> Error {
-    if let Error::Extraction(ExtractionError::NotFound { .. }) = e {
-        Error::Auth(AuthError::NoLogin)
+    if let Error::Extraction(crate::error::ExtractionError::NotFound { .. }) = e {
+        Error::Auth(crate::error::AuthError::NoLogin)
     } else {
         e
     }

@@ -35,10 +35,15 @@ jobs:
           rustypipe-botguard --version
 
       - name: 📎 Clippy
-        run: cargo clippy --all --tests --features=rss,indicatif,audiotag -- -D warnings
+        run: |
+          cargo clippy --all --tests --features=rss,userdata,indicatif,audiotag -- -D warnings
+          cargo clippy --package=rustypipe --tests -- -D warnings
+          cargo clippy --package=rustypipe-downloader -- -D warnings
+          cargo clippy --package=rustypipe-cli -- -D warnings
+          cargo clippy --package=rustypipe-cli --features=timezone -- -D warnings
 
       - name: 🧪 Test
-        run: cargo nextest run --config-file ~/.config/nextest.toml --profile ci --retries 2 --features rss --workspace -- --skip 'cookie_auth::'
+        run: cargo nextest run --config-file ~/.config/nextest.toml --profile ci --retries 2 --features rss,userdata --workspace -- --skip 'user_data::'
         env:
           ALL_PROXY: "http://warpproxy:8124"
 

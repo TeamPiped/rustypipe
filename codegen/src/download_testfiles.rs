@@ -39,9 +39,6 @@ pub async fn download_testfiles() {
     search_playlists().await;
     search_empty().await;
     trending().await;
-    history().await;
-    subscriptions().await;
-    subscription_feed().await;
 
     music_playlist().await;
     music_playlist_cont().await;
@@ -65,6 +62,12 @@ pub async fn download_testfiles() {
     music_charts().await;
     music_genres().await;
     music_genre().await;
+
+    // User data
+    history().await;
+    subscriptions().await;
+    subscription_feed().await;
+
     music_history().await;
     music_saved_artists().await;
     music_saved_albums().await;
@@ -464,7 +467,7 @@ async fn trending() {
 }
 
 async fn history() {
-    let json_path = path!(*TESTFILES_DIR / "history" / "history.json");
+    let json_path = path!(*TESTFILES_DIR / "userdata" / "history.json");
     if json_path.exists() {
         return;
     }
@@ -474,7 +477,7 @@ async fn history() {
 }
 
 async fn subscriptions() {
-    let json_path = path!(*TESTFILES_DIR / "history" / "subscriptions.json");
+    let json_path = path!(*TESTFILES_DIR / "userdata" / "subscriptions.json");
     if json_path.exists() {
         return;
     }
@@ -484,7 +487,7 @@ async fn subscriptions() {
 }
 
 async fn subscription_feed() {
-    let json_path = path!(*TESTFILES_DIR / "history" / "subscription_feed.json");
+    let json_path = path!(*TESTFILES_DIR / "userdata" / "subscription_feed.json");
     if json_path.exists() {
         return;
     }
@@ -816,7 +819,7 @@ async fn music_genre() {
 }
 
 async fn music_history() {
-    let json_path = path!(*TESTFILES_DIR / "music_history" / "music_history.json");
+    let json_path = path!(*TESTFILES_DIR / "music_userdata" / "music_history.json");
     if json_path.exists() {
         return;
     }
@@ -826,7 +829,7 @@ async fn music_history() {
 }
 
 async fn music_saved_artists() {
-    let json_path = path!(*TESTFILES_DIR / "music_history" / "saved_artists.json");
+    let json_path = path!(*TESTFILES_DIR / "music_userdata" / "saved_artists.json");
     if json_path.exists() {
         return;
     }
@@ -836,7 +839,7 @@ async fn music_saved_artists() {
 }
 
 async fn music_saved_albums() {
-    let json_path = path!(*TESTFILES_DIR / "music_history" / "saved_albums.json");
+    let json_path = path!(*TESTFILES_DIR / "music_userdata" / "saved_albums.json");
     if json_path.exists() {
         return;
     }
@@ -846,7 +849,7 @@ async fn music_saved_albums() {
 }
 
 async fn music_saved_tracks() {
-    let json_path = path!(*TESTFILES_DIR / "music_history" / "saved_tracks.json");
+    let json_path = path!(*TESTFILES_DIR / "music_userdata" / "saved_tracks.json");
     if json_path.exists() {
         return;
     }
@@ -856,7 +859,7 @@ async fn music_saved_tracks() {
 }
 
 async fn music_saved_playlists() {
-    let json_path = path!(*TESTFILES_DIR / "music_history" / "saved_playlists.json");
+    let json_path = path!(*TESTFILES_DIR / "music_userdata" / "saved_playlists.json");
     if json_path.exists() {
         return;
     }
