@@ -28,7 +28,7 @@ jobs:
         run: |
           TARGET=$(rustc --version --verbose | grep "host:" | sed -e 's/^host: //')
           cd ~
-          curl -SsL -o rustypipe-botguard.tar.xz "https://codeberg.org/ThetaDev/rustypipe-botguard/releases/download/v0.1.0/rustypipe-botguard-v0.1.0-${TARGET}.tar.xz"
+          curl -SsL -o rustypipe-botguard.tar.xz "https://codeberg.org/ThetaDev/rustypipe-botguard/releases/download/v0.1.1/rustypipe-botguard-v0.1.1-${TARGET}.tar.xz"
           cd /usr/local/bin
           sudo tar -xJf ~/rustypipe-botguard.tar.xz
           rm ~/rustypipe-botguard.tar.xz
