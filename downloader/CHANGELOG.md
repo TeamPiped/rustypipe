@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 
 
+## [v0.3.0](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe-downloader/v0.2.7..rustypipe-downloader/v0.3.0) - 2025-02-09
+
+### 🚀 Features
+
+- [**breaking**] Add userdata feature for all personal data queries (playback history, subscriptions) - ([65cb424](https://codeberg.org/ThetaDev/rustypipe/commit/65cb4244c6ab547f53d0cb12af802c4189188c86))
+
+### 🐛 Bug Fixes
+
+- Ensure downloader futures are send - ([812ff4c](https://codeberg.org/ThetaDev/rustypipe/commit/812ff4c5bafffc5708a6d5066f1ebadb6d9fc958))
+- Download audio with dolby codec - ([9234005](https://codeberg.org/ThetaDev/rustypipe/commit/92340056f868007beccb64e9e26eb39abc40f7aa))
+
+### 🚜 Refactor
+
+- [**breaking**] Add client_type field to DownloadError, rename cli option po-token-cache to pot-cache - ([594e675](https://codeberg.org/ThetaDev/rustypipe/commit/594e675b39efc5fbcdbd5e920a4d2cdee64f718e))
+
+### 📚 Documentation
+
+- Add Botguard info to README - ([9957add](https://codeberg.org/ThetaDev/rustypipe/commit/9957add2b5d6391b2c1869d2019fd7dd91b8cd41))
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Update rustypipe to 0.10.0
+
+
 ## [v0.2.7](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe-downloader/v0.2.6..rustypipe-downloader/v0.2.7) - 2025-01-16
 
 ### 🚀 Features
