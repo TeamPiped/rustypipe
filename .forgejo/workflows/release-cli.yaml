@@ -1,0 +1,68 @@
+name: Release CLI
+on:
+  push:
+    tags:
+      - "rustypipe-cli/v*.*.*"
+
+jobs:
+  Release:
+    runs-on: cimaster-latest
+    steps:
+      - name: 📦 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup cross compilation
+        run: |
+          rustup target add x86_64-pc-windows-msvc x86_64-apple-darwin aarch64-apple-darwin
+          cargo install cargo-xwin
+
+          # https://wapl.es/rust/2019/02/17/rust-cross-compile-linux-to-macos.html/
+          sudo apt-get install -y llvm clang cmake
+          cd ~
+          git clone https://github.com/tpoechtrager/osxcross
+          cd osxcross
+          wget -nc "https://github.com/joseluisq/macosx-sdks/releases/download/12.3/MacOSX12.3.sdk.tar.xz"
+          mv MacOSX12.3.sdk.tar.xz tarballs/
+          UNATTENDED=yes OSX_VERSION_MIN=12.3 ./build.sh
+          OSXCROSS_BIN="$(pwd)/target/bin"
+
+          echo "CARGO_TARGET_X86_64_APPLE_DARWIN_LINKER=$(find "$OSXCROSS_BIN" -name "x86_64-apple-darwin*-clang")" >> $GITHUB_ENV
+          echo "CARGO_TARGET_X86_64_APPLE_DARWIN_RUSTFLAGS=-Car=$(find "$OSXCROSS_BIN" -name "x86_64-apple-darwin*-ar"),-Clink-arg=-undefined,-Clink-arg=dynamic_lookup" >> $GITHUB_ENV
+          echo "CARGO_TARGET_AARCH64_APPLE_DARWIN_LINKER=$(find "$OSXCROSS_BIN" -name "aarch64-apple-darwin*-clang")" >> $GITHUB_ENV
+          echo "CARGO_TARGET_AARCH64_APPLE_DARWIN_RUSTFLAGS=-Car=$(find "$OSXCROSS_BIN" -name "aarch64-apple-darwin*-ar"),-Clink-arg=-undefined,-Clink-arg=dynamic_lookup" >> $GITHUB_ENV
+
+      - name: ⚒️ Build application
+        run: |
+          export PATH="$PATH:$HOME/osxcross/target/bin"
+          CRATE="rustypipe-cli"
+          PKG_CONFIG_SYSROOT_DIR=/usr/x86_64-linux-gnu cargo build --release --package=$CRATE --target x86_64-unknown-linux-gnu
+          PKG_CONFIG_SYSROOT_DIR=/usr/aarch64-linux-gnu cargo build --release --package=$CRATE --target aarch64-unknown-linux-gnu
+          CC="$CARGO_TARGET_X86_64_APPLE_DARWIN_LINKER" CXX="$CARGO_TARGET_X86_64_APPLE_DARWIN_LINKER++" cargo build --release --package=$CRATE --target x86_64-apple-darwin
+          CC="$CARGO_TARGET_AARCH64_APPLE_DARWIN_LINKER" CXX="$CARGO_TARGET_AARCH64_APPLE_DARWIN_LINKER++" cargo build --release --package=$CRATE --target aarch64-apple-darwin
+          cargo xwin build --release --package=$CRATE --target x86_64-pc-windows-msvc
+
+      - name: Prepare release
+        run: |
+          CRATE="rustypipe-cli"
+          BIN="rustypipe"
+          echo "CRATE=$CRATE" >> "$GITHUB_ENV"
+          echo "CRATE_VERSION=$(echo '${{ github.ref_name }}' | awk 'BEGIN{RS="/"} NR==2{print}')" >> "$GITHUB_ENV"
+          CL_PATH="cli/CHANGELOG.md"
+          {
+            echo 'CHANGELOG<<END_OF_FILE'
+            awk 'BEGIN{RS="(^|\n)## [^\n]+\n*"} NR==2 { print }' "$CL_PATH"
+            echo END_OF_FILE
+          } >> "$GITHUB_ENV"
+
+          mkdir dist
+
+          for arch in x86_64-unknown-linux-gnu aarch64-unknown-linux-gnu x86_64-apple-darwin aarch64-apple-darwin; do
+            tar -cJf "dist/${BIN}-${CRATE_VERSION}-${arch}.tar.xz" -C target/${arch}/release "${BIN}"
+          done
+          (cd target/x86_64-pc-windows-msvc/release && zip -9 "../../../dist/${BIN}-${CRATE_VERSION}-x86_64-pc-windows-msvc.zip" "${BIN}.exe")
+
+      - name: 🎉 Publish release
+        uses: https://gitea.com/actions/release-action@main
+        with:
+          title: "${{ env.CRATE }} ${{ env.CRATE_VERSION }}"
+          body: "${{ env.CHANGELOG }}"

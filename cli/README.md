@@ -16,9 +16,11 @@ You can download a compiled version of RustyPipe here:
 Alternatively, you can compile it yourself by installing [Rust](https://rustup.rs/) and
 running `cargo install rustypipe-cli`.
 
-To be able to download streams from web-based clients (Desktop, Mobile) you need to
+To be able to access streams from web-based clients (Desktop, Mobile) you need to
 download [rustypipe-botguard](https://codeberg.org/ThetaDev/rustypipe-botguard/releases)
 and place the binary either in the PATH or the current working directory.
+
+For downloading videos you also need to have ffmpeg installed.
 
 ## `get`: Fetch information
 
