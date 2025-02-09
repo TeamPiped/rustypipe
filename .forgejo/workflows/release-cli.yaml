@@ -3,6 +3,7 @@ on:
   push:
     tags:
       - "rustypipe-cli/v*.*.*"
+  workflow_dispatch:
 
 jobs:
   Release:
@@ -66,3 +67,4 @@ jobs:
         with:
           title: "${{ env.CRATE }} ${{ env.CRATE_VERSION }}"
           body: "${{ env.CHANGELOG }}"
+          files: dist/*
