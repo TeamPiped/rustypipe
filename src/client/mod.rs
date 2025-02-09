@@ -362,6 +362,8 @@ const OAUTH_CLIENT_ID: &str =
 const OAUTH_CLIENT_SECRET: &str = "SboVhoG9s0rNafixCSGGKXAT";
 const OAUTH_SCOPES: &str = "http://gdata.youtube.com https://www.googleapis.com/auth/youtube";
 
+const BOTGUARD_API_VERSION: &str = "1";
+
 static CLIENT_VERSION_REGEX: Lazy<Regex> =
     Lazy::new(|| Regex::new(r#""INNERTUBE_CONTEXT_CLIENT_VERSION":"([\w\d\._-]+?)""#).unwrap());
 
@@ -409,11 +411,13 @@ pub struct RustyPipeBuilder {
     default_opts: RustyPipeOpts,
     storage_dir: Option<PathBuf>,
     botguard_bin: DefaultOpt<OsString>,
+    snapshot_file: Option<PathBuf>,
     po_token_cache: bool,
 }
 
 struct BotguardCfg {
     program: OsString,
+    version: String,
     snapshot_file: PathBuf,
     po_token_cache: bool,
 }
@@ -439,13 +443,6 @@ impl<T> DefaultOpt<T> {
             DefaultOpt::Some(x) => Some(x),
             DefaultOpt::None => None,
             DefaultOpt::Default => Some(f()),
-        }
-    }
-    fn or_default_opt<F: FnOnce() -> Option<T>>(self, f: F) -> Option<T> {
-        match self {
-            DefaultOpt::Some(x) => Some(x),
-            DefaultOpt::None => None,
-            DefaultOpt::Default => f(),
         }
     }
 }
@@ -684,6 +681,7 @@ impl RustyPipeBuilder {
             user_agent: None,
             storage_dir: None,
             botguard_bin: DefaultOpt::Default,
+            snapshot_file: None,
             po_token_cache: false,
         }
     }
@@ -749,27 +747,31 @@ impl RustyPipeBuilder {
 
         let visitor_data_cache = VisitorDataCache::new(http.clone(), 50, 20);
 
-        let botguard_bin = self.botguard_bin.or_default_opt(|| {
-            let n = OsString::from("rustypipe-botguard");
-            let out = std::process::Command::new(&n)
-                .arg("--version")
-                .output()
-                .ok()?;
-            if !out.status.success() {
-                return None;
+        let botguard = match self.botguard_bin {
+            DefaultOpt::Some(botguard_bin) => Some(detect_botguard_bin(botguard_bin)?),
+            DefaultOpt::None => None,
+            DefaultOpt::Default => detect_botguard_bin("./rustypipe-botguard".into())
+                .or_else(|_| detect_botguard_bin("rustypipe-botguard".into()))
+                .map_err(|e| tracing::debug!("could not detect rustypipe-botguard: {e}"))
+                .ok(),
+        }
+        .map(|(program, version)| {
+            tracing::debug!(
+                "rustypipe-botguard: using {} at {}",
+                version,
+                program.to_string_lossy()
+            );
+
+            BotguardCfg {
+                program: program.to_owned(),
+                version,
+                snapshot_file: self.snapshot_file.unwrap_or_else(|| {
+                    let mut snapshot_file = storage_dir.clone();
+                    snapshot_file.push("bg_snapshot.bin");
+                    snapshot_file
+                }),
+                po_token_cache: self.po_token_cache,
             }
-            let output = String::from_utf8_lossy(&out.stdout);
-            let pat = "rustypipe-botguard-api ";
-            let pos = output.find(pat)? + pat.len();
-            let pos_end = output[pos..]
-                .char_indices()
-                .find(|(_, c)| !c.is_ascii_digit())
-                .map(|(p, _)| p + pos)
-                .unwrap_or(output.len());
-            if &output[pos..pos_end] != "1" {
-                return None;
-            }
-            Some(n)
         });
 
         Ok(RustyPipe {
@@ -777,7 +779,7 @@ impl RustyPipeBuilder {
                 http,
                 storage,
                 reporter: self.reporter.or_default(|| {
-                    let mut report_dir = storage_dir.clone();
+                    let mut report_dir = storage_dir;
                     report_dir.push(DEFAULT_REPORT_DIR);
                     Box::new(FileReporter::new(report_dir))
                 }),
@@ -791,15 +793,7 @@ impl RustyPipeBuilder {
                 default_opts: self.default_opts,
                 user_agent,
                 visitor_data_cache,
-                botguard: botguard_bin.map(|program| {
-                    let mut snapshot_file = storage_dir;
-                    snapshot_file.push("bg_snapshot.bin");
-                    BotguardCfg {
-                        program,
-                        snapshot_file,
-                        po_token_cache: self.po_token_cache,
-                    }
-                }),
+                botguard,
             }),
         })
     }
@@ -1032,6 +1026,18 @@ impl RustyPipeBuilder {
     #[must_use]
     pub fn botguard_bin<S: Into<OsString>>(mut self, botguard_bin: S) -> Self {
         self.botguard_bin = DefaultOpt::Some(botguard_bin.into());
+        self
+    }
+
+    /// Set the path where the rustypipe-botguard snapshot file is stored
+    ///
+    /// After solving a Botguard challenge, rustypipe-botguard stores its
+    /// JavaScript environment in a snapshot file, so it can quickly generate additional tokens.
+    ///
+    /// By default the snapshot is stored in the storage_dir (Filename: bg_snapshot.bin).
+    #[must_use]
+    pub fn botguard_snapshot_file<P: Into<PathBuf>>(mut self, snapshot_file: P) -> Self {
+        self.snapshot_file = Some(snapshot_file.into());
         self
     }
 
@@ -1699,6 +1705,11 @@ impl RustyPipe {
         );
         Ok(())
     }
+
+    /// Get the version string (e.g. `rustypipe-botguard 0.1.1`) of the used botguard binary
+    pub async fn version_botguard(&self) -> Option<String> {
+        self.inner.botguard.as_ref().map(|bg| bg.version.to_owned())
+    }
 }
 
 impl RustyPipeQuery {
@@ -2177,7 +2188,7 @@ impl RustyPipeQuery {
         self.client.inner.visitor_data_cache.remove(visitor_data);
     }
 
-    /// Get PO tokens
+    /// Generate PO tokens
     async fn get_po_tokens(&self, idents: &[&str]) -> Result<(Vec<String>, OffsetDateTime), Error> {
         let bg = self
             .client
@@ -2250,6 +2261,7 @@ impl RustyPipeQuery {
         Ok((tokens, valid_until))
     }
 
+    /// Get a session-bound PO token (either from cache or newly generated)
     async fn get_session_po_token(&self, visitor_data: &str) -> Result<PoToken, Error> {
         if let Some(po_token) = self.client.inner.visitor_data_cache.get_pot(visitor_data) {
             return Ok(po_token);
@@ -2263,7 +2275,7 @@ impl RustyPipeQuery {
         Ok(po_token)
     }
 
-    /// Get a Proof-of-origin token
+    /// Get a PO token (Proof-of-origin token)
     ///
     /// PO tokens are used by the web-based YouTube clients for requesting player data and video streams.
     ///
@@ -2277,6 +2289,22 @@ impl RustyPipeQuery {
         })
     }
 
+    /// Get a new RustyPipeInfo object for reports
+    fn rp_info(&self) -> RustyPipeInfo<'_> {
+        RustyPipeInfo::new(
+            Some(self.opts.lang),
+            self.client
+                .inner
+                .botguard
+                .as_ref()
+                .map(|bg| bg.version.as_str()),
+        )
+    }
+
+    /// Execute a request to the YouTube API, then deobfuscate and map the response.
+    ///
+    /// Runs a single attempt, returns Ok with a erroneous RequestResult in case of a
+    /// HTTP or mapping error so it can be retried/reported.
     async fn execute_request_attempt<
         R: DeserializeOwned + MapResponse<M> + Debug,
         M,
@@ -2368,6 +2396,10 @@ impl RustyPipeQuery {
         })
     }
 
+    /// Execute a request to the YouTube API, then deobfuscate and map the response.
+    ///
+    /// Runs up to n_request_attempts, returns Ok with a erroneous RequestResult in case of a
+    /// HTTP or mapping error so it can be reported.
     async fn execute_request_inner<
         R: DeserializeOwned + MapResponse<M> + Debug,
         M,
@@ -2474,7 +2506,7 @@ impl RustyPipeQuery {
         if level > Level::DBG || self.opts.report {
             if let Some(reporter) = &self.client.inner.reporter {
                 let report = Report {
-                    info: RustyPipeInfo::new(Some(self.opts.lang)),
+                    info: self.rp_info(),
                     level,
                     operation: &format!("{operation}({id})"),
                     error,
@@ -2672,6 +2704,46 @@ fn local_tz_offset() -> (String, i16) {
             ("UTC".to_owned(), 0)
         }
     }
+}
+
+/// Check if a valid Botguard binary is available at the given location
+fn detect_botguard_bin(program: OsString) -> Result<(OsString, String), Error> {
+    let out = std::process::Command::new(&program)
+        .arg("--version")
+        .output()
+        .map_err(|e| {
+            if e.kind() == std::io::ErrorKind::NotFound {
+                Error::Other("rustypipe-botguard binary not found".into())
+            } else {
+                Error::Other(format!("error calling rustypipe-botguard {e}").into())
+            }
+        })?;
+    if !out.status.success() {
+        return Err(Error::Extraction(ExtractionError::Botguard(
+            format!("version check failed with status {}", out.status).into(),
+        )));
+    }
+    let output = String::from_utf8_lossy(&out.stdout);
+    let pat = "rustypipe-botguard-api ";
+    let pos = output.find(pat).ok_or(Error::Other(
+        "no rustypipe-botguard-api version returned".into(),
+    ))? + pat.len();
+    let pos_end = output[pos..]
+        .char_indices()
+        .find(|(_, c)| !c.is_ascii_digit())
+        .map(|(p, _)| p + pos)
+        .unwrap_or(output.len());
+    let api_version = &output[pos..pos_end];
+    if api_version != BOTGUARD_API_VERSION {
+        return Err(Error::Other(
+            format!(
+                "incompatible rustypipe-botguard-api version {api_version}, expected {BOTGUARD_API_VERSION}"
+            )
+            .into(),
+        ));
+    }
+    let version = output[..pos].lines().next().unwrap_or_default().to_owned();
+    Ok((program, version))
 }
 
 #[cfg(test)]

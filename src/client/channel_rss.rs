@@ -3,7 +3,7 @@ use std::fmt::Debug;
 use crate::{
     error::{Error, ExtractionError},
     model::ChannelRss,
-    report::{Report, RustyPipeInfo},
+    report::Report,
     util,
 };
 
@@ -45,7 +45,7 @@ impl RustyPipeQuery {
             Err(e) => {
                 if let Some(reporter) = &self.client.inner.reporter {
                     let report = Report {
-                        info: RustyPipeInfo::new(Some(self.opts.lang)),
+                        info: self.rp_info(),
                         level: crate::report::Level::ERR,
                         operation: "channel_rss",
                         error: Some(e.to_string()),

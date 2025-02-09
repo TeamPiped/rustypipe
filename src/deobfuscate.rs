@@ -39,7 +39,7 @@ impl DeobfData {
         if let Err(e) = &res {
             if let Some(reporter) = reporter {
                 let report = Report {
-                    info: RustyPipeInfo::new(None),
+                    info: RustyPipeInfo::new(None, None),
                     level: Level::ERR,
                     operation: "extract_deobf",
                     error: Some(e.to_string()),

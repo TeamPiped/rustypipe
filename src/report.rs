@@ -70,6 +70,8 @@ pub struct RustyPipeInfo<'a> {
     /// YouTube content language
     #[serde(skip_serializing_if = "Option::is_none")]
     pub language: Option<Language>,
+    /// RustyPipe Botguard version (`rustypipe-botguard 0.1.1`)
+    pub botguard_version: Option<&'a str>,
 }
 
 /// Reported HTTP request data
@@ -104,13 +106,14 @@ pub enum Level {
     ERR,
 }
 
-impl RustyPipeInfo<'_> {
-    pub(crate) fn new(language: Option<Language>) -> Self {
+impl<'a> RustyPipeInfo<'a> {
+    pub(crate) fn new(language: Option<Language>, botguard_version: Option<&'a str>) -> Self {
         Self {
             package: env!("CARGO_PKG_NAME"),
             version: crate::VERSION,
             date: util::now_sec(),
             language,
+            botguard_version,
         }
     }
 }
