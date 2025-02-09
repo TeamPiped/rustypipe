@@ -80,6 +80,9 @@ struct Cli {
     /// Enable caching for session-bound PO tokens
     #[clap(long, global = true)]
     pot_cache: bool,
+    /// Enable debug logging
+    #[clap(short, long, global = true)]
+    verbose: bool,
 }
 
 #[derive(Parser)]
@@ -878,12 +881,15 @@ async fn run() -> anyhow::Result<()> {
     let cli = Cli::parse();
     let multi = MultiProgress::new();
 
+    let mut env_filter = EnvFilter::builder()
+        .with_default_directive(LevelFilter::INFO.into())
+        .from_env_lossy();
+    if cli.verbose {
+        env_filter = env_filter.add_directive("rustypipe=debug".parse().unwrap());
+    }
+
     tracing_subscriber::fmt::SubscriberBuilder::default()
-        .with_env_filter(
-            EnvFilter::builder()
-                .with_default_directive(LevelFilter::INFO.into())
-                .from_env_lossy(),
-        )
+        .with_env_filter(env_filter)
         .with_writer(ProgWriter(multi.clone()))
         .init();
 

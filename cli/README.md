@@ -139,8 +139,8 @@ Fetch a list of all the items saved in your YouTube/YouTube Music profile.
 
 - **Proxy:** RustyPipe respects the environment variables `HTTP_PROXY`, `HTTPS_PROXY`
   and `ALL_PROXY`
-- **Logging:** You can change the log level with the `RUST_LOG` environment variable, it
-  is set to `info` by default
+- **Logging:** Enable debug logging with the `-v` (verbose) flag. If you want more
+  fine-grained control, use the `RUST_LOG` environment variable.
 - **Visitor data:** A custom visitor data ID can be used with the `--vdata` flag
 - **Authentication:** Use the commands `rustypipe login` and `rustypipe login --cookie`
   to log into your Google account using either OAuth or YouTube cookies. With the
