@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 
 
+## [v0.10.0](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe/v0.9.0..rustypipe/v0.10.0) - 2025-02-09
+
+### 🚀 Features
+
+- Add visitor data cache, remove random visitor data - ([b12f4c5](https://codeberg.org/ThetaDev/rustypipe/commit/b12f4c5d821a9189d7ed8410ad860824b6d052ef))
+- Add support for rustypipe-botguard to get PO tokens - ([b90a252](https://codeberg.org/ThetaDev/rustypipe/commit/b90a252a5e1bf05a5294168b0ec16a73cbb88f42))
+- Add session po token cache - ([b72b501](https://codeberg.org/ThetaDev/rustypipe/commit/b72b501b6dbcf4333b24cd80e7c8c61b0c21ec91))
+- Check rustypipe-botguard-api version - ([8385b87](https://codeberg.org/ThetaDev/rustypipe/commit/8385b87c63677f32a240679a78702f53072e517a))
+- Rewrite request attempt system, retry with different visitor data - ([dfd03ed](https://codeberg.org/ThetaDev/rustypipe/commit/dfd03edfadff2657e9cfbf04e5d313ba409520ac))
+- Log failed player fetch attempts with player_from_clients - ([8e35358](https://codeberg.org/ThetaDev/rustypipe/commit/8e35358c8941301f6ebf7646a11ab22711082569))
+- Add timezone query option - ([3a2370b](https://codeberg.org/ThetaDev/rustypipe/commit/3a2370b97ca3d0f40d72d66a23295557317d29fb))
+- [**breaking**] Add userdata feature for all personal data queries (playback history, subscriptions) - ([65cb424](https://codeberg.org/ThetaDev/rustypipe/commit/65cb4244c6ab547f53d0cb12af802c4189188c86))
+- Add RustyPipe::version_botguard fn, detect rustypipe-botguard in current dir, add botguard version to report - ([1d755b7](https://codeberg.org/ThetaDev/rustypipe/commit/1d755b76bf4569f7d0bb90a65494ac8e7aae499a))
+
+### 🐛 Bug Fixes
+
+- Parsing history dates - ([af7dc10](https://codeberg.org/ThetaDev/rustypipe/commit/af7dc1016322a87dd8fec0b739939c2b12b6f400))
+- A/V streams incorrectly recognized as video-only - ([2b891ca](https://codeberg.org/ThetaDev/rustypipe/commit/2b891ca0788f91f16dbb9203191cb3d2092ecc74))
+- Update iOS client - ([e915416](https://codeberg.org/ThetaDev/rustypipe/commit/e91541629d6c944c1001f5883e3c1264aeeb3969))
+- A/B test 20: music continuation item renderer - ([9c67f8f](https://codeberg.org/ThetaDev/rustypipe/commit/9c67f8f85bef8214848dc9d17bff6cff252e015e))
+- Include whole request body in report - ([15245c1](https://codeberg.org/ThetaDev/rustypipe/commit/15245c18b584e42523762b94fcc7284d483660a0))
+- Extracting nsig fn when outside variable starts with $ - ([eda16e3](https://codeberg.org/ThetaDev/rustypipe/commit/eda16e378730a3b57c4982a626df1622a93c574a))
+- Retry updating deobf data after a RustyPipe update - ([50ab1f7](https://codeberg.org/ThetaDev/rustypipe/commit/50ab1f7a5d8aeaa3720264b4a4b27805bb0e8121))
+- Allow player data to be fetched without botguard - ([29c854b](https://codeberg.org/ThetaDev/rustypipe/commit/29c854b20d7a6677415b1744e7ba7ecd4f594ea5))
+- Output full request body in reports, clean up `get_player_po_token` - ([a0d850f](https://codeberg.org/ThetaDev/rustypipe/commit/a0d850f8e01428a73bbd66397d0dbf797b45958f))
+- Correct timezone offset for parsed dates, add timezone_local option - ([a5a7be5](https://codeberg.org/ThetaDev/rustypipe/commit/a5a7be5b4e0a0b73d7e1dc802ebd7bd48dafc76d))
+- Use localzone crate to get local tz - ([5acbf0e](https://codeberg.org/ThetaDev/rustypipe/commit/5acbf0e456b1f10707e0a56125d993a8129eee3a))
+- Only use cached potokens with min. 10min lifetime - ([0c94267](https://codeberg.org/ThetaDev/rustypipe/commit/0c94267d0371b2b26c7b5c9abfa156d5cde2153e))
+
+### 📚 Documentation
+
+- Add Botguard info to README - ([9957add](https://codeberg.org/ThetaDev/rustypipe/commit/9957add2b5d6391b2c1869d2019fd7dd91b8cd41))
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Update rust crate rquickjs to 0.9.0 (#33) - ([2c8ac41](https://codeberg.org/ThetaDev/rustypipe/commit/2c8ac410aa535d83f8bcc7181f81914b13bceb77))
+
+
 ## [v0.9.0](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe/v0.8.0..rustypipe/v0.9.0) - 2025-01-16
 
 ### 🚀 Features
