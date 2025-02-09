@@ -3,7 +3,6 @@ on:
   push:
     tags:
       - "rustypipe-cli/v*.*.*"
-  workflow_dispatch:
 
 jobs:
   Release:
