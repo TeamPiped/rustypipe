@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 
 
+## [v0.7.0](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe-cli/v0.6.0..rustypipe-cli/v0.7.0) - 2025-02-09
+
+### 🚀 Features
+
+- Add support for rustypipe-botguard to get PO tokens - ([b90a252](https://codeberg.org/ThetaDev/rustypipe/commit/b90a252a5e1bf05a5294168b0ec16a73cbb88f42))
+- [**breaking**] Remove manual PO token options from downloader/cli, add new rustypipe-botguard options - ([cddb32f](https://codeberg.org/ThetaDev/rustypipe/commit/cddb32f190276265258c6ab45b3d43a8891c4b39))
+- Add session po token cache - ([b72b501](https://codeberg.org/ThetaDev/rustypipe/commit/b72b501b6dbcf4333b24cd80e7c8c61b0c21ec91))
+- Add timezone query option - ([3a2370b](https://codeberg.org/ThetaDev/rustypipe/commit/3a2370b97ca3d0f40d72d66a23295557317d29fb))
+- Add --timezone-local CLI option - ([4f2bb47](https://codeberg.org/ThetaDev/rustypipe/commit/4f2bb47ab42ae0c68a64f3b3c2831fa7850b6f56))
+- Add verbose flag - ([629b590](https://codeberg.org/ThetaDev/rustypipe/commit/629b5905da653c6fe0f3c6b5814dd2f49030e7ed))
+
+### 🐛 Bug Fixes
+
+- Parsing mixed-case language codes like zh-CN - ([9c73ed4](https://codeberg.org/ThetaDev/rustypipe/commit/9c73ed4b3008cb093c0fa7fd94fd9f1ba8cd3627))
+
+### 🚜 Refactor
+
+- [**breaking**] Add client_type field to DownloadError, rename cli option po-token-cache to pot-cache - ([594e675](https://codeberg.org/ThetaDev/rustypipe/commit/594e675b39efc5fbcdbd5e920a4d2cdee64f718e))
+- Rename rustypipe-cli binary to rustypipe - ([c1a872e](https://codeberg.org/ThetaDev/rustypipe/commit/c1a872e1c14ea0956053bd7c65f6875b1cb3bc55))
+
+### 📚 Documentation
+
+- Add Botguard info to README - ([9957add](https://codeberg.org/ThetaDev/rustypipe/commit/9957add2b5d6391b2c1869d2019fd7dd91b8cd41))
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Update rustypipe to 0.10.0
+- *(deps)* Update rust crate rquickjs to 0.9.0 (#33) - ([2c8ac41](https://codeberg.org/ThetaDev/rustypipe/commit/2c8ac410aa535d83f8bcc7181f81914b13bceb77))
+
+
 ## [v0.6.0](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe-cli/v0.5.0..rustypipe-cli/v0.6.0) - 2025-01-16
 
 ### 🚀 Features
