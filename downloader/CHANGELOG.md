@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 
 ### 🚀 Features
 
-- [**breaking**] Add userdata feature for all personal data queries (playback history, subscriptions) - ([65cb424](https://codeberg.org/ThetaDev/rustypipe/commit/65cb4244c6ab547f53d0cb12af802c4189188c86))
+- [**breaking**] Remove manual PO token options from downloader in favor of rustypipe-botguard - ([cddb32f](https://codeberg.org/ThetaDev/rustypipe/commit/cddb32f190276265258c6ab45b3d43a8891c4b39))
 
 ### 🐛 Bug Fixes
 
