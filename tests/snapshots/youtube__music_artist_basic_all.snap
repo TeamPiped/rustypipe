@@ -147,21 +147,6 @@ MusicArtist(
       by_va: false,
     ),
     AlbumItem(
-      id: "MPREb_ghrNI6BJSM8",
-      name: "Friends And Family",
-      cover: "[cover]",
-      artists: [
-        ArtistId(
-          id: Some("UCFKUUtHjT4iq3p0JJA13SOA"),
-          name: "Every Time I Die",
-        ),
-      ],
-      artist_id: Some("UCFKUUtHjT4iq3p0JJA13SOA"),
-      album_type: album,
-      year: Some(2017),
-      by_va: false,
-    ),
-    AlbumItem(
       id: "MPREb_h0UZr2ALQXf",
       name: "From Parts Unknown (Deluxe Edition)",
       cover: "[cover]",
