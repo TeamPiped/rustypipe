@@ -18,6 +18,7 @@ MusicAlbum(
   album_type: audiobook,
   year: Some(2022),
   by_va: false,
+  track_count: 319,
   tracks: [
     TrackItem(
       id: "F28BV_Y-970",
@@ -1425,6 +1426,22 @@ MusicAlbum(
       view_count: "[view_count]",
       track_type: track,
       track_nr: Some(88),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "2klbe4CmXaQ",
+      name: "Kapitel 7.14 - 1984",
+      duration: Some(129),
+      cover: [],
+      artists: [],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(89),
       by_va: false,
     ),
     TrackItem(
@@ -3207,8 +3224,24 @@ MusicAlbum(
       id: "svY6h_e3LYI",
       name: "Kapitel 17.5 - 1984",
       duration: Some(128),
-      cover: [],
-      artists: [],
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
       artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
       album: Some(AlbumId(
         id: "MPREb_gaoNzsQHedo",
@@ -3217,6 +3250,3782 @@ MusicAlbum(
       view_count: "[view_count]",
       track_type: track,
       track_nr: Some(201),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "Hir7IMW_37k",
+      name: "Kapitel 17.6 - 1984",
+      duration: Some(203),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(202),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "wrp-KxyqmKs",
+      name: "Kapitel 17.7 - 1984",
+      duration: Some(185),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(203),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "tFQF6fw09ec",
+      name: "Kapitel 17.8 - 1984",
+      duration: Some(127),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(204),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "tzlG81GlTXQ",
+      name: "Kapitel 17.9 - 1984",
+      duration: Some(212),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(205),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "Vno9w1ba-C0",
+      name: "Kapitel 17.10 - 1984",
+      duration: Some(152),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(206),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "Ve19y3AhLBk",
+      name: "Kapitel 17.11 - 1984",
+      duration: Some(143),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(207),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "8oHasQ_tiuI",
+      name: "Kapitel 17.12 - 1984",
+      duration: Some(171),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(208),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "Ap42W06bL2c",
+      name: "Kapitel 17.13 - 1984",
+      duration: Some(174),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(209),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "qmiLwRF0fOs",
+      name: "Kapitel 17.14 - 1984",
+      duration: Some(173),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(210),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "BdiOwfRyToY",
+      name: "Kapitel 17.15 - 1984",
+      duration: Some(192),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(211),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "PlBZ0cGf5DE",
+      name: "Kapitel 17.16 - 1984",
+      duration: Some(214),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(212),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "v9MgxVJWCow",
+      name: "Kapitel 17.17 - 1984",
+      duration: Some(367),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(213),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "5nwe4RMmA8s",
+      name: "Kapitel 17.18 & Kapitel 18.1 - 1984",
+      duration: Some(137),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(214),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "6ZP4rXcPFd0",
+      name: "Kapitel 18.2 - 1984",
+      duration: Some(141),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(215),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "eVhWJKVdo40",
+      name: "Kapitel 18.3 - 1984",
+      duration: Some(230),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(216),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "Vt7keSTK0No",
+      name: "Kapitel 18.4 - 1984",
+      duration: Some(180),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(217),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "Ff3SyoUlcyY",
+      name: "Kapitel 18.5 - 1984",
+      duration: Some(234),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(218),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "gMTJQzds2ac",
+      name: "Kapitel 18.6 - 1984",
+      duration: Some(199),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(219),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "UgAOUifyrqc",
+      name: "Kapitel 18.7 - 1984",
+      duration: Some(138),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(220),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "IGZoSexffaY",
+      name: "Kapitel 18.8 - 1984",
+      duration: Some(261),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(221),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "_yk6rIXnfyw",
+      name: "Kapitel 18.9 - 1984",
+      duration: Some(375),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(222),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "nhznAYDKokI",
+      name: "Kapitel 18.10 - 1984",
+      duration: Some(171),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(223),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "xxcWex5wCpc",
+      name: "Kapitel 18.11 - 1984",
+      duration: Some(126),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(224),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "bHuVgebOTtY",
+      name: "Kapitel 18.12 - 1984",
+      duration: Some(409),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(225),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "4dSMRBLFXE8",
+      name: "Kapitel 18.13 - 1984",
+      duration: Some(126),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(226),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "7nrceuJOGrQ",
+      name: "Kapitel 18.14 & Kapitel 19.1 - 1984",
+      duration: Some(152),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(227),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "rs_bvUV0-ZE",
+      name: "Kapitel 19.2 - 1984",
+      duration: Some(194),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(228),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "SjDAX5b1sCA",
+      name: "Kapitel 19.3 - 1984",
+      duration: Some(127),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(229),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "9LPuIbBxM_4",
+      name: "Kapitel 19.4 - 1984",
+      duration: Some(126),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(230),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "xoTJCozaeFw",
+      name: "Kapitel 19.5 - 1984",
+      duration: Some(134),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(231),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "o9R4zEStCg0",
+      name: "Kapitel 19.6 - 1984",
+      duration: Some(127),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(232),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "v9aTac8EXeU",
+      name: "Kapitel 19.7 - 1984",
+      duration: Some(144),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(233),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "Q6LQBbg9OFg",
+      name: "Kapitel 19.8 & Kapitel 20.1 - 1984",
+      duration: Some(130),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(234),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "m3uHhmbvtLQ",
+      name: "Kapitel 20.2 - 1984",
+      duration: Some(149),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(235),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "6Q6paXKnxN4",
+      name: "Kapitel 20.3 - 1984",
+      duration: Some(134),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(236),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "bZmfzI9OhCs",
+      name: "Kapitel 20.4 - 1984",
+      duration: Some(173),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(237),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "LywfUGAGUPc",
+      name: "Kapitel 20.5 - 1984",
+      duration: Some(134),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(238),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "r3vVFZ3zl94",
+      name: "Kapitel 20.6 - 1984",
+      duration: Some(161),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(239),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "Qenx-MfJ9mw",
+      name: "Kapitel 20.7 - 1984",
+      duration: Some(138),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(240),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "vl_qPscUgdQ",
+      name: "Kapitel 20.8 - 1984",
+      duration: Some(137),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(241),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "FQwclGtvT8A",
+      name: "Kapitel 20.9 - 1984",
+      duration: Some(130),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(242),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "XfZemPEMHYM",
+      name: "Kapitel 20.10 - 1984",
+      duration: Some(137),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(243),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "tXEWSfM5jBI",
+      name: "Kapitel 20.11 - 1984",
+      duration: Some(134),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(244),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "CyYeGELAYks",
+      name: "Kapitel 20.12 - 1984",
+      duration: Some(132),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(245),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "V4crS8euIlY",
+      name: "Kapitel 20.13 - 1984",
+      duration: Some(126),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(246),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "6wkfFwX8hEk",
+      name: "Kapitel 20.14 - 1984",
+      duration: Some(127),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(247),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "7BrXtew4Xf8",
+      name: "Kapitel 20.15 - 1984",
+      duration: Some(125),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(248),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "zBOsHSF010g",
+      name: "Kapitel 20.16 - 1984",
+      duration: Some(129),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(249),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "5hY-Mmqfg-U",
+      name: "Kapitel 20.17 - 1984",
+      duration: Some(137),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(250),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "GWsWxGtQG2U",
+      name: "Kapitel 20.18 & Kapitel 21.1 - 1984",
+      duration: Some(178),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(251),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "CS61jsoqGxM",
+      name: "Kapitel 21.2 - 1984",
+      duration: Some(201),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(252),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "--MDZ6MoFOk",
+      name: "Kapitel 21.3 - 1984",
+      duration: Some(126),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(253),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "APxYXEvS1gI",
+      name: "Kapitel 21.4 - 1984",
+      duration: Some(147),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(254),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "hTZCV0xIaNo",
+      name: "Kapitel 21.5 - 1984",
+      duration: Some(147),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(255),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "fUyVsvSLXAA",
+      name: "Kapitel 21.6 - 1984",
+      duration: Some(129),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(256),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "Ex8KXjkzH6U",
+      name: "Kapitel 21.7 - 1984",
+      duration: Some(129),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(257),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "Jq9_Roh-_qQ",
+      name: "Kapitel 21.8 - 1984",
+      duration: Some(138),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(258),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "O-k4WTkVF_Y",
+      name: "Kapitel 21.9 - 1984",
+      duration: Some(125),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(259),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "e0VydtqA7zA",
+      name: "Kapitel 21.10 - 1984",
+      duration: Some(129),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(260),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "tYHQ1jqyY04",
+      name: "Kapitel 21.11 - 1984",
+      duration: Some(126),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(261),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "uJdxfG7mtxg",
+      name: "Kapitel 21.12 - 1984",
+      duration: Some(130),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(262),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "y9WgL5asujI",
+      name: "Kapitel 21.13 - 1984",
+      duration: Some(134),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(263),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "M2_kYfPFD_o",
+      name: "Kapitel 21.14 - 1984",
+      duration: Some(148),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(264),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "mMk8rWLu2kQ",
+      name: "Kapitel 21.15 - 1984",
+      duration: Some(144),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(265),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "CdlO0Z_uhbM",
+      name: "Kapitel 21.16 - 1984",
+      duration: Some(129),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(266),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "5loS8hlMQ7U",
+      name: "Kapitel 21.17 - 1984",
+      duration: Some(138),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(267),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "2db5x8VGr8A",
+      name: "Kapitel 21.18 - 1984",
+      duration: Some(128),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(268),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "cTRGKM8Jsgc",
+      name: "Kapitel 21.19 - 1984",
+      duration: Some(160),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(269),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "nrfztfR0soo",
+      name: "Kapitel 21.20 - 1984",
+      duration: Some(127),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(270),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "3om6N_pNGZA",
+      name: "Kapitel 21.21 - 1984",
+      duration: Some(181),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(271),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "VN1KvIPeJ00",
+      name: "Kapitel 21.22 - 1984",
+      duration: Some(129),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(272),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "LRuhIRN5d1U",
+      name: "Kapitel 21.23 - 1984",
+      duration: Some(134),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(273),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "dE8U1hliRr4",
+      name: "Kapitel 21.24 - 1984",
+      duration: Some(134),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(274),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "vjIb2Klunv0",
+      name: "Kapitel 21.25 - 1984",
+      duration: Some(134),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(275),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "h8BydzKZOtI",
+      name: "Kapitel 21.26 & Kapitel 22.1 - 1984",
+      duration: Some(130),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(276),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "ADwyhkSHBVM",
+      name: "Kapitel 22.2 - 1984",
+      duration: Some(135),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(277),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "6cDrKGImmQk",
+      name: "Kapitel 22.3 - 1984",
+      duration: Some(130),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(278),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "CdrnLzIJGdk",
+      name: "Kapitel 22.4 - 1984",
+      duration: Some(162),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(279),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "N-ZzOlAX43w",
+      name: "Kapitel 22.5 - 1984",
+      duration: Some(134),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(280),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "7MHmAXMX1F8",
+      name: "Kapitel 22.6 - 1984",
+      duration: Some(135),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(281),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "vSlyuw3eyeU",
+      name: "Kapitel 22.7 - 1984",
+      duration: Some(127),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(282),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "K8ez5KNbl-A",
+      name: "Kapitel 22.8 - 1984",
+      duration: Some(145),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(283),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "J9y2_6f5Dqc",
+      name: "Kapitel 22.9 - 1984",
+      duration: Some(155),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(284),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "d4Grp66WWsM",
+      name: "Kapitel 22.10 - 1984",
+      duration: Some(138),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(285),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "gYCKh7_DAAw",
+      name: "Kapitel 22.11 - 1984",
+      duration: Some(127),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(286),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "L59dwOH-nHQ",
+      name: "Kapitel 22.12 - 1984",
+      duration: Some(151),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(287),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "KS4nFrdUDS8",
+      name: "Kapitel 22.13 - 1984",
+      duration: Some(132),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(288),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "4bEhuh2DtBQ",
+      name: "Kapitel 22.14 - 1984",
+      duration: Some(128),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(289),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "76nvjlkt2xY",
+      name: "Kapitel 22.15 - 1984",
+      duration: Some(147),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(290),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "F7mUlqh-y04",
+      name: "Kapitel 22.16 - 1984",
+      duration: Some(145),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(291),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "KivOUvqJ2n4",
+      name: "Kapitel 22.17 - 1984",
+      duration: Some(126),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(292),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "EHzrgnOh5GA",
+      name: "Kapitel 22.18 & Kapitel 23.1 - 1984",
+      duration: Some(146),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(293),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "10xak85mCso",
+      name: "Kapitel 23.2 - 1984",
+      duration: Some(147),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(294),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "yDnNqeQnn3A",
+      name: "Kapitel 23.3 - 1984",
+      duration: Some(137),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(295),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "l7n3auySj4A",
+      name: "Kapitel 23.4 - 1984",
+      duration: Some(141),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(296),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "Ywtfz72Zywk",
+      name: "Kapitel 23.5 - 1984",
+      duration: Some(156),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(297),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "FZpI_baOd_s",
+      name: "Kapitel 23.6 - 1984",
+      duration: Some(130),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(298),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "8OXK57SjsL0",
+      name: "Kapitel 23.7 - 1984",
+      duration: Some(127),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(299),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "5M-AVirsHzY",
+      name: "Kapitel 23.8 - 1984",
+      duration: Some(143),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(300),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "4BQlY5tiXqY",
+      name: "Kapitel 23.9 & Kapitel 24.1 - 1984",
+      duration: Some(165),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(301),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "1n-_LCwDMUg",
+      name: "Kapitel 24.2 - 1984",
+      duration: Some(134),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(302),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "V-DyXyW8UI4",
+      name: "Kapitel 24.3 - 1984",
+      duration: Some(145),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(303),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "GygcLOKL8B4",
+      name: "Kapitel 24.4 - 1984",
+      duration: Some(133),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(304),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "S78K3PuQ-GM",
+      name: "Kapitel 24.5 - 1984",
+      duration: Some(130),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(305),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "HcbO6kTLRZo",
+      name: "Kapitel 24.6 - 1984",
+      duration: Some(132),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(306),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "-MCqkAaGfl0",
+      name: "Kapitel 24.7 & Kapitel 25.1 - 1984",
+      duration: Some(127),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(307),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "G4edEm1rbeo",
+      name: "Kapitel 25.2 - 1984",
+      duration: Some(126),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(308),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "KA26JvGwM28",
+      name: "Kapitel 25.3 - 1984",
+      duration: Some(133),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(309),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "9GR32DB5RwY",
+      name: "Kapitel 25.4 - 1984",
+      duration: Some(131),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(310),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "06rRLhqrcTk",
+      name: "Kapitel 25.5 - 1984",
+      duration: Some(133),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(311),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "gw2h1uGGwak",
+      name: "Kapitel 25.6 - 1984",
+      duration: Some(137),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(312),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "U1OnhVQHw4c",
+      name: "Kapitel 25.7 - 1984",
+      duration: Some(126),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(313),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "C8UAKN2G0R8",
+      name: "Kapitel 25.8 - 1984",
+      duration: Some(133),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(314),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "-q-TeXqQ9AA",
+      name: "Kapitel 25.9 - 1984",
+      duration: Some(128),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(315),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "r77eoDVeFh0",
+      name: "Kapitel 25.10 - 1984",
+      duration: Some(128),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(316),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "g8RfSPyjiXc",
+      name: "Kapitel 25.11 - 1984",
+      duration: Some(130),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(317),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "au27GX2h7Zc",
+      name: "Kapitel 25.12 - 1984",
+      duration: Some(130),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(318),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "hGHRyXDMR0M",
+      name: "Kapitel 25.13 - 1984",
+      duration: Some(138),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wKdD-SHqfdz6FzU3vyq-je-yqJ2DrRqbwmLxbK0OjpP55RF0Uh1LvtkLiypabLL5oSUWW7YEWxmpw7s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "George Orwell & Dirk Jacobs",
+        ),
+      ],
+      artist_id: Some("UCTlkMP4GiGuhOiBdcmI65kg"),
+      album: Some(AlbumId(
+        id: "MPREb_gaoNzsQHedo",
+        name: "1984",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(319),
       by_va: false,
     ),
   ],

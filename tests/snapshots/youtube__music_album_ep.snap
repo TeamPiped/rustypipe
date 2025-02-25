@@ -18,6 +18,7 @@ MusicAlbum(
   album_type: ep,
   year: Some(2016),
   by_va: false,
+  track_count: 5,
   tracks: [
     TrackItem(
       id: "aGd3VKSOTxY",

@@ -1234,6 +1234,8 @@ pub struct MusicAlbum {
     pub year: Option<u16>,
     /// Is the album by 'Various artists'?
     pub by_va: bool,
+    /// Number of album tracks
+    pub track_count: u16,
     /// Album tracks
     pub tracks: Vec<TrackItem>,
     /// Album variants

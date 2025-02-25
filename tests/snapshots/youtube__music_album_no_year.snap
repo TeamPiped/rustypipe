@@ -26,6 +26,7 @@ MusicAlbum(
   album_type: single,
   year: None,
   by_va: false,
+  track_count: 1,
   tracks: [
     TrackItem(
       id: "1Sz3lUVGBSM",

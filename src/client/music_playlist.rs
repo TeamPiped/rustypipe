@@ -95,11 +95,21 @@ impl RustyPipeQuery {
                 })
                 .collect::<Vec<_>>();
 
-            if !to_replace.is_empty() {
+            let last_tn = album
+                .tracks
+                .last()
+                .and_then(|t| t.track_nr)
+                .unwrap_or_default();
+            if !to_replace.is_empty() || last_tn < album.track_count {
+                tracing::debug!(
+                    "fetching album playlist ({} tracks, {} to replace)",
+                    album.track_count,
+                    to_replace.len()
+                );
                 let mut playlist = self.music_playlist(playlist_id).await?;
                 playlist
                     .tracks
-                    .extend_limit(&self, album.tracks.len())
+                    .extend_limit(&self, album.track_count.into())
                     .await?;
 
                 for (i, title) in to_replace {
@@ -116,6 +126,18 @@ impl RustyPipeQuery {
                             album.tracks[i].duration = Some(duration);
                         }
                         album.tracks[i].track_type = TrackType::Track;
+                    }
+                }
+
+                // Extend the list of album tracks with the ones from the playlist if the playlist returned more tracks
+                // This is the case for albums with more than 200 tracks (e.g. audiobooks)
+                if album.tracks.len() < playlist.tracks.items.len() {
+                    let mut tn = last_tn;
+                    for mut t in playlist.tracks.items.into_iter().skip(album.tracks.len()) {
+                        tn += 1;
+                        t.album = album.tracks.first().and_then(|t| t.album.clone());
+                        t.track_nr = Some(tn);
+                        album.tracks.push(t);
                     }
                 }
             }
@@ -457,6 +479,14 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
             .unwrap_or_default();
         let artist_id = artist_id.or_else(|| artists.first().and_then(|a| a.id.clone()));
 
+        let second_subtitle_parts = header
+            .second_subtitle
+            .split(|p| p == DOT_SEPARATOR)
+            .collect::<Vec<_>>();
+        let track_count = second_subtitle_parts
+            .get(usize::from(second_subtitle_parts.len() > 2))
+            .and_then(|txt| util::parse_numeric::<u16>(&txt[0]).ok());
+
         let mut mapper = MusicListMapper::with_album(
             ctx.lang,
             artists.clone(),
@@ -491,6 +521,7 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
                 album_type,
                 year,
                 by_va,
+                track_count: track_count.unwrap_or(tracks_res.c.len() as u16),
                 tracks: tracks_res.c,
                 variants: variants_res.c,
             },

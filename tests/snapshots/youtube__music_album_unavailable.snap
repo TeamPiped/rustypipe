@@ -26,6 +26,7 @@ MusicAlbum(
   album_type: album,
   year: Some(2019),
   by_va: false,
+  track_count: 18,
   tracks: [
     TrackItem(
       id: "R3VIKRtzAdE",

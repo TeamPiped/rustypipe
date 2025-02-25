@@ -34,6 +34,7 @@ MusicAlbum(
   album_type: album,
   year: Some(2019),
   by_va: true,
+  track_count: 18,
   tracks: [
     TrackItem(
       id: "JWeJHN5P-E8",

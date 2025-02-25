@@ -245,12 +245,21 @@ mod tests {
         for _ in 0..4 {
             cache.get().await.unwrap();
         }
-        tokio::time::sleep(Duration::from_millis(1000)).await;
 
+        for _ in 0..3 {
+            tokio::time::sleep(Duration::from_millis(1000)).await;
+            {
+                let vd = cache.inner.visitor_data.read().unwrap();
+                if !vd.contains(&v1) {
+                    break;
+                }
+            }
+        }
         {
             let vd = cache.inner.visitor_data.read().unwrap();
             assert!(!vd.contains(&v1), "first token still present");
         }
+
         assert_eq!(cache.get_pot(&v1), None);
     }
 }

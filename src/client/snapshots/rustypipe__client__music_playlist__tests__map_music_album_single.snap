@@ -43,6 +43,7 @@ MusicAlbum(
   album_type: single,
   year: Some(2020),
   by_va: false,
+  track_count: 1,
   tracks: [
     TrackItem(
       id: "XX0epju-YvY",

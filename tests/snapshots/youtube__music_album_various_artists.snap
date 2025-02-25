@@ -13,6 +13,7 @@ MusicAlbum(
   album_type: single,
   year: Some(2022),
   by_va: true,
+  track_count: 6,
   tracks: [
     TrackItem(
       id: "Tzai7JXo45w",

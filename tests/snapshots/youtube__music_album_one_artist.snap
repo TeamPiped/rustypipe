@@ -36,6 +36,7 @@ MusicAlbum(
   album_type: album,
   year: Some(2011),
   by_va: false,
+  track_count: 15,
   tracks: [
     TrackItem(
       id: "js0moD0CIRQ",
