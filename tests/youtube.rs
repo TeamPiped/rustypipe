@@ -40,8 +40,6 @@ async fn get_player_from_client(#[case] client_type: ClientType, rp: RustyPipe) 
         .await
         .unwrap();
 
-    // dbg!(&player_data);
-
     assert_eq!(player_data.details.id, "n4tK7LYFxI0");
     assert_eq!(player_data.details.duration, 259);
     assert!(!player_data.details.thumbnail.is_empty());
@@ -482,8 +480,6 @@ async fn playlist_not_found(rp: RustyPipe) {
 async fn get_video_details(rp: RustyPipe) {
     let details = rp.query().video_details("ZeerrnuLi5E").await.unwrap();
 
-    // dbg!(&details);
-
     assert_eq!(details.id, "ZeerrnuLi5E");
     assert_eq!(details.name, "aespa 에스파 'Black Mamba' MV");
     let desc = details.description.to_plaintext();
@@ -518,8 +514,6 @@ async fn get_video_details(rp: RustyPipe) {
 #[tokio::test]
 async fn get_video_details_music(rp: RustyPipe) {
     let details = rp.query().video_details("XuM2onMGvTI").await.unwrap();
-
-    // dbg!(&details);
 
     assert_eq!(details.id, "XuM2onMGvTI");
     assert_eq!(details.name, "Gäa");
@@ -556,8 +550,6 @@ async fn get_video_details_music(rp: RustyPipe) {
 #[tokio::test]
 async fn get_video_details_ccommons(rp: RustyPipe) {
     let details = rp.query().video_details("0rb9CfOvojk").await.unwrap();
-
-    // dbg!(&details);
 
     assert_eq!(details.id, "0rb9CfOvojk");
     assert_eq!(
@@ -596,8 +588,6 @@ async fn get_video_details_ccommons(rp: RustyPipe) {
 #[tokio::test]
 async fn get_video_details_chapters(rp: RustyPipe) {
     let details = rp.query().video_details("nFDBxBUfE74").await.unwrap();
-
-    // dbg!(&details);
 
     assert_eq!(details.id, "nFDBxBUfE74");
     assert_eq!(details.name, "The Prepper PC");
@@ -717,8 +707,6 @@ async fn get_video_details_chapters(rp: RustyPipe) {
 async fn get_video_details_live(rp: RustyPipe) {
     let details = rp.query().video_details("jfKfPfyJRdk").await.unwrap();
 
-    // dbg!(&details);
-
     assert_eq!(details.id, "jfKfPfyJRdk");
     assert_eq!(
         details.name,
@@ -758,8 +746,6 @@ async fn get_video_details_live(rp: RustyPipe) {
 #[tokio::test]
 async fn get_video_details_agelimit(rp: RustyPipe) {
     let details = rp.query().video_details("ZDKQmBWTRnw").await.unwrap();
-
-    // dbg!(&details);
 
     assert_eq!(details.id, "ZDKQmBWTRnw");
     assert_eq!(
@@ -864,7 +850,6 @@ async fn channel_videos(rp: RustyPipe) {
         .await
         .unwrap();
 
-    // dbg!(&channel);
     assert_channel_eevblog(&channel);
 
     assert!(
@@ -890,7 +875,6 @@ async fn channel_shorts(rp: RustyPipe) {
         .await
         .unwrap();
 
-    // dbg!(&channel);
     assert_eq!(channel.id, "UCh8gHdtzO2tXd593_bjErWg");
     assert_eq!(channel.name, "Doobydobap");
     assert_eq!(channel.handle.as_deref(), Some("@Doobydobap"));
@@ -919,7 +903,6 @@ async fn channel_livestreams(rp: RustyPipe) {
         .await
         .unwrap();
 
-    // dbg!(&channel);
     assert_channel_eevblog(&channel);
 
     assert!(

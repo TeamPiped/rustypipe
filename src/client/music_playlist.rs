@@ -151,8 +151,6 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
         self,
         ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<MusicPlaylist>, ExtractionError> {
-        // dbg!(&self);
-
         let (header, music_contents) = match self.contents {
             response::music_playlist::Contents::SingleColumnBrowseResultsRenderer(c) => (
                 self.header,
@@ -340,8 +338,6 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
 
 impl MapResponse<MusicAlbum> for response::MusicPlaylist {
     fn map_response(self, ctx: &MapRespCtx<'_>) -> Result<MapResult<MusicAlbum>, ExtractionError> {
-        // dbg!(&self);
-
         let (header, sections) = match self.contents {
             response::music_playlist::Contents::SingleColumnBrowseResultsRenderer(c) => (
                 self.header,

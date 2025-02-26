@@ -204,8 +204,6 @@ pub fn parse_video_durations() {
                 parse(&mut words, lang, dict_entry.by_char, txt, *d);
             }
 
-            // dbg!(&words);
-
             for (k, v) in words {
                 if let Some(v) = v {
                     dict_entry.timeago_tokens.insert(k, v.to_string());

@@ -155,8 +155,6 @@ impl<T: FromYtItem> MapResponse<MusicSearchResult<T>> for response::MusicSearch 
         self,
         ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<MusicSearchResult<T>>, ExtractionError> {
-        // dbg!(&self);
-
         let tabs = self.contents.tabbed_search_results_renderer.contents;
         let sections = tabs
             .into_iter()

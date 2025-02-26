@@ -154,8 +154,6 @@ fn map_artist_page(
     ctx: &MapRespCtx<'_>,
     skip_extendables: bool,
 ) -> Result<MapResult<(MusicArtist, bool)>, ExtractionError> {
-    // dbg!(&res);
-
     let header = res.header.music_immersive_header_renderer;
 
     if let Some(share) = header.share_endpoint {
@@ -338,8 +336,6 @@ impl MapResponse<FirstAlbumPage> for response::MusicArtistAlbums {
         self,
         ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<FirstAlbumPage>, ExtractionError> {
-        // dbg!(&self);
-
         let Some(header) = self.header else {
             return Err(ExtractionError::NotFound {
                 id: ctx.id.into(),

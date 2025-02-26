@@ -105,8 +105,6 @@ impl MapResponse<Vec<MusicGenreItem>> for response::MusicGenres {
 
 impl MapResponse<MusicGenre> for response::MusicGenre {
     fn map_response(self, ctx: &MapRespCtx<'_>) -> Result<MapResult<MusicGenre>, ExtractionError> {
-        // dbg!(&self);
-
         let content = self
             .contents
             .single_column_browse_results_renderer
