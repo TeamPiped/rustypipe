@@ -38,7 +38,7 @@ pub struct Thumbnail {
 pub enum UrlTarget {
     /// YouTube video
     ///
-    /// Example: <youtube.com/watch?v=ZeerrnuLi5E>
+    /// Example: <https://youtube.com/watch?v=ZeerrnuLi5E>
     Video {
         /// Unique YouTube video ID
         id: String,
