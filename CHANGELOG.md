@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 
 
+## [v0.11.0](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe/v0.10.0..rustypipe/v0.11.0) - 2025-02-26
+
+### 🚀 Features
+
+- Add original album track count, fix fetching albums with more than 200 tracks - ([544782f](https://codeberg.org/ThetaDev/rustypipe/commit/544782f8de728cda0aca9a1cb95837cdfbd001f1))
+
+### 🐛 Bug Fixes
+
+- A/B test 21: music album recommendations - ([6737512](https://codeberg.org/ThetaDev/rustypipe/commit/6737512f5f67c8cd05d4552dd0e0f24381035b35))
+
+
 ## [v0.10.0](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe/v0.9.0..rustypipe/v0.10.0) - 2025-02-09
 
 ### 🚀 Features
