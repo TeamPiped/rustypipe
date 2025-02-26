@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 
 
+## [v0.3.1](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe-downloader/v0.3.0..rustypipe-downloader/v0.3.1) - 2024-12-20
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Update rustypipe to 0.11.0
+
+
 ## [v0.3.0](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe-downloader/v0.2.7..rustypipe-downloader/v0.3.0) - 2025-02-09
 
 ### 🚀 Features
