@@ -1,0 +1,151 @@
+---
+source: src/client/music_playlist.rs
+expression: map_res.c
+---
+MusicAlbum(
+  id: "MPREb_u1I69lSAe5v",
+  playlist_id: Some("OLAK5uy_lGP_zv0vJDUlecQDzugUJmjcF7pvyVNyY"),
+  name: "Waldbrand",
+  cover: [
+    Thumbnail(
+      url: "https://lh3.googleusercontent.com/IYxE8yTIpFUu0OayA5SaxFEn6zQ7T21hpkvI8CODY9NEH1XIhyoUhGohkZuaK-xSu22BC4wjp6srNjIW=w60-h60-l90-rj",
+      width: 60,
+      height: 60,
+    ),
+    Thumbnail(
+      url: "https://lh3.googleusercontent.com/IYxE8yTIpFUu0OayA5SaxFEn6zQ7T21hpkvI8CODY9NEH1XIhyoUhGohkZuaK-xSu22BC4wjp6srNjIW=w120-h120-l90-rj",
+      width: 120,
+      height: 120,
+    ),
+    Thumbnail(
+      url: "https://lh3.googleusercontent.com/IYxE8yTIpFUu0OayA5SaxFEn6zQ7T21hpkvI8CODY9NEH1XIhyoUhGohkZuaK-xSu22BC4wjp6srNjIW=w226-h226-l90-rj",
+      width: 226,
+      height: 226,
+    ),
+    Thumbnail(
+      url: "https://lh3.googleusercontent.com/IYxE8yTIpFUu0OayA5SaxFEn6zQ7T21hpkvI8CODY9NEH1XIhyoUhGohkZuaK-xSu22BC4wjp6srNjIW=w544-h544-l90-rj",
+      width: 544,
+      height: 544,
+    ),
+  ],
+  artists: [
+    ArtistId(
+      id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
+      name: "Madeline Juno",
+    ),
+  ],
+  artist_id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
+  description: None,
+  album_type: ep,
+  year: Some(2016),
+  by_va: false,
+  track_count: 5,
+  tracks: [
+    TrackItem(
+      id: "aGd3VKSOTxY",
+      name: "Ich wache auf",
+      duration: Some(222),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
+          name: "Madeline Juno",
+        ),
+      ],
+      artist_id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
+      album: Some(AlbumId(
+        id: "MPREb_u1I69lSAe5v",
+        name: "Waldbrand",
+      )),
+      view_count: Some(208000),
+      track_type: track,
+      track_nr: Some(1),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "lhPOMUjV4rE",
+      name: "Waldbrand",
+      duration: Some(209),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
+          name: "Madeline Juno",
+        ),
+      ],
+      artist_id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
+      album: Some(AlbumId(
+        id: "MPREb_u1I69lSAe5v",
+        name: "Waldbrand",
+      )),
+      view_count: Some(6000000),
+      track_type: video,
+      track_nr: Some(2),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "Bu26uFtpt58",
+      name: "Verlernt",
+      duration: Some(224),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
+          name: "Madeline Juno",
+        ),
+      ],
+      artist_id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
+      album: Some(AlbumId(
+        id: "MPREb_u1I69lSAe5v",
+        name: "Waldbrand",
+      )),
+      view_count: Some(418000),
+      track_type: track,
+      track_nr: Some(3),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "RgwNqqiVqdY",
+      name: "In Farbe",
+      duration: Some(222),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
+          name: "Madeline Juno",
+        ),
+      ],
+      artist_id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
+      album: Some(AlbumId(
+        id: "MPREb_u1I69lSAe5v",
+        name: "Waldbrand",
+      )),
+      view_count: Some(127000),
+      track_type: track,
+      track_nr: Some(4),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "2TuOh30XbCI",
+      name: "Stadt im Hinterland",
+      duration: Some(198),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
+          name: "Madeline Juno",
+        ),
+      ],
+      artist_id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
+      album: Some(AlbumId(
+        id: "MPREb_u1I69lSAe5v",
+        name: "Waldbrand",
+      )),
+      view_count: Some(79000),
+      track_type: track,
+      track_nr: Some(5),
+      by_va: false,
+    ),
+  ],
+  variants: [],
+)

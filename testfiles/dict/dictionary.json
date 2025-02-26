@@ -2,6 +2,7 @@
   "af": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": true,
     "timeago_tokens": {
       "s": "s",
       "sekonde": "s",
@@ -80,11 +81,12 @@
     },
     "chan_prefix": "deur",
     "chan_suffix": "",
-    "month_before_day": true
+    "album_versions_title": "Ander weergawes"
   },
   "am": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "ሰከ": "s",
       "ሰከንድ": "s",
@@ -164,11 +166,12 @@
     },
     "chan_prefix": "በ",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "ሌሎች ስሪቶች"
   },
   "ar": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "ث": "s",
       "ثانية": "s",
@@ -255,11 +258,12 @@
     },
     "chan_prefix": "بواسطة",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "إصدارات أخرى"
   },
   "as": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "ছেকেণ্ড": "s",
       "মিনিট": "m",
@@ -335,11 +339,12 @@
     },
     "chan_prefix": "",
     "chan_suffix": "ৰ দ্বাৰা",
-    "month_before_day": false
+    "album_versions_title": "অন্য সংস্কৰণ"
   },
   "az": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "san": "s",
       "saniyə": "s",
@@ -409,11 +414,12 @@
     },
     "chan_prefix": "by",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "Digər versiyalar"
   },
   "be": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "с": "s",
       "секунд": "s",
@@ -510,11 +516,12 @@
     },
     "chan_prefix": "ад",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "Іншыя версіі"
   },
   "bg": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "сек": "s",
       "секунда": "s",
@@ -585,11 +592,12 @@
     },
     "chan_prefix": "от",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "Други версии"
   },
   "bn": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "সেকেন্ড": "s",
       "মিনিট": "m",
@@ -660,11 +668,12 @@
     },
     "chan_prefix": ",",
     "chan_suffix": "দ্বারা",
-    "month_before_day": false
+    "album_versions_title": "অন্য সংস্করণগুলি"
   },
   "bs": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "sek": "s",
       "sekunda": "s",
@@ -754,11 +763,12 @@
     },
     "chan_prefix": "od",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "Druge verzije"
   },
   "ca": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "s": "s",
       "segon": "s",
@@ -835,11 +845,12 @@
     },
     "chan_prefix": "de:",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "Altres versions"
   },
   "cs": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "s": "s",
       "sekund": "s",
@@ -921,11 +932,12 @@
     },
     "chan_prefix": "autor:",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "Jiné verze"
   },
   "da": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "sek": "s",
       "sekund": "s",
@@ -1002,11 +1014,12 @@
     },
     "chan_prefix": "af",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "Andre versioner"
   },
   "de": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "sek": "s",
       "sekunde": "s",
@@ -1081,11 +1094,12 @@
     },
     "chan_prefix": "von",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "Weitere Versionen"
   },
   "el": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "δευτ": "s",
       "δευτερόλεπτα": "s",
@@ -1168,11 +1182,15 @@
     },
     "chan_prefix": "από το χρήστη",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "Άλλες εκτελέσεις"
   },
   "en": {
-    "equivalent": ["en-GB", "en-IN"],
+    "equivalent": [
+      "en-GB",
+      "en-IN"
+    ],
     "by_char": false,
+    "month_before_day": true,
     "timeago_tokens": {
       "s": "s",
       "sec": "s",
@@ -1264,11 +1282,12 @@
     },
     "chan_prefix": "by",
     "chan_suffix": "",
-    "month_before_day": true
+    "album_versions_title": "Other versions"
   },
   "es": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "s": "s",
       "segundo": "s",
@@ -1348,11 +1367,14 @@
     },
     "chan_prefix": "de",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "Otras versiones"
   },
   "es-US": {
-    "equivalent": ["es-419"],
+    "equivalent": [
+      "es-419"
+    ],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "s": "s",
       "segundo": "s",
@@ -1433,11 +1455,12 @@
     },
     "chan_prefix": "de",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "Otras versiones"
   },
   "et": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "sek": "s",
       "sekund": "s",
@@ -1516,11 +1539,12 @@
     },
     "chan_prefix": "kanalilt",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "Teised versioonid"
   },
   "eu": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": true,
     "timeago_tokens": {
       "s": "s",
       "segundo": "s",
@@ -1591,11 +1615,12 @@
     },
     "chan_prefix": "egilea:",
     "chan_suffix": "",
-    "month_before_day": true
+    "album_versions_title": "Beste bertsio batzuk"
   },
   "fa": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": true,
     "timeago_tokens": {
       "ثانیه": "s",
       "دقیقه": "m",
@@ -1658,11 +1683,12 @@
     },
     "chan_prefix": "توسط",
     "chan_suffix": "",
-    "month_before_day": true
+    "album_versions_title": "نسخه‌های دیگر"
   },
   "fi": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "s": "s",
       "sekunti": "s",
@@ -1735,11 +1761,12 @@
     },
     "chan_prefix": "tekijä:",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "Muut versiot"
   },
   "fil": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": true,
     "timeago_tokens": {
       "seg": "s",
       "segundo": "s",
@@ -1811,11 +1838,14 @@
     },
     "chan_prefix": "ni/ng",
     "chan_suffix": "",
-    "month_before_day": true
+    "album_versions_title": "Iba pang bersyon"
   },
   "fr": {
-    "equivalent": ["fr-CA"],
+    "equivalent": [
+      "fr-CA"
+    ],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "s": "s",
       "seconde": "s",
@@ -1899,11 +1929,12 @@
     },
     "chan_prefix": "de",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "Autres versions"
   },
   "gl": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "s": "s",
       "segundo": "s",
@@ -1980,11 +2011,12 @@
     },
     "chan_prefix": "de",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "Outras versións"
   },
   "gu": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "સેકંડ": "s",
       "મિનિટ": "m",
@@ -2046,11 +2078,12 @@
     },
     "chan_prefix": "",
     "chan_suffix": "દ્વારા",
-    "month_before_day": false
+    "album_versions_title": "અન્ય વર્ઝન"
   },
   "hi": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "से॰": "s",
       "सेकंड": "s",
@@ -2121,11 +2154,12 @@
     },
     "chan_prefix": "",
     "chan_suffix": "के ज़रिए",
-    "month_before_day": false
+    "album_versions_title": "अन्य वर्शन"
   },
   "hr": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "s": "s",
       "sekunda": "s",
@@ -2215,11 +2249,12 @@
     },
     "chan_prefix": "omogućio kanal",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "Druge verzije"
   },
   "hu": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": true,
     "timeago_tokens": {
       "másodperc": "s",
       "másodperccel": "s",
@@ -2301,11 +2336,12 @@
     },
     "chan_prefix": "",
     "chan_suffix": "csatornától",
-    "month_before_day": true
+    "album_versions_title": "Más verziók"
   },
   "hy": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "վայրկյան": "s",
       "վրկ": "s",
@@ -2381,11 +2417,12 @@
     },
     "chan_prefix": "հեղինակ՝",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "Այլ տարբերակներ"
   },
   "id": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "detik": "s",
       "dtk": "s",
@@ -2458,11 +2495,12 @@
     },
     "chan_prefix": "oleh",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "Versi lainnya"
   },
   "is": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "sek": "s",
       "sekúnda": "s",
@@ -2548,11 +2586,12 @@
     },
     "chan_prefix": "eftir",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "Aðrar útgáfur"
   },
   "it": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "s": "s",
       "sec": "s",
@@ -2636,11 +2675,12 @@
     },
     "chan_prefix": "di",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "Altre versioni"
   },
   "iw": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "שנ׳": "s",
       "שניה": "s",
@@ -2729,11 +2769,12 @@
     },
     "chan_prefix": "מאת",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "גרסאות אחרות"
   },
   "ja": {
     "equivalent": [],
     "by_char": true,
+    "month_before_day": true,
     "timeago_tokens": {
       "秒": "s",
       "分": "m",
@@ -2773,11 +2814,12 @@
     },
     "chan_prefix": "作成者:",
     "chan_suffix": "",
-    "month_before_day": true
+    "album_versions_title": "他のバージョン"
   },
   "ka": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "წამი": "s",
       "წამის": "s",
@@ -2853,11 +2895,12 @@
     },
     "chan_prefix": "",
     "chan_suffix": "-ის მიერ",
-    "month_before_day": false
+    "album_versions_title": "სხვა ვერსიები"
   },
   "kk": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "с": "s",
       "сек": "s",
@@ -2934,11 +2977,12 @@
     },
     "chan_prefix": "қосқан",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "Басқа нұсқалары"
   },
   "km": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "វិនាទី": "s",
       "វិនាទីមុន": "s",
@@ -2996,11 +3040,12 @@
     },
     "chan_prefix": "ដោយ",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "ប្រភេទផ្សេងៗ"
   },
   "kn": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "ಸೆಕೆಂ": "s",
       "ಸೆಕೆಂಡುಗಳ": "s",
@@ -3079,11 +3124,12 @@
     },
     "chan_prefix": "",
     "chan_suffix": "ಚಾನಲ್‌ನಿಂದ",
-    "month_before_day": false
+    "album_versions_title": "ಇತರ ಆವೃತ್ತಿಗಳು"
   },
   "ko": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": true,
     "timeago_tokens": {
       "초": "s",
       "분": "m",
@@ -3126,11 +3172,12 @@
     },
     "chan_prefix": "게시자:",
     "chan_suffix": "",
-    "month_before_day": true
+    "album_versions_title": "다른 버전"
   },
   "ky": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "сек": "s",
       "секунд": "s",
@@ -3203,11 +3250,12 @@
     },
     "chan_prefix": "",
     "chan_suffix": "каналы аркылуу",
-    "month_before_day": false
+    "album_versions_title": "Башка версиялар"
   },
   "lo": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "ວິ": "s",
       "ວິນາທີ": "s",
@@ -3287,11 +3335,12 @@
     },
     "chan_prefix": "ໂດຍ",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "ເວີຊັນອື່ນໆ"
   },
   "lt": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": true,
     "timeago_tokens": {
       "sek": "s",
       "sekundė": "s",
@@ -3377,11 +3426,12 @@
     },
     "chan_prefix": "pridėjo",
     "chan_suffix": "",
-    "month_before_day": true
+    "album_versions_title": "Kitos versijos"
   },
   "lv": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "sek": "s",
       "sekunde": "s",
@@ -3467,11 +3517,12 @@
     },
     "chan_prefix": "autors:",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "Citas versijas"
   },
   "mk": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "сек": "s",
       "секунда": "s",
@@ -3551,11 +3602,12 @@
     },
     "chan_prefix": "од",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "Други верзии"
   },
   "ml": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "സെ": "s",
       "സെക്കൻഡ്": "s",
@@ -3624,11 +3676,12 @@
     },
     "chan_prefix": "",
     "chan_suffix": "മുഖേന",
-    "month_before_day": false
+    "album_versions_title": "മറ്റ് പതിപ്പുകൾ"
   },
   "mn": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": true,
     "timeago_tokens": {
       "сек": "s",
       "секунд": "s",
@@ -3689,11 +3742,12 @@
     },
     "chan_prefix": "сувгийн нэр:",
     "chan_suffix": "",
-    "month_before_day": true
+    "album_versions_title": "Бусад хувилбар"
   },
   "mr": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "से": "s",
       "सेकंद": "s",
@@ -3772,11 +3826,12 @@
     },
     "chan_prefix": "",
     "chan_suffix": "द्वारे",
-    "month_before_day": false
+    "album_versions_title": "इतर आवृत्त्या"
   },
   "ms": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "saat": "s",
       "min": "m",
@@ -3844,11 +3899,12 @@
     },
     "chan_prefix": "oleh",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "Versi lain"
   },
   "my": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "sec": "s",
       "စက္ကန့်": "s",
@@ -3922,11 +3978,12 @@
     },
     "chan_prefix": "",
     "chan_suffix": "မှ",
-    "month_before_day": false
+    "album_versions_title": "အခြား ဗားရှင်းများ"
   },
   "ne": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": true,
     "timeago_tokens": {
       "सेकेन्ड": "s",
       "मिनेट": "m",
@@ -3986,11 +4043,12 @@
     },
     "chan_prefix": "",
     "chan_suffix": "द्वारा",
-    "month_before_day": true
+    "album_versions_title": "अन्य संस्करणहरू"
   },
   "nl": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "sec": "s",
       "seconde": "s",
@@ -4066,11 +4124,12 @@
     },
     "chan_prefix": "door",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "Andere versies"
   },
   "no": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "sek": "s",
       "sekund": "s",
@@ -4151,11 +4210,12 @@
     },
     "chan_prefix": "av",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "Andre versjoner"
   },
   "or": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": true,
     "timeago_tokens": {
       "ସେ": "s",
       "ସେକେଣ୍ଡ": "s",
@@ -4225,11 +4285,12 @@
     },
     "chan_prefix": "",
     "chan_suffix": "ଦ୍ଵାରା",
-    "month_before_day": true
+    "album_versions_title": "ଅନ୍ୟ ସଂସ୍କରଣଗୁଡ଼ିକ"
   },
   "pa": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "ਸਕਿੰਟ": "s",
       "ਮਿੰਟ": "m",
@@ -4299,11 +4360,12 @@
     },
     "chan_prefix": "",
     "chan_suffix": "ਵੱਲੋਂ",
-    "month_before_day": false
+    "album_versions_title": "ਹੋਰ ਵਰਜਨ"
   },
   "pl": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "sek": "s",
       "sekund": "s",
@@ -4398,11 +4460,12 @@
     },
     "chan_prefix": "autor:",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "Inne wersje"
   },
   "pt": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "s": "s",
       "seg": "s",
@@ -4484,11 +4547,12 @@
     },
     "chan_prefix": "por",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "Outras versões"
   },
   "pt-PT": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "s": "s",
       "segundo": "s",
@@ -4555,11 +4619,12 @@
     },
     "chan_prefix": "de",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "Outras versões"
   },
   "ro": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "s": "s",
       "sec": "s",
@@ -4640,11 +4705,12 @@
     },
     "chan_prefix": "de",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "Alte versiuni"
   },
   "ru": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "с": "s",
       "сек": "s",
@@ -4737,11 +4803,12 @@
     },
     "chan_prefix": "",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "Другие версии"
   },
   "si": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": true,
     "timeago_tokens": {
       "තත්": "s",
       "තත්පර": "s",
@@ -4808,11 +4875,12 @@
     },
     "chan_prefix": "",
     "chan_suffix": "විසින්",
-    "month_before_day": true
+    "album_versions_title": "අනෙකුත් අනුවාදයන්"
   },
   "sk": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "s": "s",
       "sekúnd": "s",
@@ -4894,11 +4962,12 @@
     },
     "chan_prefix": "Autori:",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "Ďalšie verzie"
   },
   "sl": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "s": "s",
       "sek": "s",
@@ -4996,11 +5065,12 @@
     },
     "chan_prefix": "kanal",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "Druge različice"
   },
   "sq": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "sek": "s",
       "sekonda": "s",
@@ -5074,11 +5144,12 @@
     },
     "chan_prefix": "nga",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "Versione të tjera"
   },
   "sr": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "сек": "s",
       "секунда": "s",
@@ -5160,11 +5231,12 @@
     },
     "chan_prefix": "са канала",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "Друге верзије"
   },
   "sr-Latn": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "sek": "s",
       "sekunda": "s",
@@ -5246,11 +5318,12 @@
     },
     "chan_prefix": "sa kanala",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "Druge verzije"
   },
   "sv": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": true,
     "timeago_tokens": {
       "s": "s",
       "sekund": "s",
@@ -5326,11 +5399,12 @@
     },
     "chan_prefix": "från",
     "chan_suffix": "",
-    "month_before_day": true
+    "album_versions_title": "Andra versioner"
   },
   "sw": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "sekunde": "s",
       "dakika": "m",
@@ -5399,11 +5473,12 @@
     },
     "chan_prefix": "kutoka",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "Matoleo mengine"
   },
   "ta": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "விநா": "s",
       "விநாடி": "s",
@@ -5485,11 +5560,12 @@
     },
     "chan_prefix": "வழங்கியவர்:",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "பிற பதிப்புகள்"
   },
   "te": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "సెక": "s",
       "సెకను": "s",
@@ -5569,11 +5645,12 @@
     },
     "chan_prefix": "",
     "chan_suffix": "ఛానెల్ ద్వారా",
-    "month_before_day": false
+    "album_versions_title": "ఇతర వెర్షన్‌లు"
   },
   "th": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "วิ": "s",
       "วินาที": "s",
@@ -5656,11 +5733,12 @@
     },
     "chan_prefix": "โดย",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "เวอร์ชันอื่นๆ"
   },
   "tr": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "saniye": "s",
       "sn": "s",
@@ -5734,11 +5812,12 @@
     },
     "chan_prefix": "",
     "chan_suffix": "tarafından",
-    "month_before_day": false
+    "album_versions_title": "Diğer versiyonlar"
   },
   "uk": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "с": "s",
       "секунд": "s",
@@ -5836,11 +5915,12 @@
     },
     "chan_prefix": "власник:",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "Інші версії"
   },
   "ur": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "سیکنڈ": "s",
       "سیکنڈز": "s",
@@ -5919,11 +5999,12 @@
     },
     "chan_prefix": "منجانب",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "دیگر ورژنز"
   },
   "uz": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "son": "s",
       "soniya": "s",
@@ -5992,11 +6073,12 @@
     },
     "chan_prefix": "muallif:",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "Boshqa versiyalari"
   },
   "vi": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": false,
     "timeago_tokens": {
       "giây": "s",
       "phút": "m",
@@ -6037,11 +6119,12 @@
     },
     "chan_prefix": "của",
     "chan_suffix": "",
-    "month_before_day": false
+    "album_versions_title": "Các phiên bản khác"
   },
   "zh-CN": {
     "equivalent": [],
     "by_char": true,
+    "month_before_day": true,
     "timeago_tokens": {
       "秒": "s",
       "分": "m",
@@ -6096,11 +6179,12 @@
     },
     "chan_prefix": "创建者：",
     "chan_suffix": "",
-    "month_before_day": true
+    "album_versions_title": "其他版本"
   },
   "zh-HK": {
     "equivalent": [],
     "by_char": true,
+    "month_before_day": true,
     "timeago_tokens": {
       "秒": "s",
       "分": "m",
@@ -6141,11 +6225,12 @@
     },
     "chan_prefix": "來自",
     "chan_suffix": "",
-    "month_before_day": true
+    "album_versions_title": "其他版本"
   },
   "zh-TW": {
     "equivalent": [],
     "by_char": true,
+    "month_before_day": true,
     "timeago_tokens": {
       "秒": "s",
       "分": "m",
@@ -6185,11 +6270,12 @@
     },
     "chan_prefix": "由",
     "chan_suffix": "建立",
-    "month_before_day": true
+    "album_versions_title": "其他版本"
   },
   "zu": {
     "equivalent": [],
     "by_char": false,
+    "month_before_day": true,
     "timeago_tokens": {
       "amasekhondi": "s",
       "isekhondi": "s",
@@ -6276,6 +6362,6 @@
     },
     "chan_prefix": "ka-",
     "chan_suffix": "",
-    "month_before_day": true
+    "album_versions_title": "Ezinye izinguqulo"
   }
 }

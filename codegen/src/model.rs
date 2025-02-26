@@ -61,6 +61,8 @@ pub struct DictEntry {
     pub chan_prefix: String,
     /// Channel name suffix on playlist pages
     pub chan_suffix: String,
+    /// "Other versions" title on album pages
+    pub album_versions_title: String,
 }
 
 /// Parsed TimeAgo string, contains amount and time unit.

@@ -3,13 +3,13 @@
 When YouTube introduces a new feature, it does so gradually. When a user creates a new
 session, YouTube decided randomly which new features should be enabled.
 
-YouTube sessions are identified by the visitor data ID. This cookie is sent with
-every API request using the `context.client.visitor_data` JSON parameter. It is also
-returned in the `responseContext.visitorData` response parameter and stored as the
-`__SECURE-YEC` cookie.
+YouTube sessions are identified by the visitor data ID. This cookie is sent with every
+API request using the `context.client.visitor_data` JSON parameter. It is also returned
+in the `responseContext.visitorData` response parameter and stored as the `__SECURE-YEC`
+cookie.
 
-By sending the same visitor data ID, A/B tests can be reproduced, which is important
-for testing alternative YouTube clients.
+By sending the same visitor data ID, A/B tests can be reproduced, which is important for
+testing alternative YouTube clients.
 
 This page lists all A/B tests that were encountered while maintaining the RustyPipe
 client.
@@ -1042,7 +1042,7 @@ omitted for albums in their group, while singles and EPs have a label with their
 - **Encountered on:** 25.01.2025
 - **Impact:** 🟢 Low
 - **Endpoint:** browse (YTM)
-- **Status:** Common (4%)
+- **Status:** Stabilized
 
 YouTube Music now uses a `continuationItemRenderer` for music playlists instead of
 putting the continuations in a separate attribute of the MusicShelf.
@@ -1052,3 +1052,18 @@ items.
 
 YouTube Music now also sends a random 16-character string as a `clientScreenNonce` in
 the request context. This is not mandatory though.
+
+## [21] Music album recommendations
+
+- **Encountered on:** 26.02.2025
+- **Impact:** 🟢 Low
+- **Endpoint:** browse (YTM)
+- **Status:** Common (15%)
+
+![A/B test 21 screenshot](./_img/ab_21.png)
+
+YouTube Music has added "Recommended" and "More from \<Artist\>" carousels to album
+pages. The difficulty is distinguishing them reliably for parsing the album variants.
+
+The current solution is adding the "Other versions" title in all languages to the
+dictionary and comparing it.

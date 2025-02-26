@@ -2,6 +2,7 @@
 
 mod abtest;
 mod collect_album_types;
+mod collect_album_versions_titles;
 mod collect_chan_prefixes;
 mod collect_history_dates;
 mod collect_large_numbers;
@@ -34,12 +35,14 @@ enum Commands {
     CollectHistoryDates,
     CollectMusicHistoryDates,
     CollectChanPrefixes,
+    CollectAlbumVersionsTitles,
     ParsePlaylistDates,
     ParseHistoryDates,
     ParseLargeNumbers,
     ParseAlbumTypes,
     ParseVideoDurations,
     ParseChanPrefixes,
+    ParseAlbumVersionsTitles,
     GenLocales,
     GenDict,
     DownloadTestfiles,
@@ -58,28 +61,25 @@ async fn main() {
 
     match cli.command {
         Commands::CollectPlaylistDates => {
-            collect_playlist_dates::collect_dates(cli.concurrency).await;
+            collect_playlist_dates::collect_dates(cli.concurrency).await
         }
         Commands::CollectLargeNumbers => {
-            collect_large_numbers::collect_large_numbers(cli.concurrency).await;
+            collect_large_numbers::collect_large_numbers(cli.concurrency).await
         }
         Commands::CollectAlbumTypes => {
-            collect_album_types::collect_album_types(cli.concurrency).await;
+            collect_album_types::collect_album_types(cli.concurrency).await
         }
         Commands::CollectVideoDurations => {
-            collect_video_durations::collect_video_durations(cli.concurrency).await;
+            collect_video_durations::collect_video_durations(cli.concurrency).await
         }
         Commands::CollectVideoDates => {
-            collect_video_dates::collect_video_dates(cli.concurrency).await;
+            collect_video_dates::collect_video_dates(cli.concurrency).await
         }
-        Commands::CollectHistoryDates => {
-            collect_history_dates::collect_dates().await;
-        }
-        Commands::CollectMusicHistoryDates => {
-            collect_history_dates::collect_dates_music().await;
-        }
-        Commands::CollectChanPrefixes => {
-            collect_chan_prefixes::collect_chan_prefixes().await;
+        Commands::CollectHistoryDates => collect_history_dates::collect_dates().await,
+        Commands::CollectMusicHistoryDates => collect_history_dates::collect_dates_music().await,
+        Commands::CollectChanPrefixes => collect_chan_prefixes::collect_chan_prefixes().await,
+        Commands::CollectAlbumVersionsTitles => {
+            collect_album_versions_titles::collect_album_versions_titles().await
         }
         Commands::ParsePlaylistDates => collect_playlist_dates::write_samples_to_dict(),
         Commands::ParseHistoryDates => collect_history_dates::write_samples_to_dict(),
@@ -87,9 +87,10 @@ async fn main() {
         Commands::ParseAlbumTypes => collect_album_types::write_samples_to_dict(),
         Commands::ParseVideoDurations => collect_video_durations::parse_video_durations(),
         Commands::ParseChanPrefixes => collect_chan_prefixes::write_samples_to_dict(),
-        Commands::GenLocales => {
-            gen_locales::generate_locales().await;
+        Commands::ParseAlbumVersionsTitles => {
+            collect_album_versions_titles::write_samples_to_dict()
         }
+        Commands::GenLocales => gen_locales::generate_locales().await,
         Commands::GenDict => gen_dictionary::generate_dictionary(),
         Commands::DownloadTestfiles => download_testfiles::download_testfiles().await,
         Commands::AbTest { id, n } => {

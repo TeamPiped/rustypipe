@@ -53,6 +53,8 @@ pub(crate) struct Entry {
     pub chan_prefix: &'static str,
     /// Channel name suffix on playlist pages
     pub chan_suffix: &'static str,
+    /// "Other versions" title on album pages
+    pub album_versions_title: &'static str,
 }
 
 #[rustfmt::skip]
@@ -183,6 +185,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "deur",
             chan_suffix: "",
+            album_versions_title: "Ander weergawes",
         },
         Language::Am => Entry {
             timeago_tokens: ::phf::Map {
@@ -310,6 +313,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "በ",
             chan_suffix: "",
+            album_versions_title: "ሌሎች ስሪቶች",
         },
         Language::Ar => Entry {
             timeago_tokens: ::phf::Map {
@@ -445,6 +449,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "بواسطة",
             chan_suffix: "",
+            album_versions_title: "إصدارات أخرى",
         },
         Language::As => Entry {
             timeago_tokens: ::phf::Map {
@@ -567,6 +572,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "",
             chan_suffix: "ৰ দ\u{9cd}ব\u{9be}ৰ\u{9be}",
+            album_versions_title: "অন\u{9cd}য সংস\u{9cd}কৰণ",
         },
         Language::Az => Entry {
             timeago_tokens: ::phf::Map {
@@ -682,6 +688,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "by",
             chan_suffix: "",
+            album_versions_title: "Digər versiyalar",
         },
         Language::Be => Entry {
             timeago_tokens: ::phf::Map {
@@ -829,6 +836,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "ад",
             chan_suffix: "",
+            album_versions_title: "Іншыя версіі",
         },
         Language::Bg => Entry {
             timeago_tokens: ::phf::Map {
@@ -945,6 +953,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "от",
             chan_suffix: "",
+            album_versions_title: "Други версии",
         },
         Language::Bn => Entry {
             timeago_tokens: ::phf::Map {
@@ -1062,6 +1071,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: ",",
             chan_suffix: "দ\u{9cd}ব\u{9be}র\u{9be}",
+            album_versions_title: "অন\u{9cd}য সংস\u{9cd}করণগ\u{9c1}লি",
         },
         Language::Bs => Entry {
             timeago_tokens: ::phf::Map {
@@ -1201,6 +1211,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "od",
             chan_suffix: "",
+            album_versions_title: "Druge verzije",
         },
         Language::Ca => Entry {
             timeago_tokens: ::phf::Map {
@@ -1325,6 +1336,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "de:",
             chan_suffix: "",
+            album_versions_title: "Altres versions",
         },
         Language::Cs => Entry {
             timeago_tokens: ::phf::Map {
@@ -1455,6 +1467,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "autor:",
             chan_suffix: "",
+            album_versions_title: "Jiné verze",
         },
         Language::Da => Entry {
             timeago_tokens: ::phf::Map {
@@ -1579,6 +1592,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "af",
             chan_suffix: "",
+            album_versions_title: "Andre versioner",
         },
         Language::De => Entry {
             timeago_tokens: ::phf::Map {
@@ -1700,6 +1714,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "von",
             chan_suffix: "",
+            album_versions_title: "Weitere Versionen",
         },
         Language::El => Entry {
             timeago_tokens: ::phf::Map {
@@ -1830,6 +1845,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "από το χρήστη",
             chan_suffix: "",
+            album_versions_title: "Άλλες εκτελέσεις",
         },
         Language::En | Language::EnGb | Language::EnIn => Entry {
             timeago_tokens: ::phf::Map {
@@ -1971,6 +1987,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "by",
             chan_suffix: "",
+            album_versions_title: "Other versions",
         },
         Language::Es => Entry {
             timeago_tokens: ::phf::Map {
@@ -2098,6 +2115,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "de",
             chan_suffix: "",
+            album_versions_title: "Otras versiones",
         },
         Language::EsUs | Language::Es419 => Entry {
             timeago_tokens: ::phf::Map {
@@ -2226,6 +2244,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "de",
             chan_suffix: "",
+            album_versions_title: "Otras versiones",
         },
         Language::Et => Entry {
             timeago_tokens: ::phf::Map {
@@ -2351,6 +2370,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "kanalilt",
             chan_suffix: "",
+            album_versions_title: "Teised versioonid",
         },
         Language::Eu => Entry {
             timeago_tokens: ::phf::Map {
@@ -2467,6 +2487,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "egilea:",
             chan_suffix: "",
+            album_versions_title: "Beste bertsio batzuk",
         },
         Language::Fa => Entry {
             timeago_tokens: ::phf::Map {
@@ -2574,6 +2595,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "توسط",
             chan_suffix: "",
+            album_versions_title: "نسخه\u{200c}های دیگر",
         },
         Language::Fi => Entry {
             timeago_tokens: ::phf::Map {
@@ -2693,6 +2715,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "tekijä:",
             chan_suffix: "",
+            album_versions_title: "Muut versiot",
         },
         Language::Fil => Entry {
             timeago_tokens: ::phf::Map {
@@ -2810,6 +2833,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "ni/ng",
             chan_suffix: "",
+            album_versions_title: "Iba pang bersyon",
         },
         Language::Fr | Language::FrCa => Entry {
             timeago_tokens: ::phf::Map {
@@ -2941,6 +2965,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "de",
             chan_suffix: "",
+            album_versions_title: "Autres versions",
         },
         Language::Gl => Entry {
             timeago_tokens: ::phf::Map {
@@ -3065,6 +3090,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "de",
             chan_suffix: "",
+            album_versions_title: "Outras versións",
         },
         Language::Gu => Entry {
             timeago_tokens: ::phf::Map {
@@ -3170,6 +3196,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "",
             chan_suffix: "દ\u{acd}વારા",
+            album_versions_title: "અન\u{acd}ય વર\u{acd}ઝન",
         },
         Language::Hi => Entry {
             timeago_tokens: ::phf::Map {
@@ -3286,6 +3313,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "",
             chan_suffix: "क\u{947} ज\u{93c}रिए",
+            album_versions_title: "अन\u{94d}य वर\u{94d}शन",
         },
         Language::Hr => Entry {
             timeago_tokens: ::phf::Map {
@@ -3425,6 +3453,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "omogućio kanal",
             chan_suffix: "",
+            album_versions_title: "Druge verzije",
         },
         Language::Hu => Entry {
             timeago_tokens: ::phf::Map {
@@ -3554,6 +3583,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "",
             chan_suffix: "csatornától",
+            album_versions_title: "Más verziók",
         },
         Language::Hy => Entry {
             timeago_tokens: ::phf::Map {
@@ -3676,6 +3706,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "հեղինակ՝",
             chan_suffix: "",
+            album_versions_title: "Այլ տարբերակներ",
         },
         Language::Id => Entry {
             timeago_tokens: ::phf::Map {
@@ -3794,6 +3825,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "oleh",
             chan_suffix: "",
+            album_versions_title: "Versi lainnya",
         },
         Language::Is => Entry {
             timeago_tokens: ::phf::Map {
@@ -3928,6 +3960,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "eftir",
             chan_suffix: "",
+            album_versions_title: "Aðrar útgáfur",
         },
         Language::It => Entry {
             timeago_tokens: ::phf::Map {
@@ -4060,6 +4093,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "di",
             chan_suffix: "",
+            album_versions_title: "Altre versioni",
         },
         Language::Iw => Entry {
             timeago_tokens: ::phf::Map {
@@ -4198,6 +4232,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "מאת",
             chan_suffix: "",
+            album_versions_title: "גרסאות אחרות",
         },
         Language::Ja => Entry {
             timeago_tokens: ::phf::Map {
@@ -4278,6 +4313,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "作成者:",
             chan_suffix: "",
+            album_versions_title: "他のバージョン",
         },
         Language::Ka => Entry {
             timeago_tokens: ::phf::Map {
@@ -4400,6 +4436,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "",
             chan_suffix: "-ის მიერ",
+            album_versions_title: "სხვა ვერსიები",
         },
         Language::Kk => Entry {
             timeago_tokens: ::phf::Map {
@@ -4523,6 +4560,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "қосқан",
             chan_suffix: "",
+            album_versions_title: "Басқа нұсқалары",
         },
         Language::Km => Entry {
             timeago_tokens: ::phf::Map {
@@ -4623,6 +4661,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "ដោយ",
             chan_suffix: "",
+            album_versions_title: "ប\u{17d2}រភេទផ\u{17d2}សេងៗ",
         },
         Language::Kn => Entry {
             timeago_tokens: ::phf::Map {
@@ -4749,6 +4788,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "",
             chan_suffix: "ಚಾನಲ\u{ccd}\u{200c}ನ\u{cbf}ಂದ",
+            album_versions_title: "ಇತರ ಆವೃತ\u{ccd}ತ\u{cbf}ಗಳು",
         },
         Language::Ko => Entry {
             timeago_tokens: ::phf::Map {
@@ -4832,6 +4872,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "게시자:",
             chan_suffix: "",
+            album_versions_title: "다른 버전",
         },
         Language::Ky => Entry {
             timeago_tokens: ::phf::Map {
@@ -4950,6 +4991,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "",
             chan_suffix: "каналы аркылуу",
+            album_versions_title: "Башка версиялар",
         },
         Language::Lo => Entry {
             timeago_tokens: ::phf::Map {
@@ -5076,6 +5118,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "ໂດຍ",
             chan_suffix: "",
+            album_versions_title: "ເວ\u{eb5}ຊ\u{eb1}ນອ\u{eb7}\u{ec8}ນໆ",
         },
         Language::Lt => Entry {
             timeago_tokens: ::phf::Map {
@@ -5210,6 +5253,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "pridėjo",
             chan_suffix: "",
+            album_versions_title: "Kitos versijos",
         },
         Language::Lv => Entry {
             timeago_tokens: ::phf::Map {
@@ -5344,6 +5388,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "autors:",
             chan_suffix: "",
+            album_versions_title: "Citas versijas",
         },
         Language::Mk => Entry {
             timeago_tokens: ::phf::Map {
@@ -5471,6 +5516,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "од",
             chan_suffix: "",
+            album_versions_title: "Други верзии",
         },
         Language::Ml => Entry {
             timeago_tokens: ::phf::Map {
@@ -5585,6 +5631,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "",
             chan_suffix: "മ\u{d41}ഖേന",
+            album_versions_title: "മറ\u{d4d}റ\u{d4d} പതിപ\u{d4d}പ\u{d41}കൾ",
         },
         Language::Mn => Entry {
             timeago_tokens: ::phf::Map {
@@ -5689,6 +5736,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "сувгийн нэр:",
             chan_suffix: "",
+            album_versions_title: "Бусад хувилбар",
         },
         Language::Mr => Entry {
             timeago_tokens: ::phf::Map {
@@ -5813,6 +5861,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "",
             chan_suffix: "द\u{94d}वार\u{947}",
+            album_versions_title: "इतर आव\u{943}त\u{94d}त\u{94d}या",
         },
         Language::Ms => Entry {
             timeago_tokens: ::phf::Map {
@@ -5926,6 +5975,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "oleh",
             chan_suffix: "",
+            album_versions_title: "Versi lain",
         },
         Language::My => Entry {
             timeago_tokens: ::phf::Map {
@@ -6046,6 +6096,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "",
             chan_suffix: "မ\u{103e}",
+            album_versions_title: "အခြား ဗားရ\u{103e}င\u{103a}းများ",
         },
         Language::Ne => Entry {
             timeago_tokens: ::phf::Map {
@@ -6149,6 +6200,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "",
             chan_suffix: "द\u{94d}वारा",
+            album_versions_title: "अन\u{94d}य स\u{902}स\u{94d}करणहर\u{942}",
         },
         Language::Nl => Entry {
             timeago_tokens: ::phf::Map {
@@ -6271,6 +6323,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "door",
             chan_suffix: "",
+            album_versions_title: "Andere versies",
         },
         Language::No => Entry {
             timeago_tokens: ::phf::Map {
@@ -6399,6 +6452,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "av",
             chan_suffix: "",
+            album_versions_title: "Andre versjoner",
         },
         Language::Or => Entry {
             timeago_tokens: ::phf::Map {
@@ -6514,6 +6568,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "",
             chan_suffix: "ଦ\u{b4d}ଵ\u{b3e}ର\u{b3e}",
+            album_versions_title: "ଅନ\u{b4d}ୟ ସଂସ\u{b4d}କରଣଗ\u{b41}ଡ\u{b3c}\u{b3f}କ",
         },
         Language::Pa => Entry {
             timeago_tokens: ::phf::Map {
@@ -6629,6 +6684,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "",
             chan_suffix: "ਵ\u{a71}ਲ\u{a4b}\u{a02}",
+            album_versions_title: "ਹ\u{a4b}ਰ ਵਰਜਨ",
         },
         Language::Pl => Entry {
             timeago_tokens: ::phf::Map {
@@ -6774,6 +6830,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "autor:",
             chan_suffix: "",
+            album_versions_title: "Inne wersje",
         },
         Language::Pt => Entry {
             timeago_tokens: ::phf::Map {
@@ -6903,6 +6960,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "por",
             chan_suffix: "",
+            album_versions_title: "Outras versões",
         },
         Language::PtPt => Entry {
             timeago_tokens: ::phf::Map {
@@ -7015,6 +7073,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "de",
             chan_suffix: "",
+            album_versions_title: "Outras versões",
         },
         Language::Ro => Entry {
             timeago_tokens: ::phf::Map {
@@ -7143,6 +7202,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "de",
             chan_suffix: "",
+            album_versions_title: "Alte versiuni",
         },
         Language::Ru => Entry {
             timeago_tokens: ::phf::Map {
@@ -7286,6 +7346,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "",
             chan_suffix: "",
+            album_versions_title: "Другие версии",
         },
         Language::Si => Entry {
             timeago_tokens: ::phf::Map {
@@ -7397,6 +7458,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "",
             chan_suffix: "ව\u{dd2}ස\u{dd2}න\u{dca}",
+            album_versions_title: "අනෙක\u{dd4}ත\u{dca} අන\u{dd4}ව\u{dcf}දයන\u{dca}",
         },
         Language::Sk => Entry {
             timeago_tokens: ::phf::Map {
@@ -7527,6 +7589,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "Autori:",
             chan_suffix: "",
+            album_versions_title: "Ďalšie verzie",
         },
         Language::Sl => Entry {
             timeago_tokens: ::phf::Map {
@@ -7676,6 +7739,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "kanal",
             chan_suffix: "",
+            album_versions_title: "Druge različice",
         },
         Language::Sq => Entry {
             timeago_tokens: ::phf::Map {
@@ -7796,6 +7860,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "nga",
             chan_suffix: "",
+            album_versions_title: "Versione të tjera",
         },
         Language::Sr => Entry {
             timeago_tokens: ::phf::Map {
@@ -7926,6 +7991,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "са канала",
             chan_suffix: "",
+            album_versions_title: "Друге верзије",
         },
         Language::SrLatn => Entry {
             timeago_tokens: ::phf::Map {
@@ -8056,6 +8122,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "sa kanala",
             chan_suffix: "",
+            album_versions_title: "Druge verzije",
         },
         Language::Sv => Entry {
             timeago_tokens: ::phf::Map {
@@ -8178,6 +8245,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "från",
             chan_suffix: "",
+            album_versions_title: "Andra versioner",
         },
         Language::Sw => Entry {
             timeago_tokens: ::phf::Map {
@@ -8291,6 +8359,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "kutoka",
             chan_suffix: "",
+            album_versions_title: "Matoleo mengine",
         },
         Language::Ta => Entry {
             timeago_tokens: ::phf::Map {
@@ -8421,6 +8490,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "வழங\u{bcd}கியவர\u{bcd}:",
             chan_suffix: "",
+            album_versions_title: "பிற பதிப\u{bcd}புகள\u{bcd}",
         },
         Language::Te => Entry {
             timeago_tokens: ::phf::Map {
@@ -8547,6 +8617,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "",
             chan_suffix: "ఛ\u{c3e}న\u{c46}ల\u{c4d} ద\u{c4d}వ\u{c3e}ర\u{c3e}",
+            album_versions_title: "ఇతర వ\u{c46}ర\u{c4d}షన\u{c4d}\u{200c}లు",
         },
         Language::Th => Entry {
             timeago_tokens: ::phf::Map {
@@ -8677,6 +8748,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "โดย",
             chan_suffix: "",
+            album_versions_title: "เวอร\u{e4c}ช\u{e31}นอ\u{e37}\u{e48}นๆ",
         },
         Language::Tr => Entry {
             timeago_tokens: ::phf::Map {
@@ -8797,6 +8869,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "",
             chan_suffix: "tarafından",
+            album_versions_title: "Diğer versiyonlar",
         },
         Language::Uk => Entry {
             timeago_tokens: ::phf::Map {
@@ -8945,6 +9018,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "власник:",
             chan_suffix: "",
+            album_versions_title: "Інші версії",
         },
         Language::Ur => Entry {
             timeago_tokens: ::phf::Map {
@@ -9070,6 +9144,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "منجانب",
             chan_suffix: "",
+            album_versions_title: "دیگر ورژنز",
         },
         Language::Uz => Entry {
             timeago_tokens: ::phf::Map {
@@ -9184,6 +9259,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "muallif:",
             chan_suffix: "",
+            album_versions_title: "Boshqa versiyalari",
         },
         Language::Vi => Entry {
             timeago_tokens: ::phf::Map {
@@ -9265,6 +9341,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "của",
             chan_suffix: "",
+            album_versions_title: "Các phiên bản khác",
         },
         Language::ZhCn => Entry {
             timeago_tokens: ::phf::Map {
@@ -9362,6 +9439,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "创建者：",
             chan_suffix: "",
+            album_versions_title: "其他版本",
         },
         Language::ZhHk => Entry {
             timeago_tokens: ::phf::Map {
@@ -9443,6 +9521,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "來自",
             chan_suffix: "",
+            album_versions_title: "其他版本",
         },
         Language::ZhTw => Entry {
             timeago_tokens: ::phf::Map {
@@ -9523,6 +9602,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "由",
             chan_suffix: "建立",
+            album_versions_title: "其他版本",
         },
         Language::Zu => Entry {
             timeago_tokens: ::phf::Map {
@@ -9658,6 +9738,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             chan_prefix: "ka-",
             chan_suffix: "",
+            album_versions_title: "Ezinye izinguqulo",
         },
     }
 }

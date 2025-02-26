@@ -9,7 +9,7 @@ use crate::{
         AlbumId, ChannelId, MusicAlbum, MusicPlaylist, TrackItem, TrackType,
     },
     serializer::{text::TextComponents, MapResult},
-    util::{self, TryRemove, DOT_SEPARATOR},
+    util::{self, dictionary, TryRemove, DOT_SEPARATOR},
 };
 
 use self::response::url_endpoint::MusicPageType;
@@ -382,7 +382,18 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
             match section {
                 response::music_item::ItemSection::MusicShelfRenderer(sh) => shelf = Some(sh),
                 response::music_item::ItemSection::MusicCarouselShelfRenderer(sh) => {
-                    album_variants = Some(sh.contents);
+                    if sh
+                        .header
+                        .map(|h| {
+                            h.music_carousel_shelf_basic_header_renderer
+                                .title
+                                .first_str()
+                                == dictionary::entry(ctx.lang).album_versions_title
+                        })
+                        .unwrap_or_default()
+                    {
+                        album_variants = Some(sh.contents);
+                    }
                 }
                 _ => (),
             }
@@ -572,8 +583,8 @@ mod tests {
     #[case::single("single", "MPREb_bHfHGoy7vuv")]
     #[case::description("description", "MPREb_PiyfuVl6aYd")]
     #[case::unavailable("unavailable", "MPREb_AzuWg8qAVVl")]
-    #[case::unavailable("unavailable", "MPREb_AzuWg8qAVVl")]
     #[case::two_columns("20240228_twoColumns", "MPREb_bHfHGoy7vuv")]
+    #[case::recommends("20250225_recommends", "MPREb_u1I69lSAe5v")]
     fn map_music_album(#[case] name: &str, #[case] id: &str) {
         let json_path = path!(*TESTFILES / "music_playlist" / format!("album_{name}.json"));
         let json_file = File::open(json_path).unwrap();

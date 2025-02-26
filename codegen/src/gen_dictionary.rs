@@ -90,6 +90,8 @@ pub(crate) struct Entry {
     pub chan_prefix: &'static str,
     /// Channel name suffix on playlist pages
     pub chan_suffix: &'static str,
+    /// "Other versions" title on album pages
+    pub album_versions_title: &'static str,
 }
 "#;
 
@@ -178,8 +180,8 @@ pub(crate) fn entry(lang: Language) -> Entry {
             .to_string()
             .replace('\n', "\n            ");
 
-        write!(code_timeago_tokens, "{} => Entry {{\n            timeago_tokens: {},\n            month_before_day: {:?},\n            months: {},\n            timeago_nd_tokens: {},\n            comma_decimal: {:?},\n            number_tokens: {},\n            number_nd_tokens: {},\n            album_types: {},\n            chan_prefix: {:?},\n            chan_suffix: {:?},\n        }},\n        ",
-        selector, code_ta_tokens, entry.month_before_day, code_months, code_ta_nd_tokens, entry.comma_decimal, code_number_tokens, code_number_nd_tokens, code_album_types, entry.chan_prefix, entry.chan_suffix).unwrap();
+        write!(code_timeago_tokens, "{} => Entry {{\n            timeago_tokens: {},\n            month_before_day: {:?},\n            months: {},\n            timeago_nd_tokens: {},\n            comma_decimal: {:?},\n            number_tokens: {},\n            number_nd_tokens: {},\n            album_types: {},\n            chan_prefix: {:?},\n            chan_suffix: {:?},\n            album_versions_title: {:?},\n        }},\n        ",
+        selector, code_ta_tokens, entry.month_before_day, code_months, code_ta_nd_tokens, entry.comma_decimal, code_number_tokens, code_number_nd_tokens, code_album_types, entry.chan_prefix, entry.chan_suffix, entry.album_versions_title).unwrap();
     }
 
     code_timeago_tokens = code_timeago_tokens.trim_end().to_owned() + "\n    }\n}\n";
