@@ -1033,9 +1033,13 @@ impl DownloadQuery {
                         image::load_from_memory(&img_bts)?
                     };
 
-                    let crop = smartcrop::find_best_crop(&img, NonZeroU32::MIN, NonZeroU32::MIN)
-                        .map_err(|e| DownloadError::AudioTag(format!("image crop: {e}").into()))?
-                        .crop;
+                    let crop = smartcrop::find_best_crop_no_borders(
+                        &img,
+                        NonZeroU32::MIN,
+                        NonZeroU32::MIN,
+                    )
+                    .map_err(|e| DownloadError::AudioTag(format!("image crop: {e}").into()))?
+                    .crop;
                     img = img.crop_imm(crop.x, crop.y, crop.width, crop.height);
                     let mut enc_bts = Vec::new();
                     img.write_with_encoder(image::codecs::jpeg::JpegEncoder::new_with_quality(
