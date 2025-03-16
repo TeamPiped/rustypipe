@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 
 
+## [v0.7.2](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe-cli/v0.7.1..rustypipe-cli/v0.7.2) - 2025-03-16
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Update rustypipe to 0.11.1
+- *(deps)* Update rustypipe-downloader to 0.3.1
+- *(deps)* Update rust crate rstest to 0.25.0 - ([9ed1306](https://codeberg.org/ThetaDev/rustypipe/commit/9ed1306f3aaeb993c409997ddfbc47499e4f4d22))
+
+
 ## [v0.7.1](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe-cli/v0.7.0..rustypipe-cli/v0.7.1) - 2025-02-26
 
 ### ⚙️ Miscellaneous Tasks
