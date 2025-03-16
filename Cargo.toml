@@ -1,6 +1,6 @@
 [package]
 name = "rustypipe"
-version = "0.11.0"
+version = "0.11.1"
 rust-version = "1.67.1"
 edition.workspace = true
 authors.workspace = true
@@ -74,8 +74,8 @@ path_macro = "1.0.0"
 tracing-test = "0.2.5"
 
 # Included crates
-rustypipe = { path = ".", version = "0.11.0", default-features = false }
-rustypipe-downloader = { path = "./downloader", version = "0.3.0", default-features = false, features = [
+rustypipe = { path = ".", version = "0.11.1", default-features = false }
+rustypipe-downloader = { path = "./downloader", version = "0.3.1", default-features = false, features = [
     "indicatif",
     "audiotag",
 ] }

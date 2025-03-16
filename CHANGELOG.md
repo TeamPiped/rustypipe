@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 
 
+## [v0.11.1](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe/v0.11.0..rustypipe/v0.11.1) - 2025-03-16
+
+### 🐛 Bug Fixes
+
+- Simplify get_player_from_clients logic - ([c04b606](https://codeberg.org/ThetaDev/rustypipe/commit/c04b60604d2628bf8f0e3de453c243adbb966e57))
+- Desktop client: generate PO token from user_syncid when authenticated - ([8342cae](https://codeberg.org/ThetaDev/rustypipe/commit/8342caeb0f566a38060a6ec69f3ca65b9a2afcd6))
+- Always skip failed clients - ([63a6f50](https://codeberg.org/ThetaDev/rustypipe/commit/63a6f50a8b5ad6bb984282335c1481ae3cd2fe83))
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Update rust crate rstest to 0.25.0 - ([9ed1306](https://codeberg.org/ThetaDev/rustypipe/commit/9ed1306f3aaeb993c409997ddfbc47499e4f4d22))
+
+
 ## [v0.11.0](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe/v0.10.0..rustypipe/v0.11.0) - 2025-02-26
 
 ### 🚀 Features
