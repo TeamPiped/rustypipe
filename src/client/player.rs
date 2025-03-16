@@ -1,6 +1,6 @@
 use std::{
     borrow::Cow,
-    collections::{BTreeMap, HashMap},
+    collections::{BTreeMap, HashMap, HashSet},
     fmt::Debug,
 };
 
@@ -106,6 +106,7 @@ impl RustyPipeQuery {
         let mut last_e = None;
         let mut query = Cow::Borrowed(self);
         let mut clients_iter = clients.iter().peekable();
+        let mut failed_clients = HashSet::new();
 
         while let Some(client) = clients_iter.next() {
             if query.opts.auth == Some(true) && !self.auth_enabled(*client) {
@@ -113,6 +114,9 @@ impl RustyPipeQuery {
                 if last_e.is_none() {
                     last_e = Some(Error::Auth(AuthError::NoLogin));
                 }
+                continue;
+            }
+            if failed_clients.contains(client) {
                 continue;
             }
 
@@ -130,6 +134,7 @@ impl RustyPipeQuery {
                         tracing::warn!("error fetching player with {client:?} client: {e}; retrying with {next_client:?} client");
                     }
                     last_e = Some(Error::Extraction(e));
+                    failed_clients.insert(*client);
                 }
                 Err(e) => return Err(e),
             }
