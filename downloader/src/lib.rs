@@ -1201,6 +1201,8 @@ async fn download_single_file(
         }
     }
 
+    tracing::debug!("downloading {} to {}", url, output.to_string_lossy());
+
     let mut file = fs::OpenOptions::new()
         .append(true)
         .create(true)
