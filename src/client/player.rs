@@ -104,10 +104,11 @@ impl RustyPipeQuery {
     ) -> Result<VideoPlayer, Error> {
         let video_id = video_id.as_ref();
         let mut last_e = None;
+        let mut query = Cow::Borrowed(self);
         let mut clients_iter = clients.iter().peekable();
 
         while let Some(client) = clients_iter.next() {
-            if self.opts.auth == Some(true) && !self.auth_enabled(*client) {
+            if query.opts.auth == Some(true) && !self.auth_enabled(*client) {
                 // If no client has auth enabled, return NoLogin error instead of "no clients"
                 if last_e.is_none() {
                     last_e = Some(Error::Auth(AuthError::NoLogin));
@@ -115,31 +116,13 @@ impl RustyPipeQuery {
                 continue;
             }
 
-            let res = self.player_from_client(video_id, *client).await;
+            let res = query.player_from_client(video_id, *client).await;
             match res {
                 Ok(res) => return Ok(res),
                 Err(Error::Extraction(e)) => {
-                    if e.use_login() {
-                        if let Some(c) = self.auth_enabled_client(clients) {
-                            tracing::info!("{e}; fetching player with login");
-
-                            match self
-                                .clone()
-                                .authenticated()
-                                .player_from_client(video_id, c)
-                                .await
-                            {
-                                Ok(res) => return Ok(res),
-                                Err(Error::Extraction(e)) => {
-                                    if !e.switch_client() {
-                                        return Err(Error::Extraction(e));
-                                    }
-                                }
-                                Err(e) => return Err(e),
-                            }
-                        } else {
-                            return Err(Error::Extraction(e));
-                        }
+                    if e.use_login() && query.opts.auth.is_none() {
+                        clients_iter = clients.iter().peekable();
+                        query = Cow::Owned(self.clone().authenticated());
                     } else if !e.switch_client() {
                         return Err(Error::Extraction(e));
                     }
@@ -191,6 +174,11 @@ impl RustyPipeQuery {
         video_id: S,
         client_type: ClientType,
     ) -> Result<VideoPlayer, Error> {
+        if self.opts.auth == Some(true) {
+            tracing::info!("fetching {client_type:?} player with login");
+        } else {
+            tracing::debug!("fetching {client_type:?} player");
+        }
         let video_id = video_id.as_ref();
 
         let (deobf, player_po) = tokio::try_join!(
