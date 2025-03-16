@@ -530,7 +530,9 @@ impl MusicListMapper {
             MusicResponseItem::ContinuationItemRenderer {
                 continuation_endpoint,
             } => {
-                self.ctoken = Some(continuation_endpoint.continuation_command.token);
+                if self.ctoken.is_none() {
+                    self.ctoken = continuation_endpoint.into_token();
+                }
                 Ok(None)
             }
         }

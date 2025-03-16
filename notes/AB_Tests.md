@@ -1030,7 +1030,7 @@ commandContext missing).
 - **Encountered on:** 13.01.2025
 - **Impact:** 🟢 Low
 - **Endpoint:** browse (YTM)
-- **Status:** Common (10%)
+- **Status:** Frequent (59%)
 
 YouTube Music used to group artist albums into 2 rows: "Albums" and "Singles".
 
@@ -1067,3 +1067,37 @@ pages. The difficulty is distinguishing them reliably for parsing the album vari
 
 The current solution is adding the "Other versions" title in all languages to the
 dictionary and comparing it.
+
+## [22] commandExecutorCommand for continuations
+
+- **Encountered on:** 16.03.2025
+- **Impact:** 🟢 Low
+- **Endpoint:** browse (YTM)
+- **Status:** Experimental (1%)
+
+YouTube playlists may use a commandExecutorCommand which holds a list of commands: the
+`continuationCommand` that needs to be extracted as well as a `playlistVotingRefreshPopupCommand`.
+
+```json
+{
+  "continuationItemRenderer": {
+    "continuationEndpoint": {
+      "commandExecutorCommand": {
+        "commands": [
+          {
+            "playlistVotingRefreshPopupCommand": {
+              "command": {}
+            }
+          },
+          {
+            "continuationCommand": {
+              "request": "CONTINUATION_REQUEST_TYPE_BROWSE",
+              "token": "4qmFsgKBARIkVkxQTGJaSVB5MjAtMXBON21xamNrZXBXRjc4bmRiNmNpX3FpGjRDQUY2SGxCVU9rTklTV2xGUkVreVVtdEZOVTVFU1hsU2FrWkRVa1JKZWs1NldRJTNEJTNEmgIiUExiWklQeTIwLTFwTjdtcWpja2VwV0Y3OG5kYjZjaV9xaQ%3D%3D"
+            }
+          }
+        ]
+      }
+    }
+  }
+}
+```

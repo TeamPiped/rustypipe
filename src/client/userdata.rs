@@ -207,11 +207,9 @@ impl MapResponse<Paginator<HistoryItem<VideoItem>>> for response::History {
                         &mut map_res,
                     );
                 }
-                response::YouTubeListItem::ContinuationItemRenderer {
-                    continuation_endpoint,
-                } => {
+                response::YouTubeListItem::ContinuationItemRenderer(ep) => {
                     if ctoken.is_none() {
-                        ctoken = Some(continuation_endpoint.continuation_command.token);
+                        ctoken = ep.continuation_endpoint.into_token();
                     }
                 }
                 _ => {}

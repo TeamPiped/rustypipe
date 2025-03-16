@@ -41,10 +41,15 @@ pub enum ABTest {
     MusicAlbumGroupsReordered = 19,
     MusicContinuationItemRenderer = 20,
     AlbumRecommends = 21,
+    CommandExecutorCommand = 22,
 }
 
 /// List of active A/B tests that are run when none is manually specified
-const TESTS_TO_RUN: &[ABTest] = &[ABTest::MusicAlbumGroupsReordered, ABTest::AlbumRecommends];
+const TESTS_TO_RUN: &[ABTest] = &[
+    ABTest::MusicAlbumGroupsReordered,
+    ABTest::AlbumRecommends,
+    ABTest::CommandExecutorCommand,
+];
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ABTestRes {
@@ -120,6 +125,7 @@ pub async fn run_test(
                         music_continuation_item_renderer(&query).await
                     }
                     ABTest::AlbumRecommends => album_recommends(&query).await,
+                    ABTest::CommandExecutorCommand => command_executor_command(&query).await,
                 }
                 .unwrap();
                 pb.inc(1);
@@ -456,4 +462,19 @@ pub async fn album_recommends(rp: &RustyPipeQuery) -> Result<bool> {
         )
         .await?;
     Ok(res.contains("\"musicCarouselShelfRenderer\""))
+}
+
+pub async fn command_executor_command(rp: &RustyPipeQuery) -> Result<bool> {
+    let id = "VLPLbZIPy20-1pN7mqjckepWF78ndb6ci_qi";
+    let res = rp
+        .raw(
+            ClientType::Desktop,
+            "browse",
+            &QBrowse {
+                browse_id: id,
+                params: None,
+            },
+        )
+        .await?;
+    Ok(res.contains("\"commandExecutorCommand\""))
 }

@@ -208,11 +208,10 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
             )
         });
 
-        let comment_ctoken = comment_ctoken_section.map(|s| {
+        let comment_ctoken = comment_ctoken_section.and_then(|s| {
             s.continuation_item_renderer
                 .continuation_endpoint
-                .continuation_command
-                .token
+                .into_token()
         });
 
         let (owner, description, is_ccommons) = match secondary_info {
@@ -333,7 +332,7 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                 .sub_menu_items;
             items
                 .try_swap_remove(1)
-                .map(|c| c.service_endpoint.continuation_command.token)
+                .and_then(|c| c.service_endpoint.into_token())
         });
 
         Ok(MapResult {
@@ -453,7 +452,9 @@ impl MapResponse<Paginator<Comment>> for response::VideoComments {
                     }
                 }
                 response::video_details::CommentListItem::ContinuationItemRenderer(cont) => {
-                    ctoken = Some(cont.token());
+                    if ctoken.is_none() {
+                        ctoken = cont.into_token();
+                    }
                 }
                 response::video_details::CommentListItem::CommentsHeaderRenderer { count_text } => {
                     comment_count = count_text
@@ -520,7 +521,9 @@ fn map_replies(
                         ))
                     }
                     response::video_details::CommentListItem::ContinuationItemRenderer(cont) => {
-                        reply_ctoken = Some(cont.token());
+                        if reply_ctoken.is_none() {
+                            reply_ctoken = cont.into_token();
+                        }
                         None
                     }
                     _ => None,

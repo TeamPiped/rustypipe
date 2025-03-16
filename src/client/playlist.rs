@@ -257,6 +257,7 @@ mod tests {
     #[case::nomusic("nomusic", "PL1J-6JOckZtE_P9Xx8D3b2O6w0idhuKBe")]
     #[case::live("live", "UULVvqRdlKsE5Q8mf8YXbdIJLw")]
     #[case::pageheader("20241011_pageheader", "PLT2w2oBf1TZKyvY_M6JsASs73m-wjLzH5")]
+    #[case::cmdexecutor("20250316_cmdexecutor", "PLbZIPy20-1pN7mqjckepWF78ndb6ci_qi")]
     fn map_playlist_data(#[case] name: &str, #[case] id: &str) {
         let json_path = path!(*TESTFILES / "playlist" / format!("playlist_{name}.json"));
         let json_file = File::open(json_path).unwrap();

@@ -153,8 +153,15 @@ pub(crate) struct ContinuationItemRenderer {
 }
 
 #[derive(Debug, Deserialize)]
+#[serde(untagged)]
+pub(crate) enum ContinuationEndpoint {
+    ContinuationCommand(ContinuationCommandWrap),
+    CommandExecutorCommand(CommandExecutorCommandWrap),
+}
+
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub(crate) struct ContinuationEndpoint {
+pub(crate) struct ContinuationCommandWrap {
     pub continuation_command: ContinuationCommand,
 }
 
@@ -164,7 +171,34 @@ pub(crate) struct ContinuationCommand {
     pub token: String,
 }
 
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct CommandExecutorCommandWrap {
+    pub command_executor_command: CommandExecutorCommand,
+}
+
 #[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct CommandExecutorCommand {
+    #[serde_as(as = "VecSkipError<_>")]
+    commands: Vec<ContinuationCommandWrap>,
+}
+
+impl ContinuationEndpoint {
+    pub fn into_token(self) -> Option<String> {
+        match self {
+            Self::ContinuationCommand(cmd) => Some(cmd.continuation_command.token),
+            Self::CommandExecutorCommand(cmd) => cmd
+                .command_executor_command
+                .commands
+                .into_iter()
+                .next()
+                .map(|c| c.continuation_command.token),
+        }
+    }
+}
+
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct Icon {

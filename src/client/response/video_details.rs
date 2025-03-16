@@ -530,15 +530,14 @@ pub(crate) enum ContinuationItemVariants {
 }
 
 impl ContinuationItemVariants {
-    pub fn token(self) -> String {
+    pub fn into_token(self) -> Option<String> {
         match self {
             ContinuationItemVariants::Ep {
                 continuation_endpoint,
             } => continuation_endpoint,
             ContinuationItemVariants::Btn { button } => button.button_renderer.command,
         }
-        .continuation_command
-        .token
+        .into_token()
     }
 }
 

@@ -4,7 +4,7 @@ use serde_with::{
 };
 use time::OffsetDateTime;
 
-use super::{ChannelBadge, ContentImage, ContinuationEndpoint, PhMetadataView, Thumbnails};
+use super::{ChannelBadge, ContentImage, ContinuationItemRenderer, PhMetadataView, Thumbnails};
 use crate::{
     model::{Channel, ChannelItem, ChannelTag, PlaylistItem, VideoItem, YouTubeItem},
     param::Language,
@@ -37,12 +37,9 @@ pub(crate) enum YouTubeListItem {
 
     LockupViewModel(LockupViewModel),
 
-    /// Continauation items are located at the end of a list
+    /// Continuation items are located at the end of a list
     /// and contain the continuation token for progressive loading
-    #[serde(rename_all = "camelCase")]
-    ContinuationItemRenderer {
-        continuation_endpoint: ContinuationEndpoint,
-    },
+    ContinuationItemRenderer(ContinuationItemRenderer),
 
     /// Corrected search query
     #[serde(rename_all = "camelCase")]
@@ -838,9 +835,11 @@ impl YouTubeListMapper<YouTubeItem> {
                     self.items.push(mapped);
                 }
             }
-            YouTubeListItem::ContinuationItemRenderer {
-                continuation_endpoint,
-            } => self.ctoken = Some(continuation_endpoint.continuation_command.token),
+            YouTubeListItem::ContinuationItemRenderer(r) => {
+                if self.ctoken.is_none() {
+                    self.ctoken = r.continuation_endpoint.into_token();
+                }
+            }
             YouTubeListItem::ShowingResultsForRenderer { corrected_query } => {
                 self.corrected_query = Some(corrected_query);
             }
@@ -886,9 +885,11 @@ impl YouTubeListMapper<VideoItem> {
                     self.items.push(mapped);
                 }
             }
-            YouTubeListItem::ContinuationItemRenderer {
-                continuation_endpoint,
-            } => self.ctoken = Some(continuation_endpoint.continuation_command.token),
+            YouTubeListItem::ContinuationItemRenderer(r) => {
+                if self.ctoken.is_none() {
+                    self.ctoken = r.continuation_endpoint.into_token();
+                }
+            }
             YouTubeListItem::ShowingResultsForRenderer { corrected_query } => {
                 self.corrected_query = Some(corrected_query);
             }
@@ -938,9 +939,11 @@ impl YouTubeListMapper<PlaylistItem> {
                     self.items.push(mapped);
                 }
             }
-            YouTubeListItem::ContinuationItemRenderer {
-                continuation_endpoint,
-            } => self.ctoken = Some(continuation_endpoint.continuation_command.token),
+            YouTubeListItem::ContinuationItemRenderer(r) => {
+                if self.ctoken.is_none() {
+                    self.ctoken = r.continuation_endpoint.into_token();
+                }
+            }
             YouTubeListItem::ShowingResultsForRenderer { corrected_query } => {
                 self.corrected_query = Some(corrected_query);
             }
