@@ -293,8 +293,10 @@ struct OauthToken {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 struct AuthCookie {
     cookie: String,
+    #[serde(alias = "account_syncid", skip_serializing_if = "Option::is_none")]
+    channel_syncid: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    account_syncid: Option<String>,
+    user_syncid: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     session_index: Option<String>,
 }
@@ -319,8 +321,9 @@ impl AuthCookie {
     fn new(cookie: String) -> Self {
         Self {
             cookie,
-            account_syncid: None,
+            channel_syncid: None,
             session_index: None,
+            user_syncid: None,
         }
     }
 }
@@ -1591,6 +1594,17 @@ impl RustyPipe {
             .ok_or(Error::Auth(AuthError::NoLogin))
     }
 
+    fn user_auth_datasync_id(&self) -> Result<String, Error> {
+        self.inner
+            .cache
+            .auth_cookie
+            .read()
+            .unwrap()
+            .as_ref()
+            .and_then(|c| c.user_syncid.as_ref().map(|id| id.to_owned()))
+            .ok_or(Error::Auth(AuthError::NoLogin))
+    }
+
     /// Set the user authentication cookie
     ///
     /// The cookie is used for authenticated requests with browser-based clients
@@ -1685,17 +1699,17 @@ impl RustyPipe {
             ))?;
 
         // datasyncid is of the form "channel_syncid||user_syncid" for secondary channel
-        // and just "user_syncid||" for primary channel. We only want the channel_syncid
-        let (channel_syncid, user_syncid) =
+        // and just "user_syncid||" for primary channel.
+        let (p1, p2) =
             datasync_id
                 .split_once("||")
                 .ok_or(Error::Extraction(ExtractionError::InvalidData(
                     "datasyncId does not contain || seperator".into(),
                 )))?;
-        auth_cookie.account_syncid = if user_syncid.is_empty() {
-            None
+        (auth_cookie.channel_syncid, auth_cookie.user_syncid) = if p2.is_empty() {
+            (None, Some(p1.to_owned()))
         } else {
-            Some(channel_syncid.to_owned())
+            (Some(p1.to_owned()), Some(p2.to_owned()))
         };
 
         auth_cookie.session_index = Some(
@@ -2129,7 +2143,7 @@ impl RustyPipeQuery {
                 if let Some(session_index) = auth_cookie.session_index {
                     r = r.header("X-Goog-AuthUser", session_index);
                 }
-                if let Some(account_syncid) = auth_cookie.account_syncid {
+                if let Some(account_syncid) = auth_cookie.channel_syncid {
                     r = r.header("X-Goog-PageId", account_syncid);
                 }
                 cookie = Some(auth_cookie.cookie);

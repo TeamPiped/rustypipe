@@ -139,22 +139,27 @@ impl RustyPipeQuery {
 
     async fn get_player_po_token(&self, video_id: &str) -> Result<PlayerPoToken, Error> {
         if let Some(bg) = &self.client.inner.botguard {
-            let visitor_data = self.get_visitor_data(false).await?;
+            let (ident, visitor_data) = if self.opts.auth == Some(true) {
+                (self.client.user_auth_datasync_id()?, None)
+            } else {
+                let visitor_data = self.get_visitor_data(false).await?;
+                (visitor_data.to_owned(), Some(visitor_data))
+            };
+
             if bg.po_token_cache {
-                let session_token = self.get_session_po_token(&visitor_data).await?;
+                let session_token = self.get_session_po_token(&ident).await?;
                 Ok(PlayerPoToken {
-                    visitor_data: Some(visitor_data),
+                    visitor_data,
                     session_po_token: Some(session_token),
                     content_po_token: None,
                 })
             } else {
-                let (po_tokens, valid_until) =
-                    self.get_po_tokens(&[video_id, &visitor_data]).await?;
+                let (po_tokens, valid_until) = self.get_po_tokens(&[video_id, &ident]).await?;
                 let mut po_tokens = po_tokens.into_iter();
                 let po_token = po_tokens.next().unwrap();
                 let session_po_token = po_tokens.next().unwrap();
                 Ok(PlayerPoToken {
-                    visitor_data: Some(visitor_data),
+                    visitor_data,
                     session_po_token: Some(PoToken {
                         po_token: session_po_token,
                         valid_until,
