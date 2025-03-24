@@ -3,7 +3,7 @@ use std::collections::HashMap;
 use once_cell::sync::Lazy;
 use regex::Regex;
 use reqwest::Client;
-use ress::tokens::Token;
+use ress::tokens::{Keyword, Punct, Token};
 use rquickjs::{Context, Runtime};
 use serde::{Deserialize, Serialize};
 
@@ -106,7 +106,7 @@ impl Deobfuscator {
             .with(|ctx| call_fn(&ctx, DEOBF_NSIG_FUNC_NAME, nsig))?;
         tracing::trace!("deobf nsig: {nsig} -> {res}");
         if res.starts_with("enhanced_except_") || res.ends_with(nsig) {
-            return Err(DeobfError::Other("nsig fn returned an exception"));
+            return Err(DeobfError::Other("nsig fn returned an exception".into()));
         }
         Ok(res)
     }
@@ -134,55 +134,21 @@ fn caller_function(mapped_name: &str, fn_name: &str) -> String {
 }
 
 fn get_sig_fn(player_js: &str) -> Result<String, DeobfError> {
-    let dfunc_name = get_sig_fn_name(player_js)?;
+    let name = get_sig_fn_name(player_js)?;
+    let code = extract_js_fn(player_js, &name)?;
+    let js_fn = format!("{}{}", code, caller_function(DEOBF_SIG_FUNC_NAME, &name));
 
-    let function_pattern_str = format!(
-        r#"({}=function\([\w]+\)\{{.+?\}})"#,
-        dfunc_name.replace('$', "\\$")
-    );
-    let function_pattern = Regex::new(&function_pattern_str)
-        .map_err(|_| DeobfError::Other("could not parse sig fn pattern regex"))?;
-
-    let deobfuscate_function = format!(
-        "var {};",
-        &function_pattern
-            .captures(player_js)
-            .ok_or(DeobfError::Extraction("sig fn"))?[1]
-    );
-
-    let helper_object_name_pattern = Regex::new(r";([\w\$]{2,3})\...\(").unwrap();
-    let helper_object_name = helper_object_name_pattern
-        .captures(&deobfuscate_function)
-        .ok_or(DeobfError::Extraction("sig fn helper object name"))?
-        .get(1)
-        .unwrap()
-        .as_str();
-
-    let helper_pattern_str = format!(
-        r#"(var {}=\{{.+?\}}\}};)"#,
-        helper_object_name.replace('$', "\\$")
-    );
-    let helper_pattern = Regex::new(&helper_pattern_str)
-        .map_err(|_| DeobfError::Other("could not parse helper pattern regex"))?;
-    let player_js_nonl = player_js.replace('\n', "");
-    let helper_object = &helper_pattern
-        .captures(&player_js_nonl)
-        .ok_or(DeobfError::Extraction("sig fn helper object"))?[1];
-
-    let js_fn = helper_object.to_owned()
-        + &deobfuscate_function
-        + &caller_function(DEOBF_SIG_FUNC_NAME, &dfunc_name);
     tracing::trace!("sig_fn: {js_fn}");
     verify_fn(&js_fn, DEOBF_SIG_FUNC_NAME)?;
-    tracing::debug!("successfully extracted sig fn `{dfunc_name}`");
+    tracing::debug!("successfully extracted sig fn `{name}`");
 
     Ok(js_fn)
 }
 
 fn get_nsig_fn_names(player_js: &str) -> impl Iterator<Item = String> + '_ {
     static FUNCTION_NAME_REGEX: Lazy<Regex> = Lazy::new(|| {
-        // x.get( .. y=functionName[array_num](z) .. x.set(
-        Regex::new(r#"(?:[\w$]\.get\(|index\.m3u8).+[a-zA-Z]=([\w$]{2,})(?:\[(\d+)\])?\([a-zA-Z0-9]\).+[a-zA-Z0-9]\.set\("#)
+        // x.get( OR index.m3u8 OR delete x.y.file .. y=functionName[array_num](z) .. x.set(
+        Regex::new(r#"(?:[\w$]\.get\(|index\.m3u8|delete [\w$]+\.[\w$]+\.file).+[a-zA-Z]=([\w$]{2,})(?:\[(\d+)\])?\([a-zA-Z0-9]\).+[a-zA-Z0-9]\.set\("#)
             .unwrap()
     });
 
@@ -206,17 +172,32 @@ fn get_nsig_fn_names(player_js: &str) -> impl Iterator<Item = String> + '_ {
         })
 }
 
-fn extract_js_fn(js: &str, offset: usize, name: &str) -> Result<String, DeobfError> {
+fn extract_js_fn(js: &str, name: &str) -> Result<String, DeobfError> {
+    let function_base_re = Regex::new(&format!(r#"{}\s*=\s*function\("#, regex::escape(name)))
+        .map_err(|e| DeobfError::Other(format!("parsing regex for {name}: {e}").into()))?;
+    let offset = function_base_re
+        .find(js)
+        .ok_or(DeobfError::Extraction("could not find function base"))?
+        .start();
+
     let scan = ress::Scanner::new(&js[offset..]);
     let mut state = 0;
-    let mut level = 0;
 
-    let mut start = 0;
-    let mut end = 0;
+    #[derive(Default, Clone, PartialEq, Eq)]
+    struct Level {
+        brace: isize,
+        paren: isize,
+    }
+
+    let mut level = Level::default();
+    let mut start = 0usize;
+    let mut end = 0usize;
 
     let mut period_before = false;
     let mut last_ident = None;
-    let mut idents: HashMap<String, usize> = HashMap::new();
+    let mut idents: HashMap<String, bool> = HashMap::new();
+    // Set if the current statement is a variable/function param definition
+    let mut var_def_stmt: Option<(Level, bool)> = None;
 
     let global_objects = [
         "NaN", "Infinity", "Object", "Function", "Boolean", "Symbol", "Error", "Number", "BigInt",
@@ -236,39 +217,96 @@ fn extract_js_fn(js: &str, offset: usize, name: &str) -> Result<String, DeobfErr
             }
             // Looking for equals
             1 => {
-                if token.matches_punct(ress::tokens::Punct::Equal) {
+                if token.matches_punct(Punct::Equal) {
                     state = 2;
                 } else {
                     state = 0;
                 }
             }
             2 => {
-                // Looking for begin/end braces
-                if token.matches_punct(ress::tokens::Punct::OpenBrace) {
-                    level += 1;
-                } else if token.matches_punct(ress::tokens::Punct::CloseBrace) {
-                    level -= 1;
+                if let Token::Punct(punct) = token {
+                    match punct {
+                        Punct::OpenBrace => {
+                            level.brace += 1;
+                        }
+                        Punct::CloseBrace => {
+                            if var_def_stmt
+                                .as_ref()
+                                .map(|(x, _)| x == &level)
+                                .unwrap_or_default()
+                            {
+                                var_def_stmt = None;
+                            }
+                            level.brace -= 1;
 
-                    if level == 0 {
-                        end = it.span.end;
-                        state = 3;
-                        break;
+                            if level.brace == 0 {
+                                end = it.span.end;
+                                state = 3;
+                                break;
+                            }
+                        }
+                        Punct::OpenParen => {
+                            level.paren += 1;
+                        }
+                        Punct::CloseParen => {
+                            if var_def_stmt
+                                .as_ref()
+                                .map(|(x, _)| x == &level)
+                                .unwrap_or_default()
+                            {
+                                var_def_stmt = None;
+                            }
+                            level.paren -= 1;
+                        }
+                        Punct::SemiColon => {
+                            var_def_stmt = None;
+                        }
+                        Punct::Comma => {
+                            if let Some((lvl, en)) = &mut var_def_stmt {
+                                if lvl == &level {
+                                    *en = false;
+                                }
+                            }
+                        }
+                        Punct::Equal => {
+                            if let Some((lvl, en)) = &mut var_def_stmt {
+                                if lvl == &level {
+                                    *en = true;
+                                }
+                            }
+                        }
+                        _ => {}
+                    }
+                } else if let Token::Keyword(kw) = &token {
+                    match kw {
+                        Keyword::Var(_) | Keyword::Let(_) | Keyword::Const(_) => {
+                            var_def_stmt = Some((level.clone(), false));
+                        }
+                        Keyword::Function(_) => {
+                            let mut l = level.clone();
+                            l.paren += 1;
+                            var_def_stmt = Some((l, false));
+                        }
+                        _ => {}
                     }
                 }
 
                 // Looking for variable names
                 if let Token::Ident(id) = &token {
-                    if !period_before {
-                        let id_str = id.to_string();
-                        if !global_objects.contains(&id_str.as_str()) {
+                    // Ignore object attributes and 1char long local vars
+                    if !period_before && id.as_ref().len() > 1 {
+                        if var_def_stmt
+                            .as_ref()
+                            .map(|(lvl, en)| lvl == &level && !en)
+                            .unwrap_or_default()
+                        {
+                            idents.insert(id.to_string(), true);
+                        } else if !global_objects.contains(&id.as_ref()) {
                             last_ident = Some(id.to_string());
                         }
                     }
-                } else if last_ident.is_some()
-                    && !token.matches_punct(ress::tokens::Punct::OpenParen)
-                {
-                    let n = idents.entry(last_ident.unwrap()).or_default();
-                    *n += 1;
+                } else if last_ident.is_some() && !token.matches_punct(Punct::OpenParen) {
+                    idents.entry(last_ident.unwrap()).or_default();
                     last_ident = None;
                 } else {
                     last_ident = None;
@@ -276,7 +314,7 @@ fn extract_js_fn(js: &str, offset: usize, name: &str) -> Result<String, DeobfErr
             }
             _ => break,
         };
-        period_before = token.matches_punct(ress::tokens::Punct::Period);
+        period_before = token.matches_punct(Punct::Period);
     }
 
     if state != 3 {
@@ -287,9 +325,10 @@ fn extract_js_fn(js: &str, offset: usize, name: &str) -> Result<String, DeobfErr
     let mut code = format!("var {};", &js[fn_range.clone()]);
     let rt = rquickjs::Runtime::new()?;
 
-    for (ident, _) in idents.into_iter().filter(|(_, v)| *v == 1) {
-        let var_pattern_str = format!(r#"(^|[^\w$]){}\s*=[^=]"#, regex::escape(&ident));
-        let re = Regex::new(&var_pattern_str).unwrap();
+    for (ident, _) in idents.into_iter().filter(|(_, v)| !v) {
+        let var_pattern_str = format!(r#"(^|[^\w$\.]){}\s*=[^=]"#, regex::escape(&ident));
+        let re = Regex::new(&var_pattern_str)
+            .map_err(|e| DeobfError::Other(format!("parsing regex for {ident}: {e}").into()))?;
         let found_variable = re
             .captures_iter(js)
             .filter(|cap| {
@@ -347,13 +386,13 @@ fn extract_js_var(js: &str) -> Option<&str> {
 
         if let Token::Punct(p) = &token {
             match p {
-                ress::tokens::Punct::OpenBrace => braces.push(b'{'),
-                ress::tokens::Punct::OpenBracket => braces.push(b'['),
-                ress::tokens::Punct::OpenParen => braces.push(b'('),
-                ress::tokens::Punct::CloseBrace => close_brace(&mut braces, b'{')?,
-                ress::tokens::Punct::CloseBracket => close_brace(&mut braces, b'[')?,
-                ress::tokens::Punct::CloseParen => close_brace(&mut braces, b'(')?,
-                ress::tokens::Punct::Comma | ress::tokens::Punct::SemiColon => {
+                Punct::OpenBrace => braces.push(b'{'),
+                Punct::OpenBracket => braces.push(b'['),
+                Punct::OpenParen => braces.push(b'('),
+                Punct::CloseBrace => close_brace(&mut braces, b'{')?,
+                Punct::CloseBracket => close_brace(&mut braces, b'[')?,
+                Punct::CloseParen => close_brace(&mut braces, b'(')?,
+                Punct::Comma | Punct::SemiColon => {
                     if braces.is_empty() {
                         end = it.span.start;
                         break;
@@ -388,23 +427,19 @@ fn verify_fn(js_fn: &str, fn_name: &str) -> Result<(), DeobfError> {
     })?;
 
     if res.is_empty() {
-        return Err(DeobfError::Other("deobfuscation fn returned empty string"));
+        return Err(DeobfError::Other(
+            "deobfuscation fn returned empty string".into(),
+        ));
     }
     if res.starts_with("enhanced_except_") || res.ends_with(&testinp) {
-        return Err(DeobfError::Other("nsig fn returned an exception"));
+        return Err(DeobfError::Other("nsig fn returned an exception".into()));
     }
     Ok(())
 }
 
 fn get_nsig_fn(player_js: &str) -> Result<String, DeobfError> {
     let extract_fn = |name: &str| -> Result<String, DeobfError> {
-        let function_base = format!("{name}=function");
-        let offset = player_js
-            .find(&function_base)
-            .ok_or(DeobfError::Extraction("could not find function base"))?;
-
-        let code = extract_js_fn(player_js, offset, name)?;
-
+        let code = extract_js_fn(player_js, name)?;
         let js_fn = format!("{}{}", code, caller_function(DEOBF_NSIG_FUNC_NAME, name));
         tracing::trace!("nsig_fn: {js_fn}");
         verify_fn(&js_fn, DEOBF_NSIG_FUNC_NAME)?;
@@ -472,7 +507,9 @@ mod tests {
         std::fs::read_to_string(js_path).unwrap()
     });
 
-    const SIG_DEOBF_FUNC: &str = r#"var qB={w8:function(a){a.reverse()},EC:function(a,b){var c=a[0];a[0]=a[b%a.length];a[b%a.length]=c},Np:function(a,b){a.splice(0,b)}};var Rva=function(a){a=a.split("");qB.Np(a,3);qB.w8(a,41);qB.EC(a,55);qB.Np(a,3);qB.w8(a,33);qB.Np(a,3);qB.EC(a,48);qB.EC(a,17);qB.EC(a,43);return a.join("")};var deobf_sig=Rva;"#;
+    const SIG_DEOBF_FUNC: &str = r#"var qB={w8:function(a){a.reverse()},
+EC:function(a,b){var c=a[0];a[0]=a[b%a.length];a[b%a.length]=c},
+Np:function(a,b){a.splice(0,b)}}; var Rva=function(a){a=a.split("");qB.Np(a,3);qB.w8(a,41);qB.EC(a,55);qB.Np(a,3);qB.w8(a,33);qB.Np(a,3);qB.EC(a,48);qB.EC(a,17);qB.EC(a,43);return a.join("")};var deobf_sig=Rva;"#;
     const NSIG_DEOBF_FUNC: &str = r#"var Vo=function(a){var b=a.split(""),c=[function(d,e,f){var h=f.length;d.forEach(function(l,m,n){this.push(n[m]=f[(f.indexOf(l)-f.indexOf(this[m])+m+h--)%f.length])},e.split(""))},
 928409064,-595856984,1403221911,653089124,-168714481,-1883008765,158931990,1346921902,361518508,1403221911,-362174697,-233641452,function(){for(var d=64,e=[];++d-e.length-32;){switch(d){case 91:d=44;continue;case 123:d=65;break;case 65:d-=18;continue;case 58:d=96;continue;case 46:d=95}e.push(String.fromCharCode(d))}return e},
 b,158931990,791141857,-907319795,-1776185924,1595027902,-829736173,function(d,e){e=(e%d.length+d.length)%d.length;d.splice(0,1,d.splice(e,1,d[0])[0])},
@@ -525,7 +562,7 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
     #[test]
     fn t_extract_js_fn() {
         let base_js = "Wka = function(d){let x=10/2;return /,,[/,913,/](,)}/}let a = 42;";
-        let res = extract_js_fn(base_js, 0, "Wka").unwrap();
+        let res = extract_js_fn(base_js, "Wka").unwrap();
         assert_eq!(
             res,
             "var Wka = function(d){let x=10/2;return /,,[/,913,/](,)}/};"
@@ -536,7 +573,7 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
     fn t_extract_js_fn_eviljs() {
         // Evil JavaScript code containing braces within strings and regular expressions
         let base_js = "Wka = function(d){var x = [/,,/,913,/(,)}/,\"abcdef}\\\"\",];var y = 10/2/1;return x[1][y];}//some={}random-padding+;";
-        let res = extract_js_fn(base_js, 0, "Wka").unwrap();
+        let res = extract_js_fn(base_js, "Wka").unwrap();
         assert_eq!(
             res,
             "var Wka = function(d){var x = [/,,/,913,/(,)}/,\"abcdef}\\\"\",];var y = 10/2/1;return x[1][y];};"
@@ -545,33 +582,33 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
 
     #[test]
     fn t_extract_js_fn_outside_vars() {
-        let base_js = "let a = 42;foo();var b=11;bar();Wka = function(d){var x=1+2+a*b;return x;}";
-        let res = extract_js_fn(base_js, 0, "Wka").unwrap();
+        let base_js = "let a1 = 42;foo();var b1=11;var da=77;bar();Wka = function(da){var xy=1+2+a1*b1;return xy;}";
+        let res = extract_js_fn(base_js, "Wka").unwrap();
         // order of variables is non-reproducible
         assert!(
-            res == "var a = 42; var b=11; var Wka = function(d){var x=1+2+a*b;return x;};"
-                || res == "var b=11; var a = 42; var Wka = function(d){var x=1+2+a*b;return x;};",
+            res == "var a1 = 42; var b1=11; var Wka = function(da){var xy=1+2+a1*b1;return xy;};"
+                || res == "var b1=11; var a1 = 42; var Wka = function(da){var xy=1+2+a1*b1;return xy;};",
             "got {res}"
         );
     }
 
     #[test]
     fn t_extract_js_fn_outside_vars2() {
-        let base_js = "{let a = {v1:1,v2:2}}foo();Wka = function(d){var x=1+2+a.v1;return x;}";
-        let res = extract_js_fn(base_js, 0, "Wka").unwrap();
+        let base_js = "{let a1 = {v1:1,v2:2}}foo();Wka = function(d){var x=1+2+a1.v1;return x;}";
+        let res = extract_js_fn(base_js, "Wka").unwrap();
         assert_eq!(
             res,
-            "var a = {v1:1,v2:2}; var Wka = function(d){var x=1+2+a.v1;return x;};"
+            "var a1 = {v1:1,v2:2}; var Wka = function(d){var x=1+2+a1.v1;return x;};"
         );
     }
 
     #[test]
     fn t_extract_js_fn_outside_vars3() {
-        let base_js = "Wka = function(d){var x=1+2+a[0];return x;};let a=[1,2,3]";
-        let res = extract_js_fn(base_js, 0, "Wka").unwrap();
+        let base_js = "Wka = function(d){var x=1+2+a1[0];return x;};let a1=[1,2,3]";
+        let res = extract_js_fn(base_js, "Wka").unwrap();
         assert_eq!(
             res,
-            "var a=[1,2,3]; var Wka = function(d){var x=1+2+a[0];return x;};"
+            "var a1=[1,2,3]; var Wka = function(d){var x=1+2+a1[0];return x;};"
         );
     }
 
@@ -625,65 +662,81 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
     }
 
     // Test cases from https://github.com/yt-dlp/yt-dlp/blob/master/test/test_youtube_signature.py
-
-    #[rstest]
-    #[case("6ed0d907", "AOq0QJ8wRAIgXmPlOPSBkkUs1bYFYlJCfe29xx8j7v1pDL2QwbdV96sCIEzpWqMGkFR20CFOg51Tp-7vj_EMu-m37KtXJoOySqa0")]
-    #[case("3bb1f723", "MyOSJXtKI3m-uME_jv7-pT12gOFC02RFkGoqWpzE0Cs69VdbwQ0LDp1v7j8xx92efCJlYFYb1sUkkBSPOlPmXgIARw8JQ0qOAOAA")]
-    #[case("2f1832d2", "0QJ8wRAIgXmPlOPSBkkUs1bYFYlJCfe29xxAj7v1pDL0QwbdV96sCIEzpWqMGkFR20CFOg51Tp-7vj_EMu-m37KtXJ2OySqa0q")]
     #[tokio::test]
     #[traced_test]
-    async fn sig_tests(#[case] js_hash: &str, #[case] exp_sig: &str) {
-        let (js_url, js_path) = player_js_file(js_hash).await;
-        let player_js = std::fs::read_to_string(js_path).unwrap();
-        let deobf_data = DeobfData::extract_fns(&js_url, &player_js).unwrap();
-        let deobf = Deobfuscator::new(&deobf_data).unwrap();
+    async fn sig_tests() {
+        let cases = [
+            ("6ed0d907", "AOq0QJ8wRAIgXmPlOPSBkkUs1bYFYlJCfe29xx8j7v1pDL2QwbdV96sCIEzpWqMGkFR20CFOg51Tp-7vj_EMu-m37KtXJoOySqa0"),
+            ("3bb1f723", "MyOSJXtKI3m-uME_jv7-pT12gOFC02RFkGoqWpzE0Cs69VdbwQ0LDp1v7j8xx92efCJlYFYb1sUkkBSPOlPmXgIARw8JQ0qOAOAA"),
+            ("2f1832d2", "0QJ8wRAIgXmPlOPSBkkUs1bYFYlJCfe29xxAj7v1pDL0QwbdV96sCIEzpWqMGkFR20CFOg51Tp-7vj_EMu-m37KtXJ2OySqa0q"),
+            ("643afba4", "AAOAOq0QJ8wRAIgXmPlOPSBkkUs1bYFYlJCfe29xx8j7vgpDL0QwbdV06sCIEzpWqMGkFR20CFOS21Tp-7vj_EMu-m37KtXJoOy1"),
+        ];
 
-        let deobf_sig = deobf.deobfuscate_sig("2aq0aqSyOoJXtK73m-uME_jv7-pT15gOFC02RFkGMqWpzEICs69VdbwQ0LDp1v7j8xx92efCJlYFYb1sUkkBSPOlPmXgIARw8JQ0qOAOAA").unwrap();
-        assert_eq!(deobf_sig, exp_sig, "js: {js_hash}");
+        for (js_hash, exp_sig) in cases {
+            tracing::info!("[{js_hash}] SIG_TEST");
+            let (js_url, js_path) = player_js_file(js_hash).await;
+            let player_js = std::fs::read_to_string(js_path).unwrap();
+            let deobf_data = DeobfData::extract_fns(&js_url, &player_js).unwrap();
+            let deobf = Deobfuscator::new(&deobf_data).unwrap();
+
+            let deobf_sig = deobf.deobfuscate_sig("2aq0aqSyOoJXtK73m-uME_jv7-pT15gOFC02RFkGMqWpzEICs69VdbwQ0LDp1v7j8xx92efCJlYFYb1sUkkBSPOlPmXgIARw8JQ0qOAOAA").unwrap();
+            assert_eq!(deobf_sig, exp_sig, "[{js_hash}]");
+        }
     }
 
-    #[rstest]
-    #[case("7862ca1f", "X_LCxVDjAavgE5t", "yxJ1dM6iz5ogUg")]
-    #[case("9216d1f7", "SLp9F5bwjAdhE9F-", "gWnb9IK2DJ8Q1w")]
-    #[case("f8cb7a3b", "oBo2h5euWy6osrUt", "ivXHpm7qJjJN")]
-    #[case("2dfe380c", "oBo2h5euWy6osrUt", "3DIBbn3qdQ")]
-    #[case("f1ca6900", "cu3wyu6LQn2hse", "jvxetvmlI9AN9Q")]
-    #[case("8040e515", "wvOFaY-yjgDuIEg5", "HkfBFDHmgw4rsw")]
-    #[case("e06dea74", "AiuodmaDDYw8d3y4bf", "ankd8eza2T6Qmw")]
-    #[case("5dd88d1d", "kSxKFLeqzv_ZyHSAt", "n8gS8oRlHOxPFA")]
-    #[case("324f67b9", "xdftNy7dh9QGnhW", "22qLGxrmX8F1rA")]
-    #[case("4c3f79c5", "TDCstCG66tEAO5pR9o", "dbxNtZ14c-yWyw")]
-    #[case("c81bbb4a", "gre3EcLurNY2vqp94", "Z9DfGxWP115WTg")]
-    #[case("1f7d5369", "batNX7sYqIJdkJ", "IhOkL_zxbkOZBw")]
-    #[case("009f1d77", "5dwFHw8aFWQUQtffRq", "audescmLUzI3jw")]
-    #[case("dc0c6770", "5EHDMgYLV6HPGk_Mu-kk", "n9lUJLHbxUI0GQ")]
-    #[case("113ca41c", "cgYl-tlYkhjT7A", "hI7BBr2zUgcmMg")]
-    #[case("c57c113c", "M92UUMHa8PdvPd3wyM", "3hPqLJsiNZx7yA")]
-    #[case("5a3b6271", "B2j7f_UPT4rfje85Lu_e", "m5DmNymaGQ5RdQ")]
-    #[case("7a062b77", "NRcE3y3mVtm_cV-W", "VbsCYUATvqlt5w")]
-    #[case("dac945fd", "o8BkRxXhuYsBCWi6RplPdP", "3Lx32v_hmzTm6A")]
-    #[case("6f20102c", "lE8DhoDmKqnmJJ", "pJTTX6XyJP2BYw")]
-    #[case("cfa9e7cb", "aCi3iElgd2kq0bxVbQ", "QX1y8jGb2IbZ0w")]
-    #[case("8c7583ff", "1wWCVpRR96eAmMI87L", "KSkWAVv1ZQxC3A")]
-    #[case("b7910ca8", "_hXMCwMt9qE310D", "LoZMgkkofRMCZQ")]
-    #[case("590f65a6", "1tm7-g_A9zsI8_Lay_", "xI4Vem4Put_rOg")]
-    #[case("b22ef6e7", "b6HcntHGkvBLk_FRf", "kNPW6A7FyP2l8A")]
-    #[case("3400486c", "lL46g3XifCKUZn1Xfw", "z767lhet6V2Skl")]
-    #[case("20dfca59", "-fLCxedkAk4LUTK2", "O8kfRq1y1eyHGw")]
-    #[case("b12cc44b", "keLa5R2U00sR9SQK", "N1OGyujjEwMnLw")]
-    #[case("3bb1f723", "gK15nzVyaXE9RsMP3z", "ZFFWFLPWx9DEgQ")]
-    #[case("2f1832d2", "YWt1qdbe8SAfkoPHW5d", "RrRjWQOJmBiP")]
-    #[case("19d2ae9d", "YWt1qdbe8SAfkoPHW5d", "CS6dVTYzpZrAZ5TD")]
     #[tokio::test]
     #[traced_test]
-    async fn nsig_tests(#[case] js_hash: &str, #[case] nsig_in: &str, #[case] expect: &str) {
-        let (js_url, js_path) = player_js_file(js_hash).await;
-        let player_js = std::fs::read_to_string(js_path).unwrap();
-        let deobf_data = DeobfData::extract_fns(&js_url, &player_js).unwrap();
-        let deobf = Deobfuscator::new(&deobf_data).unwrap();
+    async fn nsig_tests() {
+        let cases = [
+            ("7862ca1f", "X_LCxVDjAavgE5t", "yxJ1dM6iz5ogUg"),
+            ("9216d1f7", "SLp9F5bwjAdhE9F-", "gWnb9IK2DJ8Q1w"),
+            ("f8cb7a3b", "oBo2h5euWy6osrUt", "ivXHpm7qJjJN"),
+            ("2dfe380c", "oBo2h5euWy6osrUt", "3DIBbn3qdQ"),
+            ("f1ca6900", "cu3wyu6LQn2hse", "jvxetvmlI9AN9Q"),
+            ("8040e515", "wvOFaY-yjgDuIEg5", "HkfBFDHmgw4rsw"),
+            ("e06dea74", "AiuodmaDDYw8d3y4bf", "ankd8eza2T6Qmw"),
+            ("5dd88d1d", "kSxKFLeqzv_ZyHSAt", "n8gS8oRlHOxPFA"),
+            ("324f67b9", "xdftNy7dh9QGnhW", "22qLGxrmX8F1rA"),
+            ("4c3f79c5", "TDCstCG66tEAO5pR9o", "dbxNtZ14c-yWyw"),
+            ("c81bbb4a", "gre3EcLurNY2vqp94", "Z9DfGxWP115WTg"),
+            ("1f7d5369", "batNX7sYqIJdkJ", "IhOkL_zxbkOZBw"),
+            ("009f1d77", "5dwFHw8aFWQUQtffRq", "audescmLUzI3jw"),
+            ("dc0c6770", "5EHDMgYLV6HPGk_Mu-kk", "n9lUJLHbxUI0GQ"),
+            ("113ca41c", "cgYl-tlYkhjT7A", "hI7BBr2zUgcmMg"),
+            ("c57c113c", "M92UUMHa8PdvPd3wyM", "3hPqLJsiNZx7yA"),
+            ("5a3b6271", "B2j7f_UPT4rfje85Lu_e", "m5DmNymaGQ5RdQ"),
+            ("7a062b77", "NRcE3y3mVtm_cV-W", "VbsCYUATvqlt5w"),
+            ("dac945fd", "o8BkRxXhuYsBCWi6RplPdP", "3Lx32v_hmzTm6A"),
+            ("6f20102c", "lE8DhoDmKqnmJJ", "pJTTX6XyJP2BYw"),
+            ("cfa9e7cb", "aCi3iElgd2kq0bxVbQ", "QX1y8jGb2IbZ0w"),
+            ("8c7583ff", "1wWCVpRR96eAmMI87L", "KSkWAVv1ZQxC3A"),
+            ("b7910ca8", "_hXMCwMt9qE310D", "LoZMgkkofRMCZQ"),
+            ("590f65a6", "1tm7-g_A9zsI8_Lay_", "xI4Vem4Put_rOg"),
+            ("b22ef6e7", "b6HcntHGkvBLk_FRf", "kNPW6A7FyP2l8A"),
+            ("3400486c", "lL46g3XifCKUZn1Xfw", "z767lhet6V2Skl"),
+            ("20dfca59", "-fLCxedkAk4LUTK2", "O8kfRq1y1eyHGw"),
+            ("b12cc44b", "keLa5R2U00sR9SQK", "N1OGyujjEwMnLw"),
+            ("3bb1f723", "gK15nzVyaXE9RsMP3z", "ZFFWFLPWx9DEgQ"),
+            ("2f1832d2", "YWt1qdbe8SAfkoPHW5d", "RrRjWQOJmBiP"),
+            ("19d2ae9d", "YWt1qdbe8SAfkoPHW5d", "CS6dVTYzpZrAZ5TD"),
+            ("e7567ecf", "Sy4aDGc0VpYRR9ew_", "5UPOT1VhoZxNLQ"),
+            ("d50f54ef", "Ha7507LzRmH3Utygtj", "XFTb2HoeOE5MHg"),
+            ("074a8365", "Ha7507LzRmH3Utygtj", "ufTsrE0IVYrkl8v"),
+            ("643afba4", "N5uAlLqm0eg1GyHO", "dCBQOejdq5s-ww"),
+            ("69f581a5", "-qIP447rVlTTwaZjY", "KNcGOksBAvwqQg"),
+            ("643afba4", "ir9-V6cdbCiyKxhr", "2PL7ZDYAALMfmA"),
+        ];
 
-        let deobf_nsig = deobf.deobfuscate_nsig(nsig_in).unwrap();
-        assert_eq!(deobf_nsig, expect, "js: {js_hash}");
+        for (js_hash, nsig_in, exp_nsig) in cases {
+            tracing::info!("[{js_hash}] NSIG_TEST");
+            let (js_url, js_path) = player_js_file(js_hash).await;
+            let player_js = std::fs::read_to_string(js_path).unwrap();
+            let deobf_data = DeobfData::extract_fns(&js_url, &player_js).unwrap();
+            let deobf = Deobfuscator::new(&deobf_data).unwrap();
+
+            let deobf_nsig = deobf.deobfuscate_nsig(nsig_in).unwrap();
+            assert_eq!(deobf_nsig, exp_nsig, "[{js_hash}]");
+        }
     }
 
     #[tokio::test]

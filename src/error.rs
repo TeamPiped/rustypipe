@@ -151,6 +151,8 @@ pub enum AuthError {
 }
 
 pub(crate) mod internal {
+    use std::borrow::Cow;
+
     use super::{Error, ExtractionError};
 
     /// Error that occurred during the initialization
@@ -168,7 +170,7 @@ pub(crate) mod internal {
         Extraction(&'static str),
         /// Unspecified error
         #[error("error: {0}")]
-        Other(&'static str),
+        Other(Cow<'static, str>),
     }
 
     impl From<DeobfError> for Error {

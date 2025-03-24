@@ -625,7 +625,7 @@ impl<'a> StreamsMapper<'a> {
     fn deobf(&self) -> Result<&Deobfuscator, DeobfError> {
         self.deobf
             .as_ref()
-            .ok_or(DeobfError::Other("no deobfuscator"))
+            .ok_or(DeobfError::Other("no deobfuscator".into()))
     }
 
     fn cipher_to_url_params(
