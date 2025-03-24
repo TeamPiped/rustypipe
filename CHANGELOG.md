@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 
 
+## [v0.11.2](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe/v0.11.1..rustypipe/v0.11.2) - 2025-03-24
+
+### 🐛 Bug Fixes
+
+- A/B test 22: commandExecutorCommand for playlist continuations - ([e8acbfb](https://codeberg.org/ThetaDev/rustypipe/commit/e8acbfbbcf5d31b5ac34410ddf334e5534e3762f))
+- Extract deobf data with global strings variable - ([4ce6746](https://codeberg.org/ThetaDev/rustypipe/commit/4ce6746be538564e79f7e3c67d7a91aaa53f48ea))
+- Handle player returning no adaptive stream URLs - ([07db7b1](https://codeberg.org/ThetaDev/rustypipe/commit/07db7b1166e912e1554f98f2ae20c2c356fed38f))
+
+
 ## [v0.11.1](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe/v0.11.0..rustypipe/v0.11.1) - 2025-03-16
 
 ### 🐛 Bug Fixes
