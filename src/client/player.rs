@@ -383,6 +383,20 @@ impl MapResponse<VideoPlayer> for response::Player {
                 video_details.video_id, ctx.id
             )));
         }
+        // Sometimes YouTube Desktop does not output any URLs for adaptive streams.
+        // Since this is currently rare, it is best to retry the request in this case.
+        if !is_live
+            && !streaming_data.adaptive_formats.c.is_empty()
+            && streaming_data
+                .adaptive_formats
+                .c
+                .iter()
+                .all(|f| f.url.is_none() && f.signature_cipher.is_none())
+        {
+            return Err(ExtractionError::InvalidData(
+                "no adaptive stream URLs".into(),
+            ));
+        }
 
         let video_info = VideoPlayerDetails {
             id: video_details.video_id,
