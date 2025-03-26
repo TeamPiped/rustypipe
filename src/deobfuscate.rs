@@ -195,20 +195,48 @@ fn extract_js_fn(js: &str, name: &str) -> Result<String, DeobfError> {
     let mut end = 0usize;
 
     let mut period_before = false;
-    let mut last_ident = None;
+    let mut function_before = false;
     let mut idents: HashMap<String, bool> = HashMap::new();
     // Set if the current statement is a variable/function param definition
     // First value is the brace level, second is true if we are on the right hand side of an assignment
     let mut var_def_stmt: Option<(Level, bool)> = None;
 
     let global_objects = [
-        "NaN", "Infinity", "Object", "Function", "Boolean", "Symbol", "Error", "Number", "BigInt",
-        "Math", "Date", "String", "RegExp", "Array", "Map", "Set",
+        "globalThis",
+        "NaN",
+        "undefined",
+        "Infinity",
+        "Object",
+        "Function",
+        "Boolean",
+        "Symbol",
+        "Error",
+        "Number",
+        "BigInt",
+        "Math",
+        "Date",
+        "String",
+        "RegExp",
+        "Array",
+        "Map",
+        "Set",
+        "eval",
+        "isFinite",
+        "isNaN",
+        "parseFloat",
+        "parseInt",
+        "decodeURI",
+        "decodeURIComponent",
+        "encodeURI",
+        "encodeURIComponent",
+        "escape",
+        "unescape",
     ];
 
     for item in scan {
         let it = item?;
         let token = it.token;
+
         match state {
             // Looking for fn name
             0 => {
@@ -226,71 +254,72 @@ fn extract_js_fn(js: &str, name: &str) -> Result<String, DeobfError> {
                 }
             }
             2 => {
-                if let Token::Punct(punct) = token {
-                    let var_def_this_lvl = || {
-                        var_def_stmt
-                            .as_ref()
-                            .map(|(x, _)| x == &level)
-                            .unwrap_or_default()
-                    };
+                match &token {
+                    Token::Punct(punct) => {
+                        let var_def_this_lvl = || {
+                            var_def_stmt
+                                .as_ref()
+                                .map(|(x, _)| x == &level)
+                                .unwrap_or_default()
+                        };
 
-                    match punct {
-                        Punct::OpenBrace => {
-                            level.brace += 1;
-                        }
-                        Punct::CloseBrace => {
-                            if var_def_this_lvl() {
-                                var_def_stmt = None;
+                        match punct {
+                            Punct::OpenBrace => {
+                                level.brace += 1;
                             }
-                            level.brace -= 1;
+                            Punct::CloseBrace => {
+                                if var_def_this_lvl() {
+                                    var_def_stmt = None;
+                                }
+                                level.brace -= 1;
 
-                            if level.brace == 0 {
-                                end = it.span.end;
-                                state = 3;
-                                break;
-                            }
-                        }
-                        Punct::OpenParen => {
-                            level.paren += 1;
-                        }
-                        Punct::CloseParen => {
-                            if var_def_this_lvl() {
-                                var_def_stmt = None;
-                            }
-                            level.paren -= 1;
-                        }
-                        Punct::OpenBracket => {
-                            level.bracket += 1;
-                        }
-                        Punct::CloseBracket => {
-                            if var_def_this_lvl() {
-                                var_def_stmt = None;
-                            }
-                            level.bracket -= 1;
-                        }
-                        Punct::SemiColon => {
-                            if var_def_this_lvl() {
-                                var_def_stmt = None;
-                            }
-                        }
-                        Punct::Comma => {
-                            if let Some((lvl, rhs)) = &mut var_def_stmt {
-                                if lvl == &level {
-                                    *rhs = false;
+                                if level.brace == 0 {
+                                    end = it.span.end;
+                                    state = 3;
+                                    break;
                                 }
                             }
-                        }
-                        Punct::Equal => {
-                            if let Some((lvl, rhs)) = &mut var_def_stmt {
-                                if lvl == &level {
-                                    *rhs = true;
+                            Punct::OpenParen => {
+                                level.paren += 1;
+                            }
+                            Punct::CloseParen => {
+                                if var_def_this_lvl() {
+                                    var_def_stmt = None;
+                                }
+                                level.paren -= 1;
+                            }
+                            Punct::OpenBracket => {
+                                level.bracket += 1;
+                            }
+                            Punct::CloseBracket => {
+                                if var_def_this_lvl() {
+                                    var_def_stmt = None;
+                                }
+                                level.bracket -= 1;
+                            }
+                            Punct::SemiColon => {
+                                if var_def_this_lvl() {
+                                    var_def_stmt = None;
                                 }
                             }
+                            Punct::Comma => {
+                                if let Some((lvl, rhs)) = &mut var_def_stmt {
+                                    if lvl == &level {
+                                        *rhs = false;
+                                    }
+                                }
+                            }
+                            Punct::Equal => {
+                                if let Some((lvl, rhs)) = &mut var_def_stmt {
+                                    if lvl == &level {
+                                        *rhs = true;
+                                    }
+                                }
+                            }
+                            _ => {}
                         }
-                        _ => {}
                     }
-                } else if let Token::Keyword(kw) = &token {
-                    match kw {
+                    Token::Keyword(kw) => match kw {
                         Keyword::Var(_) | Keyword::Let(_) | Keyword::Const(_) => {
                             var_def_stmt = Some((level.clone(), false));
                         }
@@ -300,33 +329,34 @@ fn extract_js_fn(js: &str, name: &str) -> Result<String, DeobfError> {
                             var_def_stmt = Some((l, false));
                         }
                         _ => {}
-                    }
-                }
-
-                // Looking for variable names
-                if let Token::Ident(id) = &token {
-                    // Ignore object attributes and 1char long local vars
-                    if !period_before && id.as_ref().len() > 1 {
-                        if var_def_stmt
-                            .as_ref()
-                            .map(|(lvl, rhs)| lvl == &level && !rhs)
-                            .unwrap_or_default()
+                    },
+                    Token::Ident(id) => {
+                        // Ignore object attributes and 1char long local vars
+                        if !period_before
+                            && id.as_ref().len() > 1
+                            && !global_objects.contains(&id.as_ref())
                         {
-                            idents.insert(id.to_string(), true);
-                        } else if !global_objects.contains(&id.as_ref()) {
-                            last_ident = Some(id.to_string());
+                            // If we are on the left hand side of a variable definition statement
+                            // or after "function", mark the variable name as defined
+                            if var_def_stmt
+                                .as_ref()
+                                .map(|(lvl, rhs)| lvl == &level && !rhs)
+                                .unwrap_or_default()
+                                || function_before
+                            {
+                                idents.insert(id.to_string(), true);
+                            } else {
+                                idents.entry(id.to_string()).or_default();
+                            }
                         }
                     }
-                } else if last_ident.is_some() && !token.matches_punct(Punct::OpenParen) {
-                    idents.entry(last_ident.unwrap()).or_default();
-                    last_ident = None;
-                } else {
-                    last_ident = None;
+                    _ => {}
                 }
             }
             _ => break,
         };
         period_before = token.matches_punct(Punct::Period);
+        function_before = matches!(&token, Token::Keyword(Keyword::Function(_)));
     }
 
     if state != 3 {
