@@ -227,16 +227,19 @@ fn extract_js_fn(js: &str, name: &str) -> Result<String, DeobfError> {
             }
             2 => {
                 if let Token::Punct(punct) = token {
+                    let var_def_this_lvl = || {
+                        var_def_stmt
+                            .as_ref()
+                            .map(|(x, _)| x == &level)
+                            .unwrap_or_default()
+                    };
+
                     match punct {
                         Punct::OpenBrace => {
                             level.brace += 1;
                         }
                         Punct::CloseBrace => {
-                            if var_def_stmt
-                                .as_ref()
-                                .map(|(x, _)| x == &level)
-                                .unwrap_or_default()
-                            {
+                            if var_def_this_lvl() {
                                 var_def_stmt = None;
                             }
                             level.brace -= 1;
@@ -251,11 +254,7 @@ fn extract_js_fn(js: &str, name: &str) -> Result<String, DeobfError> {
                             level.paren += 1;
                         }
                         Punct::CloseParen => {
-                            if var_def_stmt
-                                .as_ref()
-                                .map(|(x, _)| x == &level)
-                                .unwrap_or_default()
-                            {
+                            if var_def_this_lvl() {
                                 var_def_stmt = None;
                             }
                             level.paren -= 1;
@@ -264,17 +263,15 @@ fn extract_js_fn(js: &str, name: &str) -> Result<String, DeobfError> {
                             level.bracket += 1;
                         }
                         Punct::CloseBracket => {
-                            if var_def_stmt
-                                .as_ref()
-                                .map(|(x, _)| x == &level)
-                                .unwrap_or_default()
-                            {
+                            if var_def_this_lvl() {
                                 var_def_stmt = None;
                             }
                             level.bracket -= 1;
                         }
                         Punct::SemiColon => {
-                            var_def_stmt = None;
+                            if var_def_this_lvl() {
+                                var_def_stmt = None;
+                            }
                         }
                         Punct::Comma => {
                             if let Some((lvl, rhs)) = &mut var_def_stmt {
