@@ -655,6 +655,16 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
     }
 
     #[test]
+    fn t_extract_js_fn_outside_vars4() {
+        let base_js = "let a0=123456;let a1=function(a){return a};let Wka = function(d){var x=1+2+a1();return x;}";
+        let res = extract_js_fn(base_js, "Wka").unwrap();
+        assert_eq!(
+            res,
+            "var a1=function(a){return a}; var Wka = function(d){var x=1+2+a1();return x;};"
+        );
+    }
+
+    #[test]
     fn t_get_nsig_fn() {
         let res = get_nsig_fn(&TEST_JS).unwrap();
         assert_eq!(res, NSIG_DEOBF_FUNC);

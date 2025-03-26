@@ -151,7 +151,25 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
         self,
         ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<MusicPlaylist>, ExtractionError> {
-        let (header, music_contents) = match self.contents {
+        let contents = match self.contents {
+            Some(c) => c,
+            None => {
+                if self
+                    .microformat
+                    .map(|m| m.microformat_data_renderer.noindex)
+                    .unwrap_or_default()
+                {
+                    return Err(ExtractionError::NotFound {
+                        id: ctx.id.to_owned(),
+                        msg: "no contents".into(),
+                    });
+                } else {
+                    return Err(ExtractionError::InvalidData("no contents".into()));
+                }
+            }
+        };
+
+        let (header, music_contents) = match contents {
             response::music_playlist::Contents::SingleColumnBrowseResultsRenderer(c) => (
                 self.header,
                 c.contents
@@ -338,7 +356,25 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
 
 impl MapResponse<MusicAlbum> for response::MusicPlaylist {
     fn map_response(self, ctx: &MapRespCtx<'_>) -> Result<MapResult<MusicAlbum>, ExtractionError> {
-        let (header, sections) = match self.contents {
+        let contents = match self.contents {
+            Some(c) => c,
+            None => {
+                if self
+                    .microformat
+                    .map(|m| m.microformat_data_renderer.noindex)
+                    .unwrap_or_default()
+                {
+                    return Err(ExtractionError::NotFound {
+                        id: ctx.id.to_owned(),
+                        msg: "no contents".into(),
+                    });
+                } else {
+                    return Err(ExtractionError::InvalidData("no contents".into()));
+                }
+            }
+        };
+
+        let (header, sections) = match contents {
             response::music_playlist::Contents::SingleColumnBrowseResultsRenderer(c) => (
                 self.header,
                 c.contents
@@ -454,12 +490,13 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
             }
         }
 
-        let playlist_id = self.microformat.and_then(|mf| {
-            mf.microformat_data_renderer
-                .url_canonical
-                .strip_prefix("https://music.youtube.com/playlist?list=")
-                .map(str::to_owned)
-        });
+        let playlist_id = self
+            .microformat
+            .and_then(|mf| mf.microformat_data_renderer.url_canonical)
+            .and_then(|x| {
+                x.strip_prefix("https://music.youtube.com/playlist?list=")
+                    .map(str::to_owned)
+            });
         let (playlist_id, artist_id) = header
             .menu
             .or_else(|| header.buttons.into_iter().next())

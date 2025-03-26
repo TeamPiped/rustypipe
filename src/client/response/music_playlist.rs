@@ -16,7 +16,7 @@ use super::{
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct MusicPlaylist {
-    pub contents: Contents,
+    pub contents: Option<Contents>,
     pub header: Option<Header>,
     #[serde(default)]
     #[serde_as(as = "DefaultOnError")]
@@ -172,5 +172,7 @@ pub(crate) struct Microformat {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct MicroformatData {
-    pub url_canonical: String,
+    pub url_canonical: Option<String>,
+    #[serde(default)]
+    pub noindex: bool,
 }
