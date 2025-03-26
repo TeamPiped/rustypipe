@@ -187,6 +187,7 @@ fn extract_js_fn(js: &str, name: &str) -> Result<String, DeobfError> {
     struct Level {
         brace: isize,
         paren: isize,
+        bracket: isize,
     }
 
     let mut level = Level::default();
@@ -197,6 +198,7 @@ fn extract_js_fn(js: &str, name: &str) -> Result<String, DeobfError> {
     let mut last_ident = None;
     let mut idents: HashMap<String, bool> = HashMap::new();
     // Set if the current statement is a variable/function param definition
+    // First value is the brace level, second is true if we are on the right hand side of an assignment
     let mut var_def_stmt: Option<(Level, bool)> = None;
 
     let global_objects = [
@@ -258,20 +260,33 @@ fn extract_js_fn(js: &str, name: &str) -> Result<String, DeobfError> {
                             }
                             level.paren -= 1;
                         }
+                        Punct::OpenBracket => {
+                            level.bracket += 1;
+                        }
+                        Punct::CloseBracket => {
+                            if var_def_stmt
+                                .as_ref()
+                                .map(|(x, _)| x == &level)
+                                .unwrap_or_default()
+                            {
+                                var_def_stmt = None;
+                            }
+                            level.bracket -= 1;
+                        }
                         Punct::SemiColon => {
                             var_def_stmt = None;
                         }
                         Punct::Comma => {
-                            if let Some((lvl, en)) = &mut var_def_stmt {
+                            if let Some((lvl, rhs)) = &mut var_def_stmt {
                                 if lvl == &level {
-                                    *en = false;
+                                    *rhs = false;
                                 }
                             }
                         }
                         Punct::Equal => {
-                            if let Some((lvl, en)) = &mut var_def_stmt {
+                            if let Some((lvl, rhs)) = &mut var_def_stmt {
                                 if lvl == &level {
-                                    *en = true;
+                                    *rhs = true;
                                 }
                             }
                         }
@@ -297,7 +312,7 @@ fn extract_js_fn(js: &str, name: &str) -> Result<String, DeobfError> {
                     if !period_before && id.as_ref().len() > 1 {
                         if var_def_stmt
                             .as_ref()
-                            .map(|(lvl, en)| lvl == &level && !en)
+                            .map(|(lvl, rhs)| lvl == &level && !rhs)
                             .unwrap_or_default()
                         {
                             idents.insert(id.to_string(), true);
@@ -670,10 +685,13 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
             ("3bb1f723", "MyOSJXtKI3m-uME_jv7-pT12gOFC02RFkGoqWpzE0Cs69VdbwQ0LDp1v7j8xx92efCJlYFYb1sUkkBSPOlPmXgIARw8JQ0qOAOAA"),
             ("2f1832d2", "0QJ8wRAIgXmPlOPSBkkUs1bYFYlJCfe29xxAj7v1pDL0QwbdV96sCIEzpWqMGkFR20CFOg51Tp-7vj_EMu-m37KtXJ2OySqa0q"),
             ("643afba4", "AAOAOq0QJ8wRAIgXmPlOPSBkkUs1bYFYlJCfe29xx8j7vgpDL0QwbdV06sCIEzpWqMGkFR20CFOS21Tp-7vj_EMu-m37KtXJoOy1"),
+            ("363db69b", "0aqSyOoJXtK73m-uME_jv7-pT15gOFC02RFkGMqWpz2ICs6EVdbwQ0LDp1v7j8xx92efCJlYFYb1sUkkBSPOlPmXgIARw8JQ0qOAOAA"),
         ];
 
         for (js_hash, exp_sig) in cases {
-            tracing::info!("[{js_hash}] SIG_TEST");
+            let span = tracing::span!(tracing::Level::ERROR, "sig_test", js_hash);
+            let _enter = span.enter();
+
             let (js_url, js_path) = player_js_file(js_hash).await;
             let player_js = std::fs::read_to_string(js_path).unwrap();
             let deobf_data = DeobfData::extract_fns(&js_url, &player_js).unwrap();
@@ -724,17 +742,19 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
             ("074a8365", "Ha7507LzRmH3Utygtj", "ufTsrE0IVYrkl8v"),
             ("643afba4", "N5uAlLqm0eg1GyHO", "dCBQOejdq5s-ww"),
             ("69f581a5", "-qIP447rVlTTwaZjY", "KNcGOksBAvwqQg"),
-            ("643afba4", "ir9-V6cdbCiyKxhr", "2PL7ZDYAALMfmA"),
+            ("363db69b", "eWYu5d5YeY_4LyEDc", "XJQqf-N7Xra3gg"),
         ];
 
         for (js_hash, nsig_in, exp_nsig) in cases {
-            tracing::info!("[{js_hash}] NSIG_TEST");
+            let span = tracing::span!(tracing::Level::ERROR, "nsig_test", js_hash);
+            let _enter = span.enter();
+
             let (js_url, js_path) = player_js_file(js_hash).await;
             let player_js = std::fs::read_to_string(js_path).unwrap();
-            let deobf_data = DeobfData::extract_fns(&js_url, &player_js).unwrap();
-            let deobf = Deobfuscator::new(&deobf_data).unwrap();
+            let deobf_data = DeobfData::extract_fns(&js_url, &player_js).expect(js_hash);
+            let deobf = Deobfuscator::new(&deobf_data).expect(js_hash);
 
-            let deobf_nsig = deobf.deobfuscate_nsig(nsig_in).unwrap();
+            let deobf_nsig = deobf.deobfuscate_nsig(nsig_in).expect(js_hash);
             assert_eq!(deobf_nsig, exp_nsig, "[{js_hash}]");
         }
     }
