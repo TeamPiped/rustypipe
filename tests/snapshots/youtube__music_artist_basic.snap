@@ -42,8 +42,8 @@ MusicArtist(
       by_va: false,
     ),
     AlbumItem(
-      id: "MPREb_6PEkIQE7sWY",
-      name: "An deiner Seite (Online Version)",
+      id: "MPREb_HrCgErOdgCv",
+      name: "Freiheit",
       cover: "[cover]",
       artists: [
         ArtistId(
@@ -52,8 +52,8 @@ MusicArtist(
         ),
       ],
       artist_id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
-      album_type: ep,
-      year: Some(2008),
+      album_type: album,
+      year: Some(2004),
       by_va: false,
     ),
     AlbumItem(
@@ -87,8 +87,8 @@ MusicArtist(
       by_va: false,
     ),
     AlbumItem(
-      id: "MPREb_QEClJsuO9xM",
-      name: "So wie Du warst",
+      id: "MPREb_Oq0WKqNwSVY",
+      name: "Das 2. Gebot",
       cover: "[cover]",
       artists: [
         ArtistId(
@@ -97,8 +97,8 @@ MusicArtist(
         ),
       ],
       artist_id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
-      album_type: single,
-      year: Some(2012),
+      album_type: album,
+      year: Some(2003),
       by_va: false,
     ),
     AlbumItem(
@@ -252,6 +252,21 @@ MusicArtist(
       by_va: false,
     ),
     AlbumItem(
+      id: "MPREb_ohcGTZrqKPZ",
+      name: "Zelluloid",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      artist_id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+      album_type: album,
+      year: Some(2004),
+      by_va: false,
+    ),
+    AlbumItem(
       id: "MPREb_pWpeXxATZYb",
       name: "Wir sind alle wie eins",
       cover: "[cover]",
@@ -264,21 +279,6 @@ MusicArtist(
       artist_id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
       album_type: single,
       year: Some(2014),
-      by_va: false,
-    ),
-    AlbumItem(
-      id: "MPREb_rHhaDLqalbT",
-      name: "Winter (EP)",
-      cover: "[cover]",
-      artists: [
-        ArtistId(
-          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
-          name: "Unheilig",
-        ),
-      ],
-      artist_id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
-      album_type: ep,
-      year: Some(2010),
       by_va: false,
     ),
     AlbumItem(
