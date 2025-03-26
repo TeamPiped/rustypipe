@@ -393,9 +393,10 @@ impl MapResponse<VideoPlayer> for response::Player {
                 .iter()
                 .all(|f| f.url.is_none() && f.signature_cipher.is_none())
         {
-            return Err(ExtractionError::InvalidData(
-                "no adaptive stream URLs".into(),
-            ));
+            return Err(ExtractionError::Unavailable {
+                reason: UnavailabilityReason::TryAgain,
+                msg: "no adaptive stream URLs".to_owned(),
+            });
         }
 
         let video_info = VideoPlayerDetails {
