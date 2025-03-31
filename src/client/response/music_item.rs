@@ -433,6 +433,22 @@ pub(crate) enum TrackBadge {
     LiveBadgeRenderer {},
 }
 
+#[serde_as]
+#[derive(Default, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct MusicMicroformat {
+    #[serde_as(as = "DefaultOnError")]
+    pub microformat_data_renderer: MicroformatData,
+}
+
+#[derive(Default, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct MicroformatData {
+    pub url_canonical: Option<String>,
+    #[serde(default)]
+    pub noindex: bool,
+}
+
 /*
 #MAPPER
 */

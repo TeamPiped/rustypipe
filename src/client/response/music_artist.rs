@@ -5,7 +5,8 @@ use crate::serializer::text::Text;
 
 use super::{
     music_item::{
-        Button, Grid, ItemSection, MusicThumbnailRenderer, SimpleHeader, SingleColumnBrowseResult,
+        Button, Grid, ItemSection, MusicMicroformat, MusicThumbnailRenderer, SimpleHeader,
+        SingleColumnBrowseResult,
     },
     SectionList, Tab,
 };
@@ -14,8 +15,10 @@ use super::{
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct MusicArtist {
-    pub contents: SingleColumnBrowseResult<Tab<SectionList<ItemSection>>>,
-    pub header: Header,
+    pub contents: Option<SingleColumnBrowseResult<Tab<SectionList<ItemSection>>>>,
+    pub header: Option<Header>,
+    #[serde(default)]
+    pub microformat: MusicMicroformat,
 }
 
 #[derive(Debug, Deserialize)]

@@ -5,22 +5,21 @@ use crate::serializer::text::{AttributedText, Text, TextComponents};
 
 use super::{
     music_item::{
-        Button, ItemSection, MusicContentsRenderer, MusicItemMenuEntry, MusicThumbnailRenderer,
+        Button, ItemSection, MusicContentsRenderer, MusicItemMenuEntry, MusicMicroformat,
+        MusicThumbnailRenderer,
     },
     url_endpoint::OnTapWrap,
     ContentsRenderer, SectionList, Tab,
 };
 
 /// Response model for YouTube Music playlists and albums
-#[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct MusicPlaylist {
     pub contents: Option<Contents>,
     pub header: Option<Header>,
     #[serde(default)]
-    #[serde_as(as = "DefaultOnError")]
-    pub microformat: Option<Microformat>,
+    pub microformat: MusicMicroformat,
 }
 
 #[serde_as]
@@ -161,18 +160,4 @@ pub(crate) struct AvatarStackViewModel {
 #[serde(rename_all = "camelCase")]
 pub(crate) struct AvatarStackRendererContext {
     pub command_context: Option<OnTapWrap>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct Microformat {
-    pub microformat_data_renderer: MicroformatData,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct MicroformatData {
-    pub url_canonical: Option<String>,
-    #[serde(default)]
-    pub noindex: bool,
 }

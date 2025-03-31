@@ -154,11 +154,7 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
         let contents = match self.contents {
             Some(c) => c,
             None => {
-                if self
-                    .microformat
-                    .map(|m| m.microformat_data_renderer.noindex)
-                    .unwrap_or_default()
-                {
+                if self.microformat.microformat_data_renderer.noindex {
                     return Err(ExtractionError::NotFound {
                         id: ctx.id.to_owned(),
                         msg: "no contents".into(),
@@ -359,11 +355,7 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
         let contents = match self.contents {
             Some(c) => c,
             None => {
-                if self
-                    .microformat
-                    .map(|m| m.microformat_data_renderer.noindex)
-                    .unwrap_or_default()
-                {
+                if self.microformat.microformat_data_renderer.noindex {
                     return Err(ExtractionError::NotFound {
                         id: ctx.id.to_owned(),
                         msg: "no contents".into(),
@@ -492,7 +484,8 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
 
         let playlist_id = self
             .microformat
-            .and_then(|mf| mf.microformat_data_renderer.url_canonical)
+            .microformat_data_renderer
+            .url_canonical
             .and_then(|x| {
                 x.strip_prefix("https://music.youtube.com/playlist?list=")
                     .map(str::to_owned)

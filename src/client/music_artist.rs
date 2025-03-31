@@ -154,7 +154,24 @@ fn map_artist_page(
     ctx: &MapRespCtx<'_>,
     skip_extendables: bool,
 ) -> Result<MapResult<(MusicArtist, bool)>, ExtractionError> {
-    let header = res.header.music_immersive_header_renderer;
+    let contents = match res.contents {
+        Some(c) => c,
+        None => {
+            if res.microformat.microformat_data_renderer.noindex {
+                return Err(ExtractionError::NotFound {
+                    id: ctx.id.to_owned(),
+                    msg: "no contents".into(),
+                });
+            } else {
+                return Err(ExtractionError::InvalidData("no contents".into()));
+            }
+        }
+    };
+
+    let header = res
+        .header
+        .ok_or(ExtractionError::InvalidData("no header".into()))?
+        .music_immersive_header_renderer;
 
     if let Some(share) = header.share_endpoint {
         let pb = share.share_entity_endpoint.serialized_share_entity;
@@ -171,8 +188,7 @@ fn map_artist_page(
         }
     }
 
-    let sections = res
-        .contents
+    let sections = contents
         .single_column_browse_results_renderer
         .contents
         .into_iter()
