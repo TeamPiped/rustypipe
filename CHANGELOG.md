@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 
 
+## [v0.11.3](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe/v0.11.2..rustypipe/v0.11.3) - 2025-04-03
+
+### 🐛 Bug Fixes
+
+- Deobfuscator: global variable extraction fixed - ([ac44e95](https://codeberg.org/ThetaDev/rustypipe/commit/ac44e95a88d95f9d2d1ec672f86ca9d31d6991b9))
+- Deobfuscator: small simplification - ([189ba81](https://codeberg.org/ThetaDev/rustypipe/commit/189ba81a42e6c09f6af4d2768c449c22b864101e))
+- Deobfuscator: handle global functions as well - ([939a7ae](https://codeberg.org/ThetaDev/rustypipe/commit/939a7aea61a3eee4c1e67bfbfc835f0ce3934171))
+- Handle music playlist/album not found - ([ea80717](https://codeberg.org/ThetaDev/rustypipe/commit/ea80717f692b2c45b5063c362c9fa8ebca5a3471))
+- Switch client if no adaptive stream URLs were returned - ([187bf1c](https://codeberg.org/ThetaDev/rustypipe/commit/187bf1c9a0e846bff205e0d71a19c5a1ce7b1943))
+- Handle music artist not found - ([daf3d03](https://codeberg.org/ThetaDev/rustypipe/commit/daf3d035be38b59aef1ae205ac91c2bbdda2fe66))
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Update rust crate rand to 0.9.0 - ([af415dd](https://codeberg.org/ThetaDev/rustypipe/commit/af415ddf8f94f00edb918f271d8e6336503e9faf))
+
+
 ## [v0.11.2](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe/v0.11.1..rustypipe/v0.11.2) - 2025-03-24
 
 ### 🐛 Bug Fixes
