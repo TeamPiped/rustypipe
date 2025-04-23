@@ -147,8 +147,8 @@ fn get_sig_fn(player_js: &str) -> Result<String, DeobfError> {
 
 fn get_nsig_fn_names(player_js: &str) -> impl Iterator<Item = String> + '_ {
     static FUNCTION_NAME_REGEX: Lazy<Regex> = Lazy::new(|| {
-        // x.get( OR index.m3u8 OR delete x.y.file .. y=functionName[array_num](z) .. x.set(
-        Regex::new(r#"(?:[\w$]\.get\(|index\.m3u8|delete [\w$]+\.[\w$]+\.file).+[a-zA-Z]=([\w$]{2,})(?:\[(\d+)\])?\([a-zA-Z0-9]\).+[a-zA-Z0-9]\.set\("#)
+        // ( ==="index.m3u8" OR "index.m3u8"=== ) .. delete .. y=functionName[array_num](z)
+        Regex::new(r#"(?:(?:===(?:[\w$]+\[\d+\]|"index\.m3u8"))|(?:(?:[\w$]+\[\d+\]|"index\.m3u8")===)).+\bdelete\b.+\b[a-zA-Z]=([\w$]{2,})(?:\[(\d+)\])?\([a-zA-Z0-9]\)"#)
             .unwrap()
     });
 
@@ -331,11 +331,8 @@ fn extract_js_fn(js: &str, name: &str) -> Result<String, DeobfError> {
                         _ => {}
                     },
                     Token::Ident(id) => {
-                        // Ignore object attributes and 1char long local vars
-                        if !period_before
-                            && id.as_ref().len() > 1
-                            && !global_objects.contains(&id.as_ref())
-                        {
+                        // Ignore object attributes
+                        if !period_before && !global_objects.contains(&id.as_ref()) {
                             // If we are on the left hand side of a variable definition statement
                             // or after "function", mark the variable name as defined
                             if var_def_stmt
@@ -780,6 +777,7 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
             ("643afba4", "N5uAlLqm0eg1GyHO", "dCBQOejdq5s-ww"),
             ("69f581a5", "-qIP447rVlTTwaZjY", "KNcGOksBAvwqQg"),
             ("363db69b", "eWYu5d5YeY_4LyEDc", "XJQqf-N7Xra3gg"),
+            ("6450230e", "eWYu5d5YeY_4LyEDc", "VfULHmlBUoDPVMN"),
         ];
 
         for (js_hash, nsig_in, exp_nsig) in cases {

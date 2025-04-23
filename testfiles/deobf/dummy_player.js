@@ -152,7 +152,7 @@ function f(){ return 0; }
 with(0);
 
 // n_deobf function
-{p.X&&(b=a.get("n"))&&(b=aF[0](c),a.set("n",b),vZ.length||Vo(""))};
+Ab=function(){ODa(b.D.toString());Object.assign(a.j,d);a.j.file==="index.m3u8"&&(delete a.j.file,a.path+="/file/index.m3u8");a.B="";a.url="";a.D&&(b="nn"[+a.D],JL(a),c=a.j[b]||null)&&(c=aF[0](c),a.set(b,c),aF.length||Pma(""))};
 
 switch(0){} switch(0){case 0:} switch(0){case 0:case 0:}
 switch(0){default:} switch(0){case 0:default:case 0:}
