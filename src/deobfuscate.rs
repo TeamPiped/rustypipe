@@ -720,6 +720,7 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
             ("2f1832d2", "0QJ8wRAIgXmPlOPSBkkUs1bYFYlJCfe29xxAj7v1pDL0QwbdV96sCIEzpWqMGkFR20CFOg51Tp-7vj_EMu-m37KtXJ2OySqa0q"),
             ("643afba4", "AAOAOq0QJ8wRAIgXmPlOPSBkkUs1bYFYlJCfe29xx8j7vgpDL0QwbdV06sCIEzpWqMGkFR20CFOS21Tp-7vj_EMu-m37KtXJoOy1"),
             ("363db69b", "0aqSyOoJXtK73m-uME_jv7-pT15gOFC02RFkGMqWpz2ICs6EVdbwQ0LDp1v7j8xx92efCJlYFYb1sUkkBSPOlPmXgIARw8JQ0qOAOAA"),
+            ("6450230e", "qax0aqSyOoJXtK73m-uME_jv7-pT152OFC02RFkGMqWpzEICs69VdbwQ0LDp1v7j8gx92efCJlYFYb1sUkkBSPOlPmXgIARw8JQ0qOAOAA"),
         ];
 
         for (js_hash, exp_sig) in cases {
