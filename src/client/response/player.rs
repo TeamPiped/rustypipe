@@ -37,8 +37,7 @@ pub(crate) enum PlayabilityStatus {
         #[serde(default)]
         reason: String,
         #[serde(default)]
-        #[serde_as(deserialize_as = "DefaultOnError")]
-        error_screen: Option<ErrorScreen>,
+        error_screen: ErrorScreen,
     },
     /// Age limit / Private video
     #[serde(rename_all = "camelCase")]
@@ -61,14 +60,18 @@ pub(crate) enum PlayabilityStatus {
     },
 }
 
-#[derive(Debug, Deserialize)]
+#[serde_as]
+#[derive(Default, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct ErrorScreen {
-    pub player_error_message_renderer: ErrorMessage,
+    #[serde(default)]
+    #[serde_as(deserialize_as = "DefaultOnError")]
+    pub player_error_message_renderer: Option<ErrorMessage>,
+    pub player_captcha_view_model: Option<Empty>,
 }
 
 #[serde_as]
-#[derive(Debug, Deserialize)]
+#[derive(Default, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct ErrorMessage {
     #[serde_as(as = "Text")]

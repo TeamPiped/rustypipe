@@ -105,6 +105,13 @@ pub enum UnavailabilityReason {
     OfflineLivestream,
     /// YouTube banned your IP address from accessing the platform without an account
     IpBan,
+    /// YouTube bans IP addresses from certain VPN providers from accessing certain geo-restricted
+    /// videos.
+    ///
+    /// If this happens to you, you can try another server / VPN provider or disable your VPN.
+    VpnBan,
+    /// YouTube requires the user to solve a ReCaptcha
+    Captcha,
     /// Video temporarily unavailable (rate limit)
     TryAgain,
     /// Video cant be played for other reasons
@@ -125,6 +132,8 @@ impl Display for UnavailabilityReason {
             UnavailabilityReason::MembersOnly => f.write_str("members-only"),
             UnavailabilityReason::OfflineLivestream => f.write_str("offline stream"),
             UnavailabilityReason::IpBan => f.write_str("ip-ban"),
+            UnavailabilityReason::VpnBan => f.write_str("vpn-ban"),
+            UnavailabilityReason::Captcha => f.write_str("captcha"),
             UnavailabilityReason::TryAgain => f.write_str("try again"),
             UnavailabilityReason::Unplayable => f.write_str("unplayable"),
         }

@@ -307,24 +307,28 @@ impl MapResponse<VideoPlayer> for response::Player {
                 error_screen,
             } => {
                 let mut msg = reason;
-                if let Some(error_screen) = error_screen {
+                if let Some(error_screen) = error_screen.player_error_message_renderer {
                     msg.push_str(" - ");
-                    msg.push_str(&error_screen.player_error_message_renderer.subreason);
+                    msg.push_str(&error_screen.subreason);
                 }
 
-                let reason = msg
-                    .split_whitespace()
-                    .find_map(|word| match word {
-                        "payment" => Some(UnavailabilityReason::Paid),
-                        "Premium" => Some(UnavailabilityReason::Premium),
-                        "members-only" => Some(UnavailabilityReason::MembersOnly),
-                        "country" => Some(UnavailabilityReason::Geoblocked),
-                        "version" | "websites" => Some(UnavailabilityReason::UnsupportedClient),
-                        "bot" => Some(UnavailabilityReason::IpBan),
-                        "later." => Some(UnavailabilityReason::TryAgain),
-                        _ => None,
-                    })
-                    .unwrap_or_default();
+                let reason = if error_screen.player_captcha_view_model.is_some() {
+                    UnavailabilityReason::Captcha
+                } else {
+                    msg.split_whitespace()
+                        .find_map(|word| match word {
+                            "payment" => Some(UnavailabilityReason::Paid),
+                            "Premium" => Some(UnavailabilityReason::Premium),
+                            "members-only" => Some(UnavailabilityReason::MembersOnly),
+                            "country" => Some(UnavailabilityReason::Geoblocked),
+                            "version" | "websites" => Some(UnavailabilityReason::UnsupportedClient),
+                            "bot" => Some(UnavailabilityReason::IpBan),
+                            "VPN/Proxy" => Some(UnavailabilityReason::VpnBan),
+                            "later." => Some(UnavailabilityReason::TryAgain),
+                            _ => None,
+                        })
+                        .unwrap_or_default()
+                };
                 return Err(ExtractionError::Unavailable { reason, msg });
             }
             response::player::PlayabilityStatus::LoginRequired { reason, messages } => {
