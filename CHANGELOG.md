@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 
 
+## [v0.11.4](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe/v0.11.3..rustypipe/v0.11.4) - 2025-04-23
+
+### 🚀 Features
+
+- Player: handle VPN ban and captcha required error messages - ([be6da5e](https://codeberg.org/ThetaDev/rustypipe/commit/be6da5e7e3558ef39773bf45bcb8afbf006bacec))
+
+### 🐛 Bug Fixes
+
+- Deobfuscator: handle 1-char long global variables, find nsig fn (player 6450230e) - ([d675987](https://codeberg.org/ThetaDev/rustypipe/commit/d675987654972c6aa4cc2b291d25bc49fa60173e))
+
+
 ## [v0.11.3](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe/v0.11.2..rustypipe/v0.11.3) - 2025-04-03
 
 ### 🐛 Bug Fixes
