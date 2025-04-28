@@ -2691,25 +2691,21 @@ async fn invalid_ctoken(#[case] ep: ContinuationEndpoint, rp: RustyPipe) {
 }
 
 /// YouTube Music allows searching for ISRC codes
-/// This feature does not seem to work with all languages and it has changed in the past.
-/// This test is used to check which languages are working
 #[rstest]
 #[tokio::test]
 async fn isrc_search_languages(rp: RustyPipe) {
     for lang in LANGUAGES {
-        // flaky for English, skipping for now
-        if matches!(lang, Language::En | Language::EnGb | Language::EnIn) {
-            continue;
-        }
-
         let tracks = rp
             .query()
             .lang(lang)
-            .music_search_tracks("DEUM71602459")
+            .music_search_tracks("\"DEUM71602459\"")
             .await
             .unwrap();
-        let working = tracks.items.items.iter().any(|t| t.id == "g0iRiJ_ck48");
-        assert!(working, "lang: {lang}");
+        let track_id = &tracks.items.items[0].id;
+        assert!(
+            track_id == "g0iRiJ_ck48" || track_id == "YgUZtELr_jw",
+            "lang: {lang}; track: {track_id}"
+        );
     }
 }
 
