@@ -110,7 +110,7 @@ impl VisitorDataCache {
 
     /// Fetch a new visitor data ID and store it in the cache
     pub async fn new_visitor_data(&self) -> Result<String, Error> {
-        let vd = self.fetch_visitor_data().await.unwrap();
+        let vd = self.fetch_visitor_data().await?;
 
         self.inner
             .req_counter
