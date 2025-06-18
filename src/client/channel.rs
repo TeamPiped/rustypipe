@@ -468,8 +468,9 @@ fn map_channel(
                 let subscriber_count = sub_part.and_then(|t| {
                     util::parse_large_numstr_or_warn::<u64>(t.as_str(), ctx.lang, &mut warnings)
                 });
-                let video_count =
-                    vc_part.and_then(|t| util::parse_numeric_or_warn(t.as_str(), &mut warnings));
+                let video_count = vc_part.and_then(|t| {
+                    util::parse_large_numstr_or_warn(t.as_str(), ctx.lang, &mut warnings)
+                });
 
                 Channel {
                     id: metadata.external_id,

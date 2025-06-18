@@ -647,31 +647,36 @@ pub(crate) struct PhMetadataRow {
 
 #[serde_as]
 #[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[serde(untagged)]
 pub(crate) enum MetadataPart {
-    Text(#[serde_as(as = "AttributedText")] TextComponent),
-    #[serde(rename_all = "camelCase")]
-    AvatarStack {
-        avatar_stack_view_model: TextComponentBox,
+    Text {
+        #[serde_as(as = "AttributedText")]
+        text: TextComponent,
     },
+    #[serde(rename_all = "camelCase")]
+    AvatarStack { avatar_stack: AvatarStackInner },
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct AvatarStackInner {
+    pub avatar_stack_view_model: TextComponentBox,
 }
 
 impl MetadataPart {
     pub fn into_text_component(self) -> TextComponent {
         match self {
-            MetadataPart::Text(text_component) => text_component,
-            MetadataPart::AvatarStack {
-                avatar_stack_view_model,
-            } => avatar_stack_view_model.text,
+            MetadataPart::Text { text } => text,
+            MetadataPart::AvatarStack { avatar_stack } => avatar_stack.avatar_stack_view_model.text,
         }
     }
 
     pub fn as_str(&self) -> &str {
         match self {
-            MetadataPart::Text(s) => s.as_str(),
-            MetadataPart::AvatarStack {
-                avatar_stack_view_model,
-            } => avatar_stack_view_model.text.as_str(),
+            MetadataPart::Text { text } => text.as_str(),
+            MetadataPart::AvatarStack { avatar_stack } => {
+                avatar_stack.avatar_stack_view_model.text.as_str()
+            }
         }
     }
 }

@@ -7,7 +7,7 @@ Channel(
   name: "EEVblog",
   handle: Some("@EEVblog"),
   subscriber_count: Some(933000),
-  video_count: Some(19),
+  video_count: Some(1900),
   avatar: [
     Thumbnail(
       url: "https://yt3.googleusercontent.com/ytc/AIdro_lagjGDfXbXlQXhznx3CDRitOBdxvebllQd_YP1ag=s72-c-k-c0x00ffffff-no-rj",
