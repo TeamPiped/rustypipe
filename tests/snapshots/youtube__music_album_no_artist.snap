@@ -39,6 +39,7 @@ MusicAlbum(
       track_type: track,
       track_nr: Some(1),
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "s-qSnZyyvzs",
@@ -60,6 +61,7 @@ MusicAlbum(
       track_type: track,
       track_nr: Some(2),
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "4jXoRBcQ8PY",
@@ -81,6 +83,7 @@ MusicAlbum(
       track_type: track,
       track_nr: Some(3),
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "DRES9S4VQI8",
@@ -102,6 +105,7 @@ MusicAlbum(
       track_type: track,
       track_nr: Some(4),
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "yhZVimwD4B4",
@@ -127,6 +131,7 @@ MusicAlbum(
       track_type: track,
       track_nr: Some(5),
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "5d6YiFkdzLM",
@@ -148,6 +153,7 @@ MusicAlbum(
       track_type: track,
       track_nr: Some(6),
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "3Qe7-uN2PjU",
@@ -173,6 +179,7 @@ MusicAlbum(
       track_type: track,
       track_nr: Some(7),
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "SKZ_MTsXFP4",
@@ -194,6 +201,7 @@ MusicAlbum(
       track_type: track,
       track_nr: Some(8),
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "n5-ujUwazDA",
@@ -215,6 +223,7 @@ MusicAlbum(
       track_type: track,
       track_nr: Some(9),
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "VaREivfDJeY",
@@ -236,6 +245,7 @@ MusicAlbum(
       track_type: track,
       track_nr: Some(10),
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "cWcD0WIK2PA",
@@ -261,6 +271,7 @@ MusicAlbum(
       track_type: track,
       track_nr: Some(11),
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "QRELvH564T4",
@@ -282,6 +293,7 @@ MusicAlbum(
       track_type: track,
       track_nr: Some(12),
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "eCY0-GyG46s",
@@ -303,6 +315,7 @@ MusicAlbum(
       track_type: track,
       track_nr: Some(13),
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "UIrHYTEyUfA",
@@ -328,6 +341,7 @@ MusicAlbum(
       track_type: track,
       track_nr: Some(14),
       by_va: false,
+      unavailable: false,
     ),
   ],
   variants: [],

@@ -36,6 +36,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "UhbixyxgsiU",
@@ -65,6 +66,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "saGYMhApaH8",
@@ -94,6 +96,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "8n5dJwWXrbo",
@@ -123,6 +126,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "Cr8K88UcO0s",
@@ -152,6 +156,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "pfxyk1glEq4",
@@ -181,6 +186,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "VtKcDwz6hiM",
@@ -210,6 +216,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "aAkMkVFwAoo",
@@ -239,6 +246,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "3V8aen7Flhs",
@@ -268,6 +276,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "rb0bjyt1OD0",
@@ -297,6 +306,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "-1vsm5bhoyE",
@@ -326,6 +336,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "ao3SN7fkQQU",
@@ -359,6 +370,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "J9QwBwUnhQo",
@@ -388,6 +400,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "WyhU6Zb_fhY",
@@ -417,6 +430,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "aV-pJ8BBxj8",
@@ -454,6 +468,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "gSeBZqcTHLc",
@@ -483,6 +498,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "Vzkr-G1QEh8",
@@ -512,6 +528,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "SK37InR9j38",
@@ -545,6 +562,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "C2YSX4sV_bA",
@@ -574,6 +592,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "ca48oMV59LU",
@@ -603,6 +622,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "TUbmIriJlp4",
@@ -636,6 +656,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "Z02zptUN8gI",
@@ -669,6 +690,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "Uq9gPaIzbe8",
@@ -702,6 +724,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "b1kbLwvqugk",
@@ -731,6 +754,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "VF-FGf_ZZiI",
@@ -760,6 +784,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "Om0rYw6qzb8",
@@ -793,6 +818,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "PrSBuEFdRFU",
@@ -826,6 +852,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "9YdgldMKGGU",
@@ -855,6 +882,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "kiUIkL4aZ5o",
@@ -884,6 +912,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "mTkPFsVC5NE",
@@ -917,6 +946,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "YsMB0i5YTOc",
@@ -946,6 +976,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "3CkLMG5NwUg",
@@ -975,6 +1006,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "9yvzvUgzxxg",
@@ -1004,6 +1036,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "gPCCYMeXin0",
@@ -1033,6 +1066,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "gkkuezo7kX4",
@@ -1070,6 +1104,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "D2nyu8d7Sq0",
@@ -1099,6 +1134,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "SXrcyqCPu4E",
@@ -1128,6 +1164,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "p38WgakuYDo",
@@ -1157,6 +1194,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "n4Z1cpdkgQU",
@@ -1186,6 +1224,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "4F_vcZ6KD9Q",
@@ -1215,6 +1254,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
   ],
   trending_tracks: [
@@ -1241,6 +1281,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "UhbixyxgsiU",
@@ -1265,6 +1306,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "zugAhfd2r0g",
@@ -1289,6 +1331,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "5jJJYYaw8vw",
@@ -1317,6 +1360,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "VMZefv4Vrwg",
@@ -1341,6 +1385,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "3V8aen7Flhs",
@@ -1365,6 +1410,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "rb0bjyt1OD0",
@@ -1389,6 +1435,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "Ut1OzEVUiM4",
@@ -1413,6 +1460,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "rAr3-Pn9yRI",
@@ -1437,6 +1485,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "PtPewTyPmUg",
@@ -1461,6 +1510,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "G6xgMW7U0aY",
@@ -1485,6 +1535,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "C2YSX4sV_bA",
@@ -1509,6 +1560,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "kiUIkL4aZ5o",
@@ -1533,6 +1585,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "9YdgldMKGGU",
@@ -1557,6 +1610,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "Z02zptUN8gI",
@@ -1585,6 +1639,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "S0_888ZjlAA",
@@ -1609,6 +1664,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "J9QwBwUnhQo",
@@ -1633,6 +1689,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "DWRj2BB8YHs",
@@ -1665,6 +1722,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "hX0aI5Jz8i8",
@@ -1689,6 +1747,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "Dw9VmOLwxoM",
@@ -1713,6 +1772,7 @@ MusicCharts(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
   ],
   artists: [

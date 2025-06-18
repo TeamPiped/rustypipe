@@ -67,6 +67,7 @@ MusicArtist(
       track_type: track,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "xTvyyoF_LZY",
@@ -99,6 +100,7 @@ MusicArtist(
       track_type: track,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "SlbfAYvA_gI",
@@ -131,6 +133,7 @@ MusicArtist(
       track_type: track,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "fdz_cabS9BU",
@@ -163,6 +166,7 @@ MusicArtist(
       track_type: track,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "hJWSZDJb-W4",
@@ -195,6 +199,7 @@ MusicArtist(
       track_type: track,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "fezKpDFKf5U",
@@ -224,6 +229,7 @@ MusicArtist(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "doGzjheI604",
@@ -253,6 +259,7 @@ MusicArtist(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "zjEdX8-3CD8",
@@ -282,6 +289,7 @@ MusicArtist(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "DQZcxN9v0RA",
@@ -311,6 +319,7 @@ MusicArtist(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "2Vv-BfVoq4g",
@@ -340,6 +349,7 @@ MusicArtist(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "JGwWNGJdvx8",
@@ -369,6 +379,7 @@ MusicArtist(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "nSDgHBxUbVQ",
@@ -398,6 +409,7 @@ MusicArtist(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "lp-EO5I60KA",
@@ -427,6 +439,7 @@ MusicArtist(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "orJSJGHjBLI",
@@ -456,6 +469,7 @@ MusicArtist(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "Il0S8BoucSA",
@@ -485,6 +499,7 @@ MusicArtist(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
   ],
   albums: [

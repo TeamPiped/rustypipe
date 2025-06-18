@@ -29,6 +29,7 @@ MusicSearchResult(
         track_type: video,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       ),
       TrackItem(
         id: "vbl9KrZxOF8",
@@ -53,6 +54,7 @@ MusicSearchResult(
         track_type: video,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       ),
       TrackItem(
         id: "eMfROJt0a7Q",
@@ -77,6 +79,7 @@ MusicSearchResult(
         track_type: video,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       ),
       TrackItem(
         id: "1ktLEhfkBCI",
@@ -101,6 +104,7 @@ MusicSearchResult(
         track_type: video,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       ),
       TrackItem(
         id: "2hAlp3Khsnk",
@@ -125,6 +129,7 @@ MusicSearchResult(
         track_type: video,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       ),
       TrackItem(
         id: "CHixjhwY0ek",
@@ -149,6 +154,7 @@ MusicSearchResult(
         track_type: video,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       ),
       TrackItem(
         id: "8YXKgZ393Ec",
@@ -173,6 +179,7 @@ MusicSearchResult(
         track_type: video,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       ),
       TrackItem(
         id: "KFNznAXnjXc",
@@ -197,6 +204,7 @@ MusicSearchResult(
         track_type: video,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       ),
       TrackItem(
         id: "hDhJeJZmTDA",
@@ -221,6 +229,7 @@ MusicSearchResult(
         track_type: video,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       ),
       TrackItem(
         id: "6kKSDXiip_8",
@@ -245,6 +254,7 @@ MusicSearchResult(
         track_type: video,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       ),
       TrackItem(
         id: "vfzlr70ogaI",
@@ -269,6 +279,7 @@ MusicSearchResult(
         track_type: video,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       ),
       TrackItem(
         id: "Fjth6cKGI88",
@@ -293,6 +304,7 @@ MusicSearchResult(
         track_type: video,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       ),
       TrackItem(
         id: "fznwvW9Kn4s",
@@ -317,6 +329,7 @@ MusicSearchResult(
         track_type: video,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       ),
       TrackItem(
         id: "Jore0zZW-_M",
@@ -341,6 +354,7 @@ MusicSearchResult(
         track_type: video,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       ),
       TrackItem(
         id: "_THM-2Ph-6I",
@@ -365,6 +379,7 @@ MusicSearchResult(
         track_type: video,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       ),
       TrackItem(
         id: "koJAGIUlnD0",
@@ -389,6 +404,7 @@ MusicSearchResult(
         track_type: video,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       ),
       TrackItem(
         id: "4tvQPrHcR4w",
@@ -413,6 +429,7 @@ MusicSearchResult(
         track_type: video,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       ),
       TrackItem(
         id: "CUh6MTvB_4E",
@@ -437,6 +454,7 @@ MusicSearchResult(
         track_type: video,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       ),
       TrackItem(
         id: "4TWR90KJl84",
@@ -461,6 +479,7 @@ MusicSearchResult(
         track_type: video,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       ),
       TrackItem(
         id: "Cw7eMibV-Xk",
@@ -485,6 +504,7 @@ MusicSearchResult(
         track_type: video,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       ),
     ],
     ctoken: Some("EqQDEgtibGFjayBtYW1iYRqUA0VnV0tBUUlRQVVnVWFnd1FBeEFFRUFrUURoQUtFQVdDQVF0YVpXVnljbTUxVEdrMVJZSUJDM1ppYkRsTGNscDRUMFk0Z2dFTFpVMW1VazlLZERCaE4xR0NBUXN4YTNSTVJXaG1hMEpEU1lJQkN6Sm9RV3h3TTB0b2MyNXJnZ0VMUTBocGVHcG9kMWt3Wld1Q0FRczRXVmhMWjFvek9UTkZZNElCQzB0R1RucHVRVmh1YWxoamdnRUxhRVJvU21WS1dtMVVSRUdDQVFzMmEwdFRSRmhwYVhCZk9JSUJDM1ptZW14eU56QnZaMkZKZ2dFTFJtcDBhRFpqUzBkSk9EaUNBUXRtZW01M2RsYzVTMjQwYzRJQkMwcHZjbVV3ZWxwWExWOU5nZ0VMWDFSSVRTMHlVR2d0TmttQ0FRdHJiMHBCUjBsVmJHNUVNSUlCQ3pSMGRsRlFja2hqVWpSM2dnRUxRMVZvTmsxVWRrSmZORVdDQVFzMFZGZFNPVEJMU213NE5JSUJDME4zTjJWTmFXSldMVmhyGPHq0C4%3D"),

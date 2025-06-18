@@ -54,6 +54,7 @@ MusicSearchResult(
         track_type: track,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       )),
       Track(TrackItem(
         id: "aZ1hziFhj1o",
@@ -86,6 +87,7 @@ MusicSearchResult(
         track_type: track,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       )),
       Album(AlbumItem(
         id: "MPREb_l2IU1O3l6QK",
@@ -154,6 +156,7 @@ MusicSearchResult(
         track_type: track,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       )),
       Track(TrackItem(
         id: "65Q7EdWnjqM",
@@ -186,6 +189,7 @@ MusicSearchResult(
         track_type: track,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       )),
       Track(TrackItem(
         id: "EL72UcDZLSk",
@@ -218,6 +222,7 @@ MusicSearchResult(
         track_type: track,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       )),
       Track(TrackItem(
         id: "b1kbLwvqugk",
@@ -242,6 +247,7 @@ MusicSearchResult(
         track_type: video,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       )),
       Track(TrackItem(
         id: "3tmd-ClpJxA",
@@ -266,6 +272,7 @@ MusicSearchResult(
         track_type: video,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       )),
       Track(TrackItem(
         id: "FuXNumBwDOM",
@@ -290,6 +297,7 @@ MusicSearchResult(
         track_type: video,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       )),
       Album(AlbumItem(
         id: "MPREb_BiCQyyofUtj",

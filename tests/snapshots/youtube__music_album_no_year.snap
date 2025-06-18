@@ -56,6 +56,7 @@ MusicAlbum(
       track_type: track,
       track_nr: Some(1),
       by_va: false,
+      unavailable: false,
     ),
   ],
   variants: [],

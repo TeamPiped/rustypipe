@@ -87,7 +87,7 @@ impl RustyPipeQuery {
                 .iter()
                 .enumerate()
                 .filter_map(|(i, track)| {
-                    if track.track_type.is_video() {
+                    if track.track_type.is_video() && !track.unavailable {
                         Some((i, track.name.clone()))
                     } else {
                         None
@@ -115,25 +115,31 @@ impl RustyPipeQuery {
                 for (i, title) in to_replace {
                     let found_track = playlist.tracks.items.iter().find_map(|track| {
                         if track.name == title && track.track_type.is_track() {
-                            Some((track.id.clone(), track.duration))
+                            Some((track.id.clone(), track.duration, track.unavailable))
                         } else {
                             None
                         }
                     });
-                    if let Some((track_id, duration)) = found_track {
+                    if let Some((track_id, duration, unavailable)) = found_track {
                         album.tracks[i].id = track_id;
                         if let Some(duration) = duration {
                             album.tracks[i].duration = Some(duration);
                         }
                         album.tracks[i].track_type = TrackType::Track;
+                        album.tracks[i].unavailable = unavailable;
                     }
                 }
 
                 // Extend the list of album tracks with the ones from the playlist if the playlist returned more tracks
                 // This is the case for albums with more than 200 tracks (e.g. audiobooks)
+                // Note: in some cases the playlist may contain a loop of repeating tracks. If a track was found in the playlist
+                // that already exists in the album, stop.
                 if album.tracks.len() < playlist.tracks.items.len() {
                     let mut tn = last_tn;
                     for mut t in playlist.tracks.items.into_iter().skip(album.tracks.len()) {
+                        if album.tracks.iter().any(|at| at.id == t.id) {
+                            break;
+                        }
                         tn += 1;
                         t.album = album.tracks.first().and_then(|t| t.album.clone());
                         t.track_nr = Some(tn);
@@ -296,8 +302,8 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
                 // Album playlists fetched via the playlist method dont include a header
                 let (album, cover) = map_res
                     .c
-                    .first()
-                    .and_then(|t: &TrackItem| {
+                    .iter()
+                    .find_map(|t: &TrackItem| {
                         t.album.as_ref().map(|a| (a.clone(), t.cover.clone()))
                     })
                     .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
@@ -305,10 +311,11 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
                     )))?;
 
                 if !map_res.c.iter().all(|t| {
-                    t.album
-                        .as_ref()
-                        .map(|a| a.id == album.id)
-                        .unwrap_or_default()
+                    t.unavailable
+                        || t.album
+                            .as_ref()
+                            .map(|a| a.id == album.id)
+                            .unwrap_or_default()
                 }) {
                     return Err(ExtractionError::InvalidData(Cow::Borrowed(
                         "album playlist containing items from different albums",

@@ -29,6 +29,7 @@ MusicSearchResult(
         track_type: video,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       )),
       Track(TrackItem(
         id: "NU611fxGyPU",
@@ -53,6 +54,7 @@ MusicSearchResult(
         track_type: video,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       )),
       Track(TrackItem(
         id: "Yi2nsnpw5h0",
@@ -77,6 +79,7 @@ MusicSearchResult(
         track_type: video,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       )),
       Track(TrackItem(
         id: "2Qefh0W_H88",
@@ -101,6 +104,7 @@ MusicSearchResult(
         track_type: video,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       )),
       Track(TrackItem(
         id: "BL-aIpCLWnU",
@@ -133,6 +137,7 @@ MusicSearchResult(
         track_type: track,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       )),
       Track(TrackItem(
         id: "PpKu3UsHYrk",
@@ -165,6 +170,7 @@ MusicSearchResult(
         track_type: track,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       )),
       Track(TrackItem(
         id: "jynOfK8JB0E",
@@ -197,6 +203,7 @@ MusicSearchResult(
         track_type: track,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       )),
       Track(TrackItem(
         id: "pgjQkcYD-rQ",
@@ -221,6 +228,7 @@ MusicSearchResult(
         track_type: video,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       )),
       Track(TrackItem(
         id: "w2GXdb-pHo8",
@@ -245,6 +253,7 @@ MusicSearchResult(
         track_type: episode,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       )),
       Track(TrackItem(
         id: "JepNreB58TA",
@@ -269,6 +278,7 @@ MusicSearchResult(
         track_type: video,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       )),
       Album(AlbumItem(
         id: "MPREb_rR0VQ4fTxPM",
@@ -616,6 +626,7 @@ MusicSearchResult(
         track_type: episode,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       )),
       Track(TrackItem(
         id: "GE0UAdxPTc0",
@@ -640,6 +651,7 @@ MusicSearchResult(
         track_type: episode,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       )),
       Track(TrackItem(
         id: "4gi9y3sTrXE",
@@ -664,6 +676,7 @@ MusicSearchResult(
         track_type: episode,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       )),
       User(UserItem(
         id: "UCOeTBeQwhOSvNcaZhxM1PUg",

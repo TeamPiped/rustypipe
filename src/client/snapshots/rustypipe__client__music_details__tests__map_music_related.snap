@@ -35,6 +35,7 @@ MusicRelated(
       track_type: track,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "g92HIac9ufA",
@@ -67,6 +68,7 @@ MusicRelated(
       track_type: track,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "khgCIMs_lVQ",
@@ -99,6 +101,7 @@ MusicRelated(
       track_type: track,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "i2VGa-ETiM4",
@@ -131,6 +134,7 @@ MusicRelated(
       track_type: track,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "INLFlN-PZq4",
@@ -163,6 +167,7 @@ MusicRelated(
       track_type: track,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "ZzbNM2l-AAA",
@@ -195,6 +200,7 @@ MusicRelated(
       track_type: track,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "i4loHXi8f3A",
@@ -227,6 +233,7 @@ MusicRelated(
       track_type: track,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "miqQAzOXPBo",
@@ -259,6 +266,7 @@ MusicRelated(
       track_type: track,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "hh5GKVa8VtM",
@@ -291,6 +299,7 @@ MusicRelated(
       track_type: track,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "dzwSnvfKEtw",
@@ -323,6 +332,7 @@ MusicRelated(
       track_type: track,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "REmUidcJt5I",
@@ -355,6 +365,7 @@ MusicRelated(
       track_type: track,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "OXWz_x6-dro",
@@ -387,6 +398,7 @@ MusicRelated(
       track_type: track,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "aFoqCI75WoY",
@@ -419,6 +431,7 @@ MusicRelated(
       track_type: track,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "_Pm74XignKI",
@@ -451,6 +464,7 @@ MusicRelated(
       track_type: track,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "-uOShlFu1v8",
@@ -483,6 +497,7 @@ MusicRelated(
       track_type: track,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "LP9sF1v-vz4",
@@ -515,6 +530,7 @@ MusicRelated(
       track_type: track,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "KJrPsT2X-yk",
@@ -547,6 +563,7 @@ MusicRelated(
       track_type: track,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "tkzYyEp4zB4",
@@ -579,6 +596,7 @@ MusicRelated(
       track_type: track,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "ZpD59tu5_Rk",
@@ -611,6 +629,7 @@ MusicRelated(
       track_type: track,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "_eNXeEx9Hvk",
@@ -643,6 +662,7 @@ MusicRelated(
       track_type: track,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
   ],
   other_versions: [
@@ -669,6 +689,7 @@ MusicRelated(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "Yi2nsnpw5h0",
@@ -693,6 +714,7 @@ MusicRelated(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "2Qefh0W_H88",
@@ -717,6 +739,7 @@ MusicRelated(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "oo89OQvzkIo",
@@ -741,6 +764,7 @@ MusicRelated(
       track_type: video,
       track_nr: None,
       by_va: false,
+      unavailable: false,
     ),
   ],
   albums: [

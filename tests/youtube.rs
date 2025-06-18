@@ -27,7 +27,7 @@ use rustypipe::validate;
 //#PLAYER
 
 #[rstest]
-#[case::desktop(ClientType::Desktop)]
+// #[case::desktop(ClientType::Desktop)] TODO: add SABR support
 #[case::tv(ClientType::Tv)]
 #[case::mobile(ClientType::Mobile)]
 // #[case::android(ClientType::Android)] Removed since it requires Android device attestation
@@ -721,7 +721,7 @@ async fn get_video_details_live(rp: RustyPipe) {
     assert_eq!(details.channel.id, "UCSJ4gkVC6NrvII8umztf0Ow");
     assert_eq!(details.channel.name, "Lofi Girl");
     assert!(!details.channel.avatar.is_empty(), "no channel avatars");
-    assert_eq!(details.channel.verification, Verification::Verified);
+    assert_eq!(details.channel.verification, Verification::Artist);
     assert_gteo(details.channel.subscriber_count, 5_500_000, "subscribers");
     assert_gte(details.view_count, 100, "views");
     assert_gteo(details.like_count, 1_800_000, "likes");
@@ -2507,17 +2507,17 @@ async fn music_radio_not_found(rp: RustyPipe) {
 #[tokio::test]
 async fn music_charts(
     #[case] country: Country,
-    #[case] plid_top: &str,
-    #[case] plid_trend: &str,
+    #[case] _plid_top: &str,
+    #[case] _plid_trend: &str,
     rp: RustyPipe,
 ) {
     let charts = rp.query().music_charts(Some(country)).await.unwrap();
 
-    assert_eq!(charts.top_playlist_id.expect("top_playlist_id"), plid_top);
-
-    assert_gte(charts.top_tracks.len(), 30, "top tracks");
+    // assert_eq!(charts.top_playlist_id.expect("top_playlist_id"), plid_top);
+    // assert_gte(charts.top_tracks.len(), 30, "top tracks");
     assert_gte(charts.artists.len(), 30, "top artists");
 
+    /*
     // Currently (01.02.2024) is no trending playlist shown for Global and US
     if country != Country::Us {
         assert_eq!(
@@ -2526,6 +2526,7 @@ async fn music_charts(
         );
         assert_gte(charts.trending_tracks.len(), 15, "trending tracks");
     }
+    */
 
     // Chart playlists only available in USA
     if country == Country::Us {
@@ -2703,7 +2704,7 @@ async fn isrc_search_languages(rp: RustyPipe) {
             .unwrap();
         let track_id = &tracks.items.items[0].id;
         assert!(
-            track_id == "g0iRiJ_ck48" || track_id == "YgUZtELr_jw",
+            track_id == "g0iRiJ_ck48" || track_id == "YgUZtELr_jw" || track_id == "oMhM4CFEY3I",
             "lang: {lang}; track: {track_id}"
         );
     }

@@ -102,21 +102,6 @@ MusicArtist(
       by_va: false,
     ),
     AlbumItem(
-      id: "MPREb_QyGCcLWExXj",
-      name: "Als wär\'s das erste Mal (Exklusive Piano Version)",
-      cover: "[cover]",
-      artists: [
-        ArtistId(
-          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
-          name: "Unheilig",
-        ),
-      ],
-      artist_id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
-      album_type: single,
-      year: Some(2014),
-      by_va: false,
-    ),
-    AlbumItem(
       id: "MPREb_R3p5kDRIGKL",
       name: "Astronaut",
       cover: "[cover]",
@@ -159,6 +144,21 @@ MusicArtist(
       artist_id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
       album_type: single,
       year: Some(2017),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_UA3c5UyVGYs",
+      name: "Geboren um zu leben",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      artist_id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+      album_type: single,
+      year: Some(2025),
       by_va: false,
     ),
     AlbumItem(

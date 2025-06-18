@@ -31,6 +31,7 @@ expression: map_res.c
     track_type: video,
     track_nr: None,
     by_va: false,
+    unavailable: false,
   ),
   TrackItem(
     id: "gFERoNpcnFU",
@@ -60,6 +61,7 @@ expression: map_res.c
     track_type: video,
     track_nr: None,
     by_va: false,
+    unavailable: false,
   ),
   TrackItem(
     id: "bmEzom5sfCI",
@@ -89,6 +91,7 @@ expression: map_res.c
     track_type: video,
     track_nr: None,
     by_va: false,
+    unavailable: false,
   ),
   TrackItem(
     id: "QHY2pm7uT3k",
@@ -118,6 +121,7 @@ expression: map_res.c
     track_type: video,
     track_nr: None,
     by_va: false,
+    unavailable: false,
   ),
   TrackItem(
     id: "Su42LK7I4NM",
@@ -147,6 +151,7 @@ expression: map_res.c
     track_type: video,
     track_nr: None,
     by_va: false,
+    unavailable: false,
   ),
   TrackItem(
     id: "mly7ha04bEE",
@@ -176,6 +181,7 @@ expression: map_res.c
     track_type: video,
     track_nr: None,
     by_va: false,
+    unavailable: false,
   ),
   TrackItem(
     id: "c91bmLbGt-g",
@@ -213,6 +219,7 @@ expression: map_res.c
     track_type: video,
     track_nr: None,
     by_va: false,
+    unavailable: false,
   ),
   TrackItem(
     id: "IwzkfMmNMpM",
@@ -242,6 +249,7 @@ expression: map_res.c
     track_type: video,
     track_nr: None,
     by_va: false,
+    unavailable: false,
   ),
   TrackItem(
     id: "_-spkuonX2k",
@@ -275,6 +283,7 @@ expression: map_res.c
     track_type: video,
     track_nr: None,
     by_va: false,
+    unavailable: false,
   ),
   TrackItem(
     id: "48pBUciAbRY",
@@ -304,5 +313,6 @@ expression: map_res.c
     track_type: video,
     track_nr: None,
     by_va: false,
+    unavailable: false,
   ),
 ]

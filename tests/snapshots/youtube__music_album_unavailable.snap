@@ -48,6 +48,7 @@ MusicAlbum(
       track_type: track,
       track_nr: Some(1),
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "t0v0UOgOt18",
@@ -69,6 +70,7 @@ MusicAlbum(
       track_type: track,
       track_nr: Some(2),
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "HjJYAkUXrxI",
@@ -90,10 +92,33 @@ MusicAlbum(
       track_type: track,
       track_nr: Some(3),
       by_va: false,
+      unavailable: false,
+    ),
+    TrackItem(
+      id: "d53Dhq4_VvA",
+      name: "Severed",
+      duration: Some(244),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "The Decemberists",
+        ),
+      ],
+      artist_id: None,
+      album: Some(AlbumId(
+        id: "MPREb_AzuWg8qAVVl",
+        name: "13 Reasons Why (Season 3)",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(4),
+      by_va: false,
+      unavailable: true,
     ),
     TrackItem(
       id: "Hg0KUOTL06I",
-      name: "Swim Home",
+      name: "SWIM HOME",
       duration: Some(187),
       cover: [],
       artists: [
@@ -111,6 +136,7 @@ MusicAlbum(
       track_type: track,
       track_nr: Some(5),
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "c8AfY6yhdkM",
@@ -132,6 +158,7 @@ MusicAlbum(
       track_type: track,
       track_nr: Some(6),
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "_ZmdHjVvwhc",
@@ -153,6 +180,7 @@ MusicAlbum(
       track_type: track,
       track_nr: Some(7),
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "wBe1Zi3q1n8",
@@ -174,6 +202,7 @@ MusicAlbum(
       track_type: track,
       track_nr: Some(8),
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "l8Pj8s9uPGc",
@@ -195,6 +224,29 @@ MusicAlbum(
       track_type: track,
       track_nr: Some(9),
       by_va: false,
+      unavailable: false,
+    ),
+    TrackItem(
+      id: "2ZbW3zfLfXo",
+      name: "Young Forever",
+      duration: Some(244),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "JR JR",
+        ),
+      ],
+      artist_id: None,
+      album: Some(AlbumId(
+        id: "MPREb_AzuWg8qAVVl",
+        name: "13 Reasons Why (Season 3)",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(10),
+      by_va: false,
+      unavailable: true,
     ),
     TrackItem(
       id: "Kn3cruxYj0c",
@@ -216,6 +268,7 @@ MusicAlbum(
       track_type: track,
       track_nr: Some(11),
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "Sy1lIOl1YN0",
@@ -237,6 +290,7 @@ MusicAlbum(
       track_type: track,
       track_nr: Some(12),
       by_va: false,
+      unavailable: false,
     ),
     TrackItem(
       id: "njdlNT1RRo4",
@@ -258,6 +312,95 @@ MusicAlbum(
       track_type: track,
       track_nr: Some(13),
       by_va: false,
+      unavailable: false,
+    ),
+    TrackItem(
+      id: "bANUH8SNV4E",
+      name: "SLAVES OF FEAR",
+      duration: Some(294),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "HEALTH",
+        ),
+      ],
+      artist_id: None,
+      album: Some(AlbumId(
+        id: "MPREb_AzuWg8qAVVl",
+        name: "13 Reasons Why (Season 3)",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(14),
+      by_va: false,
+      unavailable: true,
+    ),
+    TrackItem(
+      id: "jn7fJSTUbUM",
+      name: "All Your Life",
+      duration: Some(266),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "Angelo De Augustine",
+        ),
+      ],
+      artist_id: None,
+      album: Some(AlbumId(
+        id: "MPREb_AzuWg8qAVVl",
+        name: "13 Reasons Why (Season 3)",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(15),
+      by_va: false,
+      unavailable: true,
+    ),
+    TrackItem(
+      id: "-MCzjr9LSIA",
+      name: "Culture",
+      duration: Some(194),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "Hembree",
+        ),
+      ],
+      artist_id: None,
+      album: Some(AlbumId(
+        id: "MPREb_AzuWg8qAVVl",
+        name: "13 Reasons Why (Season 3)",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(16),
+      by_va: false,
+      unavailable: true,
+    ),
+    TrackItem(
+      id: "StZKjRiFtOQ",
+      name: "Still Want To Be Here",
+      duration: Some(233),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "Frightened Rabbit",
+        ),
+      ],
+      artist_id: None,
+      album: Some(AlbumId(
+        id: "MPREb_AzuWg8qAVVl",
+        name: "13 Reasons Why (Season 3)",
+      )),
+      view_count: "[view_count]",
+      track_type: track,
+      track_nr: Some(17),
+      by_va: false,
+      unavailable: true,
     ),
     TrackItem(
       id: "Si-CXM8CHqQ",
@@ -279,6 +422,7 @@ MusicAlbum(
       track_type: track,
       track_nr: Some(18),
       by_va: false,
+      unavailable: false,
     ),
   ],
   variants: [],

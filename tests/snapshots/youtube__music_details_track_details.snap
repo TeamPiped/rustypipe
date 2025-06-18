@@ -20,6 +20,7 @@ TrackDetails(
     track_type: video,
     track_nr: None,
     by_va: false,
+    unavailable: false,
   ),
   lyrics_id: None,
   related_id: None,

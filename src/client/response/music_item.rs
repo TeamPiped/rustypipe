@@ -797,6 +797,7 @@ impl MusicListMapper {
                     track_type: vtype.into(),
                     track_nr,
                     by_va,
+                    unavailable: item.music_item_renderer_display_policy == DisplayPolicy::GreyOut,
                 }));
                 Ok(Some(MusicItemType::Track))
             }
@@ -977,6 +978,7 @@ impl MusicListMapper {
                         track_type: vtype.into(),
                         track_nr: None,
                         by_va,
+                        unavailable: false,
                     }));
                     Ok(Some(MusicItemType::Track))
                 }
@@ -1141,6 +1143,7 @@ impl MusicListMapper {
                             track_type: vtype.into(),
                             track_nr: None,
                             by_va,
+                            unavailable: false,
                         }));
                     } else {
                         let (artists, by_va) = map_artists(subtitle_p2);
@@ -1178,6 +1181,7 @@ impl MusicListMapper {
                             track_type: vtype.into(),
                             track_nr: None,
                             by_va,
+                            unavailable: false,
                         }));
                     }
                     Some(MusicItemType::Track)
@@ -1435,6 +1439,7 @@ pub(crate) fn map_queue_item(item: QueueMusicItem, lang: Language) -> MapResult<
             track_type: MusicVideoType::from_is_video(is_video).into(),
             track_nr: None,
             by_va,
+            unavailable: false,
         },
         warnings,
     }

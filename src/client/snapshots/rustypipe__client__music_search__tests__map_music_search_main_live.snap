@@ -67,6 +67,7 @@ MusicSearchResult(
         track_type: track,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       )),
       Track(TrackItem(
         id: "Yx-sGL0xX-U",
@@ -99,6 +100,7 @@ MusicSearchResult(
         track_type: track,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       )),
       Track(TrackItem(
         id: "HzdD8kbDzZA",
@@ -131,6 +133,7 @@ MusicSearchResult(
         track_type: track,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       )),
       Track(TrackItem(
         id: "Zh7Un8gVFak",
@@ -155,6 +158,7 @@ MusicSearchResult(
         track_type: video,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       )),
       Track(TrackItem(
         id: "BMnD36Abw_0",
@@ -179,6 +183,7 @@ MusicSearchResult(
         track_type: video,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       )),
       Album(AlbumItem(
         id: "MPREb_UQFAF6UM4DN",
@@ -611,6 +616,7 @@ MusicSearchResult(
         track_type: episode,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       )),
       Track(TrackItem(
         id: "MiVivWh7zrA",
@@ -635,6 +641,7 @@ MusicSearchResult(
         track_type: episode,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       )),
       Track(TrackItem(
         id: "7-hMhhUO8b8",
@@ -659,6 +666,7 @@ MusicSearchResult(
         track_type: episode,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       )),
       User(UserItem(
         id: "UCdQrWgvHD9f-caMSn3SS-WQ",

@@ -1049,6 +1049,8 @@ pub struct TrackItem {
     pub track_nr: Option<u16>,
     /// Is the track by 'Various artists'?
     pub by_va: bool,
+    /// Is the track unavailable on YouTube Music?
+    pub unavailable: bool,
 }
 
 /// YouTube Music artist list item

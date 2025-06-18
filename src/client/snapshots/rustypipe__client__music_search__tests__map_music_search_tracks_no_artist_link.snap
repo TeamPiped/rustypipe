@@ -41,6 +41,7 @@ MusicSearchResult(
         track_type: track,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       ),
       TrackItem(
         id: "OJ5ZittaTCk",
@@ -73,6 +74,7 @@ MusicSearchResult(
         track_type: track,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       ),
       TrackItem(
         id: "H199HKaUk3g",
@@ -105,6 +107,7 @@ MusicSearchResult(
         track_type: track,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       ),
       TrackItem(
         id: "UlNOkZEcSjQ",
@@ -137,6 +140,7 @@ MusicSearchResult(
         track_type: track,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       ),
       TrackItem(
         id: "L61sF-655Zw",
@@ -169,6 +173,7 @@ MusicSearchResult(
         track_type: track,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       ),
       TrackItem(
         id: "bOK90e8P3k0",
@@ -201,6 +206,7 @@ MusicSearchResult(
         track_type: track,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       ),
       TrackItem(
         id: "oRHLx2mc2zY",
@@ -241,6 +247,7 @@ MusicSearchResult(
         track_type: track,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       ),
     ],
     ctoken: None,

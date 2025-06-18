@@ -59,6 +59,7 @@ MusicPlaylist(
         track_type: track,
         track_nr: None,
         by_va: false,
+        unavailable: false,
       ),
     ],
     ctoken: None,

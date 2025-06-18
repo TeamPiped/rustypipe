@@ -54,6 +54,7 @@ TrackDetails(
     track_type: track,
     track_nr: None,
     by_va: false,
+    unavailable: false,
   ),
   lyrics_id: Some("MPLYt_4xbv14CiQJm-1"),
   related_id: Some("MPTRt_4xbv14CiQJm-1"),
