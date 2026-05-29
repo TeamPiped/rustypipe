@@ -5,114 +5,7 @@ expression: map_res.c
 VideoDetails(
   id: "ZeerrnuLi5E",
   name: "aespa 에스파 \'Black Mamba\' MV",
-  description: RichText([
-    Text(
-      text: "🎧Listen and download aespa\'s debut single \"Black Mamba\": ",
-    ),
-    Web(
-      text: "https://smarturl.it/aespa_BlackMamba",
-      url: "https://smarturl.it/aespa_BlackMamba",
-    ),
-    Text(
-      text: "\n🐍The Debut Stage ",
-    ),
-    YouTube(
-      text: "https://youtu.be/Ky5RT5oGg0w",
-      target: Video(
-        id: "Ky5RT5oGg0w",
-        start_time: 0,
-      ),
-    ),
-    Text(
-      text: "\n\n🎟\u{fe0f} aespa Showcase SYNK in LA! Tickets now on sale: ",
-    ),
-    Web(
-      text: "https://www.ticketmaster.com/event/0A...",
-      url: "https://www.ticketmaster.com/event/0A005CCD9E871F6E",
-    ),
-    Text(
-      text: "\n\nSubscribe to aespa Official YouTube Channel!\n",
-    ),
-    Web(
-      text: "https://www.youtube.com/aespa?sub_con...",
-      url: "https://www.youtube.com/aespa?sub_confirmation=1",
-    ),
-    Text(
-      text: "\n\naespa official\n",
-    ),
-    Web(
-      text: "https://www.youtube.com/c/aespa",
-      url: "https://www.youtube.com/c/aespa",
-    ),
-    Text(
-      text: "\n",
-    ),
-    Web(
-      text: "https://www.instagram.com/aespa_official",
-      url: "https://www.instagram.com/aespa_official",
-    ),
-    Text(
-      text: "\n",
-    ),
-    Web(
-      text: "https://www.tiktok.com/@aespa_official",
-      url: "https://www.tiktok.com/@aespa_official",
-    ),
-    Text(
-      text: "\n",
-    ),
-    Web(
-      text: "https://twitter.com/aespa_Official",
-      url: "https://twitter.com/aespa_Official",
-    ),
-    Text(
-      text: "\n",
-    ),
-    Web(
-      text: "https://www.facebook.com/aespa.official",
-      url: "https://www.facebook.com/aespa.official",
-    ),
-    Text(
-      text: "\n",
-    ),
-    Web(
-      text: "https://weibo.com/aespa",
-      url: "https://weibo.com/aespa",
-    ),
-    Text(
-      text: "\n\n",
-    ),
-    Text(
-      text: "#aespa",
-    ),
-    Text(
-      text: " ",
-    ),
-    Text(
-      text: "#æspa",
-    ),
-    Text(
-      text: " ",
-    ),
-    Text(
-      text: "#BlackMamba",
-    ),
-    Text(
-      text: " ",
-    ),
-    Text(
-      text: "#블랙맘바",
-    ),
-    Text(
-      text: " ",
-    ),
-    Text(
-      text: "#에스파",
-    ),
-    Text(
-      text: "\naespa 에스파 \'Black Mamba\' MV ℗ SM Entertainment",
-    ),
-  ]),
+  description: RichText([]),
   channel: ChannelTag(
     id: "UCEf_Bc-KVd7onSeifS3py9g",
     name: "SMTOWN",
@@ -136,6 +29,7 @@ VideoDetails(
     verification: verified,
     subscriber_count: Some(31000000),
   ),
+  collaborators: [],
   view_count: 234258725,
   like_count: Some(4027586),
   publish_date: "[date]",

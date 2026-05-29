@@ -131,18 +131,20 @@ pub(crate) struct AvatarViewModel {
 
 /// List of images in different resolutions.
 /// Not only used for thumbnails, but also for avatars and banners.
-#[derive(Default, Debug, Deserialize)]
+#[derive(Clone, Default, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct Thumbnails {
     #[serde(default, alias = "sources")]
     pub thumbnails: Vec<Thumbnail>,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct Thumbnail {
     pub url: String,
+    #[serde(default)]
     pub width: u32,
+    #[serde(default)]
     pub height: u32,
 }
 

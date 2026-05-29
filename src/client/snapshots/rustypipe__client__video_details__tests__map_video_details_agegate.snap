@@ -29,6 +29,7 @@ VideoDetails(
     verification: none,
     subscriber_count: Some(1480),
   ),
+  collaborators: [],
   view_count: 205,
   like_count: None,
   publish_date: "[date]",

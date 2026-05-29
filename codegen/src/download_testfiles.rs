@@ -229,6 +229,7 @@ async fn video_details() {
         ("chapters", "nFDBxBUfE74"),
         ("live", "86YLFOog4GM"),
         ("agegate", "HRKu0cvrr_o"),
+        ("collaborators", "G78AnHpIw5w"),
     ] {
         let json_path =
             path!(*TESTFILES_DIR / "video_details" / format!("video_details_{name}.json"));

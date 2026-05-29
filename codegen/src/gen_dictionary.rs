@@ -1,6 +1,7 @@
-use std::fmt::Write;
+use std::{collections::BTreeMap, fmt::Write};
 
 use once_cell::sync::Lazy;
+use ordered_hash_map::OrderedHashMap;
 use path_macro::path;
 use regex::Regex;
 
@@ -8,6 +9,7 @@ use crate::{
     model::TimeUnit,
     util::{self, SRC_DIR},
 };
+use rustypipe::model::AlbumType;
 
 fn parse_tu(tu: &str) -> (u8, Option<TimeUnit>) {
     static TU_PATTERN: Lazy<Regex> = Lazy::new(|| Regex::new(r"^(\d*)(\w*)$").unwrap());
@@ -30,6 +32,37 @@ fn parse_tu(tu: &str) -> (u8, Option<TimeUnit>) {
         ),
         None => panic!("invalid time unit: {tu}"),
     }
+}
+
+fn ta_token_value(n: u8, unit: Option<TimeUnit>) -> String {
+    match unit {
+        Some(unit) => format!("TaToken {{ n: {n}, unit: Some(TimeUnit::{unit:?}) }}"),
+        None => format!("TaToken {{ n: {n}, unit: None }}"),
+    }
+}
+
+fn phf_map_from_str_tokens(tokens: &OrderedHashMap<String, String>) -> phf_codegen::Map<&str> {
+    tokens
+        .iter()
+        .map(|(txt, tu_str)| {
+            let (n, unit) = parse_tu(tu_str);
+            (txt.as_str(), ta_token_value(n, unit))
+        })
+        .collect()
+}
+
+fn phf_map_from_str_u8(tokens: &BTreeMap<String, u8>) -> phf_codegen::Map<&str> {
+    tokens
+        .iter()
+        .map(|(txt, n)| (txt.as_str(), n.to_string()))
+        .collect()
+}
+
+fn phf_map_from_album_types(tokens: &BTreeMap<String, AlbumType>) -> phf_codegen::Map<&str> {
+    tokens
+        .iter()
+        .map(|(txt, album_type)| (txt.as_str(), format!("AlbumType::{album_type:?}")))
+        .collect()
 }
 
 pub fn generate_dictionary() {
@@ -108,55 +141,13 @@ pub(crate) fn entry(lang: Language) -> Entry {
             write!(selector, " | Language::{eq:?}").unwrap();
         });
 
-        // Timeago tokens
-        let mut ta_tokens = phf_codegen::Map::<&str>::new();
-        entry.timeago_tokens.iter().for_each(|(txt, tu_str)| {
-            let (n, unit) = parse_tu(tu_str);
-            match unit {
-                Some(unit) => ta_tokens.entry(
-                    txt,
-                    &format!("TaToken {{ n: {n}, unit: Some(TimeUnit::{unit:?}) }}"),
-                ),
-                None => ta_tokens.entry(txt, &format!("TaToken {{ n: {n}, unit: None }}")),
-            };
-        });
-
-        // Months
-        let mut months = phf_codegen::Map::<&str>::new();
-        entry.months.iter().for_each(|(txt, n_mon)| {
-            months.entry(txt, &n_mon.to_string());
-        });
-
-        // Timeago(ND) tokens
-        let mut ta_nd_tokens = phf_codegen::Map::<&str>::new();
-        entry.timeago_nd_tokens.iter().for_each(|(txt, tu_str)| {
-            let (n, unit) = parse_tu(tu_str);
-            match unit {
-                Some(unit) => ta_nd_tokens.entry(
-                    txt,
-                    &format!("TaToken {{ n: {n}, unit: Some(TimeUnit::{unit:?}) }}"),
-                ),
-                None => ta_nd_tokens.entry(txt, &format!("TaToken {{ n: {n}, unit: None }}")),
-            };
-        });
-
-        // Number tokens
-        let mut number_tokens = phf_codegen::Map::<&str>::new();
-        entry.number_tokens.iter().for_each(|(txt, mag)| {
-            number_tokens.entry(txt, &mag.to_string());
-        });
-
-        // Number nd tokens
-        let mut number_nd_tokens = phf_codegen::Map::<&str>::new();
-        entry.number_nd_tokens.iter().for_each(|(txt, mag)| {
-            number_nd_tokens.entry(txt, &mag.to_string());
-        });
-
-        // Album types
-        let mut album_types = phf_codegen::Map::<&str>::new();
-        entry.album_types.iter().for_each(|(txt, album_type)| {
-            album_types.entry(txt, &format!("AlbumType::{album_type:?}"));
-        });
+        // Pass owned `String` values into `entry`/`collect` (not `&format!(...)`).
+        let ta_tokens = phf_map_from_str_tokens(&entry.timeago_tokens);
+        let months = phf_map_from_str_u8(&entry.months);
+        let ta_nd_tokens = phf_map_from_str_tokens(&entry.timeago_nd_tokens);
+        let number_tokens = phf_map_from_str_u8(&entry.number_tokens);
+        let number_nd_tokens = phf_map_from_str_u8(&entry.number_nd_tokens);
+        let album_types = phf_map_from_album_types(&entry.album_types);
 
         let code_ta_tokens = &ta_tokens
             .build()

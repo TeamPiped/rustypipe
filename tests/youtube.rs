@@ -477,6 +477,28 @@ async fn playlist_not_found(rp: RustyPipe) {
 
 #[rstest]
 #[tokio::test]
+async fn get_video_details_collaborators(rp: RustyPipe) {
+    let details = rp.query().video_details("G78AnHpIw5w").await.unwrap();
+
+    assert_eq!(details.id, "G78AnHpIw5w");
+    assert_eq!(details.channel.id, "UCz7mxur_emoA8fl9kvizgtA");
+    assert_eq!(details.channel.name, "jazziiRed");
+    assert!(!details.channel.avatar.is_empty(), "no channel avatars");
+    assert_eq!(details.collaborators.len(), 4);
+    assert_eq!(details.collaborators[0].id, details.channel.id);
+    assert_eq!(details.collaborators[0].name, details.channel.name);
+    assert_eq!(
+        details
+            .collaborators
+            .iter()
+            .map(|c| c.name.as_str())
+            .collect::<Vec<_>>(),
+        ["jazziiRed", "Xoliks", "vladde", "mooncatcher"]
+    );
+}
+
+#[rstest]
+#[tokio::test]
 async fn get_video_details(rp: RustyPipe) {
     let details = rp.query().video_details("ZeerrnuLi5E").await.unwrap();
 

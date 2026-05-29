@@ -652,6 +652,11 @@ pub struct VideoDetails {
     pub description: RichText,
     /// Channel of the video
     pub channel: ChannelTag,
+    /// Collaborating channels when the video has multiple creators
+    ///
+    /// The first entry matches [`Self::channel`]. Empty for regular single-creator videos.
+    #[serde(default)]
+    pub collaborators: Vec<ChannelTag>,
     /// Number of views / current viewers in case of a livestream.
     pub view_count: u64,
     /// Number of likes

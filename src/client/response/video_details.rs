@@ -9,8 +9,8 @@ use crate::serializer::{
 };
 
 use super::{
-    url_endpoint::BrowseEndpointWrap, ContinuationEndpoint, ContinuationItemRenderer, Icon,
-    MusicContinuationData, Thumbnails,
+    url_endpoint::{BrowseEndpoint, BrowseEndpointWrap, OnTap},
+    ContinuationEndpoint, ContinuationItemRenderer, Icon, MusicContinuationData, Thumbnails,
 };
 use super::{
     ChannelBadge, ContentsRendererLogged, FrameworkUpdates, ImageView, ResponseContext,
@@ -85,8 +85,11 @@ pub(crate) enum VideoResultsItem {
     #[serde(rename_all = "camelCase")]
     VideoSecondaryInfoRenderer {
         owner: VideoOwner,
+        #[serde(default)]
+        #[serde_as(as = "DefaultOnError<Option<AttributedText>>")]
         description: Option<TextComponents>,
-        #[serde_as(as = "Option<AttributedText>")]
+        #[serde(default)]
+        #[serde_as(as = "DefaultOnError<Option<AttributedText>>")]
         attributed_description: Option<TextComponents>,
         /// Additional metadata (e.g. Creative Commons License)
         #[serde(default)]
@@ -224,13 +227,198 @@ pub(crate) struct VideoOwner {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct VideoOwnerRenderer {
-    pub title: TextComponent,
+    #[serde(default)]
+    pub title: Option<TextComponent>,
+    #[serde(default)]
+    pub attributed_title: Option<OwnerAttributedTitle>,
+    #[serde(default)]
+    pub navigation_endpoint: Option<OwnerNavigationEndpoint>,
+    #[serde(default)]
     pub thumbnail: Thumbnails,
+    #[serde(default)]
+    pub avatar_stack: Option<AvatarStackWrap>,
     #[serde_as(as = "Option<Text>")]
     pub subscriber_count_text: Option<String>,
     #[serde(default)]
     #[serde_as(as = "VecSkipError<_>")]
     pub badges: Vec<ChannelBadge>,
+}
+
+/// Channel title for videos with multiple collaborators
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct OwnerAttributedTitle {
+    #[allow(dead_code)]
+    pub content: String,
+    #[serde(default)]
+    pub command_runs: Vec<OwnerAttributedTitleCommandRun>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct OwnerAttributedTitleCommandRun {
+    #[serde(default)]
+    pub on_tap: Option<OwnerAttributedTitleOnTap>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct OwnerAttributedTitleOnTap {
+    pub innertube_command: OwnerAttributedTitleInnertubeCommand,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct OwnerAttributedTitleInnertubeCommand {
+    #[serde(default)]
+    pub show_dialog_command: Option<CollaboratorsDialogCommand>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct OwnerNavigationEndpoint {
+    #[serde(default)]
+    #[allow(dead_code)]
+    pub browse_endpoint: Option<BrowseEndpoint>,
+    #[serde(default)]
+    pub show_dialog_command: Option<CollaboratorsDialogCommand>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct CollaboratorsDialogCommand {
+    pub panel_loading_strategy: CollaboratorsPanelLoadingStrategy,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct CollaboratorsPanelLoadingStrategy {
+    pub inline_content: CollaboratorsInlineContent,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct CollaboratorsInlineContent {
+    pub dialog_view_model: CollaboratorsDialogViewModel,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct CollaboratorsDialogViewModel {
+    pub custom_content: CollaboratorsCustomContent,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct CollaboratorsCustomContent {
+    pub list_view_model: CollaboratorsListViewModel,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct CollaboratorsListViewModel {
+    #[serde(default)]
+    pub list_items: Vec<CollaboratorsListItem>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct CollaboratorsListItem {
+    pub list_item_view_model: CollaboratorsListItemViewModel,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct CollaboratorsListItemViewModel {
+    pub title: CollaboratorsListItemTitle,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct CollaboratorsListItemTitle {
+    pub content: String,
+    #[serde(default)]
+    pub command_runs: Vec<CollaboratorsListItemCommandRun>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct CollaboratorsListItemCommandRun {
+    pub on_tap: OnTap,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct AvatarStackWrap {
+    pub avatar_stack_view_model: AvatarStackViewModel,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct AvatarStackViewModel {
+    #[serde(default)]
+    pub avatars: Vec<super::AvatarViewModel>,
+}
+
+impl VideoOwnerRenderer {
+    pub(crate) fn collaborators_dialog(&self) -> Option<&CollaboratorsDialogCommand> {
+        self.navigation_endpoint
+            .as_ref()
+            .and_then(|ep| ep.show_dialog_command.as_ref())
+            .or_else(|| {
+                self.attributed_title.as_ref().and_then(|title| {
+                    title.command_runs.iter().find_map(|run| {
+                        run.on_tap.as_ref().and_then(|tap| {
+                            tap.innertube_command
+                                .show_dialog_command
+                                .as_ref()
+                        })
+                    })
+                })
+            })
+    }
+
+    pub(crate) fn collaborator_channels(&self) -> Vec<(String, String)> {
+        let Some(dialog) = self.collaborators_dialog() else {
+            return Vec::new();
+        };
+        dialog
+            .panel_loading_strategy
+            .inline_content
+            .dialog_view_model
+            .custom_content
+            .list_view_model
+            .list_items
+            .iter()
+            .filter_map(|item| {
+                let title = &item.list_item_view_model.title;
+                let browse_id = title.command_runs.iter().find_map(|run| match &run.on_tap.innertube_command {
+                    super::url_endpoint::NavigationEndpoint::Browse { browse_endpoint, .. } => {
+                        Some(browse_endpoint.browse_id.clone())
+                    }
+                    _ => None,
+                })?;
+                Some((browse_id, title.content.clone()))
+            })
+            .collect()
+    }
+
+    pub(crate) fn thumbnail_or_avatar_stack(&self) -> Thumbnails {
+        if !self.thumbnail.thumbnails.is_empty() {
+            return self.thumbnail.clone();
+        }
+        self.avatar_stack
+            .as_ref()
+            .map(|stack| {
+                stack
+                    .avatar_stack_view_model
+                    .avatars
+                    .first()
+                    .map(|a| a.avatar_view_model.image.clone())
+                    .unwrap_or_default()
+            })
+            .unwrap_or_default()
+    }
 }
 
 /// Shows additional video metadata. Its only known use is for
@@ -348,10 +536,13 @@ pub(crate) struct RecommendationResults {
 
 /// The engagement panels are displayed below the video and contain chapter markers
 /// and the comment section.
+#[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct EngagementPanel {
-    pub engagement_panel_section_list_renderer: EngagementPanelRenderer,
+    #[serde(default)]
+    #[serde_as(deserialize_as = "DefaultOnError")]
+    pub engagement_panel_section_list_renderer: Option<EngagementPanelRenderer>,
 }
 
 /// The engagement panels are displayed below the video and contain chapter markers

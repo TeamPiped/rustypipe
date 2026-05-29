@@ -33,6 +33,7 @@ VideoDetails(
     verification: artist,
     subscriber_count: Some(38100),
   ),
+  collaborators: [],
   view_count: 28898,
   like_count: Some(213),
   publish_date: "[date]",

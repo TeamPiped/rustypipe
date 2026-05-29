@@ -136,6 +136,7 @@ VideoDetails(
     verification: verified,
     subscriber_count: Some(32100000),
   ),
+  collaborators: [],
   view_count: 255522287,
   like_count: Some(4209059),
   publish_date: "[date]",

@@ -5,69 +5,7 @@ expression: map_res.c
 VideoDetails(
   id: "86YLFOog4GM",
   name: "🌎 Nasa Live Stream  - Earth From Space :  Live Views from the ISS",
-  description: RichText([
-    Text(
-      text: "Live NASA - Views Of Earth from Space\nLive video feed of Earth from the International Space Station (ISS) Cameras\n-----------------------------------------------------------------------------------------------------\nWatch our latest video - The Sun - 4K Video / Solar Flares\n",
-    ),
-    YouTube(
-      text: "https://www.youtube.com/watch?v=SEzK4...",
-      target: Video(
-        id: "SEzK4ZfMvUQ",
-        start_time: 0,
-      ),
-    ),
-    Text(
-      text: "\n-----------------------------------------------------------------------------------------------------\nNasa ISS live stream from aboard the International Space Station  as it circles the earth at 240 miles above the planet, on the edge of space in low earth orbit. \n\nThe station is crewed by NASA astronauts as well as Russian Cosmonauts and a mixture of Japanese, Canadian and European astronauts as well.\n\n",
-    ),
-    Text(
-      text: "#nasalive",
-    ),
-    Text(
-      text: " ",
-    ),
-    Text(
-      text: "#isslive",
-    ),
-    Text(
-      text: " ",
-    ),
-    Text(
-      text: "#spacelive",
-    ),
-    Text(
-      text: " ",
-    ),
-    Text(
-      text: "#earthlive",
-    ),
-    Text(
-      text: " ",
-    ),
-    Text(
-      text: "#earthfromspace",
-    ),
-    Text(
-      text: "\n\nThe  Expedition 67 Crew are: \n Sergey Korsakov\nOleg Artemyev\nDenis Matveev\nKjell Lindgren\nRobert Hines\nJessica Watkins\nSamantha Cristoforetti\n\nYulia Peresild\nKlim Shipenko - onboard as part of a film.\n\nTHIS WILL SHOW LIVE and  PRE-RECORDED FOOTAGE - depending on signal from the station or if the ISS is on the night side of Earth.\n\nWhen the feed is live the words LIVE NOW will appear in the top left hand corner of the screen.\nAs the Space Station passes into a period of night every 45 mins video is unavailable - during this time, and other breaks in transmission,  recorded footage is shown .\nWhen back in daylight the live stream of earth will recommence\n\nIf you are here to talk about a flat earth then please don\'t bother. You can stay and watch our beautiful globe earth as it spins in space , but please don\'t share your nonsense beliefs in our chat.\n\nGot a question about this feed? Read our FAQ\'s\n",
-    ),
-    Web(
-      text: "https://spacevideosfaq.tumblr.com/",
-      url: "https://spacevideosfaq.tumblr.com/",
-    ),
-    Text(
-      text: "\n\nWatch the earth roll by courtesy of the NASA Live cameras\nInternational Space Station Live Feed: Thanks to NASA for this\n",
-    ),
-    Web(
-      text: "http://www.nasa.gov",
-      url: "http://www.nasa.gov/",
-    ),
-    Text(
-      text: " The ISS passes into the dark side of the earth for roughly half of each of its 90 minute orbits. During this time no video is available.\n\nMusic by Kevin Macleod \n",
-    ),
-    Web(
-      text: "http://incompetech.com/music/royalty-...",
-      url: "http://incompetech.com/music/royalty-free/",
-    ),
-  ]),
+  description: RichText([]),
   channel: ChannelTag(
     id: "UCakgsb0w7QB0VHdnCc-OVEA",
     name: "Space Videos",
@@ -91,6 +29,7 @@ VideoDetails(
     verification: verified,
     subscriber_count: Some(5590000),
   ),
+  collaborators: [],
   view_count: 681,
   like_count: Some(872230),
   publish_date: "[date]",

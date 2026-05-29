@@ -1,0 +1,986 @@
+---
+source: src/client/video_details.rs
+expression: map_res.c
+---
+VideoDetails(
+  id: "G78AnHpIw5w",
+  name: "The END of Music Machines in Minecraft",
+  description: RichText([
+    Text(
+      text: "What an experience and what a machine. Hope you enjoy!\n\nPatreon ",
+    ),
+    Web(
+      text: "Patreon: jazziired",
+      url: "https://www.patreon.com/jazziiRed",
+    ),
+    Text(
+      text: "\nJoin my Discord server! ",
+    ),
+    Web(
+      text: "Discord: discord",
+      url: "https://discord.gg/q93hyVjqAa",
+    ),
+    Text(
+      text: "\n\n",
+    ),
+    YouTube(
+      text: "\u{202a}@Xoliks97\u{202c}",
+      target: Channel(
+        id: "UCw6yrI8lCjtVIQZhiFE9o6A",
+      ),
+    ),
+    Text(
+      text: " \'s video - ",
+    ),
+    YouTube(
+      text: "Minecraft\'s ONLY 20Hz Music Machine | The ...",
+      target: Video(
+        id: "SSbhQxqi8b8",
+        start_time: 0,
+      ),
+    ),
+    Text(
+      text: "\n",
+    ),
+    YouTube(
+      text: "\u{202a}@vladde\u{202c}",
+      target: Channel(
+        id: "UC2rTBbXG_NwMVgtnSM0ErgQ",
+      ),
+    ),
+    Text(
+      text: " \'s video - ",
+    ),
+    YouTube(
+      text: "Minecraft at 1,200 BPM 🎵",
+      target: Video(
+        id: "XEnk1cvEvII",
+        start_time: 0,
+      ),
+    ),
+    Text(
+      text: "\n",
+    ),
+    YouTube(
+      text: "\u{202a}@mr_mooncatcher\u{202c}",
+      target: Channel(
+        id: "UCYjKR7jn-ESHlDWkoVmaBVQ",
+      ),
+    ),
+    Text(
+      text: " \'s video - ",
+    ),
+    YouTube(
+      text: "MEGALOVANIA in Minecraft (full)",
+      target: Video(
+        id: "TG9kuGmJWaA",
+        start_time: 0,
+      ),
+    ),
+    Text(
+      text: "\n\nWorld Download: ",
+    ),
+    Web(
+      text: "https://github.com/vladdeSV/maestro/r...",
+      url: "https://github.com/vladdeSV/maestro/releases/download/release/MAESTRO.zip",
+    ),
+    Text(
+      text: "\nNBS to Schematic Script: ",
+    ),
+    Web(
+      text: "https://vladdesv.github.io/maestro",
+      url: "https://vladdesv.github.io/maestro",
+    ),
+    Text(
+      text: "\n\nMusic:\nSPECIAL SHOUTOUT to ",
+    ),
+    YouTube(
+      text: "\u{202a}@Kalamity_Music\u{202c}",
+      target: Channel(
+        id: "UC3jnW6reir3xJPJ6y5MqiSg",
+      ),
+    ),
+    Text(
+      text: " for their awesome orchestral arrangement of Sweden (and many more found in their medley) ",
+    ),
+    YouTube(
+      text: "Minecraft - Epic Orchestral Medley (Kalami...",
+      target: Video(
+        id: "Eg264QdKeTI",
+        start_time: 0,
+      ),
+    ),
+    Text(
+      text: "\n\nFluffing a Duck by Kevin MacLeod is licensed under a Creative Commons Attribution 4.0 license. ",
+    ),
+    Web(
+      text: "https://creativecommons.org/licenses/...",
+      url: "https://creativecommons.org/licenses/by/4.0/",
+    ),
+    Text(
+      text: "\n\nInvestigations by Kevin MacLeod is licensed under a Creative Commons Attribution 4.0 license. ",
+    ),
+    Web(
+      text: "https://creativecommons.org/licenses/...",
+      url: "https://creativecommons.org/licenses/by/4.0/",
+    ),
+    Text(
+      text: "\n\nChapters:\n",
+    ),
+    YouTube(
+      text: "00:00",
+      target: Video(
+        id: "G78AnHpIw5w",
+        start_time: 0,
+      ),
+    ),
+    Text(
+      text: " Intro\n",
+    ),
+    YouTube(
+      text: "01:18",
+      target: Video(
+        id: "G78AnHpIw5w",
+        start_time: 78,
+      ),
+    ),
+    Text(
+      text: " A New Hope\n",
+    ),
+    YouTube(
+      text: "02:51",
+      target: Video(
+        id: "G78AnHpIw5w",
+        start_time: 171,
+      ),
+    ),
+    Text(
+      text: " 3 Impossible Problems\n",
+    ),
+    YouTube(
+      text: "04:37",
+      target: Video(
+        id: "G78AnHpIw5w",
+        start_time: 277,
+      ),
+    ),
+    Text(
+      text: " A Different Approach\n",
+    ),
+    YouTube(
+      text: "06:45",
+      target: Video(
+        id: "G78AnHpIw5w",
+        start_time: 405,
+      ),
+    ),
+    Text(
+      text: " How to Spam a Note\n",
+    ),
+    YouTube(
+      text: "07:23",
+      target: Video(
+        id: "G78AnHpIw5w",
+        start_time: 443,
+      ),
+    ),
+    Text(
+      text: " A Quick Lesson on Update Order\n",
+    ),
+    YouTube(
+      text: "08:20",
+      target: Video(
+        id: "G78AnHpIw5w",
+        start_time: 500,
+      ),
+    ),
+    Text(
+      text: " Actual Black Magic\n",
+    ),
+    YouTube(
+      text: "10:10",
+      target: Video(
+        id: "G78AnHpIw5w",
+        start_time: 610,
+      ),
+    ),
+    Text(
+      text: " Please Donate\n",
+    ),
+    YouTube(
+      text: "10:56",
+      target: Video(
+        id: "G78AnHpIw5w",
+        start_time: 656,
+      ),
+    ),
+    Text(
+      text: " Epic Timelapse\n",
+    ),
+    YouTube(
+      text: "13:09",
+      target: Video(
+        id: "G78AnHpIw5w",
+        start_time: 789,
+      ),
+    ),
+    Text(
+      text: " Oops Machine Was Too Good",
+    ),
+  ]),
+  channel: ChannelTag(
+    id: "UCz7mxur_emoA8fl9kvizgtA",
+    name: "jazziiRed",
+    avatar: [
+      Thumbnail(
+        url: "https://yt3.ggpht.com/Oa8d8a2btNL7yE8yHd3TVxRS_7fjrwkavZ1NQ_pNx91doW0H0twCpmCmZMhrUn4r6jJk30bl9Q=s88-c-k-c0x00ffffff-no-rj",
+        width: 0,
+        height: 0,
+      ),
+    ],
+    verification: none,
+    subscriber_count: None,
+  ),
+  collaborators: [
+    ChannelTag(
+      id: "UCz7mxur_emoA8fl9kvizgtA",
+      name: "jazziiRed",
+      avatar: [
+        Thumbnail(
+          url: "https://yt3.ggpht.com/Oa8d8a2btNL7yE8yHd3TVxRS_7fjrwkavZ1NQ_pNx91doW0H0twCpmCmZMhrUn4r6jJk30bl9Q=s88-c-k-c0x00ffffff-no-rj",
+          width: 0,
+          height: 0,
+        ),
+      ],
+      verification: none,
+      subscriber_count: None,
+    ),
+    ChannelTag(
+      id: "UCw6yrI8lCjtVIQZhiFE9o6A",
+      name: "Xoliks",
+      avatar: [
+        Thumbnail(
+          url: "https://yt3.ggpht.com/Oa8d8a2btNL7yE8yHd3TVxRS_7fjrwkavZ1NQ_pNx91doW0H0twCpmCmZMhrUn4r6jJk30bl9Q=s88-c-k-c0x00ffffff-no-rj",
+          width: 0,
+          height: 0,
+        ),
+      ],
+      verification: none,
+      subscriber_count: None,
+    ),
+    ChannelTag(
+      id: "UC2rTBbXG_NwMVgtnSM0ErgQ",
+      name: "vladde",
+      avatar: [
+        Thumbnail(
+          url: "https://yt3.ggpht.com/Oa8d8a2btNL7yE8yHd3TVxRS_7fjrwkavZ1NQ_pNx91doW0H0twCpmCmZMhrUn4r6jJk30bl9Q=s88-c-k-c0x00ffffff-no-rj",
+          width: 0,
+          height: 0,
+        ),
+      ],
+      verification: none,
+      subscriber_count: None,
+    ),
+    ChannelTag(
+      id: "UCYjKR7jn-ESHlDWkoVmaBVQ",
+      name: "mooncatcher",
+      avatar: [
+        Thumbnail(
+          url: "https://yt3.ggpht.com/Oa8d8a2btNL7yE8yHd3TVxRS_7fjrwkavZ1NQ_pNx91doW0H0twCpmCmZMhrUn4r6jJk30bl9Q=s88-c-k-c0x00ffffff-no-rj",
+          width: 0,
+          height: 0,
+        ),
+      ],
+      verification: none,
+      subscriber_count: None,
+    ),
+  ],
+  view_count: 733710,
+  like_count: Some(39476),
+  publish_date: "[date]",
+  publish_date_txt: Some("Premiered Oct 11, 2025"),
+  is_live: false,
+  is_ccommons: false,
+  chapters: [
+    Chapter(
+      name: "Intro",
+      position: 0,
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/G78AnHpIw5w/hqdefault_27866.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBWXJNXatHBg36ZTLwN2inWh42IJA",
+          width: 168,
+          height: 94,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/G78AnHpIw5w/hqdefault_27866.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCb1tn5yRzcbkQeP2RG9iYX0C-fXw",
+          width: 336,
+          height: 188,
+        ),
+      ],
+    ),
+    Chapter(
+      name: "A New Hope",
+      position: 78,
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/G78AnHpIw5w/hqdefault_106100.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB1S7sdm87txJ018MBXNX-fkClUNg",
+          width: 168,
+          height: 94,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/G78AnHpIw5w/hqdefault_106100.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBwXamMAO4gXAGMC6nk5XqcbWtXZg",
+          width: 336,
+          height: 188,
+        ),
+      ],
+    ),
+    Chapter(
+      name: "3 Impossible Problems",
+      position: 171,
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/G78AnHpIw5w/hqdefault_198900.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD9EDUIRNHxQjHdeoqUkYdUQTVlew",
+          width: 168,
+          height: 94,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/G78AnHpIw5w/hqdefault_198900.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBL6gx0xSMihGih3n2c9s-0ZNJ2Lw",
+          width: 336,
+          height: 188,
+        ),
+      ],
+    ),
+    Chapter(
+      name: "A Different Approach",
+      position: 277,
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/G78AnHpIw5w/hqdefault_306833.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD6m1Wl8kCMm4dlCW6xDZSn_lhIdQ",
+          width: 168,
+          height: 94,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/G78AnHpIw5w/hqdefault_306833.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAhIkGBs0zLjmWnhz3WoJd62P4gOQ",
+          width: 336,
+          height: 188,
+        ),
+      ],
+    ),
+    Chapter(
+      name: "How to Spam a Note",
+      position: 405,
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/G78AnHpIw5w/hqdefault_405266.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAku7gEgItlWHWUUB4Fb14bOdpdVg",
+          width: 168,
+          height: 94,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/G78AnHpIw5w/hqdefault_405266.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAmiJu9Q3TMs8lsdMNKQe9sTeSgjA",
+          width: 336,
+          height: 188,
+        ),
+      ],
+    ),
+    Chapter(
+      name: "A Quick Lesson on Update Order",
+      position: 443,
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/G78AnHpIw5w/hqdefault_472200.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC41q0fVPeE42SntPUd7c4NwkRuxA",
+          width: 168,
+          height: 94,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/G78AnHpIw5w/hqdefault_472200.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAG7E6v5_xNqUepaiHZQiFIC8tN-A",
+          width: 336,
+          height: 188,
+        ),
+      ],
+    ),
+    Chapter(
+      name: "Actual Black Magic",
+      position: 500,
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/G78AnHpIw5w/hqdefault_522800.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCg0ct485U7SifZVTR5QNxlxVFuzw",
+          width: 168,
+          height: 94,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/G78AnHpIw5w/hqdefault_522800.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB5Cj1TGrtGaQNHrY_fOEJJBAc99A",
+          width: 336,
+          height: 188,
+        ),
+      ],
+    ),
+    Chapter(
+      name: "Please Donate",
+      position: 610,
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/G78AnHpIw5w/hqdefault_639200.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC6guB_1PTdo9Cw-qn8TrWvuoQ0yQ",
+          width: 168,
+          height: 94,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/G78AnHpIw5w/hqdefault_639200.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCYwSMngKvBo67SOnhOTg4En1ZLFg",
+          width: 336,
+          height: 188,
+        ),
+      ],
+    ),
+    Chapter(
+      name: "Epic Timelapse",
+      position: 656,
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/G78AnHpIw5w/hqdefault_683100.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDu8k8uD5wZiWCt-lVzU3EoN5HaPA",
+          width: 168,
+          height: 94,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/G78AnHpIw5w/hqdefault_683100.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDzpiLF1P_KMfIkDtpPG4XbABD3PQ",
+          width: 336,
+          height: 188,
+        ),
+      ],
+    ),
+    Chapter(
+      name: "Oops Machine Was Too Good",
+      position: 789,
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/G78AnHpIw5w/hqdefault_792100.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAUgG2PeQTela14wZ6LkY4MkrzR-w",
+          width: 168,
+          height: 94,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/G78AnHpIw5w/hqdefault_792100.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAa_bWY1vcIR396_Js4e3KI_xIOQQ",
+          width: 336,
+          height: 188,
+        ),
+      ],
+    ),
+  ],
+  recommended: Paginator(
+    count: None,
+    items: [
+      VideoItem(
+        id: "nSqEuU0z6X0",
+        name: "The New SMARTEST Metro System in Minecraft!",
+        duration: None,
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/nSqEuU0z6X0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCR_8Ko_YJeF0zMjKBN7O_zrOgttA",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/nSqEuU0z6X0/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB0reS3_rUZlEBLCTopviQlBZBy4g",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: None,
+        publish_date: "[date]",
+        publish_date_txt: Some("3 months ago"),
+        view_count: Some(357000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
+      ),
+      VideoItem(
+        id: "Ay4JP-RhsRc",
+        name: "I Snuck Into a Minecraft War (and won)",
+        duration: None,
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/Ay4JP-RhsRc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD1Lt4tTBQWGhQRrJAdsjLtLOmYbg",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/Ay4JP-RhsRc/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCgP57fPqGZ-7HNvwfGNI-P9ULd7A",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: None,
+        publish_date: "[date]",
+        publish_date_txt: Some("7 hours ago"),
+        view_count: Some(155000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
+      ),
+      VideoItem(
+        id: "T6M8htdKo4E",
+        name: "Rush E in Minecraft Like You\'ve NEVER Heard Before",
+        duration: None,
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/T6M8htdKo4E/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBaLUCqNOvLna2onTj87ejmkjrK3w",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/T6M8htdKo4E/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAcg04HwYoyNTGt1F9a8srpVfaFKg",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: None,
+        publish_date: "[date]",
+        publish_date_txt: Some("7 months ago"),
+        view_count: Some(373000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
+      ),
+      VideoItem(
+        id: "8jVogdTJESw",
+        name: "Pushing Simulations to the LIMIT to Find Order in Chaos",
+        duration: None,
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/8jVogdTJESw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCKhOgx_5oS35cXvfVz44oDvwDhZw",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/8jVogdTJESw/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBNZ7JaYsotL5d635pIHZ9LuvL7Ew",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: None,
+        publish_date: "[date]",
+        publish_date_txt: Some("5 months ago"),
+        view_count: Some(1700000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
+      ),
+      VideoItem(
+        id: "igZ47UlxejA",
+        name: "How High Can You ACTUALLY Jump In Minecraft?",
+        duration: None,
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/igZ47UlxejA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC23DS89DxWFY77vJXvS9etG0aK-A",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/igZ47UlxejA/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBgUoKctgkoLXmP7HnDNvHxYuafhw",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: None,
+        publish_date: "[date]",
+        publish_date_txt: Some("4 months ago"),
+        view_count: Some(9400),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
+      ),
+      VideoItem(
+        id: "Lz2jamesSG4",
+        name: "The Complete History of Minecraft\'s Music",
+        duration: None,
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/Lz2jamesSG4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDAhW3tqvXTLQ8JydUchYL5bzDBhQ",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/Lz2jamesSG4/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLASrIUdw6vULlLyHllsi5kk0w2c_w",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: None,
+        publish_date: "[date]",
+        publish_date_txt: Some("4 weeks ago"),
+        view_count: Some(158000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
+      ),
+      VideoItem(
+        id: "Bi9Fa9C-LRA",
+        name: "Vanilla Redstoner Tries CREATE MOD!",
+        duration: None,
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/Bi9Fa9C-LRA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDaW0gsqE_wP5qkKm5pG1U6itgr_g",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/Bi9Fa9C-LRA/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB3OHgYAYZ8dt1urhLR-KuVNvKjpQ",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: None,
+        publish_date: "[date]",
+        publish_date_txt: Some("1 month ago"),
+        view_count: Some(304000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
+      ),
+      VideoItem(
+        id: "ocaTJW8kLVc",
+        name: "I Have The Best Fans",
+        duration: None,
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/ocaTJW8kLVc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC8BPOXlMhZ-V6z8vD6gj49wBcKGw",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/ocaTJW8kLVc/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBZSuWe0DIJoWyAp8__dKeQu0mzJg",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: None,
+        publish_date: "[date]",
+        publish_date_txt: Some("11 months ago"),
+        view_count: Some(1200000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
+      ),
+      VideoItem(
+        id: "xyw455piBUE",
+        name: "How 4 blocks revolutionized Computational Redstone",
+        duration: None,
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/xyw455piBUE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDJmdTYEYGRz_WobsCCM3vYGPyqtw",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/xyw455piBUE/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLArBa0M3_8C82jtEEONJJ165p_tFA",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: None,
+        publish_date: "[date]",
+        publish_date_txt: Some("2 months ago"),
+        view_count: Some(152000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
+      ),
+      VideoItem(
+        id: "3pRSZEHK9l0",
+        name: "I Spent 10 Days Transforming Superflat",
+        duration: None,
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/3pRSZEHK9l0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLACXHexkM9XltQA-_peR5meOQHXbw",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/3pRSZEHK9l0/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCsc2Qs-QFWyQuSRbpcK18NDT0uGQ",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: None,
+        publish_date: "[date]",
+        publish_date_txt: Some("9 hours ago"),
+        view_count: Some(89000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
+      ),
+      VideoItem(
+        id: "dn2uvNlOnps",
+        name: "Lifesteal SMP VS Lucky Block Pillars",
+        duration: None,
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/dn2uvNlOnps/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCqp5EI3kMGgxMFAgcgL7rUy0iBNg",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/dn2uvNlOnps/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAgWrxVzuiL3osKkq5HDjmCFf6IHg",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: None,
+        publish_date: "[date]",
+        publish_date_txt: Some("10 hours ago"),
+        view_count: Some(44000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
+      ),
+      VideoItem(
+        id: "80OyE2B-HVg",
+        name: "Designing the SMARTEST Metro System in Minecraft!",
+        duration: None,
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/80OyE2B-HVg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBNp243QAc9fmWh_GHlvKKinznBBw",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/80OyE2B-HVg/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBXQ68l6qyXIWZSYLf5_eAWnB244w",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: None,
+        publish_date: "[date]",
+        publish_date_txt: Some("4 months ago"),
+        view_count: Some(1100000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
+      ),
+      VideoItem(
+        id: "YJJk0iLJ4Ks",
+        name: "I Made a 3D Graphing Calculator with just Redstone!",
+        duration: None,
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/YJJk0iLJ4Ks/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDGm2ZwTeF69dXgtx2_Eq0cu-x1Cw",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/YJJk0iLJ4Ks/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBpwkht7gR6enoopLHZWD7npocr5w",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: None,
+        publish_date: "[date]",
+        publish_date_txt: Some("2 months ago"),
+        view_count: Some(747000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
+      ),
+      VideoItem(
+        id: "sTtvzfnz2w0",
+        name: "No One Has Solved This Minecraft Puzzle",
+        duration: None,
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/sTtvzfnz2w0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBn5sI-k2nHQgbGkf6bGaXvI2uLaQ",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/sTtvzfnz2w0/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLD14WV_IHxwR6LNLeg17CmGzkdzFg",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: None,
+        publish_date: "[date]",
+        publish_date_txt: Some("4 weeks ago"),
+        view_count: Some(173000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
+      ),
+      VideoItem(
+        id: "4dEx8D1mjso",
+        name: "Minecraft Maps Are Strange",
+        duration: None,
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/4dEx8D1mjso/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBGqtRryKmwRIW35Tn1zufYzjhksQ",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/4dEx8D1mjso/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCnTfj41wFsLQHQogfC4lcHdHvAdQ",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: None,
+        publish_date: "[date]",
+        publish_date_txt: Some("7 months ago"),
+        view_count: Some(876000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
+      ),
+      VideoItem(
+        id: "-nrjTNwQ6Yg",
+        name: "This Cube Will Probably Outlive the UNIVERSE.",
+        duration: None,
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/-nrjTNwQ6Yg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDRDQ0y70CveCq2uy6P2dDpAkZy-w",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/-nrjTNwQ6Yg/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAX4_1rDX8HIwcnbt8MJfg01UczPg",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: None,
+        publish_date: "[date]",
+        publish_date_txt: Some("1 month ago"),
+        view_count: Some(277000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
+      ),
+      VideoItem(
+        id: "Q_MkxSD33Vw",
+        name: "The Best Air Defence in Minecraft is Finally Here!",
+        duration: None,
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/Q_MkxSD33Vw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBC2F1RLALfDRA6qwCMRMUwD6Jt3w",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/Q_MkxSD33Vw/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDGqTpGtNotROymXVLye_NaidSWnw",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: None,
+        publish_date: "[date]",
+        publish_date_txt: Some("9 months ago"),
+        view_count: Some(1100000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
+      ),
+      VideoItem(
+        id: "xfOTbg6jFZc",
+        name: "Hermitcraft 11: Episode 20 - Mega project",
+        duration: None,
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/xfOTbg6jFZc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB-FWfhqSJlR9l6EQWCyPGffKf2GQ",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/xfOTbg6jFZc/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAPCSpAOLcINUAjH61cyPAu6hPW-Q",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: None,
+        publish_date: "[date]",
+        publish_date_txt: Some("2 days ago"),
+        view_count: Some(656000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
+      ),
+      VideoItem(
+        id: "bxX76HMgx98",
+        name: "The Simplest World That Can Farm Every Item",
+        duration: None,
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/bxX76HMgx98/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB4d4amZJ57cxvYLJ389W40ldC7wg",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/bxX76HMgx98/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDVLoqyqCbr7dVyaYC0STOf_Pv5pQ",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: None,
+        publish_date: "[date]",
+        publish_date_txt: Some("1 year ago"),
+        view_count: Some(6100000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
+      ),
+      VideoItem(
+        id: "IWZQB9zDD3Y",
+        name: "The Worst City on Earth, Built in Minecraft",
+        duration: None,
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/IWZQB9zDD3Y/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLALU_UXjyqp_Xjzins3yM7L4fyGDw",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/IWZQB9zDD3Y/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBTm4BdRikqEjJeB10hmBxEA4FJwQ",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: None,
+        publish_date: "[date]",
+        publish_date_txt: Some("9 months ago"),
+        view_count: Some(4000000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
+      ),
+    ],
+    ctoken: Some("CBQSExILRzc4QW5IcEl3NXfAAQHIAQEYACqcBk1nb0k5cDZNNXYyQWxMTWgyczZMNnd6Q0JBcV9CQW9EOGo0QUNnN0NQZ3NJX2RMUDZaU1hvWldkQVFvRDhqNEFDZzNDUGdvSWwtS0dvXzZuZ3BjRENnUHlQZ0FLRGNJLUNnaUJ4NnE2N1pEUDBVOEtBX0ktQUFvT3dqNExDS3lpcEthZGtOcWE4Z0VLQV9JLUFBb093ajRMQ0xEMHhjdlVuWjZEaWdFS0FfSS1BQW9Od2o0S0NPNlFzYjJtN2VpZUx3b0Q4ajRBQ2czQ1Bnb0lrTnI0aGIydDBaY0dDZ1B5UGdBS0RzSS1Dd2pYMnBENTF1U2s0NkVCQ2dQeVBnQUtEc0ktQ3dqQmlvalQtWnlPbHNjQkNnUHlQZ0FLRHNJLUN3amQ3S3VPeE15VXl0NEJDZ1B5UGdBS0RjSS1DZ2lidmJyS3pkZnJ2bllLQV9JLUFBb093ajRMQ05pNi1JTzJ3dXloOHdFS0FfSS1BQW9Od2o0S0NLdkJwNWFpbXBuSllBb0Q4ajRBQ2c3Q1Bnc0lqYmJQejlfNTI1MnhBUW9EOGo0QUNnN0NQZ3NJeXAyYTY0Ty16T2poQVFvRDhqNEFDZzdDUGdzSWlOUEQ0TTNwdUwzNkFRb0Q4ajRBQ2czQ1Bnb0kzTHJmaDlLWXlmbERDZ1B5UGdBS0RzSS1Dd2lYcTR6MTRPM2stY1VCQ2dQeVBnQUtEY0ktQ2dqZmo0T1poXzMtaW04S0FfSS1BQW9Od2o0S0NQYWVqT2I5Z0pTeklSSVVBQUlFQmdnS0RBNFFFaFFXR0JvY0hpQWlKQ1lhQkFnQUVBRWFCQWdDRUFNYUJBZ0VFQVVhQkFnR0VBY2FCQWdJRUFrYUJBZ0tFQXNhQkFnTUVBMGFCQWdPRUE4YUJBZ1FFQkVhQkFnU0VCTWFCQWdVRUJVYUJBZ1dFQmNhQkFnWUVCa2FCQWdhRUJzYUJBZ2NFQjBhQkFnZUVCOGFCQWdnRUNFYUJBZ2lFQ01hQkFna0VDVWFCQWdtRUNjcUZBQUNCQVlJQ2d3T0VCSVVGaGdhSEI0Z0lpUW1qD3dhdGNoLW5leHQtZmVlZA%3D%3D"),
+    endpoint: next,
+  ),
+  top_comments: Paginator(
+    count: None,
+    items: [],
+    ctoken: Some("Eg0SC0c3OEFuSHBJdzV3GAYyJSIRIgtHNzhBbkhwSXc1dzAAeAJCEGNvbW1lbnRzLXNlY3Rpb24%3D"),
+    endpoint: next,
+  ),
+  latest_comments: Paginator(
+    count: None,
+    items: [],
+    ctoken: Some("Eg0SC0c3OEFuSHBJdzV3GAYyOCIRIgtHNzhBbkhwSXc1dzABeAIwAUIhZW5nYWdlbWVudC1wYW5lbC1jb21tZW50cy1zZWN0aW9u"),
+    endpoint: next,
+  ),
+  visitor_data: None,
+)

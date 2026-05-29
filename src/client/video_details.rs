@@ -251,22 +251,52 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
             }
         };
 
-        let (channel_id, channel_name) = match owner.title {
-            crate::serializer::text::TextComponent::Browse {
-                text,
-                page_type,
-                browse_id,
-                ..
-            } => match page_type {
-                response::url_endpoint::PageType::Channel => (browse_id, text),
-                _ => {
-                    return Err(ExtractionError::InvalidData(
-                        "invalid channel link type".into(),
-                    ))
-                }
-            },
-            _ => return Err(ExtractionError::InvalidData("invalid channel link".into())),
+        let collaborator_channels = owner.collaborator_channels();
+        let first_collaborator = collaborator_channels.first().cloned();
+        let owner_avatar: Vec<crate::model::Thumbnail> =
+            owner.thumbnail_or_avatar_stack().into();
+        let owner_verification = owner.badges.into();
+        let owner_subscriber_count = owner.subscriber_count_text.as_ref().and_then(|txt| {
+            util::parse_large_numstr_or_warn(txt, ctx.lang, &mut warnings)
+        });
+        let mut collaborators = collaborator_channels
+            .iter()
+            .map(|(id, name)| ChannelTag {
+                id: id.clone(),
+                name: name.clone(),
+                avatar: owner_avatar.clone(),
+                verification: owner_verification,
+                subscriber_count: owner_subscriber_count,
+            })
+            .collect::<Vec<_>>();
+
+        let (channel_id, channel_name) = if let Some(title) = &owner.title {
+            match title {
+                crate::serializer::text::TextComponent::Browse {
+                    text,
+                    page_type,
+                    browse_id,
+                    ..
+                } => match page_type {
+                    response::url_endpoint::PageType::Channel => (browse_id.clone(), text.clone()),
+                    _ => {
+                        return Err(ExtractionError::InvalidData(
+                            "invalid channel link type".into(),
+                        ))
+                    }
+                },
+                _ => return Err(ExtractionError::InvalidData("invalid channel link".into())),
+            }
+        } else if let Some((id, name)) = first_collaborator {
+            (id, name)
+        } else {
+            return Err(ExtractionError::InvalidData("invalid channel link".into()));
         };
+
+        if !collaborators.is_empty() {
+            collaborators[0].id = channel_id.clone();
+            collaborators[0].name = channel_name.clone();
+        }
 
         let visitor_data = self
             .response_context
@@ -294,14 +324,24 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
 
         let mut chapter_panel = None;
         let mut comment_panel = None;
-        engagement_panels.c.into_iter().for_each(|panel| match panel.engagement_panel_section_list_renderer {
-            response::video_details::EngagementPanelRenderer::EngagementPanelMacroMarkersDescriptionChapters { content } => {
-                chapter_panel = Some(content);
-            },
-            response::video_details::EngagementPanelRenderer::EngagementPanelCommentsSection { header } => {
-                comment_panel = Some(header);
-            },
-            response::video_details::EngagementPanelRenderer::None => {},
+        engagement_panels.c.into_iter().for_each(|panel| {
+            match panel.engagement_panel_section_list_renderer {
+                Some(
+                    response::video_details::EngagementPanelRenderer::EngagementPanelMacroMarkersDescriptionChapters {
+                        content,
+                    },
+                ) => {
+                    chapter_panel = Some(content);
+                }
+                Some(
+                    response::video_details::EngagementPanelRenderer::EngagementPanelCommentsSection {
+                        header,
+                    },
+                ) => {
+                    comment_panel = Some(header);
+                }
+                Some(response::video_details::EngagementPanelRenderer::None) | None => {}
+            }
         });
 
         let chapters = chapter_panel
@@ -343,12 +383,11 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                 channel: ChannelTag {
                     id: channel_id,
                     name: channel_name,
-                    avatar: owner.thumbnail.into(),
-                    verification: owner.badges.into(),
-                    subscriber_count: owner.subscriber_count_text.and_then(|txt| {
-                        util::parse_large_numstr_or_warn(&txt, ctx.lang, &mut warnings)
-                    }),
+                    avatar: owner_avatar,
+                    verification: owner_verification,
+                    subscriber_count: owner_subscriber_count,
                 },
+                collaborators,
                 view_count,
                 like_count,
                 publish_date,
@@ -681,6 +720,7 @@ mod tests {
     #[case::ab_no_recommends("20221011_rec_isr", "nFDBxBUfE74")]
     #[case::ab_new_likes("20231103_likes", "ZeerrnuLi5E")]
     #[case::mix("20241109_mix", "XuM2onMGvTI")]
+    #[case::collaborators("collaborators", "G78AnHpIw5w")]
     fn map_video_details(#[case] name: &str, #[case] id: &str) {
         let json_path = path!(*TESTFILES / "video_details" / format!("video_details_{name}.json"));
         let json_file = File::open(json_path).unwrap();
