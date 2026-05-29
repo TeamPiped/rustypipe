@@ -28,6 +28,10 @@ fancy-regex = "0.18.0"
 futures-util = "0.3.31"
 localzone = "0.3.1"
 once_cell = "1.12.0"
+oxc_allocator = "0.133.0"
+oxc_ast = "0.133.0"
+oxc_parser = "0.133.0"
+oxc_span = "0.133.0"
 phf = "0.13.1"
 phf_codegen = "0.13.1"
 quick-xml = {version = "0.40.1", features = ["serialize"]}
@@ -99,6 +103,10 @@ data-encoding.workspace = true
 fancy-regex.workspace = true
 localzone.workspace = true
 once_cell.workspace = true
+oxc_allocator.workspace = true
+oxc_ast.workspace = true
+oxc_parser.workspace = true
+oxc_span.workspace = true
 phf.workspace = true
 quick-xml = {workspace = true, optional = true}
 rand.workspace = true

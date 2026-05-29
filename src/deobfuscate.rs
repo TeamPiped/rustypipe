@@ -1,3 +1,5 @@
+mod solver;
+
 use std::collections::HashMap;
 
 use once_cell::sync::Lazy;
@@ -61,9 +63,16 @@ impl DeobfData {
     }
 
     pub fn extract_fns(js_url: &str, player_js: &str) -> Result<Self, Error> {
-        let sig_fn = get_sig_fn(player_js)?;
-        let nsig_fn = get_nsig_fn(player_js)?;
         let sts = get_sts(player_js)?;
+        let (sig_fn, nsig_fn) = match (get_sig_fn(player_js), get_nsig_fn(player_js)) {
+            (Ok(sig_fn), Ok(nsig_fn)) => (sig_fn, nsig_fn),
+            (Err(legacy_err), _) | (_, Err(legacy_err)) => {
+                tracing::debug!(
+                    "legacy deobfuscation extraction failed ({legacy_err}), trying challenge solver"
+                );
+                solver::extract_fns(player_js).map_err(Error::from)?
+            }
+        };
 
         Ok(Self {
             js_url: js_url.to_owned(),
