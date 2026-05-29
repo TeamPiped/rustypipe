@@ -2,7 +2,7 @@ use std::collections::HashMap;
 
 use once_cell::sync::Lazy;
 use regex::Regex;
-use reqwest::Client;
+use wreq::Client;
 use ress::tokens::{Keyword, Punct, Token};
 use rquickjs::{Context, Runtime};
 use serde::{Deserialize, Serialize};
@@ -694,7 +694,7 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
         std::fs::create_dir_all(&js_path).unwrap();
         js_path.push(format!("{js_hash}.js"));
         if !js_path.is_file() {
-            let http = reqwest::Client::new();
+            let http = wreq::Client::new();
             let res = http
                 .get(&url)
                 .send()

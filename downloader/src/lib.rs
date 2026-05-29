@@ -17,9 +17,9 @@ use std::{
 
 use futures_util::stream::{self, StreamExt, TryStreamExt};
 use once_cell::sync::Lazy;
-use rand::Rng;
+use rand::RngExt;
 use regex::Regex;
-use reqwest::{header, Client, StatusCode, Url};
+use wreq::{header, Client, StatusCode, Url};
 use rustypipe::{
     client::{ClientType, RustyPipe},
     model::{

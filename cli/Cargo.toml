@@ -14,29 +14,24 @@ description = "CLI for RustyPipe - download videos and extract data from YouTube
 default = ["native-tls"]
 timezone = ["dep:time", "dep:time-tz"]
 
-# Reqwest TLS options
+# wreq TLS options
 native-tls = [
-    "reqwest/native-tls",
     "rustypipe/native-tls",
     "rustypipe-downloader/native-tls",
 ]
 native-tls-alpn = [
-    "reqwest/native-tls-alpn",
     "rustypipe/native-tls-alpn",
     "rustypipe-downloader/native-tls-alpn",
 ]
 native-tls-vendored = [
-    "reqwest/native-tls-vendored",
     "rustypipe/native-tls-vendored",
     "rustypipe-downloader/native-tls-vendored",
 ]
 rustls-tls-webpki-roots = [
-    "reqwest/rustls-tls-webpki-roots",
     "rustypipe/rustls-tls-webpki-roots",
     "rustypipe-downloader/rustls-tls-webpki-roots",
 ]
 rustls-tls-native-roots = [
-    "reqwest/rustls-tls-native-roots",
     "rustypipe/rustls-tls-native-roots",
     "rustypipe-downloader/rustls-tls-native-roots",
 ]
@@ -44,7 +39,6 @@ rustls-tls-native-roots = [
 [dependencies]
 rustypipe = { workspace = true, features = ["rss", "userdata"] }
 rustypipe-downloader.workspace = true
-reqwest.workspace = true
 tokio = { workspace = true, features = ["macros", "rt-multi-thread"] }
 futures-util.workspace = true
 serde.workspace = true

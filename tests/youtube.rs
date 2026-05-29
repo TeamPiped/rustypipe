@@ -146,7 +146,7 @@ async fn get_player_from_client(#[case] client_type: ClientType, rp: RustyPipe) 
 
 /// Request the given stream to check if it returns a valid response
 async fn check_video_stream(s: impl YtStream) {
-    let http = reqwest::Client::new();
+    let http = wreq::Client::new();
 
     let resp = http
         .get(s.url())

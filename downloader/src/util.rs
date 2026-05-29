@@ -1,6 +1,6 @@
 use std::collections::BTreeMap;
 
-use reqwest::Url;
+use wreq::Url;
 
 use crate::DownloadError;
 

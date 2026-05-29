@@ -190,9 +190,11 @@ dependencies.
 - `userdata` Add functions to fetch YouTube user data (watch history, subscriptions,
   music library)
 
-You can also choose the TLS library used for making web requests using the same features
-as the reqwest crate (`default-tls`, `native-tls`, `native-tls-alpn`,
-`native-tls-vendored`, `rustls-tls-webpki-roots`, `rustls-tls-native-roots`).
+You can also choose the TLS root certificate store used for making web requests using
+the following features (`default-tls` / `rustls-tls-webpki-roots` for webpki roots,
+`rustls-tls-native-roots` for the OS certificate store). The legacy feature names
+`native-tls`, `native-tls-alpn`, and `native-tls-vendored` are aliases for
+`default-tls`.
 
 ## Cache storage
 

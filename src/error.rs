@@ -2,7 +2,7 @@
 
 use std::{borrow::Cow, fmt::Display};
 
-use reqwest::StatusCode;
+use wreq::StatusCode;
 
 /// Error type for the RustyPipe library
 #[derive(thiserror::Error, Debug)]
@@ -201,8 +201,8 @@ impl From<serde_json::Error> for ExtractionError {
     }
 }
 
-impl From<reqwest::Error> for Error {
-    fn from(value: reqwest::Error) -> Self {
+impl From<wreq::Error> for Error {
+    fn from(value: wreq::Error) -> Self {
         if value.is_status() {
             if let Some(status) = value.status() {
                 return Self::HttpStatus(status.as_u16(), Cow::default());

@@ -4,9 +4,9 @@ use std::{
 };
 
 use once_cell::sync::Lazy;
-use rand::Rng;
+use rand::RngExt;
 use regex::Regex;
-use reqwest::{header, Client};
+use wreq::{header, Client};
 use time::OffsetDateTime;
 
 use crate::{

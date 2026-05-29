@@ -1,14 +1,13 @@
 [package]
-name = "rustypipe"
-version = "0.11.4"
-rust-version = "1.67.1"
-edition.workspace = true
 authors.workspace = true
-license.workspace = true
-repository.workspace = true
-keywords.workspace = true
 categories.workspace = true
 description = "Client for the public YouTube / YouTube Music API (Innertube), inspired by NewPipe"
+edition.workspace = true
+keywords.workspace = true
+license.workspace = true
+name = "rustypipe"
+repository.workspace = true
+version = "0.11.4"
 
 include = ["/src", "README.md", "CHANGELOG.md", "LICENSE", "!snapshots"]
 
@@ -16,69 +15,70 @@ include = ["/src", "README.md", "CHANGELOG.md", "LICENSE", "!snapshots"]
 members = [".", "codegen", "downloader", "cli"]
 
 [workspace.package]
-edition = "2021"
 authors = ["ThetaDev <thetadev@magenta.de>"]
+categories = ["api-bindings", "multimedia"]
+edition = "2021"
+keywords = ["youtube", "video", "music"]
 license = "GPL-3.0"
 repository = "https://codeberg.org/ThetaDev/rustypipe"
-keywords = ["youtube", "video", "music"]
-categories = ["api-bindings", "multimedia"]
 
 [workspace.dependencies]
-rquickjs = "0.9.0"
-once_cell = "1.12.0"
-regex = "1.6.0"
-fancy-regex = "0.14.0"
-thiserror = "2.0.0"
-url = "2.2.0"
-reqwest = { version = "0.12.0", default-features = false }
-tokio = "1.20.4"
-serde = { version = "1.0", features = ["derive"] }
-serde_json = "1.0.82"
-serde_with = { version = "3.0.0", default-features = false, features = [
-    "alloc",
-    "macros",
-] }
-serde_plain = "1.0.0"
-sha1 = "0.10.0"
-rand = "0.9.0"
-time = { version = "0.3.37", features = [
-    "macros",
-    "serde-human-readable",
-    "serde-well-known",
-    "local-offset",
-] }
-futures-util = "0.3.31"
-ress = "0.11.0"
-phf = "0.11.0"
-phf_codegen = "0.11.0"
 data-encoding = "2.0.0"
-urlencoding = "2.1.0"
-quick-xml = { version = "0.37.0", features = ["serialize"] }
-tracing = { version = "0.1.0", features = ["log"] }
+fancy-regex = "0.18.0"
+futures-util = "0.3.31"
 localzone = "0.3.1"
+once_cell = "1.12.0"
+phf = "0.13.1"
+phf_codegen = "0.13.1"
+quick-xml = {version = "0.40.1", features = ["serialize"]}
+rand = "0.10.1"
+regex = "1.6.0"
+ress = "0.11.0"
+rquickjs = "0.12.0"
+serde = {version = "1.0", features = ["derive"]}
+serde_json = "1.0.82"
+serde_plain = "1.0.0"
+serde_with = {version = "3.0.0", default-features = false, features = [
+  "alloc",
+  "macros",
+]}
+sha1 = "0.11.0"
+thiserror = "2.0.0"
+time = {version = "0.3.37", features = [
+  "macros",
+  "serde-human-readable",
+  "serde-well-known",
+  "local-offset",
+]}
+tokio = "1.20.4"
+tracing = {version = "0.1.0", features = ["log"]}
+url = "2.2.0"
+urlencoding = "2.1.0"
+wreq = {version = "5.3.0", default-features = false}
+wreq-util = "2.2.6"
 
 # CLI
-indicatif = "0.17.0"
 anyhow = "1.0"
-clap = { version = "4.0.0", features = ["derive"] }
-tracing-subscriber = { version = "0.3.17", features = ["env-filter"] }
-serde_yaml = "0.9.0"
+clap = {version = "4.6.1", features = ["derive"]}
 dirs = "6.0.0"
 filenamify = "0.1.0"
+indicatif = "0.18.4"
+serde_yaml = "0.9.0"
+tracing-subscriber = {version = "0.3.17", features = ["env-filter"]}
 
 # Testing
-rstest = "0.25.0"
-tokio-test = "0.4.2"
-insta = { version = "1.17.1", features = ["ron", "redactions"] }
+insta = {version = "1.17.1", features = ["ron", "redactions"]}
 path_macro = "1.0.0"
+rstest = "0.26.1"
+tokio-test = "0.4.2"
 tracing-test = "0.2.5"
 
 # Included crates
-rustypipe = { path = ".", version = "0.11.4", default-features = false }
-rustypipe-downloader = { path = "./downloader", version = "0.3.1", default-features = false, features = [
-    "indicatif",
-    "audiotag",
-] }
+rustypipe = {path = ".", version = "0.11.4", default-features = false}
+rustypipe-downloader = {path = "./downloader", version = "0.3.1", default-features = false, features = [
+  "indicatif",
+  "audiotag",
+]}
 
 [features]
 default = ["default-tls"]
@@ -86,43 +86,43 @@ default = ["default-tls"]
 rss = ["dep:quick-xml"]
 userdata = []
 
-# Reqwest TLS options
-default-tls = ["reqwest/default-tls"]
-native-tls = ["reqwest/native-tls"]
-native-tls-alpn = ["reqwest/native-tls-alpn"]
-native-tls-vendored = ["reqwest/native-tls-vendored"]
-rustls-tls-webpki-roots = ["reqwest/rustls-tls-webpki-roots"]
-rustls-tls-native-roots = ["reqwest/rustls-tls-native-roots"]
+# wreq TLS options
+default-tls = ["wreq/webpki-roots"]
+native-tls = ["default-tls"]
+native-tls-alpn = ["default-tls"]
+native-tls-vendored = ["default-tls"]
+rustls-tls-native-roots = ["wreq/native-roots"]
+rustls-tls-webpki-roots = ["wreq/webpki-roots"]
 
 [dependencies]
-rquickjs.workspace = true
-once_cell.workspace = true
-regex.workspace = true
+data-encoding.workspace = true
 fancy-regex.workspace = true
-thiserror.workspace = true
-url.workspace = true
-reqwest = { workspace = true, features = ["json", "gzip", "brotli"] }
-tokio = { workspace = true, features = ["macros", "time", "process"] }
+localzone.workspace = true
+once_cell.workspace = true
+phf.workspace = true
+quick-xml = {workspace = true, optional = true}
+rand.workspace = true
+regex.workspace = true
+ress.workspace = true
+rquickjs.workspace = true
 serde.workspace = true
 serde_json.workspace = true
-serde_with.workspace = true
 serde_plain.workspace = true
+serde_with.workspace = true
 sha1.workspace = true
-rand.workspace = true
+thiserror.workspace = true
 time.workspace = true
-ress.workspace = true
-phf.workspace = true
-data-encoding.workspace = true
-urlencoding.workspace = true
+tokio = {workspace = true, features = ["macros", "time", "process"]}
 tracing.workspace = true
-localzone.workspace = true
-quick-xml = { workspace = true, optional = true }
+url.workspace = true
+urlencoding.workspace = true
+wreq = {workspace = true, features = ["json", "gzip", "brotli"]}
 
 [dev-dependencies]
-rstest.workspace = true
-tokio-test.workspace = true
 insta.workspace = true
 path_macro.workspace = true
+rstest.workspace = true
+tokio-test.workspace = true
 tracing-test.workspace = true
 
 [package.metadata.docs.rs]

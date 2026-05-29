@@ -37,7 +37,7 @@ use std::{borrow::Cow, fmt::Debug, time::Duration};
 
 use once_cell::sync::Lazy;
 use regex::Regex;
-use reqwest::{header, Client, ClientBuilder, Request, RequestBuilder, Response, StatusCode};
+use wreq::{header, Client, ClientBuilder, Request, RequestBuilder, Response, StatusCode};
 use serde::{de::DeserializeOwned, Deserialize, Serialize};
 use sha1::{Digest, Sha1};
 use time::{OffsetDateTime, UtcOffset};
@@ -694,7 +694,7 @@ impl RustyPipeBuilder {
         self.build_with_client(ClientBuilder::new())
     }
 
-    /// Create a new, configured RustyPipe instance using a Reqwest [`ClientBuilder`].
+    /// Create a new, configured RustyPipe instance using a wreq [`ClientBuilder`].
     pub fn build_with_client(self, mut client_builder: ClientBuilder) -> Result<RustyPipe, Error> {
         let user_agent = self
             .user_agent
@@ -705,7 +705,7 @@ impl RustyPipeBuilder {
             .user_agent(user_agent.as_ref())
             .gzip(true)
             .brotli(true)
-            .redirect(reqwest::redirect::Policy::none());
+            .redirect(wreq::redirect::Policy::none());
 
         if let Some(timeout) = self.timeout.or_default(|| Duration::from_secs(20)) {
             client_builder = client_builder.timeout(timeout);
@@ -1092,7 +1092,7 @@ impl RustyPipe {
     }
 
     /// Execute the given http request.
-    async fn http_request(&self, request: &Request) -> Result<Response, reqwest::Error> {
+    async fn http_request(&self, request: &Request) -> Result<Response, wreq::Error> {
         let mut last_resp = None;
         for n in 0..=self.inner.n_http_retries {
             let resp = self.inner.http.execute(request.try_clone().unwrap()).await;

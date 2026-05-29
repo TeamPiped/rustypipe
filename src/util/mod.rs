@@ -16,7 +16,7 @@ use std::{
 
 use fancy_regex::RegexBuilder;
 use once_cell::sync::Lazy;
-use rand::Rng;
+use rand::RngExt;
 use regex::Regex;
 use url::Url;
 

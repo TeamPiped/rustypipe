@@ -4,8 +4,8 @@ use std::fs::File;
 use std::io::BufReader;
 
 use path_macro::path;
-use reqwest::header;
-use reqwest::Client;
+use wreq::header;
+use wreq::Client;
 use serde::Deserialize;
 use serde_with::serde_as;
 use serde_with::VecSkipError;

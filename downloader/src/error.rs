@@ -11,7 +11,7 @@ pub enum DownloadError {
     RustyPipe(#[from] rustypipe::error::Error),
     /// Error from the HTTP client
     #[error("http error: {0}")]
-    Http(#[from] reqwest::Error),
+    Http(#[from] wreq::Error),
     /// 403 error trying to download video
     #[error("YouTube returned 403 error; visitor_data={}", .visitor_data.as_deref().unwrap_or_default())]
     Forbidden {
