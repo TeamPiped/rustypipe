@@ -4,35 +4,9 @@ use serde_with::{serde_as, DefaultOnError, VecSkipError};
 use crate::serializer::text::{AttributedText, Text, TextComponent, TextComponents};
 
 use super::{
-    url_endpoint::OnTapWrap, video_item::YouTubeListRenderer, Alert, ContentRenderer,
-    ContentsRenderer, ImageView, PageHeaderRendererContent, PhMetadataView, ResponseContext,
-    SectionList, Tab, TextBox, ThumbnailsWrap, TwoColumnBrowseResults,
+    url_endpoint::OnTapWrap, ContentRenderer, ContentsRenderer, ImageView,
+    PageHeaderRendererContent, PhMetadataView, TextBox, ThumbnailsWrap,
 };
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct Playlist {
-    pub contents: Option<TwoColumnBrowseResults<Tab<SectionList<ItemSection>>>>,
-    pub header: Option<Header>,
-    pub sidebar: Option<Sidebar>,
-    #[serde_as(as = "Option<DefaultOnError>")]
-    pub alerts: Option<Vec<Alert>>,
-    pub response_context: ResponseContext,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct ItemSection {
-    pub item_section_renderer: ContentsRenderer<PlaylistVideoListRenderer>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct PlaylistVideoListRenderer {
-    #[serde(alias = "richGridRenderer")]
-    pub playlist_video_list_renderer: YouTubeListRenderer,
-}
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]

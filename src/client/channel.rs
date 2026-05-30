@@ -1,47 +1,39 @@
 use std::fmt::Debug;
 
-use serde::Serialize;
 use time::OffsetDateTime;
 use url::Url;
 
 use crate::{
     client::response::YouTubeListItem,
     error::{Error, ExtractionError},
+    json::{JsonDoc, JsonNode, yt_response_visitor_data, yt_two_column_list_items_from_browse, ytq},
     model::{
         paginator::{ContinuationEndpoint, Paginator},
         Channel, ChannelInfo, PlaylistItem, Verification, VideoItem,
     },
     param::{ChannelOrder, ChannelVideoTab, Language},
+    request_body::ytbody,
     serializer::{text::TextComponent, MapResult},
     util::{self, timeago, ProtoBuilder},
 };
 
-use super::{
-    response, ClientType, MapRespCtx, MapRespOptions, MapResponse, QContinuation, RustyPipeQuery,
-};
-
-#[derive(Debug, Serialize)]
-#[serde(rename_all = "camelCase")]
-struct QChannel<'a> {
-    browse_id: &'a str,
-    params: ChannelTab,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    query: Option<&'a str>,
-}
-
-#[derive(Debug, Serialize)]
 enum ChannelTab {
-    #[serde(rename = "EgZ2aWRlb3PyBgQKAjoA")]
     Videos,
-    #[serde(rename = "EgZzaG9ydHPyBgUKA5oBAA%3D%3D")]
     Shorts,
-    #[serde(rename = "EgdzdHJlYW1z8gYECgJ6AA%3D%3D")]
     Live,
-    #[serde(rename = "EglwbGF5bGlzdHMgAQ%3D%3D")]
     Playlists,
-    #[serde(rename = "EgZzZWFyY2jyBgQKAloA")]
     Search,
 }
+
+use super::{
+    response,
+    ClientType, MapJsonResponse, MapRespCtx, MapRespOptions, RustyPipeQuery,
+};
+
+#[derive(Debug)]
+struct ChannelJson;
+#[derive(Debug)]
+struct ChannelAboutJson;
 
 impl From<ChannelVideoTab> for ChannelTab {
     fn from(value: ChannelVideoTab) -> Self {
@@ -49,6 +41,18 @@ impl From<ChannelVideoTab> for ChannelTab {
             ChannelVideoTab::Videos => Self::Videos,
             ChannelVideoTab::Shorts => Self::Shorts,
             ChannelVideoTab::Live => Self::Live,
+        }
+    }
+}
+
+impl ChannelTab {
+    fn params(self) -> &'static str {
+        match self {
+            Self::Videos => "EgZ2aWRlb3PyBgQKAjoA",
+            Self::Shorts => "EgZzaG9ydHPyBgUKA5oBAA%3D%3D",
+            Self::Live => "EgdzdHJlYW1z8gYECgJ6AA%3D%3D",
+            Self::Playlists => "EglwbGF5bGlzdHMgAQ%3D%3D",
+            Self::Search => "EgZzZWFyY2jyBgQKAloA",
         }
     }
 }
@@ -62,13 +66,13 @@ impl RustyPipeQuery {
         operation: &str,
     ) -> Result<Channel<Paginator<VideoItem>>, Error> {
         let channel_id = channel_id.as_ref();
-        let request_body = QChannel {
-            browse_id: channel_id,
-            params,
-            query,
-        };
+        let request_body = ytbody!({
+            "browseId": channel_id,
+            "params": params.params(),
+            ? "query": query,
+        });
 
-        self.execute_request::<response::Channel, _, _>(
+        self.execute_request::<ChannelJson, _, _>(
             ClientType::Desktop,
             operation,
             channel_id.as_ref(),
@@ -153,13 +157,12 @@ impl RustyPipeQuery {
         channel_id: S,
     ) -> Result<Channel<Paginator<PlaylistItem>>, Error> {
         let channel_id = channel_id.as_ref();
-        let request_body = QChannel {
-            browse_id: channel_id,
-            params: ChannelTab::Playlists,
-            query: None,
-        };
+        let request_body = ytbody!({
+            "browseId": channel_id,
+            "params": ChannelTab::Playlists.params(),
+        });
 
-        self.execute_request::<response::Channel, _, _>(
+        self.execute_request::<ChannelJson, _, _>(
             ClientType::Desktop,
             "channel_playlists",
             channel_id,
@@ -176,11 +179,11 @@ impl RustyPipeQuery {
         channel_id: S,
     ) -> Result<ChannelInfo, Error> {
         let channel_id = channel_id.as_ref();
-        let request_body = QContinuation {
-            continuation: &channel_info_ctoken(channel_id, &random_target()),
-        };
+        let request_body = ytbody!({
+            "continuation": channel_info_ctoken(channel_id, &random_target()),
+        });
 
-        self.execute_request_ctx::<response::ChannelAbout, _, _>(
+        self.execute_request_ctx::<ChannelAboutJson, _, _>(
             ClientType::Desktop,
             "channel_info",
             channel_id,
@@ -195,164 +198,111 @@ impl RustyPipeQuery {
     }
 }
 
-impl MapResponse<Channel<Paginator<VideoItem>>> for response::Channel {
-    fn map_response(
-        self,
-        ctx: &MapRespCtx<'_>,
-    ) -> Result<MapResult<Channel<Paginator<VideoItem>>>, ExtractionError> {
-        let content = map_channel_content(ctx.id, self.contents, self.alerts)?;
-        let visitor_data = self
-            .response_context
-            .visitor_data
-            .or_else(|| ctx.visitor_data.map(str::to_owned));
-
-        let channel_data = map_channel(
-            MapChannelData {
-                header: self.header,
-                metadata: self.metadata,
-                microformat: self.microformat,
-                visitor_data: visitor_data.clone(),
-                has_shorts: content.has_shorts,
-                has_live: content.has_live,
-            },
-            ctx,
-        )?;
-
-        let mut mapper = response::YouTubeListMapper::<VideoItem>::with_channel(
-            ctx.lang,
-            &channel_data.c,
-            channel_data.warnings,
-        );
-        mapper.map_response(content.content);
-        let p = Paginator::new_ext(
-            None,
-            mapper.items,
-            mapper.ctoken,
-            visitor_data,
-            ContinuationEndpoint::Browse,
-            false,
-        );
-
-        Ok(MapResult {
-            c: combine_channel_data(channel_data.c, p),
-            warnings: mapper.warnings,
-        })
-    }
+fn json_alerts_to_err(id: &str, root: &JsonNode<'_>) -> ExtractionError {
+    let alerts = root.query(ytq!(.alerts)).map(|node| {
+        let (alerts, _) = node.deserialize_items_lossy::<response::Alert>();
+        alerts
+    });
+    response::alerts_to_err(id, alerts)
 }
 
-impl MapResponse<Channel<Paginator<PlaylistItem>>> for response::Channel {
-    fn map_response(
-        self,
-        ctx: &MapRespCtx<'_>,
-    ) -> Result<MapResult<Channel<Paginator<PlaylistItem>>>, ExtractionError> {
-        let content = map_channel_content(ctx.id, self.contents, self.alerts)?;
-        let visitor_data = self
-            .response_context
-            .visitor_data
-            .or_else(|| ctx.visitor_data.map(str::to_owned));
-
-        let channel_data = map_channel(
-            MapChannelData {
-                header: self.header,
-                metadata: self.metadata,
-                microformat: self.microformat,
-                visitor_data,
-                has_shorts: content.has_shorts,
-                has_live: content.has_live,
-            },
-            ctx,
-        )?;
-
-        let mut mapper = response::YouTubeListMapper::<PlaylistItem>::with_channel(
-            ctx.lang,
-            &channel_data.c,
-            channel_data.warnings,
-        );
-        mapper.map_response(content.content);
-        let p = Paginator::new(None, mapper.items, mapper.ctoken);
-
-        Ok(MapResult {
-            c: combine_channel_data(channel_data.c, p),
-            warnings: mapper.warnings,
-        })
-    }
+fn tab_renderer<'a>(tab: &JsonNode<'a>) -> Option<JsonNode<'a>> {
+    tab.query(ytq!(.tabRenderer))
+        .or_else(|| tab.query(ytq!(.expandableTabRenderer.tabRenderer)))
 }
 
-impl MapResponse<ChannelInfo> for response::ChannelAbout {
-    fn map_response(self, ctx: &MapRespCtx<'_>) -> Result<MapResult<ChannelInfo>, ExtractionError> {
-        // Channel info is always fetched in English. There is no localized data
-        // and it allows parsing the country name.
-        let lang = Language::En;
+fn tab_endpoint_url(tab: &JsonNode<'_>) -> Option<String> {
+    tab_renderer(tab).and_then(|tr| {
+        tr.query(ytq!(.endpoint.commandMetadata.webCommandMetadata.url))
+            .and_then(|url| url.as_str())
+    })
+}
 
-        let ep = match self {
-            response::ChannelAbout::ReceivedEndpoints {
-                on_response_received_endpoints,
-            } => on_response_received_endpoints
-                .into_iter()
-                .next()
-                .ok_or(ExtractionError::InvalidData("no received endpoint".into()))?,
-            response::ChannelAbout::Content { contents } => {
-                // Handle errors (e.g. age restriction) when regular channel content was returned
-                map_channel_content(ctx.id, contents, None)?;
-                return Err(ExtractionError::InvalidData(
-                    "could not extract aboutData".into(),
-                ));
-            }
-        };
-        let continuations = ep.append_continuation_items_action.continuation_items;
-        let about = continuations
-            .c
-            .into_iter()
-            .next()
-            .ok_or(ExtractionError::InvalidData("no aboutChannel data".into()))?
-            .about_channel_renderer
-            .metadata
-            .about_channel_view_model;
-        let mut warnings = continuations.warnings;
+struct MappedChannelContent<'a> {
+    list_node: Option<JsonNode<'a>>,
+    has_shorts: bool,
+    has_live: bool,
+}
 
-        let links = about
-            .links
-            .into_iter()
-            .filter_map(|l| {
-                let lv = l.channel_external_link_view_model;
-                if let TextComponent::Web { url, .. } = lv.link {
-                    Some((String::from(lv.title), util::sanitize_yt_url(&url)))
-                } else {
-                    None
+fn map_channel_content<'a>(
+    id: &str,
+    root: &JsonNode<'a>,
+) -> Result<MappedChannelContent<'a>, ExtractionError> {
+    let browse = root
+        .query(ytq!(.contents.twoColumnBrowseResultsRenderer))
+        .ok_or_else(|| json_alerts_to_err(id, root))?;
+    let tabs = browse
+        .first_of(&[ytq!(.tabs), ytq!(.contents)])
+        .map(|node| node.items())
+        .unwrap_or_default();
+
+    let mut has_shorts = false;
+    let mut has_live = false;
+    let mut featured_tab = false;
+
+    for tab in &tabs {
+        if let Some(url) = tab_endpoint_url(tab) {
+            let selected = tab_renderer(tab)
+                .and_then(|tr| tr.query(ytq!(.selected)))
+                .and_then(|node| node.as_bool())
+                .unwrap_or(false);
+            if selected && url.ends_with("/featured") {
+                if tab_renderer(tab)
+                    .and_then(|tr| {
+                        tr.query(ytq!(.content.sectionListRenderer))
+                            .or_else(|| tr.query(ytq!(.content.richGridRenderer)))
+                    })
+                    .is_some()
+                {
+                    featured_tab = true;
                 }
-            })
-            .collect::<Vec<_>>();
-
-        Ok(MapResult {
-            c: ChannelInfo {
-                id: about.channel_id,
-                url: about.canonical_channel_url,
-                description: about.description,
-                subscriber_count: about
-                    .subscriber_count_text
-                    .and_then(|txt| util::parse_large_numstr_or_warn(&txt, lang, &mut warnings)),
-                video_count: about
-                    .video_count_text
-                    .and_then(|txt| util::parse_numeric_or_warn(&txt, &mut warnings)),
-                create_date: about.joined_date_text.and_then(|txt| {
-                    timeago::parse_textual_date_or_warn(lang, ctx.utc_offset, &txt, &mut warnings)
-                        .map(OffsetDateTime::date)
-                }),
-                view_count: about
-                    .view_count_text
-                    .and_then(|txt| util::parse_numeric_or_warn(&txt, &mut warnings)),
-                country: about.country.and_then(|c| util::country_from_name(&c)),
-                links,
-            },
-            warnings,
-        })
+            } else if url.ends_with("/shorts") {
+                has_shorts = true;
+            } else if url.ends_with("/streams") {
+                has_live = true;
+            }
+        } else if let Some(sl) = tab_renderer(tab).and_then(|tr| {
+            tr.query(ytq!(.content.sectionListRenderer.contents))
+        }) {
+            if let Some(first) = sl.items().first() {
+                if let Ok(YouTubeListItem::ChannelAgeGateRenderer {
+                    channel_title,
+                    main_text,
+                }) = first.deserialize()
+                {
+                    return Err(ExtractionError::Unavailable {
+                        reason: crate::error::UnavailabilityReason::AgeRestricted,
+                        msg: format!("{channel_title}: {main_text}"),
+                    });
+                }
+            }
+        }
     }
+
+    let list_node = if featured_tab {
+        None
+    } else {
+        Some(
+            yt_two_column_list_items_from_browse(&browse).ok_or_else(|| {
+                ExtractionError::NotFound {
+                    id: id.to_owned(),
+                    msg: "no tabs".into(),
+                }
+            })?,
+        )
+    };
+
+    Ok(MappedChannelContent {
+        list_node,
+        has_shorts,
+        has_live,
+    })
 }
 
 struct MapChannelData {
-    header: Option<response::channel::Header>,
-    metadata: Option<response::channel::Metadata>,
-    microformat: Option<response::channel::Microformat>,
+    header: response::channel::Header,
+    metadata: response::channel::ChannelMetadataRenderer,
+    microformat: response::channel::MicroformatDataRenderer,
     visitor_data: Option<String>,
     has_shorts: bool,
     has_live: bool,
@@ -362,30 +312,15 @@ fn map_channel(
     d: MapChannelData,
     ctx: &MapRespCtx<'_>,
 ) -> Result<MapResult<Channel<()>>, ExtractionError> {
-    let header = d.header.ok_or_else(|| ExtractionError::NotFound {
-        id: ctx.id.to_owned(),
-        msg: "no header".into(),
-    })?;
-    let metadata = d
-        .metadata
-        .ok_or_else(|| ExtractionError::NotFound {
-            id: ctx.id.to_owned(),
-            msg: "no metadata".into(),
-        })?
-        .channel_metadata_renderer;
-    let microformat = d.microformat.ok_or_else(|| ExtractionError::NotFound {
-        id: ctx.id.to_owned(),
-        msg: "no microformat".into(),
-    })?;
-
-    if metadata.external_id != ctx.id {
+    if d.metadata.external_id != ctx.id {
         return Err(ExtractionError::WrongResult(format!(
             "got wrong channel id {}, expected {}",
-            metadata.external_id, ctx.id
+            d.metadata.external_id, ctx.id
         )));
     }
 
-    let handle = metadata
+    let handle = d
+        .metadata
         .vanity_channel_url
         .as_ref()
         .and_then(|url| Url::parse(url).ok())
@@ -398,10 +333,10 @@ fn map_channel(
     let mut warnings = Vec::new();
 
     Ok(MapResult {
-        c: match header {
+        c: match d.header {
             response::channel::Header::C4TabbedHeaderRenderer(header) => Channel {
-                id: metadata.external_id,
-                name: metadata.title,
+                id: d.metadata.external_id,
+                name: d.metadata.title,
                 handle,
                 subscriber_count: header.subscriber_count_text.and_then(|txt| {
                     util::parse_large_numstr_or_warn(&txt, ctx.lang, &mut warnings)
@@ -409,8 +344,8 @@ fn map_channel(
                 video_count: None,
                 avatar: header.avatar.into(),
                 verification: header.badges.into(),
-                description: metadata.description,
-                tags: microformat.microformat_data_renderer.tags,
+                description: d.metadata.description,
+                tags: d.microformat.tags,
                 banner: header.banner.into(),
                 has_shorts: d.has_shorts,
                 has_live: d.has_live,
@@ -420,18 +355,18 @@ fn map_channel(
             response::channel::Header::CarouselHeaderRenderer(carousel) => {
                 let hdata = carousel.contents.into_iter().find_map(|item| {
                     match item {
-                response::channel::CarouselHeaderRendererItem::TopicChannelDetailsRenderer {
-                    subscriber_count_text,
-                    subtitle,
-                    avatar,
-                } => Some((subscriber_count_text.or(subtitle), avatar)),
-                response::channel::CarouselHeaderRendererItem::None => None,
-            }
+                        response::channel::CarouselHeaderRendererItem::TopicChannelDetailsRenderer {
+                            subscriber_count_text,
+                            subtitle,
+                            avatar,
+                        } => Some((subscriber_count_text.or(subtitle), avatar)),
+                        response::channel::CarouselHeaderRendererItem::None => None,
+                    }
                 });
 
                 Channel {
-                    id: metadata.external_id,
-                    name: metadata.title,
+                    id: d.metadata.external_id,
+                    name: d.metadata.title,
                     handle,
                     subscriber_count: hdata.as_ref().and_then(|hdata| {
                         hdata.0.as_ref().and_then(|txt| {
@@ -440,11 +375,9 @@ fn map_channel(
                     }),
                     video_count: None,
                     avatar: hdata.map(|hdata| hdata.1.into()).unwrap_or_default(),
-                    // Since the carousel header is only used for YT-internal channels or special events
-                    // (World Cup, Coachella, etc.) we can assume the channel to be verified
                     verification: crate::model::Verification::Verified,
-                    description: metadata.description,
-                    tags: microformat.microformat_data_renderer.tags,
+                    description: d.metadata.description,
+                    tags: d.microformat.tags,
                     banner: Vec::new(),
                     has_shorts: d.has_shorts,
                     has_live: d.has_live,
@@ -454,7 +387,6 @@ fn map_channel(
             }
             response::channel::Header::PageHeaderRenderer(header) => {
                 let hdata = header.content.page_header_view_model;
-                // channel handle - subscriber count - video count
                 let md_rows = hdata.metadata.content_metadata_view_model.metadata_rows;
                 let (sub_part, vc_part) = if md_rows.len() > 1 {
                     let mp = &md_rows[1].metadata_parts;
@@ -473,8 +405,8 @@ fn map_channel(
                 });
 
                 Channel {
-                    id: metadata.external_id,
-                    name: metadata.title,
+                    id: d.metadata.external_id,
+                    name: d.metadata.title,
                     handle: handle.or_else(|| {
                         md_rows
                             .first()
@@ -492,8 +424,8 @@ fn map_channel(
                         .image
                         .into(),
                     verification: hdata.title.map(Verification::from).unwrap_or_default(),
-                    description: metadata.description,
-                    tags: microformat.microformat_data_renderer.tags,
+                    description: d.metadata.description,
+                    tags: d.microformat.tags,
                     banner: hdata.banner.image_banner_view_model.image.into(),
                     has_shorts: d.has_shorts,
                     has_live: d.has_live,
@@ -506,98 +438,47 @@ fn map_channel(
     })
 }
 
-struct MappedChannelContent {
-    content: MapResult<Vec<response::YouTubeListItem>>,
-    has_shorts: bool,
-    has_live: bool,
-}
+fn map_channel_shell<'a>(
+    root: &JsonNode<'a>,
+    ctx: &MapRespCtx<'_>,
+    content: MappedChannelContent<'a>,
+) -> Result<(MapResult<Channel<()>>, Option<JsonNode<'a>>), ExtractionError> {
+    let header = root
+        .query(ytq!(.header))
+        .ok_or_else(|| ExtractionError::NotFound {
+            id: ctx.id.to_owned(),
+            msg: "no header".into(),
+        })?
+        .deserialize::<response::channel::Header>()?;
+    let metadata = root
+        .query(ytq!(.metadata.channelMetadataRenderer))
+        .ok_or_else(|| ExtractionError::NotFound {
+            id: ctx.id.to_owned(),
+            msg: "no metadata".into(),
+        })?
+        .deserialize::<response::channel::ChannelMetadataRenderer>()?;
+    let microformat = root
+        .query(ytq!(.microformat.microformatDataRenderer))
+        .ok_or_else(|| ExtractionError::NotFound {
+            id: ctx.id.to_owned(),
+            msg: "no microformat".into(),
+        })?
+        .deserialize::<response::channel::MicroformatDataRenderer>()?;
+    let visitor_data = yt_response_visitor_data(root).or_else(|| ctx.visitor_data.map(str::to_owned));
 
-fn map_channel_content(
-    id: &str,
-    contents: Option<response::channel::Contents>,
-    alerts: Option<Vec<response::Alert>>,
-) -> Result<MappedChannelContent, ExtractionError> {
-    match contents {
-        Some(contents) => {
-            let tabs = contents.two_column_browse_results_renderer.contents;
-            let cmp_url_suffix = |endpoint: &response::channel::ChannelTabEndpoint,
-                                  expect: &str| {
-                endpoint
-                    .command_metadata
-                    .web_command_metadata
-                    .url
-                    .ends_with(expect)
-            };
+    let channel_data = map_channel(
+        MapChannelData {
+            header,
+            metadata,
+            microformat,
+            visitor_data: visitor_data.clone(),
+            has_shorts: content.has_shorts,
+            has_live: content.has_live,
+        },
+        ctx,
+    )?;
 
-            let mut has_shorts = false;
-            let mut has_live = false;
-            let mut featured_tab = false;
-
-            for tab in &tabs {
-                if let Some(endpoint) = &tab.tab_renderer.endpoint {
-                    if cmp_url_suffix(endpoint, "/featured")
-                        && (tab.tab_renderer.content.section_list_renderer.is_some()
-                            || tab.tab_renderer.content.rich_grid_renderer.is_some())
-                    {
-                        featured_tab = true;
-                    } else if cmp_url_suffix(endpoint, "/shorts") {
-                        has_shorts = true;
-                    } else if cmp_url_suffix(endpoint, "/streams") {
-                        has_live = true;
-                    }
-                } else {
-                    // Check for age gate
-                    if let Some(YouTubeListItem::ChannelAgeGateRenderer {
-                        channel_title,
-                        main_text,
-                    }) = &tab
-                        .tab_renderer
-                        .content
-                        .section_list_renderer
-                        .as_ref()
-                        .and_then(|c| c.contents.c.first())
-                    {
-                        return Err(ExtractionError::Unavailable {
-                            reason: crate::error::UnavailabilityReason::AgeRestricted,
-                            msg: format!("{channel_title}: {main_text}"),
-                        });
-                    }
-                }
-            }
-
-            let channel_content = tabs
-                .into_iter()
-                .filter(|t| t.tab_renderer.endpoint.is_some())
-                .find_map(|tab| {
-                    tab.tab_renderer
-                        .content
-                        .rich_grid_renderer
-                        .or(tab.tab_renderer.content.section_list_renderer)
-                });
-
-            // YouTube may show the "Featured" tab if the requested tab is empty/does not exist
-            let content = if featured_tab {
-                MapResult::default()
-            } else {
-                match channel_content {
-                    Some(list) => list.contents,
-                    None => {
-                        return Err(ExtractionError::NotFound {
-                            id: id.to_owned(),
-                            msg: "no tabs".into(),
-                        });
-                    }
-                }
-            };
-
-            Ok(MappedChannelContent {
-                content,
-                has_shorts,
-                has_live,
-            })
-        }
-        None => Err(response::alerts_to_err(id, alerts)),
-    }
+    Ok((channel_data, content.list_node))
 }
 
 fn combine_channel_data<T>(channel_data: Channel<()>, content: T) -> Channel<T> {
@@ -616,6 +497,147 @@ fn combine_channel_data<T>(channel_data: Channel<()>, content: T) -> Channel<T> 
         has_live: channel_data.has_live,
         visitor_data: channel_data.visitor_data,
         content,
+    }
+}
+
+impl MapJsonResponse<Channel<Paginator<VideoItem>>> for ChannelJson {
+    fn map_json_response(
+        json: &JsonDoc,
+        ctx: &MapRespCtx<'_>,
+    ) -> Result<MapResult<Channel<Paginator<VideoItem>>>, ExtractionError> {
+        json.with_root(|root| {
+            let content = map_channel_content(ctx.id, &root)?;
+            let (channel_data, list_node) = map_channel_shell(&root, ctx, content)?;
+            let visitor_data = channel_data.c.visitor_data.clone();
+
+            let mut mapper = response::YouTubeListMapper::<VideoItem>::with_channel(
+                ctx.lang,
+                &channel_data.c,
+                channel_data.warnings,
+            );
+            if let Some(node) = list_node {
+                mapper.map_response_node(&node);
+            }
+            let p = Paginator::new_ext(
+                None,
+                mapper.items,
+                mapper.ctoken,
+                visitor_data,
+                ContinuationEndpoint::Browse,
+                false,
+            );
+
+            Ok(MapResult {
+                c: combine_channel_data(channel_data.c, p),
+                warnings: mapper.warnings,
+            })
+        })
+    }
+}
+
+impl MapJsonResponse<Channel<Paginator<PlaylistItem>>> for ChannelJson {
+    fn map_json_response(
+        json: &JsonDoc,
+        ctx: &MapRespCtx<'_>,
+    ) -> Result<MapResult<Channel<Paginator<PlaylistItem>>>, ExtractionError> {
+        json.with_root(|root| {
+            let content = map_channel_content(ctx.id, &root)?;
+            let (channel_data, list_node) = map_channel_shell(&root, ctx, content)?;
+            let mut mapper = response::YouTubeListMapper::<PlaylistItem>::with_channel(
+                ctx.lang,
+                &channel_data.c,
+                channel_data.warnings,
+            );
+            if let Some(node) = list_node {
+                mapper.map_response_node(&node);
+            }
+            let p = Paginator::new(None, mapper.items, mapper.ctoken);
+
+            Ok(MapResult {
+                c: combine_channel_data(channel_data.c, p),
+                warnings: mapper.warnings,
+            })
+        })
+    }
+}
+
+impl MapJsonResponse<ChannelInfo> for ChannelAboutJson {
+    fn map_json_response(
+        json: &JsonDoc,
+        ctx: &MapRespCtx<'_>,
+    ) -> Result<MapResult<ChannelInfo>, ExtractionError> {
+        json.with_root(|root| {
+            let lang = Language::En;
+
+            if let Some(endpoints) = root.query(ytq!(.onResponseReceivedEndpoints)) {
+                let (eps, _) = endpoints
+                    .deserialize_items_lossy::<response::ContinuationActionWrap<
+                        response::channel::AboutChannelRendererWrap,
+                    >>();
+                let ep = eps
+                    .into_iter()
+                    .next()
+                    .ok_or(ExtractionError::InvalidData("no received endpoint".into()))?;
+                let continuations = ep.append_continuation_items_action.continuation_items;
+                let about = continuations
+                    .c
+                    .into_iter()
+                    .next()
+                    .ok_or(ExtractionError::InvalidData("no aboutChannel data".into()))?
+                    .about_channel_renderer
+                    .metadata
+                    .about_channel_view_model;
+                let mut warnings = continuations.warnings;
+
+                let links = about
+                    .links
+                    .into_iter()
+                    .filter_map(|l| {
+                        let lv = l.channel_external_link_view_model;
+                        if let TextComponent::Web { url, .. } = lv.link {
+                            Some((String::from(lv.title), util::sanitize_yt_url(&url)))
+                        } else {
+                            None
+                        }
+                    })
+                    .collect::<Vec<_>>();
+
+                return Ok(MapResult {
+                    c: ChannelInfo {
+                        id: about.channel_id,
+                        url: about.canonical_channel_url,
+                        description: about.description,
+                        subscriber_count: about
+                            .subscriber_count_text
+                            .and_then(|txt| util::parse_large_numstr_or_warn(&txt, lang, &mut warnings)),
+                        video_count: about
+                            .video_count_text
+                            .and_then(|txt| util::parse_numeric_or_warn(&txt, &mut warnings)),
+                        create_date: about.joined_date_text.and_then(|txt| {
+                            timeago::parse_textual_date_or_warn(lang, ctx.utc_offset, &txt, &mut warnings)
+                                .map(OffsetDateTime::date)
+                        }),
+                        view_count: about
+                            .view_count_text
+                            .and_then(|txt| util::parse_numeric_or_warn(&txt, &mut warnings)),
+                        country: about.country.and_then(|c| util::country_from_name(&c)),
+                        links,
+                    },
+                    warnings,
+                });
+            }
+
+            if root.query(ytq!(.contents)).is_some() {
+                map_channel_content(ctx.id, &root)?;
+                return Err(ExtractionError::InvalidData(
+                    "could not extract aboutData".into(),
+                ));
+            }
+
+            Err(ExtractionError::InvalidData(
+                "could not extract aboutData".into(),
+            ))
+        })
     }
 }
 
@@ -703,21 +725,26 @@ fn random_target() -> String {
 
 #[cfg(test)]
 mod tests {
-    use std::{fs::File, io::BufReader};
+    use std::fs;
 
     use path_macro::path;
     use rstest::rstest;
 
     use crate::{
-        client::{response, MapRespCtx, MapResponse},
         error::{ExtractionError, UnavailabilityReason},
         model::{paginator::Paginator, Channel, ChannelInfo, PlaylistItem, VideoItem},
-        param::{ChannelOrder, ChannelVideoTab},
         serializer::MapResult,
         util::tests::TESTFILES,
     };
 
-    use super::{channel_info_ctoken, order_ctoken};
+    use super::{
+        channel_info_ctoken, order_ctoken, ChannelAboutJson, ChannelJson, MapJsonResponse,
+        MapRespCtx,
+    };
+    use crate::{
+        json::JsonDoc,
+        param::{ChannelOrder, ChannelVideoTab},
+    };
 
     #[rstest]
     #[case::base("videos_base", "UC2DjFE7Xf11URZqWBigcVOQ")]
@@ -736,12 +763,9 @@ mod tests {
     #[case::lockup("shorts_20240910_lockup", "UCh8gHdtzO2tXd593_bjErWg")]
     fn map_channel_videos(#[case] name: &str, #[case] id: &str) {
         let json_path = path!(*TESTFILES / "channel" / format!("channel_{name}.json"));
-        let json_file = File::open(json_path).unwrap();
-
-        let channel: response::Channel =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let json = JsonDoc::new(fs::read_to_string(json_path).unwrap());
         let map_res: MapResult<Channel<Paginator<VideoItem>>> =
-            channel.map_response(&MapRespCtx::test(id)).unwrap();
+            ChannelJson::map_json_response(&json, &MapRespCtx::test(id)).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -763,12 +787,9 @@ mod tests {
     #[test]
     fn channel_agegate() {
         let json_path = path!(*TESTFILES / "channel" / format!("channel_agegate.json"));
-        let json_file = File::open(json_path).unwrap();
-
-        let channel: response::Channel =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let json = JsonDoc::new(fs::read_to_string(json_path).unwrap());
         let res: Result<MapResult<Channel<Paginator<VideoItem>>>, ExtractionError> =
-            channel.map_response(&MapRespCtx::test("UCbfnHqxXs_K3kvaH-WlNlig"));
+            ChannelJson::map_json_response(&json, &MapRespCtx::test("UCbfnHqxXs_K3kvaH-WlNlig"));
         if let Err(ExtractionError::Unavailable { reason, msg }) = res {
             assert_eq!(reason, UnavailabilityReason::AgeRestricted);
             assert!(msg.starts_with("Laphroaig Whisky: "));
@@ -782,13 +803,10 @@ mod tests {
     #[case::lockup("20241109_lockup")]
     fn map_channel_playlists(#[case] name: &str) {
         let json_path = path!(*TESTFILES / "channel" / format!("channel_playlists_{name}.json"));
-        let json_file = File::open(json_path).unwrap();
-
-        let channel: response::Channel =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res: MapResult<Channel<Paginator<PlaylistItem>>> = channel
-            .map_response(&MapRespCtx::test("UC2DjFE7Xf11URZqWBigcVOQ"))
-            .unwrap();
+        let json = JsonDoc::new(fs::read_to_string(json_path).unwrap());
+        let map_res: MapResult<Channel<Paginator<PlaylistItem>>> =
+            ChannelJson::map_json_response(&json, &MapRespCtx::test("UC2DjFE7Xf11URZqWBigcVOQ"))
+                .unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -801,13 +819,10 @@ mod tests {
     #[rstest]
     fn map_channel_info() {
         let json_path = path!(*TESTFILES / "channel" / "channel_info.json");
-        let json_file = File::open(json_path).unwrap();
-
-        let channel: response::ChannelAbout =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res: MapResult<ChannelInfo> = channel
-            .map_response(&MapRespCtx::test("UC2DjFE7Xf11U-RZqWBigcVOQ"))
-            .unwrap();
+        let json = JsonDoc::new(fs::read_to_string(json_path).unwrap());
+        let map_res: MapResult<ChannelInfo> =
+            ChannelAboutJson::map_json_response(&json, &MapRespCtx::test("UC2DjFE7Xf11U-RZqWBigcVOQ"))
+                .unwrap();
 
         assert!(
             map_res.warnings.is_empty(),

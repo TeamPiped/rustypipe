@@ -3,17 +3,22 @@ use std::fmt::Debug;
 use crate::{
     client::{
         response::{self, music_item::MusicListMapper},
-        ClientType, MapResponse, QBrowseParams, RustyPipeQuery,
+        ClientType, MapJsonResponse, RustyPipeQuery,
     },
     error::{Error, ExtractionError},
+    json::{JsonDoc, JsonNode, yt_continuation, ytq},
     model::{
         paginator::{ContinuationEndpoint, Paginator},
         AlbumItem, ArtistItem, HistoryItem, MusicPlaylist, MusicPlaylistItem, TrackItem,
     },
+    request_body::ytbody,
     serializer::MapResult,
 };
 
-use super::{MapRespCtx, MapRespOptions, QContinuation};
+use super::{pagination::MusicContinuationJson, MapRespCtx, MapRespOptions};
+
+#[derive(Debug)]
+struct MusicHistoryJson;
 
 impl RustyPipeQuery {
     /// Get a list of tracks from YouTube Music which the current user recently played
@@ -21,14 +26,14 @@ impl RustyPipeQuery {
     /// Requires authentication cookies.
     #[tracing::instrument(skip(self), level = "error")]
     pub async fn music_history(&self) -> Result<Paginator<HistoryItem<TrackItem>>, Error> {
-        let request_body = QBrowseParams {
-            browse_id: "FEmusic_history",
-            params: "oggECgIIAQ%3D%3D",
-        };
+        let request_body = ytbody!({
+            "browseId": "FEmusic_history",
+            "params": "oggECgIIAQ%3D%3D",
+        });
 
         self.clone()
             .authenticated()
-            .execute_request::<response::MusicHistory, _, _>(
+            .execute_request::<MusicHistoryJson, _, _>(
                 ClientType::DesktopMusic,
                 "music_history",
                 "",
@@ -46,13 +51,13 @@ impl RustyPipeQuery {
         visitor_data: Option<&str>,
     ) -> Result<Paginator<HistoryItem<TrackItem>>, Error> {
         let ctoken = ctoken.as_ref();
-        let request_body = QContinuation {
-            continuation: ctoken,
-        };
+        let request_body = ytbody!({
+            "continuation": ctoken,
+        });
 
         self.clone()
             .authenticated()
-            .execute_request_ctx::<response::MusicContinuation, _, _>(
+            .execute_request_ctx::<MusicContinuationJson, _, _>(
                 ClientType::Desktop,
                 "history_continuation",
                 ctoken,
@@ -143,63 +148,86 @@ impl RustyPipeQuery {
     }
 }
 
-impl MapResponse<Paginator<HistoryItem<TrackItem>>> for response::MusicHistory {
-    fn map_response(
-        self,
+fn yt_music_history_sections<'a>(
+    root: &'a JsonNode<'a>,
+) -> Result<JsonNode<'a>, ExtractionError> {
+    root.first_of(&[
+        ytq!(
+            .contents.singleColumnBrowseResultsRenderer.tabs[0].tabRenderer.content
+                .sectionListRenderer.contents
+        ),
+        ytq!(
+            .contents.singleColumnBrowseResultsRenderer.contents[0].tabRenderer.content
+                .sectionListRenderer.contents
+        ),
+        ytq!(
+            .contents.twoColumnBrowseResultsRenderer.secondaryContents.sectionListRenderer
+                .contents
+        ),
+    ])
+    .ok_or_else(|| ExtractionError::InvalidData("no music history contents".into()))
+}
+
+fn yt_music_history_continuations<'a>(root: &'a JsonNode<'a>) -> Option<JsonNode<'a>> {
+    root.first_of(&[
+        ytq!(
+            .contents.singleColumnBrowseResultsRenderer.tabs[0].tabRenderer.content
+                .sectionListRenderer.continuations
+        ),
+        ytq!(
+            .contents.singleColumnBrowseResultsRenderer.contents[0].tabRenderer.content
+                .sectionListRenderer.continuations
+        ),
+        ytq!(
+            .contents.twoColumnBrowseResultsRenderer.secondaryContents.sectionListRenderer
+                .continuations
+        ),
+    ])
+}
+
+impl MapJsonResponse<Paginator<HistoryItem<TrackItem>>> for MusicHistoryJson {
+    fn map_json_response(
+        json: &JsonDoc,
         ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<Paginator<HistoryItem<TrackItem>>>, ExtractionError> {
-        let contents = match self.contents {
-            response::music_playlist::Contents::SingleColumnBrowseResultsRenderer(c) => {
-                c.contents
-                    .into_iter()
-                    .next()
-                    .ok_or(ExtractionError::InvalidData("no content".into()))?
-                    .tab_renderer
-                    .content
-                    .section_list_renderer
+        json.with_root(|root| {
+            let contents = yt_music_history_sections(&root)?;
+            let continuations = yt_music_history_continuations(&root);
+            let mut map_res = MapResult::default();
+
+            for shelf in contents.items() {
+                let Some(shelf) = shelf.query(ytq!(.musicShelfRenderer)) else {
+                    continue;
+                };
+                if let Ok(shelf) = shelf.deserialize::<response::music_item::MusicShelf>() {
+                    let mut mapper = MusicListMapper::new(ctx.lang);
+                    mapper.map_response(shelf.contents);
+                    mapper.conv_history_items(shelf.title, ctx.utc_offset, &mut map_res);
+                }
             }
-            response::music_playlist::Contents::TwoColumnBrowseResultsRenderer {
-                secondary_contents,
-                ..
-            } => secondary_contents.section_list_renderer,
-        };
 
-        let mut map_res = MapResult::default();
+            let ctoken = continuations
+                .and_then(|cont| cont.items().into_iter().next())
+                .and_then(|cont| yt_continuation(&cont));
 
-        for shelf in contents.contents {
-            let shelf = if let response::music_item::ItemSection::MusicShelfRenderer(s) = shelf {
-                s
-            } else {
-                continue;
-            };
-            let mut mapper = MusicListMapper::new(ctx.lang);
-            mapper.map_response(shelf.contents);
-            mapper.conv_history_items(shelf.title, ctx.utc_offset, &mut map_res);
-        }
-
-        let ctoken = contents
-            .continuations
-            .into_iter()
-            .next()
-            .map(|c| c.next_continuation_data.continuation);
-
-        Ok(MapResult {
-            c: Paginator::new_ext(
-                None,
-                map_res.c,
-                ctoken,
-                ctx.visitor_data.map(str::to_owned),
-                ContinuationEndpoint::MusicBrowse,
-                true,
-            ),
-            warnings: map_res.warnings,
+            Ok(MapResult {
+                c: Paginator::new_ext(
+                    None,
+                    map_res.c,
+                    ctoken,
+                    ctx.visitor_data.map(str::to_owned),
+                    ContinuationEndpoint::MusicBrowse,
+                    true,
+                ),
+                warnings: map_res.warnings,
+            })
         })
     }
 }
 
 #[cfg(test)]
 mod tests {
-    use std::{fs::File, io::BufReader};
+    use std::fs;
 
     use path_macro::path;
 
@@ -210,11 +238,8 @@ mod tests {
     #[test]
     fn map_history() {
         let json_path = path!(*TESTFILES / "music_userdata" / "music_history.json");
-        let json_file = File::open(json_path).unwrap();
-
-        let history: response::MusicHistory =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res = history.map_response(&MapRespCtx::test("")).unwrap();
+        let json = JsonDoc::new(fs::read_to_string(json_path).unwrap());
+        let map_res = MusicHistoryJson::map_json_response(&json, &MapRespCtx::test("")).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),

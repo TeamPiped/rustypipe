@@ -1,24 +1,21 @@
 use std::{borrow::Cow, fmt::Debug};
 
-use serde::Serialize;
-
 use crate::{
     error::{Error, ExtractionError},
+    json::{JsonDoc, ytq},
     model::UrlTarget,
+    request_body::ytbody,
     serializer::MapResult,
     util,
 };
 
 use super::{
-    response::{self, url_endpoint::NavigationEndpoint},
-    ClientType, MapRespCtx, MapResponse, RustyPipeQuery,
+    response::url_endpoint::NavigationEndpoint,
+    ClientType, MapJsonResponse, MapRespCtx, RustyPipeQuery,
 };
 
-#[derive(Debug, Serialize)]
-#[serde(rename_all = "camelCase")]
-struct QResolveUrl {
-    url: String,
-}
+#[derive(Debug)]
+struct UrlResolverJson;
 
 impl RustyPipeQuery {
     /// Resolve the given YouTube URL and return its associated URL target.
@@ -298,21 +295,22 @@ impl RustyPipeQuery {
         url_path: &str,
         ctype: ClientType,
     ) -> Result<UrlTarget, Error> {
-        let request_body = QResolveUrl {
-            url: format!(
-                "https://{}.youtube.com{}",
-                match ctype {
-                    ClientType::DesktopMusic => "music",
-                    _ => "www",
-                },
-                url_path
-            ),
-        };
+        let resolved_url = format!(
+            "https://{}.youtube.com{}",
+            match ctype {
+                ClientType::DesktopMusic => "music",
+                _ => "www",
+            },
+            url_path
+        );
+        let request_body = ytbody!({
+            "url": &resolved_url,
+        });
 
-        self.execute_request::<response::ResolvedUrl, _, _>(
+        self.execute_request::<UrlResolverJson, _, _>(
             ctype,
             "channel_id",
-            &request_body.url,
+            &resolved_url,
             "navigation/resolve_url",
             &request_body,
         )
@@ -320,23 +318,30 @@ impl RustyPipeQuery {
     }
 }
 
-impl MapResponse<UrlTarget> for response::ResolvedUrl {
-    fn map_response(self, _ctx: &MapRespCtx<'_>) -> Result<MapResult<UrlTarget>, ExtractionError> {
-        let pt = self.endpoint.page_type();
-        if let NavigationEndpoint::Browse {
-            browse_endpoint, ..
-        } = self.endpoint
-        {
-            let target = pt
-                .and_then(|pt| pt.to_url_target(browse_endpoint.browse_id))
-                .ok_or(ExtractionError::InvalidData(Cow::Borrowed("No page type")))?;
+impl MapJsonResponse<UrlTarget> for UrlResolverJson {
+    fn map_json_response(
+        json: &JsonDoc,
+        _ctx: &MapRespCtx<'_>,
+    ) -> Result<MapResult<UrlTarget>, ExtractionError> {
+        json.with_root(|root| {
+            let endpoint = root.require(ytq!(.endpoint), "navigation endpoint")?;
+            let endpoint: NavigationEndpoint = endpoint.deserialize()?;
+            let pt = endpoint.page_type();
+            if let NavigationEndpoint::Browse {
+                browse_endpoint, ..
+            } = endpoint
+            {
+                let target = pt
+                    .and_then(|pt| pt.to_url_target(browse_endpoint.browse_id))
+                    .ok_or(ExtractionError::InvalidData(Cow::Borrowed("No page type")))?;
 
-            Ok(MapResult {
-                c: target,
-                warnings: Vec::new(),
-            })
-        } else {
-            Err(ExtractionError::InvalidData(Cow::Borrowed("No browse ID")))
-        }
+                Ok(MapResult {
+                    c: target,
+                    warnings: Vec::new(),
+                })
+            } else {
+                Err(ExtractionError::InvalidData(Cow::Borrowed("No browse ID")))
+            }
+        })
     }
 }

@@ -3,23 +3,7 @@ use serde_with::{rust::deserialize_ignore_any, serde_as};
 
 use crate::serializer::text::Text;
 
-use super::{
-    music_item::{ItemSection, SimpleHeader, SingleColumnBrowseResult},
-    url_endpoint::BrowseEndpointWrap,
-    ContentsRendererLogged, SectionList, Tab,
-};
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct MusicGenres {
-    pub contents: SingleColumnBrowseResult<Tab<SectionList<Grid>>>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct Grid {
-    pub grid_renderer: ContentsRendererLogged<NavigationButton>,
-}
+use super::url_endpoint::BrowseEndpointWrap;
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -44,11 +28,4 @@ pub(crate) struct NavigationButtonRenderer {
 #[serde(rename_all = "camelCase")]
 pub(crate) struct NavigationButtonColor {
     pub left_stripe_color: u32,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct MusicGenre {
-    pub contents: SingleColumnBrowseResult<Tab<SectionList<ItemSection>>>,
-    pub header: SimpleHeader,
 }

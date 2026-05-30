@@ -1,44 +1,15 @@
 pub(crate) mod channel;
 pub(crate) mod music_artist;
-pub(crate) mod music_charts;
 pub(crate) mod music_details;
 pub(crate) mod music_genres;
 pub(crate) mod music_item;
-pub(crate) mod music_new;
 pub(crate) mod music_playlist;
-pub(crate) mod music_search;
 pub(crate) mod player;
 pub(crate) mod playlist;
-pub(crate) mod search;
-pub(crate) mod trends;
 pub(crate) mod url_endpoint;
 pub(crate) mod video_details;
 pub(crate) mod video_item;
 
-pub(crate) use channel::Channel;
-pub(crate) use channel::ChannelAbout;
-pub(crate) use music_artist::MusicArtist;
-pub(crate) use music_artist::MusicArtistAlbums;
-pub(crate) use music_charts::MusicCharts;
-pub(crate) use music_details::MusicDetails;
-pub(crate) use music_details::MusicLyrics;
-pub(crate) use music_details::MusicRelated;
-pub(crate) use music_genres::MusicGenre;
-pub(crate) use music_genres::MusicGenres;
-pub(crate) use music_item::MusicContinuation;
-pub(crate) use music_new::MusicNew;
-pub(crate) use music_playlist::MusicPlaylist;
-pub(crate) use music_search::MusicSearch;
-pub(crate) use music_search::MusicSearchSuggestion;
-pub(crate) use player::DrmLicense;
-pub(crate) use player::Player;
-pub(crate) use playlist::Playlist;
-pub(crate) use search::Search;
-pub(crate) use search::SearchSuggestion;
-pub(crate) use trends::Trending;
-pub(crate) use url_endpoint::ResolvedUrl;
-pub(crate) use video_details::VideoComments;
-pub(crate) use video_details::VideoDetails;
 pub(crate) use video_item::YouTubeListItem;
 pub(crate) use video_item::YouTubeListMapper;
 
@@ -46,15 +17,6 @@ pub(crate) use video_item::YouTubeListMapper;
 pub(crate) mod channel_rss;
 #[cfg(feature = "rss")]
 pub(crate) use channel_rss::ChannelRss;
-
-#[cfg(feature = "userdata")]
-pub(crate) mod history;
-#[cfg(feature = "userdata")]
-pub(crate) use history::History;
-#[cfg(feature = "userdata")]
-pub(crate) mod music_history;
-#[cfg(feature = "userdata")]
-pub(crate) use music_history::MusicHistory;
 
 use std::borrow::Cow;
 use std::collections::HashMap;

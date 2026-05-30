@@ -1,27 +1,23 @@
 use std::fmt::Debug;
 
-use serde::Serialize;
-
 use crate::{
-    client::{response, ClientType, MapRespCtx, MapResponse, QBrowse, RustyPipeQuery},
+    client::{ClientType, MapJsonResponse, MapRespCtx, MapRespOptions, RustyPipeQuery},
     error::{Error, ExtractionError},
+    json::{JsonDoc, yt_two_column_list_items},
     model::{
         paginator::{ContinuationEndpoint, Paginator},
         ChannelItem, HistoryItem, Playlist, PlaylistItem, VideoItem,
     },
+    request_body::ytbody,
     serializer::MapResult,
 };
 
-use self::response::YouTubeListMapper;
+use super::response::{YouTubeListItem, YouTubeListMapper};
 
-use super::{MapRespOptions, QContinuation};
+use super::pagination::ContinuationJson;
 
-#[derive(Debug, Serialize)]
-#[serde(rename_all = "camelCase")]
-struct QHistorySearch<'a> {
-    browse_id: &'a str,
-    query: &'a str,
-}
+#[derive(Debug)]
+struct HistoryJson;
 
 impl RustyPipeQuery {
     /// Get a list of videos from YouTube which the current user recently played
@@ -29,13 +25,13 @@ impl RustyPipeQuery {
     /// Requires authentication cookies.
     #[tracing::instrument(skip(self), level = "error")]
     pub async fn history(&self) -> Result<Paginator<HistoryItem<VideoItem>>, Error> {
-        let request_body = QBrowse {
-            browse_id: "FEhistory",
-        };
+        let request_body = ytbody!({
+            "browseId": "FEhistory",
+        });
 
         self.clone()
             .authenticated()
-            .execute_request::<response::History, _, _>(
+            .execute_request::<HistoryJson, _, _>(
                 ClientType::Desktop,
                 "history",
                 "",
@@ -53,13 +49,13 @@ impl RustyPipeQuery {
         visitor_data: Option<&str>,
     ) -> Result<Paginator<HistoryItem<VideoItem>>, Error> {
         let ctoken = ctoken.as_ref();
-        let request_body = QContinuation {
-            continuation: ctoken,
-        };
+        let request_body = ytbody!({
+            "continuation": ctoken,
+        });
 
         self.clone()
             .authenticated()
-            .execute_request_ctx::<response::Continuation, _, _>(
+            .execute_request_ctx::<ContinuationJson, _, _>(
                 ClientType::Desktop,
                 "history_continuation",
                 ctoken,
@@ -82,14 +78,14 @@ impl RustyPipeQuery {
         query: S,
     ) -> Result<Paginator<HistoryItem<VideoItem>>, Error> {
         let query = query.as_ref();
-        let request_body = QHistorySearch {
-            browse_id: "FEhistory",
-            query,
-        };
+        let request_body = ytbody!({
+            "browseId": "FEhistory",
+            "query": query,
+        });
 
         self.clone()
             .authenticated()
-            .execute_request::<response::History, _, _>(
+            .execute_request::<HistoryJson, _, _>(
                 ClientType::Desktop,
                 "history_search",
                 query,
@@ -119,13 +115,13 @@ impl RustyPipeQuery {
     /// Requires authentication cookies.
     #[tracing::instrument(skip(self), level = "error")]
     pub async fn subscription_feed(&self) -> Result<Paginator<VideoItem>, Error> {
-        let request_body = QBrowse {
-            browse_id: "FEsubscriptions",
-        };
+        let request_body = ytbody!({
+            "browseId": "FEsubscriptions",
+        });
 
         self.clone()
             .authenticated()
-            .execute_request::<response::History, _, _>(
+            .execute_request::<HistoryJson, _, _>(
                 ClientType::Desktop,
                 "subscription_feed",
                 "",
@@ -172,103 +168,84 @@ impl RustyPipeQuery {
     }
 }
 
-impl MapResponse<Paginator<HistoryItem<VideoItem>>> for response::History {
-    fn map_response(
-        self,
+impl MapJsonResponse<Paginator<HistoryItem<VideoItem>>> for HistoryJson {
+    fn map_json_response(
+        json: &JsonDoc,
         ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<Paginator<HistoryItem<VideoItem>>>, ExtractionError> {
-        let items = self
-            .contents
-            .two_column_browse_results_renderer
-            .contents
-            .into_iter()
-            .next()
-            .ok_or(ExtractionError::InvalidData(
-                "twoColumnBrowseResultsRenderer empty".into(),
-            ))?
-            .tab_renderer
-            .content
-            .section_list_renderer
-            .contents;
+        json.with_root(|root| {
+            let items = yt_two_column_list_items(&root)?;
+            let (sections, mut warnings) = items.deserialize_items_lossy::<YouTubeListItem>();
 
-        let mut map_res = MapResult {
-            warnings: items.warnings,
-            ..Default::default()
-        };
-        let mut ctoken = None;
-        for item in items.c {
-            match item {
-                response::YouTubeListItem::ItemSectionRenderer { header, contents } => {
-                    let mut mapper = YouTubeListMapper::<VideoItem>::new(ctx.lang);
-                    mapper.map_response(contents);
-                    mapper.conv_history_items(
-                        header.map(|h| h.item_section_header_renderer.title),
-                        ctx.utc_offset,
-                        &mut map_res,
-                    );
-                }
-                response::YouTubeListItem::ContinuationItemRenderer(ep) => {
-                    if ctoken.is_none() {
-                        ctoken = ep.continuation_endpoint.into_token();
+            let mut map_res = MapResult {
+                warnings,
+                ..Default::default()
+            };
+            let mut ctoken = None;
+
+            for item in sections {
+                match item {
+                    YouTubeListItem::ItemSectionRenderer { header, contents } => {
+                        let mut mapper = YouTubeListMapper::<VideoItem>::new(ctx.lang);
+                        mapper.map_response(contents);
+                        mapper.conv_history_items(
+                            header.map(|h| h.item_section_header_renderer.title),
+                            ctx.utc_offset,
+                            &mut map_res,
+                        );
                     }
+                    YouTubeListItem::ContinuationItemRenderer(ep) => {
+                        if ctoken.is_none() {
+                            ctoken = ep.continuation_endpoint.into_token();
+                        }
+                    }
+                    _ => {}
                 }
-                _ => {}
             }
-        }
 
-        Ok(MapResult {
-            c: Paginator::new_ext(
-                None,
-                map_res.c,
-                ctoken,
-                ctx.visitor_data.map(str::to_owned),
-                crate::model::paginator::ContinuationEndpoint::Browse,
-                true,
-            ),
-            warnings: map_res.warnings,
+            Ok(MapResult {
+                c: Paginator::new_ext(
+                    None,
+                    map_res.c,
+                    ctoken,
+                    ctx.visitor_data.map(str::to_owned),
+                    ContinuationEndpoint::Browse,
+                    true,
+                ),
+                warnings: map_res.warnings,
+            })
         })
     }
 }
 
-impl MapResponse<Paginator<VideoItem>> for response::History {
-    fn map_response(
-        self,
+impl MapJsonResponse<Paginator<VideoItem>> for HistoryJson {
+    fn map_json_response(
+        json: &JsonDoc,
         ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<Paginator<VideoItem>>, ExtractionError> {
-        let items = self
-            .contents
-            .two_column_browse_results_renderer
-            .contents
-            .into_iter()
-            .next()
-            .ok_or(ExtractionError::InvalidData(
-                "twoColumnBrowseResultsRenderer empty".into(),
-            ))?
-            .tab_renderer
-            .content
-            .section_list_renderer
-            .contents;
+        json.with_root(|root| {
+            let items = yt_two_column_list_items(&root)?;
+            let mut mapper = YouTubeListMapper::<VideoItem>::new(ctx.lang);
+            mapper.map_response_node(&items);
 
-        let mut mapper = response::YouTubeListMapper::<VideoItem>::new(ctx.lang);
-        mapper.map_response(items);
-
-        Ok(MapResult {
-            c: Paginator::new_ext(
-                None,
-                mapper.items,
-                mapper.ctoken,
-                ctx.visitor_data.map(str::to_owned),
-                crate::model::paginator::ContinuationEndpoint::Browse,
-                true,
-            ),
-            warnings: mapper.warnings,
+            Ok(MapResult {
+                c: Paginator::new_ext(
+                    None,
+                    mapper.items,
+                    mapper.ctoken,
+                    ctx.visitor_data.map(str::to_owned),
+                    ContinuationEndpoint::Browse,
+                    true,
+                ),
+                warnings: mapper.warnings,
+            })
         })
     }
 }
 
 #[cfg(test)]
 mod tests {
-    use std::{fs::File, io::BufReader};
+    use std::fs;
 
     use path_macro::path;
 
@@ -279,12 +256,9 @@ mod tests {
     #[test]
     fn map_history() {
         let json_path = path!(*TESTFILES / "userdata" / "history.json");
-        let json_file = File::open(json_path).unwrap();
-
-        let history: response::History =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let json = JsonDoc::new(fs::read_to_string(json_path).unwrap());
         let map_res: MapResult<Paginator<HistoryItem<VideoItem>>> =
-            history.map_response(&MapRespCtx::test("")).unwrap();
+            HistoryJson::map_json_response(&json, &MapRespCtx::test("")).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -299,12 +273,9 @@ mod tests {
     #[test]
     fn map_subscription_feed() {
         let json_path = path!(*TESTFILES / "userdata" / "subscription_feed.json");
-        let json_file = File::open(json_path).unwrap();
-
-        let history: response::History =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let json = JsonDoc::new(fs::read_to_string(json_path).unwrap());
         let map_res: MapResult<Paginator<VideoItem>> =
-            history.map_response(&MapRespCtx::test("")).unwrap();
+            HistoryJson::map_json_response(&json, &MapRespCtx::test("")).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),

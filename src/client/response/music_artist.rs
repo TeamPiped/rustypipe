@@ -5,22 +5,11 @@ use crate::serializer::text::Text;
 
 use super::{
     music_item::{
-        Button, Grid, ItemSection, MusicMicroformat, MusicThumbnailRenderer, SimpleHeader,
-        SingleColumnBrowseResult,
+        Button, MusicThumbnailRenderer,
     },
-    SectionList, Tab,
 };
 
-/// Response model for YouTube Music artists
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct MusicArtist {
-    pub contents: Option<SingleColumnBrowseResult<Tab<SectionList<ItemSection>>>>,
-    pub header: Option<Header>,
-    #[serde(default)]
-    pub microformat: MusicMicroformat,
-}
-
+/// Artist page header renderers
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct Header {
@@ -73,15 +62,4 @@ pub(crate) struct ShareEndpoint {
 #[serde(rename_all = "camelCase")]
 pub(crate) struct ShareEntityEndpoint {
     pub serialized_share_entity: String,
-}
-
-/// Response model for YouTube Music artist album page
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct MusicArtistAlbums {
-    #[serde(default)]
-    #[serde_as(as = "DefaultOnError")]
-    pub header: Option<SimpleHeader>,
-    pub contents: SingleColumnBrowseResult<Tab<SectionList<Grid>>>,
 }

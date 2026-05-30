@@ -6,6 +6,7 @@ use time::OffsetDateTime;
 
 use super::{ChannelBadge, ContentImage, ContinuationItemRenderer, PhMetadataView, Thumbnails};
 use crate::{
+    json::JsonNode,
     model::{Channel, ChannelItem, ChannelTag, PlaylistItem, VideoItem, YouTubeItem},
     param::Language,
     serializer::{
@@ -858,6 +859,14 @@ impl YouTubeListMapper<YouTubeItem> {
         self.warnings.append(&mut res.warnings);
         res.c.into_iter().for_each(|item| self.map_item(item));
     }
+
+    pub(crate) fn map_response_node(&mut self, node: &JsonNode<'_>) {
+        let (items, mut warnings) = node.deserialize_items_lossy::<YouTubeListItem>();
+        self.map_response(MapResult {
+            c: items,
+            warnings,
+        });
+    }
 }
 
 impl YouTubeListMapper<VideoItem> {
@@ -907,6 +916,14 @@ impl YouTubeListMapper<VideoItem> {
     pub(crate) fn map_response(&mut self, mut res: MapResult<Vec<YouTubeListItem>>) {
         self.warnings.append(&mut res.warnings);
         res.c.into_iter().for_each(|item| self.map_item(item));
+    }
+
+    pub(crate) fn map_response_node(&mut self, node: &JsonNode<'_>) {
+        let (items, mut warnings) = node.deserialize_items_lossy::<YouTubeListItem>();
+        self.map_response(MapResult {
+            c: items,
+            warnings,
+        });
     }
 
     #[cfg(feature = "userdata")]
@@ -961,5 +978,13 @@ impl YouTubeListMapper<PlaylistItem> {
     pub(crate) fn map_response(&mut self, mut res: MapResult<Vec<YouTubeListItem>>) {
         self.warnings.append(&mut res.warnings);
         res.c.into_iter().for_each(|item| self.map_item(item));
+    }
+
+    pub(crate) fn map_response_node(&mut self, node: &JsonNode<'_>) {
+        let (items, mut warnings) = node.deserialize_items_lossy::<YouTubeListItem>();
+        self.map_response(MapResult {
+            c: items,
+            warnings,
+        });
     }
 }

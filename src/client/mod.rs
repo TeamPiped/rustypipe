@@ -37,13 +37,16 @@ use std::{borrow::Cow, fmt::Debug, time::Duration};
 
 use once_cell::sync::Lazy;
 use regex::Regex;
-use wreq::{header, Client, ClientBuilder, Request, RequestBuilder, Response, StatusCode};
 use serde::{de::DeserializeOwned, Deserialize, Serialize};
+use serde_json::Value;
 use sha1::{Digest, Sha1};
 use time::{OffsetDateTime, UtcOffset};
 use tokio::sync::RwLock as AsyncRwLock;
+use wreq::{header, Client, ClientBuilder, Request, RequestBuilder, Response, StatusCode};
 
 use crate::error::AuthError;
+use crate::json::JsonDoc;
+use crate::request_body::ytbody;
 use crate::util::VisitorDataCache;
 use crate::{
     cache::{CacheStorage, FileStorage, DEFAULT_CACHE_FILE},
@@ -111,128 +114,6 @@ impl ClientType {
     }
 }
 
-/// YouTube context request parameter
-#[derive(Clone, Debug, Serialize)]
-#[serde(rename_all = "camelCase")]
-struct YTContext<'a> {
-    client: ClientInfo<'a>,
-    /// only used on desktop
-    #[serde(skip_serializing_if = "Option::is_none")]
-    request: Option<RequestYT>,
-    user: User,
-    /// only used for the embedded player
-    #[serde(skip_serializing_if = "Option::is_none")]
-    third_party: Option<ThirdParty<'a>>,
-}
-
-#[derive(Clone, Debug, Serialize)]
-#[serde(rename_all = "camelCase")]
-struct ClientInfo<'a> {
-    client_name: &'a str,
-    client_version: Cow<'a, str>,
-    #[serde(skip_serializing_if = "str::is_empty")]
-    client_screen: &'a str,
-    #[serde(skip_serializing_if = "str::is_empty")]
-    device_model: &'a str,
-    #[serde(skip_serializing_if = "str::is_empty")]
-    os_name: &'a str,
-    #[serde(skip_serializing_if = "str::is_empty")]
-    os_version: &'a str,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    android_sdk_version: Option<u8>,
-    platform: &'a str,
-    #[serde(skip_serializing_if = "str::is_empty")]
-    original_url: &'a str,
-    visitor_data: &'a str,
-    hl: Language,
-    gl: Country,
-    time_zone: &'a str,
-    utc_offset_minutes: i16,
-}
-
-impl Default for ClientInfo<'_> {
-    fn default() -> Self {
-        Self {
-            client_name: "",
-            client_version: Cow::default(),
-            client_screen: "",
-            device_model: "",
-            os_name: "",
-            os_version: "",
-            android_sdk_version: None,
-            platform: "",
-            original_url: "",
-            visitor_data: "",
-            hl: Language::En,
-            gl: Country::Us,
-            time_zone: "UTC",
-            utc_offset_minutes: 0,
-        }
-    }
-}
-
-#[derive(Clone, Debug, Serialize)]
-#[serde(rename_all = "camelCase")]
-struct RequestYT {
-    internal_experiment_flags: Vec<String>,
-    use_ssl: bool,
-}
-
-impl Default for RequestYT {
-    fn default() -> Self {
-        Self {
-            internal_experiment_flags: vec![],
-            use_ssl: true,
-        }
-    }
-}
-
-#[derive(Clone, Debug, Serialize, Default)]
-#[serde(rename_all = "camelCase")]
-struct User {
-    locked_safety_mode: bool,
-}
-
-#[derive(Clone, Debug, Serialize)]
-#[serde(rename_all = "camelCase")]
-struct ThirdParty<'a> {
-    embed_url: &'a str,
-}
-
-#[derive(Debug, Serialize)]
-struct QBody<'a, T> {
-    context: YTContext<'a>,
-    #[serde(flatten)]
-    body: T,
-}
-
-#[derive(Debug, Serialize)]
-#[serde(rename_all = "camelCase")]
-struct QBrowse<'a> {
-    browse_id: &'a str,
-}
-
-#[derive(Debug, Serialize)]
-#[serde(rename_all = "camelCase")]
-struct QBrowseParams<'a> {
-    browse_id: &'a str,
-    params: &'a str,
-}
-
-#[derive(Debug, Serialize)]
-#[serde(rename_all = "camelCase")]
-struct QContinuation<'a> {
-    continuation: &'a str,
-}
-
-#[derive(Debug, Serialize)]
-struct OauthCodeRequest {
-    client_id: &'static str,
-    device_id: String,
-    device_model: &'static str,
-    scope: &'static str,
-}
-
 /// Device code used for logging a user into YouTube
 ///
 /// The login process works as follows:
@@ -251,17 +132,6 @@ pub struct OauthDeviceCode {
     pub interval: u32,
     /// URL to the login page (<https://google.com/device>)
     pub verification_url: String,
-}
-
-#[derive(Debug, Serialize)]
-struct OauthTokenRequest<'a> {
-    client_id: &'static str,
-    client_secret: &'static str,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    code: Option<&'a str>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    refresh_token: Option<&'a str>,
-    grant_type: &'static str,
 }
 
 #[derive(Debug, Deserialize)]
@@ -1353,12 +1223,12 @@ impl RustyPipe {
     pub async fn user_auth_get_code(&self) -> Result<OauthDeviceCode, Error> {
         tracing::debug!("getting OAuth user code");
 
-        let code_request = OauthCodeRequest {
-            client_id: OAUTH_CLIENT_ID,
-            device_id: util::random_uuid(),
-            device_model: "ytlr:samsung:smarttv",
-            scope: OAUTH_SCOPES,
-        };
+        let code_request = ytbody!({
+            "client_id": OAUTH_CLIENT_ID,
+            "device_id": util::random_uuid(),
+            "device_model": "ytlr:samsung:smarttv",
+            "scope": OAUTH_SCOPES,
+        });
 
         self.inner
             .http
@@ -1385,13 +1255,13 @@ impl RustyPipe {
     pub async fn user_auth_login(&self, code: &OauthDeviceCode) -> Result<bool, Error> {
         tracing::debug!("OAuth login attempt (user_code: {})", code.user_code);
 
-        let token_request = OauthTokenRequest {
-            client_id: OAUTH_CLIENT_ID,
-            client_secret: OAUTH_CLIENT_SECRET,
-            code: Some(&code.device_code),
-            refresh_token: None,
-            grant_type: "http://oauth.net/grant_type/device/1.0",
-        };
+        let token_request = ytbody!({
+            "client_id": OAUTH_CLIENT_ID,
+            "client_secret": OAUTH_CLIENT_SECRET,
+            ? "code": Some(code.device_code.as_str()),
+            ? "refresh_token": Option::<&str>::None,
+            "grant_type": "http://oauth.net/grant_type/device/1.0",
+        });
 
         let token_response = self
             .inner
@@ -1459,11 +1329,6 @@ impl RustyPipe {
 
     /// Log out the user and remove the OAuth token from the cache
     pub async fn user_auth_logout(&self) -> Result<(), Error> {
-        #[derive(Serialize)]
-        struct RevokeRequest<'a> {
-            token: &'a str,
-        }
-
         let cache_token = self
             .inner
             .cache
@@ -1472,9 +1337,9 @@ impl RustyPipe {
             .unwrap()
             .clone()
             .ok_or(Error::Auth(AuthError::NoLogin))?;
-        let revoke_request = RevokeRequest {
-            token: &cache_token.refresh_token,
-        };
+        let revoke_request = ytbody!({
+            "token": &cache_token.refresh_token,
+        });
 
         let resp = self
             .inner
@@ -1520,13 +1385,13 @@ impl RustyPipe {
     async fn user_auth_refresh_token(&self, refresh_token: &str) -> Result<OauthToken, Error> {
         tracing::debug!("refreshing OAuth token");
 
-        let token_request = OauthTokenRequest {
-            client_id: OAUTH_CLIENT_ID,
-            client_secret: OAUTH_CLIENT_SECRET,
-            code: None,
-            refresh_token: Some(refresh_token),
-            grant_type: "refresh_token",
-        };
+        let token_request = ytbody!({
+            "client_id": OAUTH_CLIENT_ID,
+            "client_secret": OAUTH_CLIENT_SECRET,
+            ? "code": Option::<&str>::None,
+            ? "refresh_token": Some(refresh_token),
+            "grant_type": "refresh_token",
+        });
 
         let token_response = self
             .inner
@@ -1904,12 +1769,12 @@ impl RustyPipeQuery {
     /// # Parameters
     /// - `ctype`: Client type (`Desktop`, `DesktopMusic`, `Android`, ...)
     /// - `localized`: Whether to include the configured language and country
-    async fn get_context<'a>(
-        &'a self,
+    async fn get_context(
+        &self,
         ctype: ClientType,
         localized: bool,
-        visitor_data: &'a str,
-    ) -> YTContext<'a> {
+        visitor_data: &str,
+    ) -> Value {
         let (hl, gl) = if localized {
             (self.opts.lang, self.opts.country)
         } else {
@@ -1919,115 +1784,126 @@ impl RustyPipeQuery {
         let time_zone = self.opts.timezone.as_deref().unwrap_or("UTC");
 
         match ctype {
-            ClientType::Desktop => YTContext {
-                client: ClientInfo {
-                    client_name: "WEB",
-                    client_version: self.client.get_client_version(ctype).await,
-                    platform: "DESKTOP",
-                    original_url: YOUTUBE_HOME_URL,
-                    visitor_data,
-                    hl,
-                    gl,
-                    time_zone,
-                    utc_offset_minutes,
-                    ..Default::default()
-                },
-                request: Some(RequestYT::default()),
-                user: User::default(),
-                third_party: None,
-            },
-            ClientType::DesktopMusic => YTContext {
-                client: ClientInfo {
-                    client_name: "WEB_REMIX",
-                    client_version: self.client.get_client_version(ctype).await,
-                    platform: "DESKTOP",
-                    original_url: YOUTUBE_MUSIC_HOME_URL,
-                    visitor_data,
-                    hl,
-                    gl,
-                    time_zone,
-                    utc_offset_minutes,
-                    ..Default::default()
-                },
-                request: Some(RequestYT::default()),
-                user: User::default(),
-                third_party: None,
-            },
-            ClientType::Mobile => YTContext {
-                client: ClientInfo {
-                    client_name: "MWEB",
-                    client_version: self.client.get_client_version(ctype).await,
-                    platform: "MOBILE",
-                    original_url: YOUTUBE_MOBILE_HOME_URL,
-                    visitor_data,
-                    hl,
-                    gl,
-                    time_zone,
-                    utc_offset_minutes,
-                    ..Default::default()
-                },
-                request: Some(RequestYT::default()),
-                user: User::default(),
-                third_party: None,
-            },
-            ClientType::Tv => YTContext {
-                client: ClientInfo {
-                    client_name: "TVHTML5",
-                    client_version: self.client.get_client_version(ctype).await,
-                    client_screen: "WATCH",
-                    platform: "TV",
-                    device_model: "SmartTV",
-                    visitor_data,
-                    hl,
-                    gl,
-                    time_zone,
-                    utc_offset_minutes,
-                    ..Default::default()
-                },
-                request: Some(RequestYT::default()),
-                user: User::default(),
-                third_party: Some(ThirdParty {
-                    embed_url: YOUTUBE_TV_URL,
+            ClientType::Desktop => ytbody!({
+                "client": ytbody!({
+                    "clientName": "WEB",
+                    "clientVersion": self.client.get_client_version(ctype).await,
+                    "platform": "DESKTOP",
+                    "originalUrl": YOUTUBE_HOME_URL,
+                    "visitorData": visitor_data,
+                    "hl": hl,
+                    "gl": gl,
+                    "timeZone": time_zone,
+                    "utcOffsetMinutes": utc_offset_minutes,
                 }),
-            },
-            ClientType::Android => YTContext {
-                client: ClientInfo {
-                    client_name: "ANDROID",
-                    client_version: ANDROID_CLIENT_VERSION.into(),
-                    os_name: "Android",
-                    os_version: ANDROID_VERSION,
-                    android_sdk_version: Some(30),
-                    platform: "MOBILE",
-                    visitor_data,
-                    hl,
-                    gl,
-                    time_zone,
-                    utc_offset_minutes,
-                    ..Default::default()
-                },
-                request: None,
-                user: User::default(),
-                third_party: None,
-            },
-            ClientType::Ios => YTContext {
-                client: ClientInfo {
-                    client_name: "IOS",
-                    client_version: IOS_CLIENT_VERSION.into(),
-                    device_model: IOS_DEVICE_MODEL,
-                    os_name: "iPhone",
-                    os_version: IOS_VERSION_BUILD,
-                    platform: "MOBILE",
-                    visitor_data,
-                    hl,
-                    gl,
-                    time_zone,
-                    utc_offset_minutes,
-                    ..Default::default()
-                },
-                request: None,
-                user: User::default(),
-                third_party: None,
-            },
+                "request": ytbody!({
+                    "internalExperimentFlags": Vec::<String>::new(),
+                    "useSsl": true,
+                }),
+                "user": ytbody!({
+                    "lockedSafetyMode": false,
+                }),
+            }),
+            ClientType::DesktopMusic => ytbody!({
+                "client": ytbody!({
+                    "clientName": "WEB_REMIX",
+                    "clientVersion": self.client.get_client_version(ctype).await,
+                    "platform": "DESKTOP",
+                    "originalUrl": YOUTUBE_MUSIC_HOME_URL,
+                    "visitorData": visitor_data,
+                    "hl": hl,
+                    "gl": gl,
+                    "timeZone": time_zone,
+                    "utcOffsetMinutes": utc_offset_minutes,
+                }),
+                "request": ytbody!({
+                    "internalExperimentFlags": Vec::<String>::new(),
+                    "useSsl": true,
+                }),
+                "user": ytbody!({
+                    "lockedSafetyMode": false,
+                }),
+            }),
+            ClientType::Mobile => ytbody!({
+                "client": ytbody!({
+                    "clientName": "MWEB",
+                    "clientVersion": self.client.get_client_version(ctype).await,
+                    "platform": "MOBILE",
+                    "originalUrl": YOUTUBE_MOBILE_HOME_URL,
+                    "visitorData": visitor_data,
+                    "hl": hl,
+                    "gl": gl,
+                    "timeZone": time_zone,
+                    "utcOffsetMinutes": utc_offset_minutes,
+                }),
+                "request": ytbody!({
+                    "internalExperimentFlags": Vec::<String>::new(),
+                    "useSsl": true,
+                }),
+                "user": ytbody!({
+                    "lockedSafetyMode": false,
+                }),
+            }),
+            ClientType::Tv => ytbody!({
+                "client": ytbody!({
+                    "clientName": "TVHTML5",
+                    "clientVersion": self.client.get_client_version(ctype).await,
+                    "clientScreen": "WATCH",
+                    "deviceModel": "SmartTV",
+                    "platform": "TV",
+                    "visitorData": visitor_data,
+                    "hl": hl,
+                    "gl": gl,
+                    "timeZone": time_zone,
+                    "utcOffsetMinutes": utc_offset_minutes,
+                }),
+                "request": ytbody!({
+                    "internalExperimentFlags": Vec::<String>::new(),
+                    "useSsl": true,
+                }),
+                "user": ytbody!({
+                    "lockedSafetyMode": false,
+                }),
+                "thirdParty": ytbody!({
+                    "embedUrl": YOUTUBE_TV_URL,
+                }),
+            }),
+            ClientType::Android => ytbody!({
+                "client": ytbody!({
+                    "clientName": "ANDROID",
+                    "clientVersion": ANDROID_CLIENT_VERSION,
+                    "osName": "Android",
+                    "osVersion": ANDROID_VERSION,
+                    "androidSdkVersion": 30,
+                    "platform": "MOBILE",
+                    "visitorData": visitor_data,
+                    "hl": hl,
+                    "gl": gl,
+                    "timeZone": time_zone,
+                    "utcOffsetMinutes": utc_offset_minutes,
+                }),
+                "user": ytbody!({
+                    "lockedSafetyMode": false,
+                }),
+            }),
+            ClientType::Ios => ytbody!({
+                "client": ytbody!({
+                    "clientName": "IOS",
+                    "clientVersion": IOS_CLIENT_VERSION,
+                    "deviceModel": IOS_DEVICE_MODEL,
+                    "osName": "iPhone",
+                    "osVersion": IOS_VERSION_BUILD,
+                    "platform": "MOBILE",
+                    "visitorData": visitor_data,
+                    "hl": hl,
+                    "gl": gl,
+                    "timeZone": time_zone,
+                    "utcOffsetMinutes": utc_offset_minutes,
+                }),
+                "user": ytbody!({
+                    "lockedSafetyMode": false,
+                }),
+            }),
         }
     }
 
@@ -2320,7 +2196,7 @@ impl RustyPipeQuery {
     /// Runs a single attempt, returns Ok with a erroneous RequestResult in case of a
     /// HTTP or mapping error so it can be retried/reported.
     async fn execute_request_attempt<
-        R: DeserializeOwned + MapResponse<M> + Debug,
+        R: MapJsonResponse<M> + Debug,
         M,
         B: Serialize + ?Sized,
     >(
@@ -2343,7 +2219,10 @@ impl RustyPipeQuery {
         let context = self
             .get_context(ctype, !ctx_src.unlocalized, &visitor_data)
             .await;
-        let req_body = QBody { context, body };
+        let req_body = ytbody!({
+            "context": context,
+            ..body,
+        });
 
         let ctx = MapRespCtx {
             id,
@@ -2391,12 +2270,10 @@ impl RustyPipeQuery {
                 _ => Error::HttpStatus(status.as_u16(), error_msg.unwrap_or_default()),
             })
         } else {
-            match serde_json::from_str::<R>(&body) {
-                Ok(deserialized) => match deserialized.map_response(&ctx) {
-                    Ok(mapres) => Ok(mapres),
-                    Err(e) => Err(e.into()),
-                },
-                Err(e) => Err(Error::from(ExtractionError::from(e))),
+            let json = JsonDoc::new(body.clone());
+            match R::map_json_response(&json, &ctx) {
+                Ok(mapres) => Ok(mapres),
+                Err(e) => Err(e.into()),
             }
         };
 
@@ -2415,7 +2292,7 @@ impl RustyPipeQuery {
     /// Runs up to n_request_attempts, returns Ok with a erroneous RequestResult in case of a
     /// HTTP or mapping error so it can be reported.
     async fn execute_request_inner<
-        R: DeserializeOwned + MapResponse<M> + Debug,
+        R: MapJsonResponse<M> + Debug,
         M,
         B: Serialize + ?Sized,
     >(
@@ -2461,6 +2338,96 @@ impl RustyPipeQuery {
         Ok(last_resp.unwrap())
     }
 
+    /// Runs a single attempt for lazy JSON mappers, returns Ok with an erroneous
+    /// RequestResult in case of HTTP or mapping error so it can be retried/reported.
+    async fn execute_request_attempt_json<R: MapJsonResponse<M>, M, B: Serialize + ?Sized>(
+        &self,
+        ctype: ClientType,
+        id: &str,
+        endpoint: &str,
+        body: &B,
+        ctx_src: &MapRespOptions<'_>,
+    ) -> Result<RequestResult<M>, Error> {
+        let visitor_data = match ctx_src
+            .visitor_data
+            .or(self.opts.visitor_data.as_deref())
+            .map(Cow::Borrowed)
+        {
+            Some(vd) => vd,
+            None => self.client.inner.visitor_data_cache.get().await?.into(),
+        };
+
+        let context = self
+            .get_context(ctype, !ctx_src.unlocalized, &visitor_data)
+            .await;
+        let req_body = ytbody!({
+            "context": context,
+            ..body,
+        });
+
+        let ctx = MapRespCtx {
+            id,
+            lang: self.opts.lang,
+            utc_offset: UtcOffset::from_whole_seconds(i32::from(self.opts.utc_offset_minutes) * 60)
+                .map_err(|_| Error::Other("utc_offset overflow".into()))?,
+            deobf: ctx_src.deobf,
+            visitor_data: Some(&visitor_data),
+            client_type: ctype,
+            artist: ctx_src.artist.clone(),
+            authenticated: self.opts.auth.unwrap_or_default(),
+            session_po_token: ctx_src.session_po_token.clone(),
+        };
+
+        let request = self
+            .request_builder(ctype, endpoint, ctx.visitor_data)
+            .await?
+            .json(&req_body)
+            .build()?;
+
+        let response = self
+            .client
+            .inner
+            .http
+            .execute(request.try_clone().unwrap())
+            .await?;
+
+        let status = response.status();
+        let body = response.text().await?;
+        tracing::debug!("fetched {} bytes from YT", body.len());
+
+        let res = if status.is_client_error() || status.is_server_error() {
+            let error_msg = serde_json::from_str::<response::ErrorResponse>(&body)
+                .map(|r| Cow::from(r.error.message));
+
+            Err(match status {
+                StatusCode::NOT_FOUND => Error::Extraction(ExtractionError::NotFound {
+                    id: ctx.id.to_owned(),
+                    msg: error_msg.unwrap_or("404".into()),
+                }),
+                StatusCode::BAD_REQUEST => {
+                    Error::Extraction(ExtractionError::BadRequest(error_msg.unwrap_or_default()))
+                }
+                StatusCode::UNAUTHORIZED => Error::Auth(AuthError::NoLogin),
+                _ => Error::HttpStatus(status.as_u16(), error_msg.unwrap_or_default()),
+            })
+        } else {
+            let json = JsonDoc::new(body.clone());
+            match R::map_json_response(&json, &ctx) {
+                Ok(mapres) => Ok(mapres),
+                Err(e) => Err(e.into()),
+            }
+        };
+
+        tracing::trace!("mapped response");
+        Ok(RequestResult {
+            res,
+            status,
+            body,
+            request,
+            visitor_data: visitor_data.into_owned(),
+        })
+    }
+
     /// Execute a request to the YouTube API, then deobfuscate and map the response.
     ///
     /// Creates a report in case of failure for easy debugging.
@@ -2476,7 +2443,7 @@ impl RustyPipeQuery {
     /// - `body`: Serializable request body to be sent in json format
     /// - `ctx_src`: Context source (additional parameters for fetching and mapping, used to build the MapRespCtx)
     async fn execute_request_ctx<
-        R: DeserializeOwned + MapResponse<M> + Debug,
+        R: MapJsonResponse<M> + Debug,
         M,
         B: Serialize + ?Sized,
     >(
@@ -2564,6 +2531,91 @@ impl RustyPipeQuery {
         res
     }
 
+    /// Execute a request to the YouTube API, then map the response from lazy JSON.
+    ///
+    /// Creates a report in case of failure for easy debugging.
+    async fn execute_request_ctx_json<R: MapJsonResponse<M>, M, B: Serialize + ?Sized>(
+        &self,
+        ctype: ClientType,
+        operation: &str,
+        id: &str,
+        endpoint: &str,
+        body: &B,
+        ctx_src: MapRespOptions<'_>,
+    ) -> Result<M, Error> {
+        tracing::debug!("getting {}({})", operation, id);
+
+        let req_res = self
+            .execute_request_attempt_json::<R, M, B>(ctype, id, endpoint, body, &ctx_src)
+            .await?;
+        let request = req_res.request;
+
+        let (level, error, msgs, res) = match req_res.res {
+            Ok(mapres) => {
+                let level = if mapres.warnings.is_empty() {
+                    Level::DBG
+                } else {
+                    Level::WRN
+                };
+                (level, None, mapres.warnings, Ok(mapres.c))
+            }
+            Err(e) => {
+                let level = if e.should_report() {
+                    Level::ERR
+                } else {
+                    Level::DBG
+                };
+                (level, Some(e.to_string()), Vec::new(), Err(e))
+            }
+        };
+
+        if level > Level::DBG || self.opts.report {
+            if let Some(reporter) = &self.client.inner.reporter {
+                let report = Report {
+                    info: self.rp_info(),
+                    level,
+                    operation: &format!("{operation}({id})"),
+                    error,
+                    msgs,
+                    deobf_data: ctx_src.deobf.cloned(),
+                    http_request: crate::report::HTTPRequest {
+                        url: request.url().as_str(),
+                        method: request.method().as_str(),
+                        req_header: Some(
+                            request
+                                .headers()
+                                .iter()
+                                .filter(|(k, _)| k != &header::COOKIE)
+                                .map(|(k, v)| {
+                                    let vstr = if k == header::AUTHORIZATION {
+                                        "[redacted]"
+                                    } else {
+                                        v.to_str().unwrap_or_default()
+                                    };
+                                    (k.as_str(), vstr.to_owned())
+                                })
+                                .collect(),
+                        ),
+                        req_body: request
+                            .body()
+                            .as_ref()
+                            .and_then(|b| b.as_bytes())
+                            .map(|b| String::from_utf8_lossy(b).into_owned()),
+                        status: req_res.status.into(),
+                        resp_body: req_res.body,
+                    },
+                };
+                reporter.report(&report);
+            }
+        }
+
+        if res.is_ok() && level > Level::DBG && self.opts.strict {
+            return Err(Error::Extraction(ExtractionError::DeserializationWarnings));
+        }
+
+        res
+    }
+
     /// Execute a request to the YouTube API, then map the response.
     ///
     /// Creates a report in case of failure for easy debugging.
@@ -2578,7 +2630,7 @@ impl RustyPipeQuery {
     /// - `endpoint`: YouTube API endpoint (`https://www.youtube.com/youtubei/v1/<XYZ>?key=...`)
     /// - `body`: Serializable request body to be sent in json format
     async fn execute_request<
-        R: DeserializeOwned + MapResponse<M> + Debug,
+        R: MapJsonResponse<M> + Debug,
         M,
         B: Serialize + ?Sized,
     >(
@@ -2590,6 +2642,25 @@ impl RustyPipeQuery {
         body: &B,
     ) -> Result<M, Error> {
         self.execute_request_ctx::<R, M, B>(
+            ctype,
+            operation,
+            id,
+            endpoint,
+            body,
+            MapRespOptions::default(),
+        )
+        .await
+    }
+
+    async fn execute_request_json<R: MapJsonResponse<M>, M, B: Serialize + ?Sized>(
+        &self,
+        ctype: ClientType,
+        operation: &str,
+        id: &str,
+        endpoint: &str,
+        body: &B,
+    ) -> Result<M, Error> {
+        self.execute_request_ctx_json::<R, M, B>(
             ctype,
             operation,
             id,
@@ -2618,7 +2689,10 @@ impl RustyPipeQuery {
         };
 
         let context = self.get_context(ctype, true, &visitor_data).await;
-        let req_body = QBody { context, body };
+        let req_body = ytbody!({
+            "context": context,
+            ..body,
+        });
 
         let request = self
             .request_builder(ctype, endpoint, None)
@@ -2696,6 +2770,28 @@ trait MapResponse<T> {
     /// - `deobf`: Deobfuscator (if passed to the `execute_request_deobf` method)
     /// - `visitor_data`: Visitor data option of the client
     fn map_response(self, ctx: &MapRespCtx<'_>) -> Result<MapResult<T>, ExtractionError>;
+}
+
+/// Implement this for mappers that operate on the internal lazy JSON layer.
+trait MapJsonResponse<T> {
+    fn map_json_response(
+        json: &JsonDoc,
+        ctx: &MapRespCtx<'_>,
+    ) -> Result<MapResult<T>, ExtractionError>;
+}
+
+impl<R, T> MapJsonResponse<T> for R
+where
+    R: DeserializeOwned + MapResponse<T>,
+{
+    fn map_json_response(
+        json: &JsonDoc,
+        ctx: &MapRespCtx<'_>,
+    ) -> Result<MapResult<T>, ExtractionError> {
+        let deserialized = flexon::from_str::<R>(json.body())
+            .map_err(|e| ExtractionError::InvalidData(e.to_string().into()))?;
+        deserialized.map_response(ctx)
+    }
 }
 
 fn validate_country(country: Country) -> Country {

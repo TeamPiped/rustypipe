@@ -3,21 +3,26 @@ use std::borrow::Cow;
 use crate::{
     client::response::music_item::MusicListMapper,
     error::{Error, ExtractionError},
+    json::{JsonDoc, yt_single_column_sections, ytq},
     model::{traits::FromYtItem, AlbumItem, TrackItem},
+    request_body::ytbody,
     serializer::MapResult,
 };
 
-use super::{response, ClientType, MapRespCtx, MapResponse, QBrowse, RustyPipeQuery};
+use super::{ClientType, MapJsonResponse, MapRespCtx, RustyPipeQuery};
+
+#[derive(Debug)]
+struct MusicNewJson;
 
 impl RustyPipeQuery {
     /// Get the new albums that were released on YouTube Music
     #[tracing::instrument(skip(self), level = "error")]
     pub async fn music_new_albums(&self) -> Result<Vec<AlbumItem>, Error> {
-        let request_body = QBrowse {
-            browse_id: "FEmusic_new_releases_albums",
-        };
+        let request_body = ytbody!({
+            "browseId": "FEmusic_new_releases_albums",
+        });
 
-        self.execute_request::<response::MusicNew, _, _>(
+        self.execute_request::<MusicNewJson, _, _>(
             ClientType::DesktopMusic,
             "music_new_albums",
             "",
@@ -30,11 +35,11 @@ impl RustyPipeQuery {
     /// Get the new music videos that were released on YouTube Music
     #[tracing::instrument(skip(self), level = "error")]
     pub async fn music_new_videos(&self) -> Result<Vec<TrackItem>, Error> {
-        let request_body = QBrowse {
-            browse_id: "FEmusic_new_releases_videos",
-        };
+        let request_body = ytbody!({
+            "browseId": "FEmusic_new_releases_videos",
+        });
 
-        self.execute_request::<response::MusicNew, _, _>(
+        self.execute_request::<MusicNewJson, _, _>(
             ClientType::DesktopMusic,
             "music_new_videos",
             "",
@@ -45,35 +50,33 @@ impl RustyPipeQuery {
     }
 }
 
-impl<T: FromYtItem> MapResponse<Vec<T>> for response::MusicNew {
-    fn map_response(self, ctx: &MapRespCtx<'_>) -> Result<MapResult<Vec<T>>, ExtractionError> {
-        let items = self
-            .contents
-            .single_column_browse_results_renderer
-            .contents
-            .into_iter()
-            .next()
-            .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no content")))?
-            .tab_renderer
-            .content
-            .section_list_renderer
-            .contents
-            .into_iter()
-            .next()
-            .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no content")))?
-            .grid_renderer
-            .items;
+impl<T: FromYtItem> MapJsonResponse<Vec<T>> for MusicNewJson {
+    fn map_json_response(
+        json: &JsonDoc,
+        ctx: &MapRespCtx<'_>,
+    ) -> Result<MapResult<Vec<T>>, ExtractionError> {
+        json.with_root(|root| {
+            let sections = yt_single_column_sections(&root)?;
+            let grid = sections
+                .items()
+                .into_iter()
+                .next()
+                .and_then(|section| section.query(ytq!(.gridRenderer)))
+                .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no content")))?;
+            let items = grid
+                .query(ytq!(.items))
+                .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no grid items")))?;
 
-        let mut mapper = MusicListMapper::new(ctx.lang);
-        mapper.map_response(items);
-
-        Ok(mapper.conv_items())
+            let mut mapper = MusicListMapper::new(ctx.lang);
+            mapper.map_response_node(&items);
+            Ok(mapper.conv_items())
+        })
     }
 }
 
 #[cfg(test)]
 mod tests {
-    use std::{fs::File, io::BufReader};
+    use std::fs;
 
     use path_macro::path;
     use rstest::rstest;
@@ -85,12 +88,9 @@ mod tests {
     #[case::default("default")]
     fn map_music_new_albums(#[case] name: &str) {
         let json_path = path!(*TESTFILES / "music_new" / format!("albums_{name}.json"));
-        let json_file = File::open(json_path).unwrap();
-
-        let new_albums: response::MusicNew =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let json = JsonDoc::new(fs::read_to_string(json_path).unwrap());
         let map_res: MapResult<Vec<AlbumItem>> =
-            new_albums.map_response(&MapRespCtx::test("")).unwrap();
+            MusicNewJson::map_json_response(&json, &MapRespCtx::test("")).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -105,12 +105,9 @@ mod tests {
     #[case::default("w_podcasts")]
     fn map_music_new_videos(#[case] name: &str) {
         let json_path = path!(*TESTFILES / "music_new" / format!("videos_{name}.json"));
-        let json_file = File::open(json_path).unwrap();
-
-        let new_videos: response::MusicNew =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let json = JsonDoc::new(fs::read_to_string(json_path).unwrap());
         let map_res: MapResult<Vec<TrackItem>> =
-            new_videos.map_response(&MapRespCtx::test("")).unwrap();
+            MusicNewJson::map_json_response(&json, &MapRespCtx::test("")).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),

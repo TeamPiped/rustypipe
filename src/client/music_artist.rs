@@ -7,22 +7,37 @@ use tracing::debug;
 use crate::{
     client::{
         response::{music_item::map_album_type, url_endpoint::NavigationEndpoint},
-        MapRespOptions, QContinuation,
+        MapRespOptions,
     },
     error::{Error, ExtractionError},
+    json::{JsonDoc, JsonNode, ytq},
     model::{
         paginator::Paginator, traits::FromYtItem, AlbumItem, AlbumType, ArtistId, MusicArtist,
         MusicItem,
     },
     param::{AlbumFilter, AlbumOrder},
+    request_body::ytbody,
     serializer::MapResult,
     util::{self, ProtoBuilder},
 };
 
 use super::{
-    response::{self, music_item::MusicListMapper, url_endpoint::PageType},
-    ClientType, MapRespCtx, MapResponse, QBrowse, QBrowseParams, RustyPipeQuery,
+    pagination::MusicContinuationJson,
+    response::{
+        self,
+        music_item::{Grid, MusicListMapper, MusicMicroformat, SingleColumnBrowseResult},
+        music_artist::Header,
+        url_endpoint::PageType,
+        SectionList, Tab,
+    },
+    ClientType, MapJsonResponse, MapRespCtx, RustyPipeQuery,
 };
+
+#[derive(Debug)]
+struct MusicArtistJson;
+
+#[derive(Debug)]
+struct MusicArtistAlbumsJson;
 
 impl RustyPipeQuery {
     /// Get a YouTube Music artist page
@@ -45,13 +60,13 @@ impl RustyPipeQuery {
     }
 
     async fn _music_artist(&self, artist_id: &str, all_albums: bool) -> Result<MusicArtist, Error> {
-        let request_body = QBrowse {
-            browse_id: artist_id,
-        };
+        let request_body = ytbody!({
+            "browseId": artist_id,
+        });
 
         if all_albums {
             let (mut artist, can_fetch_more) = self
-                .execute_request::<response::MusicArtist, _, _>(
+                .execute_request::<MusicArtistJson, _, _>(
                     ClientType::DesktopMusic,
                     "music_artist",
                     artist_id,
@@ -68,7 +83,7 @@ impl RustyPipeQuery {
 
             Ok(artist)
         } else {
-            self.execute_request::<response::MusicArtist, _, _>(
+            self.execute_request::<MusicArtistJson, _, _>(
                 ClientType::DesktopMusic,
                 "music_artist",
                 artist_id,
@@ -86,13 +101,13 @@ impl RustyPipeQuery {
         filter: Option<AlbumFilter>,
         order: Option<AlbumOrder>,
     ) -> Result<Vec<AlbumItem>, Error> {
-        let request_body = QBrowseParams {
-            browse_id: &format!("{}{}", util::ARTIST_DISCOGRAPHY_PREFIX, artist_id),
-            params: &albums_param(filter, order),
-        };
+        let request_body = ytbody!({
+            "browseId": format!("{}{}", util::ARTIST_DISCOGRAPHY_PREFIX, artist_id),
+            "params": albums_param(filter, order),
+        });
 
         let first_page = self
-            .execute_request::<response::MusicArtistAlbums, _, _>(
+            .execute_request::<MusicArtistAlbumsJson, _, _>(
                 ClientType::DesktopMusic,
                 "music_artist_albums",
                 artist_id,
@@ -105,9 +120,11 @@ impl RustyPipeQuery {
         let mut ctoken = first_page.ctoken;
 
         while let Some(tkn) = &ctoken {
-            let request_body = QContinuation { continuation: tkn };
+            let request_body = ytbody!({
+                "continuation": tkn,
+            });
             let resp: Paginator<MusicItem> = self
-                .execute_request_ctx::<response::MusicContinuation, Paginator<MusicItem>, _>(
+                .execute_request_ctx::<MusicContinuationJson, Paginator<MusicItem>, _>(
                     ClientType::DesktopMusic,
                     "music_artist_albums_cont",
                     artist_id,
@@ -130,34 +147,67 @@ impl RustyPipeQuery {
     }
 }
 
-impl MapResponse<MusicArtist> for response::MusicArtist {
-    fn map_response(self, ctx: &MapRespCtx<'_>) -> Result<MapResult<MusicArtist>, ExtractionError> {
-        let mapped = map_artist_page(self, ctx, false)?;
-        Ok(MapResult {
-            c: mapped.c.0,
-            warnings: mapped.warnings,
+struct MusicArtistFields {
+    contents: Option<SingleColumnBrowseResult<Tab<SectionList<response::music_item::ItemSection>>>>,
+    header: Option<Header>,
+    microformat: MusicMicroformat,
+}
+
+fn deserialize_music_artist_fields(root: &JsonNode<'_>) -> Result<MusicArtistFields, ExtractionError> {
+    Ok(MusicArtistFields {
+        contents: root
+            .query(ytq!(.contents))
+            .map(|node| node.deserialize())
+            .transpose()?,
+        header: root
+            .query(ytq!(.header))
+            .map(|node| node.deserialize())
+            .transpose()?,
+        microformat: root
+            .query(ytq!(.microformat))
+            .map(|node| node.deserialize())
+            .transpose()?
+            .unwrap_or_default(),
+    })
+}
+
+impl MapJsonResponse<MusicArtist> for MusicArtistJson {
+    fn map_json_response(
+        json: &JsonDoc,
+        ctx: &MapRespCtx<'_>,
+    ) -> Result<MapResult<MusicArtist>, ExtractionError> {
+        json.with_root(|root| {
+            let fields = deserialize_music_artist_fields(&root)?;
+            let mapped = map_artist_page(fields, ctx, false)?;
+            Ok(MapResult {
+                c: mapped.c.0,
+                warnings: mapped.warnings,
+            })
         })
     }
 }
 
-impl MapResponse<(MusicArtist, bool)> for response::MusicArtist {
-    fn map_response(
-        self,
+impl MapJsonResponse<(MusicArtist, bool)> for MusicArtistJson {
+    fn map_json_response(
+        json: &JsonDoc,
         ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<(MusicArtist, bool)>, ExtractionError> {
-        map_artist_page(self, ctx, true)
+        json.with_root(|root| {
+            let fields = deserialize_music_artist_fields(&root)?;
+            map_artist_page(fields, ctx, true)
+        })
     }
 }
 
 fn map_artist_page(
-    res: response::MusicArtist,
+    fields: MusicArtistFields,
     ctx: &MapRespCtx<'_>,
     skip_extendables: bool,
 ) -> Result<MapResult<(MusicArtist, bool)>, ExtractionError> {
-    let contents = match res.contents {
+    let contents = match fields.contents {
         Some(c) => c,
         None => {
-            if res.microformat.microformat_data_renderer.noindex {
+            if fields.microformat.microformat_data_renderer.noindex {
                 return Err(ExtractionError::NotFound {
                     id: ctx.id.to_owned(),
                     msg: "no contents".into(),
@@ -168,7 +218,7 @@ fn map_artist_page(
         }
     };
 
-    let header = res
+    let header = fields
         .header
         .ok_or(ExtractionError::InvalidData("no header".into()))?
         .music_immersive_header_renderer;
@@ -339,7 +389,6 @@ fn map_artist_page(
     })
 }
 
-#[derive(Debug)]
 struct FirstAlbumPage {
     albums: Vec<AlbumItem>,
     ctoken: Option<String>,
@@ -347,19 +396,49 @@ struct FirstAlbumPage {
     visitor_data: Option<String>,
 }
 
-impl MapResponse<FirstAlbumPage> for response::MusicArtistAlbums {
-    fn map_response(
-        self,
+struct MusicArtistAlbumsFields {
+    header: Option<response::music_item::SimpleHeader>,
+    contents: SingleColumnBrowseResult<Tab<SectionList<Grid>>>,
+}
+
+fn deserialize_music_artist_albums_fields(
+    root: &JsonNode<'_>,
+) -> Result<MusicArtistAlbumsFields, ExtractionError> {
+    Ok(MusicArtistAlbumsFields {
+        header: root
+            .query(ytq!(.header))
+            .map(|node| node.deserialize())
+            .transpose()?,
+        contents: root
+            .require(ytq!(.contents), "artist albums contents")?
+            .deserialize()?,
+    })
+}
+
+impl MapJsonResponse<FirstAlbumPage> for MusicArtistAlbumsJson {
+    fn map_json_response(
+        json: &JsonDoc,
         ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<FirstAlbumPage>, ExtractionError> {
-        let Some(header) = self.header else {
+        json.with_root(|root| {
+            let fields = deserialize_music_artist_albums_fields(&root)?;
+            map_first_album_page(fields, ctx)
+        })
+    }
+}
+
+fn map_first_album_page(
+    fields: MusicArtistAlbumsFields,
+    ctx: &MapRespCtx<'_>,
+) -> Result<MapResult<FirstAlbumPage>, ExtractionError> {
+        let Some(header) = fields.header else {
             return Err(ExtractionError::NotFound {
                 id: ctx.id.into(),
                 msg: "no header".into(),
             });
         };
 
-        let grids = self
+        let grids = fields
             .contents
             .single_column_browse_results_renderer
             .contents
@@ -400,7 +479,6 @@ impl MapResponse<FirstAlbumPage> for response::MusicArtistAlbums {
             },
             warnings: mapped.warnings,
         })
-    }
 }
 
 fn albums_param(filter: Option<AlbumFilter>, order: Option<AlbumOrder>) -> String {
@@ -423,8 +501,6 @@ fn albums_param(filter: Option<AlbumFilter>, order: Option<AlbumOrder>) -> Strin
 
 #[cfg(test)]
 mod tests {
-    use std::{fs::File, io::BufReader};
-
     use path_macro::path;
     use rstest::rstest;
 
@@ -440,7 +516,7 @@ mod tests {
     #[case::grouped_albums("20250113_grouped_albums", "UCOR4_bSVIXPsGa4BbCSt60Q")]
     fn map_music_artist(#[case] name: &str, #[case] id: &str) {
         let json_path = path!(*TESTFILES / "music_artist" / format!("artist_{name}.json"));
-        let json_file = File::open(json_path).unwrap();
+        let json = JsonDoc::new(std::fs::read_to_string(json_path).unwrap());
 
         let mut album_page_path = None;
         let json_path = path!(*TESTFILES / "music_artist" / format!("artist_{name}_1.json"));
@@ -448,10 +524,8 @@ mod tests {
             album_page_path = Some(json_path);
         }
 
-        let resp: response::MusicArtist =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res: MapResult<(MusicArtist, bool)> =
-            resp.map_response(&MapRespCtx::test(id)).unwrap();
+            MusicArtistJson::map_json_response(&json, &MapRespCtx::test(id)).unwrap();
         let (mut artist, can_fetch_more) = map_res.c;
 
         assert!(
@@ -463,11 +537,9 @@ mod tests {
 
         // Album overview
         if let Some(album_page_path) = album_page_path {
-            let json_file = File::open(album_page_path).unwrap();
-            let resp: response::MusicArtistAlbums =
-                serde_json::from_reader(BufReader::new(json_file)).unwrap();
+            let json = JsonDoc::new(std::fs::read_to_string(album_page_path).unwrap());
             let map_res: MapResult<FirstAlbumPage> =
-                resp.map_response(&MapRespCtx::test(id)).unwrap();
+                MusicArtistAlbumsJson::map_json_response(&json, &MapRespCtx::test(id)).unwrap();
 
             assert!(
                 map_res.warnings.is_empty(),
@@ -483,11 +555,10 @@ mod tests {
                 if !cont_path.is_file() {
                     break;
                 }
-                let json_file = File::open(cont_path).unwrap();
-                let resp: response::MusicContinuation =
-                    serde_json::from_reader(BufReader::new(json_file)).unwrap();
+                let json = JsonDoc::new(std::fs::read_to_string(cont_path).unwrap());
                 let map_res: MapResult<Paginator<MusicItem>> =
-                    resp.map_response(&MapRespCtx::test(id)).unwrap();
+                    MusicContinuationJson::map_json_response(&json, &MapRespCtx::test(id))
+                        .unwrap();
                 assert!(!map_res.c.items.is_empty());
                 artist.albums.extend(
                     map_res
@@ -505,13 +576,11 @@ mod tests {
     #[test]
     fn map_music_artist_no_cont() {
         let json_path = path!(*TESTFILES / "music_artist" / "artist_default.json");
-        let json_file = File::open(json_path).unwrap();
+        let json = JsonDoc::new(std::fs::read_to_string(json_path).unwrap());
 
-        let artist: response::MusicArtist =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res: MapResult<MusicArtist> = artist
-            .map_response(&MapRespCtx::test("UClmXPfaYhXOYsNn_QUyheWQ"))
-            .unwrap();
+        let map_res: MapResult<MusicArtist> =
+            MusicArtistJson::map_json_response(&json, &MapRespCtx::test("UClmXPfaYhXOYsNn_QUyheWQ"))
+                .unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -524,12 +593,10 @@ mod tests {
     #[test]
     fn map_music_artist_secondary_channel() {
         let json_path = path!(*TESTFILES / "music_artist" / "artist_secondary_channel.json");
-        let json_file = File::open(json_path).unwrap();
+        let json = JsonDoc::new(std::fs::read_to_string(json_path).unwrap());
 
-        let artist: response::MusicArtist =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let res: Result<MapResult<MusicArtist>, ExtractionError> =
-            artist.map_response(&MapRespCtx::test("UCLkAepWjdylmXSltofFvsYQ"));
+            MusicArtistJson::map_json_response(&json, &MapRespCtx::test("UCLkAepWjdylmXSltofFvsYQ"));
         let e = res.unwrap_err();
 
         match e {

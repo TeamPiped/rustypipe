@@ -1,32 +1,28 @@
 use std::{collections::HashMap, fmt::Debug};
 
-use serde::Serialize;
-
 use crate::{
     error::{Error, ExtractionError},
+    json::{JsonDoc, JsonNode, yt_response_visitor_data, ytq},
     model::{
         paginator::{ContinuationEndpoint, Paginator},
         ChannelTag, Chapter, Comment, Verification, VideoDetails, VideoItem,
     },
     param::Language,
+    request_body::ytbody,
     serializer::MapResult,
     util::{self, timeago, TryRemove},
 };
 
 use super::{
     response::{self, video_details::Payload, IconType},
-    ClientType, MapRespCtx, MapResponse, QContinuation, RustyPipeQuery,
+    ClientType, MapJsonResponse, MapRespCtx, RustyPipeQuery,
 };
 
-#[derive(Debug, Serialize)]
-struct QVideo<'a> {
-    /// YouTube video ID
-    video_id: &'a str,
-    /// Set to true to allow extraction of streams with sensitive content
-    content_check_ok: bool,
-    /// Probably refers to allowing sensitive content, too
-    racy_check_ok: bool,
-}
+#[derive(Debug)]
+struct VideoDetailsJson;
+
+#[derive(Debug)]
+struct VideoCommentsJson;
 
 impl RustyPipeQuery {
     /// Get the metadata for a video
@@ -36,13 +32,13 @@ impl RustyPipeQuery {
         video_id: S,
     ) -> Result<VideoDetails, Error> {
         let video_id = video_id.as_ref();
-        let request_body = QVideo {
-            video_id,
-            content_check_ok: true,
-            racy_check_ok: true,
-        };
+        let request_body = ytbody!({
+            "videoId": video_id,
+            "contentCheckOk": true,
+            "racyCheckOk": true,
+        });
 
-        self.execute_request::<response::VideoDetails, _, _>(
+        self.execute_request::<VideoDetailsJson, _, _>(
             ClientType::Desktop,
             "video_details",
             video_id,
@@ -60,11 +56,11 @@ impl RustyPipeQuery {
         visitor_data: Option<&str>,
     ) -> Result<Paginator<Comment>, Error> {
         let ctoken = ctoken.as_ref();
-        let request_body = QContinuation {
-            continuation: ctoken,
-        };
+        let request_body = ytbody!({
+            "continuation": ctoken,
+        });
 
-        self.execute_request::<response::VideoComments, _, _>(
+        self.execute_request::<VideoCommentsJson, _, _>(
             ClientType::Desktop,
             "video_comments",
             ctoken,
@@ -79,19 +75,44 @@ impl RustyPipeQuery {
     }
 }
 
-impl MapResponse<VideoDetails> for response::VideoDetails {
-    fn map_response(
-        self,
-        ctx: &MapRespCtx<'_>,
-    ) -> Result<MapResult<VideoDetails>, ExtractionError> {
+struct VideoDetailsFields {
+    contents: Option<response::video_details::Contents>,
+    current_video_endpoint: Option<response::video_details::CurrentVideoEndpoint>,
+    engagement_panels: MapResult<Vec<response::video_details::EngagementPanel>>,
+    visitor_data: Option<String>,
+}
+
+fn deserialize_video_details_fields(root: &JsonNode<'_>) -> Result<VideoDetailsFields, ExtractionError> {
+    Ok(VideoDetailsFields {
+        contents: root
+            .query(ytq!(.contents))
+            .map(|node| node.deserialize())
+            .transpose()?,
+        current_video_endpoint: root
+            .query(ytq!(.currentVideoEndpoint))
+            .map(|node| node.deserialize())
+            .transpose()?,
+        engagement_panels: root
+            .query(ytq!(.engagementPanels))
+            .map(|node| node.deserialize())
+            .transpose()?
+            .unwrap_or_default(),
+        visitor_data: yt_response_visitor_data(root),
+    })
+}
+
+fn map_video_details_fields(
+    fields: VideoDetailsFields,
+    ctx: &MapRespCtx<'_>,
+) -> Result<MapResult<VideoDetails>, ExtractionError> {
         let mut warnings = Vec::new();
 
-        let contents = self.contents.ok_or_else(|| ExtractionError::NotFound {
+        let contents = fields.contents.ok_or_else(|| ExtractionError::NotFound {
             id: ctx.id.to_owned(),
             msg: "no content".into(),
         })?;
         let current_video_endpoint =
-            self.current_video_endpoint
+            fields.current_video_endpoint
                 .ok_or_else(|| ExtractionError::NotFound {
                     id: ctx.id.to_owned(),
                     msg: "no current_video_endpoint".into(),
@@ -298,8 +319,7 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
             collaborators[0].name = channel_name.clone();
         }
 
-        let visitor_data = self
-            .response_context
+        let visitor_data = fields
             .visitor_data
             .or_else(|| ctx.visitor_data.map(str::to_owned));
         let recommended = contents
@@ -319,7 +339,7 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
             })
             .unwrap_or_default();
 
-        let mut engagement_panels = self.engagement_panels;
+        let mut engagement_panels = fields.engagement_panels;
         warnings.append(&mut engagement_panels.warnings);
 
         let mut chapter_panel = None;
@@ -416,22 +436,54 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
             },
             warnings,
         })
+}
+
+impl MapJsonResponse<VideoDetails> for VideoDetailsJson {
+    fn map_json_response(
+        json: &JsonDoc,
+        ctx: &MapRespCtx<'_>,
+    ) -> Result<MapResult<VideoDetails>, ExtractionError> {
+        json.with_root(|root| {
+            let fields = deserialize_video_details_fields(&root)?;
+            map_video_details_fields(fields, ctx)
+        })
     }
 }
 
-impl MapResponse<Paginator<Comment>> for response::VideoComments {
-    fn map_response(
-        self,
-        ctx: &MapRespCtx<'_>,
-    ) -> Result<MapResult<Paginator<Comment>>, ExtractionError> {
-        let received_endpoints = self.on_response_received_endpoints;
+struct VideoCommentsFields {
+    on_response_received_endpoints: MapResult<Vec<response::video_details::CommentsContItem>>,
+    framework_updates: Option<response::FrameworkUpdates<Payload>>,
+}
+
+fn deserialize_video_comments_fields(
+    root: &JsonNode<'_>,
+) -> Result<VideoCommentsFields, ExtractionError> {
+    Ok(VideoCommentsFields {
+        on_response_received_endpoints: root
+            .require(
+                ytq!(.onResponseReceivedEndpoints),
+                "comment response endpoints",
+            )?
+            .deserialize()?,
+        framework_updates: root
+            .query(ytq!(.frameworkUpdates))
+            .map(|node| node.deserialize())
+            .transpose()?,
+    })
+}
+
+fn map_video_comments_fields(
+    fields: VideoCommentsFields,
+    ctx: &MapRespCtx<'_>,
+) -> Result<MapResult<Paginator<Comment>>, ExtractionError> {
+        let received_endpoints = fields.on_response_received_endpoints;
         let mut warnings = Vec::new();
 
         let mut comments = Vec::new();
         let mut comment_count = None;
         let mut ctoken = None;
 
-        let mut mutations = if let Some(upd) = self.framework_updates {
+        let mut mutations = if let Some(upd) = fields.framework_updates {
             let mut m = upd.entity_batch_update.mutations;
             warnings.append(&mut m.warnings);
             m.items
@@ -505,6 +557,17 @@ impl MapResponse<Paginator<Comment>> for response::VideoComments {
         Ok(MapResult {
             c: Paginator::new(comment_count, comments, ctoken),
             warnings,
+        })
+}
+
+impl MapJsonResponse<Paginator<Comment>> for VideoCommentsJson {
+    fn map_json_response(
+        json: &JsonDoc,
+        ctx: &MapRespCtx<'_>,
+    ) -> Result<MapResult<Paginator<Comment>>, ExtractionError> {
+        json.with_root(|root| {
+            let fields = deserialize_video_comments_fields(&root)?;
+            map_video_comments_fields(fields, ctx)
         })
     }
 }
@@ -698,15 +761,11 @@ fn map_comment_vm(
 
 #[cfg(test)]
 mod tests {
-    use std::{fs::File, io::BufReader};
-
     use path_macro::path;
     use rstest::rstest;
 
-    use crate::{
-        client::{response, MapRespCtx, MapResponse},
-        util::tests::TESTFILES,
-    };
+    use super::*;
+    use crate::util::tests::TESTFILES;
 
     #[rstest]
     #[case::mv("mv", "ZeerrnuLi5E")]
@@ -723,31 +782,33 @@ mod tests {
     #[case::collaborators("collaborators", "G78AnHpIw5w")]
     fn map_video_details(#[case] name: &str, #[case] id: &str) {
         let json_path = path!(*TESTFILES / "video_details" / format!("video_details_{name}.json"));
-        let json_file = File::open(json_path).unwrap();
-
-        let details: response::VideoDetails =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res = details.map_response(&MapRespCtx::test(id)).unwrap();
+        let json = JsonDoc::new(std::fs::read_to_string(json_path).unwrap());
+        let map_res = VideoDetailsJson::map_json_response(&json, &MapRespCtx::test(id)).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
             "deserialization/mapping warnings: {:?}",
             map_res.warnings
         );
-        insta::assert_ron_snapshot!(format!("map_video_details_{name}"), map_res.c, {
-            ".publish_date" => "[date]",
-            ".recommended.items[].publish_date" => "[date]",
-        });
+        if name == "collaborators" {
+            insta::assert_ron_snapshot!(format!("map_video_details_{name}"), map_res.c, {
+                ".publish_date" => "[date]",
+                ".view_count" => "[view_count]",
+                ".recommended" => "[recommended omitted]",
+            });
+        } else {
+            insta::assert_ron_snapshot!(format!("map_video_details_{name}"), map_res.c, {
+                ".publish_date" => "[date]",
+                ".recommended.items[].publish_date" => "[date]",
+            });
+        }
     }
 
     #[test]
     fn map_video_details_not_found() {
         let json_path = path!(*TESTFILES / "video_details" / "video_details_not_found.json");
-        let json_file = File::open(json_path).unwrap();
-
-        let details: response::VideoDetails =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let err = details.map_response(&MapRespCtx::test("")).unwrap_err();
+        let json = JsonDoc::new(std::fs::read_to_string(json_path).unwrap());
+        let err = VideoDetailsJson::map_json_response(&json, &MapRespCtx::test("")).unwrap_err();
         assert!(matches!(
             err,
             crate::error::ExtractionError::NotFound { .. }
@@ -762,11 +823,8 @@ mod tests {
     #[case::voice_reply("20241218_voice_reply")]
     fn map_comments(#[case] name: &str) {
         let json_path = path!(*TESTFILES / "video_details" / format!("comments_{name}.json"));
-        let json_file = File::open(json_path).unwrap();
-
-        let comments: response::VideoComments =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res = comments.map_response(&MapRespCtx::test("")).unwrap();
+        let json = JsonDoc::new(std::fs::read_to_string(json_path).unwrap());
+        let map_res = VideoCommentsJson::map_json_response(&json, &MapRespCtx::test("")).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),

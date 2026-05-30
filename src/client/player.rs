@@ -6,18 +6,19 @@ use std::{
 
 use once_cell::sync::Lazy;
 use regex::Regex;
-use serde::Serialize;
 use time::OffsetDateTime;
 use url::Url;
 
 use crate::{
     deobfuscate::{DeobfData, Deobfuscator},
     error::{internal::DeobfError, AuthError, Error, ExtractionError, UnavailabilityReason},
+    json::{JsonDoc, JsonNode, yt_response_visitor_data, ytq},
     model::{
         traits::QualityOrd, AudioCodec, AudioFormat, AudioStream, AudioTrack, DrmLicense,
         DrmSystem, Frameset, Subtitle, VideoCodec, VideoFormat, VideoPlayer, VideoPlayerDetails,
         VideoPlayerDrm, VideoStream,
     },
+    request_body::ytbody,
     util,
 };
 
@@ -26,64 +27,20 @@ use super::{
         self,
         player::{self, Format},
     },
-    ClientType, MapRespCtx, MapRespOptions, MapResponse, MapResult, PoToken, RustyPipeQuery,
+    ClientType, MapJsonResponse, MapRespCtx, MapRespOptions, MapResult, PoToken, RustyPipeQuery,
 };
 
-#[derive(Debug, Serialize)]
-#[serde(rename_all = "camelCase")]
-struct QPlayer<'a> {
-    /// Website playback context
-    #[serde(skip_serializing_if = "Option::is_none")]
-    playback_context: Option<QPlaybackContext<'a>>,
-    /// YouTube video ID
-    video_id: &'a str,
-    /// Set to true to allow extraction of streams with sensitive content
-    content_check_ok: bool,
-    /// Probably refers to allowing sensitive content, too
-    racy_check_ok: bool,
-    /// Botguard data
-    #[serde(skip_serializing_if = "Option::is_none")]
-    service_integrity_dimensions: Option<ServiceIntegrity>,
-}
+#[derive(Debug)]
+struct PlayerJson;
 
-#[derive(Debug, Serialize)]
-#[serde(rename_all = "camelCase")]
-struct QPlaybackContext<'a> {
-    content_playback_context: QContentPlaybackContext<'a>,
-}
-
-#[derive(Debug, Serialize)]
-#[serde(rename_all = "camelCase")]
-struct QContentPlaybackContext<'a> {
-    /// Signature timestamp extracted from player.js
-    signature_timestamp: &'a str,
-    /// Referer URL from website
-    referer: String,
-}
-
-#[derive(Debug, Serialize)]
-#[serde(rename_all = "camelCase")]
-struct QDrmLicense<'a> {
-    drm_system: &'a str,
-    video_id: &'a str,
-    cpn: &'a str,
-    session_id: &'a str,
-    license_request: &'a str,
-    drm_params: &'a str,
-    drm_video_feature: &'a str,
-}
-
-#[derive(Debug, Serialize)]
-#[serde(rename_all = "camelCase")]
-struct ServiceIntegrity {
-    po_token: String,
-}
+#[derive(Debug)]
+struct DrmLicenseJson;
 
 #[derive(Default)]
 struct PlayerPoToken {
     visitor_data: Option<String>,
     session_po_token: Option<PoToken>,
-    content_po_token: Option<ServiceIntegrity>,
+    content_po_token: Option<String>,
 }
 
 impl RustyPipeQuery {
@@ -169,7 +126,7 @@ impl RustyPipeQuery {
                         po_token: session_po_token,
                         valid_until,
                     }),
-                    content_po_token: Some(ServiceIntegrity { po_token }),
+                    content_po_token: Some(po_token),
                 })
             }
         } else {
@@ -208,22 +165,26 @@ impl RustyPipeQuery {
             }
         )?;
 
-        let playback_context = deobf.as_ref().map(|deobf| QPlaybackContext {
-            content_playback_context: QContentPlaybackContext {
-                signature_timestamp: &deobf.sts,
-                referer: format!("https://www.youtube.com/watch?v={video_id}"),
-            },
+        let playback_context = deobf.as_ref().map(|deobf| {
+            ytbody!({
+                "contentPlaybackContext": ytbody!({
+                    "signatureTimestamp": &deobf.sts,
+                    "referer": format!("https://www.youtube.com/watch?v={video_id}"),
+                }),
+            })
         });
 
-        let request_body = QPlayer {
-            playback_context,
-            video_id,
-            content_check_ok: true,
-            racy_check_ok: true,
-            service_integrity_dimensions: player_po.content_po_token,
-        };
+        let request_body = ytbody!({
+            ? "playbackContext": playback_context,
+            "videoId": video_id,
+            "contentCheckOk": true,
+            "racyCheckOk": true,
+            ? "serviceIntegrityDimensions": player_po.content_po_token.as_ref().map(|po_token| ytbody!({
+                "poToken": po_token,
+            })),
+        });
 
-        self.execute_request_ctx::<response::Player, _, _>(
+        self.execute_request_ctx::<PlayerJson, _, _>(
             client_type,
             "player",
             video_id,
@@ -267,19 +228,21 @@ impl RustyPipeQuery {
         let client_type = self
             .auth_enabled_client(&[ClientType::Desktop, ClientType::Tv])
             .ok_or(Error::Auth(AuthError::NoLogin))?;
-        let request_body = QDrmLicense {
-            drm_system: drm_system.req_param(),
-            video_id,
-            cpn: &util::generate_content_playback_nonce(),
-            session_id,
-            license_request: &data_encoding::BASE64.encode(license_request),
-            drm_params,
-            drm_video_feature: "DRM_VIDEO_FEATURE_SDR",
-        };
+        let cpn = util::generate_content_playback_nonce();
+        let license_request = data_encoding::BASE64.encode(license_request);
+        let request_body = ytbody!({
+            "drmSystem": drm_system.req_param(),
+            "videoId": video_id,
+            "cpn": &cpn,
+            "sessionId": session_id,
+            "licenseRequest": &license_request,
+            "drmParams": drm_params,
+            "drmVideoFeature": "DRM_VIDEO_FEATURE_SDR",
+        });
 
         self.clone()
             .authenticated()
-            .execute_request::<response::DrmLicense, _, _>(
+            .execute_request::<DrmLicenseJson, _, _>(
                 client_type,
                 "drm_license",
                 video_id,
@@ -290,15 +253,57 @@ impl RustyPipeQuery {
     }
 }
 
-impl MapResponse<VideoPlayer> for response::Player {
-    fn map_response(
-        self,
-        ctx: &MapRespCtx<'_>,
-    ) -> Result<super::MapResult<VideoPlayer>, ExtractionError> {
+struct PlayerFields {
+    playability_status: player::PlayabilityStatus,
+    streaming_data: Option<player::StreamingData>,
+    captions: Option<player::Captions>,
+    video_details: Option<player::VideoDetails>,
+    storyboards: Option<player::Storyboards>,
+    player_config: player::PlayerConfig,
+    heartbeat_params: player::HeartbeatParams,
+}
+
+fn deserialize_player_fields(root: &JsonNode<'_>) -> Result<PlayerFields, ExtractionError> {
+    Ok(PlayerFields {
+        playability_status: root
+            .require(ytq!(.playabilityStatus), "playability status")?
+            .deserialize()?,
+        streaming_data: root
+            .query(ytq!(.streamingData))
+            .map(|node| node.deserialize())
+            .transpose()?,
+        captions: root
+            .query(ytq!(.captions))
+            .map(|node| node.deserialize())
+            .transpose()?,
+        video_details: root
+            .query(ytq!(.videoDetails))
+            .map(|node| node.deserialize())
+            .transpose()?,
+        storyboards: root
+            .query(ytq!(.storyboards))
+            .map(|node| node.deserialize())
+            .transpose()?,
+        player_config: root
+            .query(ytq!(.playerConfig))
+            .and_then(|node| node.deserialize().ok())
+            .unwrap_or_default(),
+        heartbeat_params: root
+            .query(ytq!(.heartbeatParams))
+            .and_then(|node| node.deserialize().ok())
+            .unwrap_or_default(),
+    })
+}
+
+fn map_player_fields(
+    fields: PlayerFields,
+    visitor_data: Option<String>,
+    ctx: &MapRespCtx<'_>,
+) -> Result<MapResult<VideoPlayer>, ExtractionError> {
         let mut warnings = vec![];
 
         // Check playability status
-        let is_live = match self.playability_status {
+        let is_live = match fields.playability_status {
             response::player::PlayabilityStatus::Ok { live_streamability } => {
                 live_streamability.is_some()
             }
@@ -371,12 +376,12 @@ impl MapResponse<VideoPlayer> for response::Player {
         };
 
         let streaming_data =
-            self.streaming_data
+            fields.streaming_data
                 .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
                     "no streaming data",
                 )))?;
         let video_details =
-            self.video_details
+            fields.video_details
                 .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
                     "no video details",
                 )))?;
@@ -431,7 +436,7 @@ impl MapResponse<VideoPlayer> for response::Player {
             Streams::default()
         };
 
-        let subtitles = self.captions.map_or(Vec::new(), |captions| {
+        let subtitles = fields.captions.map_or(Vec::new(), |captions| {
             captions
                 .player_captions_tracklist_renderer
                 .caption_tracks
@@ -448,7 +453,7 @@ impl MapResponse<VideoPlayer> for response::Player {
                 .collect()
         });
 
-        let preview_frames = self
+        let preview_frames = fields
             .storyboards
             .and_then(|sb| {
                 let spec = sb.player_storyboard_spec_renderer.spec;
@@ -497,9 +502,9 @@ impl MapResponse<VideoPlayer> for response::Player {
 
         let drm = streaming_data
             .drm_params
-            .zip(self.heartbeat_params.drm_session_id)
+            .zip(fields.heartbeat_params.drm_session_id)
             .map(|(drm_params, drm_session_id)| VideoPlayerDrm {
-                widevine_service_cert: self
+                widevine_service_cert: fields
                     .player_config
                     .web_drm_config
                     .and_then(|c| c.widevine_service_cert)
@@ -533,12 +538,21 @@ impl MapResponse<VideoPlayer> for response::Player {
                 preview_frames,
                 drm,
                 client_type: ctx.client_type,
-                visitor_data: self
-                    .response_context
-                    .visitor_data
-                    .or_else(|| ctx.visitor_data.map(str::to_owned)),
+                visitor_data: visitor_data.or_else(|| ctx.visitor_data.map(str::to_owned)),
             },
             warnings,
+        })
+}
+
+impl MapJsonResponse<VideoPlayer> for PlayerJson {
+    fn map_json_response(
+        json: &JsonDoc,
+        ctx: &MapRespCtx<'_>,
+    ) -> Result<MapResult<VideoPlayer>, ExtractionError> {
+        json.with_root(|root| {
+            let fields = deserialize_player_fields(&root)?;
+            let visitor_data = yt_response_visitor_data(&root);
+            map_player_fields(fields, visitor_data, ctx)
         })
     }
 }
@@ -918,40 +932,55 @@ fn get_audio_codec(codecs: Vec<&str>) -> AudioCodec {
     AudioCodec::Unknown
 }
 
-impl MapResponse<DrmLicense> for response::DrmLicense {
-    fn map_response(self, _ctx: &MapRespCtx<'_>) -> Result<MapResult<DrmLicense>, ExtractionError> {
-        if self.status != "LICENSE_STATUS_OK" {
-            return Err(ExtractionError::InvalidData(self.status.into()));
-        }
+impl MapJsonResponse<DrmLicense> for DrmLicenseJson {
+    fn map_json_response(
+        json: &JsonDoc,
+        _ctx: &MapRespCtx<'_>,
+    ) -> Result<MapResult<DrmLicense>, ExtractionError> {
+        json.with_root(|root| {
+            let status = root
+                .require(ytq!(.status), "drm license status")?
+                .as_str()
+                .ok_or_else(|| ExtractionError::InvalidData("missing drm status".into()))?;
+            if status != "LICENSE_STATUS_OK" {
+                return Err(ExtractionError::InvalidData(status.into()));
+            }
 
-        let license = DrmLicense {
-            license: data_encoding::BASE64URL
-                .decode(self.license.as_bytes())
-                .map_err(|_| ExtractionError::InvalidData("license: invalid b64".into()))?,
-            authorized_formats: self
-                .authorized_formats
-                .into_iter()
-                .filter_map(|f| {
-                    let key: Option<[u8; 16]> = data_encoding::BASE64URL
-                        .decode(f.key_id.as_bytes())
-                        .ok()
-                        .and_then(|k| k.try_into().ok());
-                    key.map(|k| (f.track_type.into(), k))
-                })
-                .collect(),
-        };
+            let license = root
+                .require(ytq!(.license), "drm license")?
+                .as_str()
+                .ok_or_else(|| ExtractionError::InvalidData("missing drm license".into()))?;
+            let authorized_formats = root
+                .require(ytq!(.authorizedFormats), "authorized formats")?
+                .deserialize_items_lossy::<player::AuthorizedFormat>()
+                .0;
 
-        Ok(MapResult {
-            c: license,
-            warnings: Vec::new(),
+            let license = DrmLicense {
+                license: data_encoding::BASE64URL
+                    .decode(license.as_bytes())
+                    .map_err(|_| ExtractionError::InvalidData("license: invalid b64".into()))?,
+                authorized_formats: authorized_formats
+                    .into_iter()
+                    .filter_map(|f| {
+                        let key: Option<[u8; 16]> = data_encoding::BASE64URL
+                            .decode(f.key_id.as_bytes())
+                            .ok()
+                            .and_then(|k| k.try_into().ok());
+                        key.map(|k| (f.track_type.into(), k))
+                    })
+                    .collect(),
+            };
+
+            Ok(MapResult {
+                c: license,
+                warnings: Vec::new(),
+            })
         })
     }
 }
 
 #[cfg(test)]
 mod tests {
-    use std::{fs::File, io::BufReader};
-
     use path_macro::path;
     use rstest::rstest;
     use time::UtcOffset;
@@ -979,11 +1008,10 @@ mod tests {
             .unwrap()
             .replace('_', "");
         let json_path = path!(*TESTFILES / "player" / format!("{name}_video.json"));
-        let json_file = File::open(json_path).unwrap();
-
-        let resp: response::Player = serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res = resp
-            .map_response(&MapRespCtx {
+        let json = JsonDoc::new(std::fs::read_to_string(json_path).unwrap());
+        let map_res = PlayerJson::map_json_response(
+            &json,
+            &MapRespCtx {
                 id: "pPvd8UxmSbQ",
                 lang: Language::En,
                 utc_offset: UtcOffset::UTC,
@@ -993,8 +1021,9 @@ mod tests {
                 artist: None,
                 authenticated: false,
                 session_po_token: None,
-            })
-            .unwrap();
+            },
+        )
+        .unwrap();
 
         assert!(
             map_res.warnings.is_empty(),

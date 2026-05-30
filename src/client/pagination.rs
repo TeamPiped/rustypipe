@@ -1,11 +1,13 @@
 use std::fmt::Debug;
 
 use crate::error::{Error, ExtractionError};
+use crate::json::{JsonDoc, JsonNode, yt_continuation, yt_estimated_results, ytq};
 use crate::model::{
     paginator::{ContinuationEndpoint, Paginator},
     traits::FromYtItem,
     Comment, MusicItem, YouTubeItem,
 };
+use crate::request_body::ytbody;
 use crate::serializer::MapResult;
 
 #[cfg(feature = "userdata")]
@@ -15,9 +17,18 @@ use super::response::{
     music_item::{map_queue_item, MusicListMapper, PlaylistPanelVideo},
     YouTubeListItem,
 };
-use super::{
-    response, ClientType, MapRespCtx, MapRespOptions, MapResponse, QContinuation, RustyPipeQuery,
+#[cfg(feature = "userdata")]
+use super::response::{
+    music_item::MusicShelf,
+    MusicContinuationData,
 };
+use super::{response, ClientType, MapJsonResponse, MapRespCtx, MapRespOptions, RustyPipeQuery};
+
+#[derive(Debug)]
+pub(crate) struct ContinuationJson;
+
+#[derive(Debug)]
+pub(crate) struct MusicContinuationJson;
 
 impl RustyPipeQuery {
     /// Get more YouTube items from the given continuation token and endpoint
@@ -30,12 +41,12 @@ impl RustyPipeQuery {
     ) -> Result<Paginator<T>, Error> {
         let ctoken = ctoken.as_ref();
         if endpoint.is_music() {
-            let request_body = QContinuation {
-                continuation: ctoken,
-            };
+            let request_body = ytbody!({
+                "continuation": ctoken,
+            });
 
             let p = self
-                .execute_request_ctx::<response::MusicContinuation, Paginator<MusicItem>, _>(
+                .execute_request_ctx::<MusicContinuationJson, Paginator<MusicItem>, _>(
                     ClientType::DesktopMusic,
                     "music_continuation",
                     ctoken,
@@ -50,12 +61,12 @@ impl RustyPipeQuery {
 
             Ok(map_ytm_paginator(p, endpoint))
         } else {
-            let request_body = QContinuation {
-                continuation: ctoken,
-            };
+            let request_body = ytbody!({
+                "continuation": ctoken,
+            });
 
             let p = self
-                .execute_request_ctx::<response::Continuation, Paginator<YouTubeItem>, _>(
+                .execute_request_ctx::<ContinuationJson, Paginator<YouTubeItem>, _>(
                     ClientType::Desktop,
                     "continuation",
                     ctoken,
@@ -101,222 +112,290 @@ fn map_ytm_paginator<T: FromYtItem>(
     }
 }
 
-fn continuation_items(response: response::Continuation) -> MapResult<Vec<YouTubeListItem>> {
-    response
-        .on_response_received_actions
-        .and_then(|actions| {
-            actions
-                .into_iter()
-                .map(|action| action.append_continuation_items_action.continuation_items)
-                .reduce(|mut acc, mut items| {
-                    acc.c.append(&mut items.c);
-                    acc.warnings.append(&mut items.warnings);
-                    acc
-                })
-        })
-        .or_else(|| {
-            response
-                .continuation_contents
-                .map(|contents| contents.rich_grid_continuation.contents)
-        })
-        .unwrap_or_default()
+fn yt_continuation_yt_items(root: &JsonNode<'_>) -> MapResult<Vec<YouTubeListItem>> {
+    for actions in [
+        root.query(ytq!(.onResponseReceivedActions)),
+        root.query(ytq!(.onResponseReceivedCommands)),
+        root.query(ytq!(.onResponseReceivedEndpoints)),
+    ]
+    .into_iter()
+    .flatten()
+    {
+        let mut merged = MapResult::<Vec<YouTubeListItem>>::default();
+        for action in actions.items() {
+            let Some(items) = action.first_of(&[
+                ytq!(.appendContinuationItemsAction.continuationItems),
+                ytq!(.reloadContinuationItemsCommand.continuationItems),
+            ]) else {
+                continue;
+            };
+            let (items, mut warnings) = items.deserialize_items_lossy::<YouTubeListItem>();
+            merged.c.extend(items);
+            merged.warnings.append(&mut warnings);
+        }
+        if !merged.c.is_empty() {
+            return merged;
+        }
+    }
+
+    if let Some(items) = root.query(ytq!(.continuationContents.richGridContinuation.contents)) {
+        let (items, warnings) = items.deserialize_items_lossy::<YouTubeListItem>();
+        return MapResult { c: items, warnings };
+    }
+
+    MapResult::default()
 }
 
-impl MapResponse<Paginator<YouTubeItem>> for response::Continuation {
-    fn map_response(
-        self,
+fn map_music_shelf_node<'a>(
+    shelf: &JsonNode<'a>,
+    mapper: &mut MusicListMapper,
+    continuations: &mut Vec<JsonNode<'a>>,
+) {
+    if let Some(contents) = shelf.query(ytq!(.contents)) {
+        mapper.map_response_node(&contents);
+    }
+    if let Some(cont) = shelf.query(ytq!(.continuations)) {
+        continuations.extend(cont.items());
+    }
+}
+
+fn map_music_continuation_contents<'a>(
+    root: &JsonNode<'a>,
+    ctx: &MapRespCtx<'_>,
+    mapper: &mut MusicListMapper,
+    continuations: &mut Vec<JsonNode<'a>>,
+) {
+    let Some(contents) = root.query(ytq!(.continuationContents)) else {
+        return;
+    };
+
+    if let Some(shelf) = contents
+        .query(ytq!(.musicShelfContinuation))
+        .or_else(|| contents.query(ytq!(.musicPlaylistShelfContinuation)))
+    {
+        map_music_shelf_node(&shelf, mapper, continuations);
+    } else if let Some(section_list) = contents.query(ytq!(.sectionListContinuation)) {
+        if let Some(sections) = section_list.query(ytq!(.contents)) {
+            for section in sections.items() {
+                if let Some(shelf) = section.query(ytq!(.musicShelfRenderer)) {
+                    map_music_shelf_node(&shelf, mapper, continuations);
+                } else if let Some(shelf) = section.query(ytq!(.musicCarouselShelfRenderer)) {
+                    if let Some(items) = shelf.query(ytq!(.contents)) {
+                        mapper.map_response_node(&items);
+                    }
+                } else if let Some(grid) = section.query(ytq!(.gridRenderer)) {
+                    if let Some(items) = grid.query(ytq!(.items)) {
+                        mapper.map_response_node(&items);
+                    }
+                    if let Some(cont) = grid.query(ytq!(.continuations)) {
+                        continuations.extend(cont.items());
+                    }
+                }
+            }
+        }
+    } else if let Some(panel) = contents.query(ytq!(.playlistPanelContinuation)) {
+        if let Some(cont) = panel.query(ytq!(.continuations)) {
+            continuations.extend(cont.items());
+        }
+        if let Ok(mut panel) = panel.deserialize::<response::music_item::PlaylistPanelRenderer>() {
+            mapper.add_warnings(&mut panel.contents.warnings);
+            for item in panel.contents.c {
+                if let PlaylistPanelVideo::PlaylistPanelVideoRenderer(item) = item {
+                    let mut track = map_queue_item(item, ctx.lang);
+                    mapper.add_item(MusicItem::Track(track.c));
+                    mapper.add_warnings(&mut track.warnings);
+                }
+            }
+        }
+    } else if let Some(grid) = contents.query(ytq!(.gridContinuation)) {
+        if let Some(items) = grid.query(ytq!(.items)) {
+            mapper.map_response_node(&items);
+        }
+        if let Some(cont) = grid.query(ytq!(.continuations)) {
+            continuations.extend(cont.items());
+        }
+    }
+}
+
+fn music_continuation_token(continuations: &[JsonNode<'_>], mapper: &MusicListMapper) -> Option<String> {
+    mapper
+        .ctoken
+        .clone()
+        .or_else(|| continuations.first().and_then(|cont| yt_continuation(cont)))
+}
+
+impl MapJsonResponse<Paginator<YouTubeItem>> for ContinuationJson {
+    fn map_json_response(
+        json: &JsonDoc,
         ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<Paginator<YouTubeItem>>, ExtractionError> {
-        let estimated_results = self.estimated_results;
-        let items = continuation_items(self);
+        json.with_root(|root| {
+            let estimated_results = yt_estimated_results(&root);
+            let items = yt_continuation_yt_items(&root);
 
-        let mut mapper = response::YouTubeListMapper::<YouTubeItem>::new(ctx.lang);
-        mapper.map_response(items);
+            let mut mapper = response::YouTubeListMapper::<YouTubeItem>::new(ctx.lang);
+            mapper.map_response(items);
 
-        Ok(MapResult {
-            c: Paginator::new_ext(
-                estimated_results,
-                mapper.items,
-                mapper.ctoken,
-                ctx.visitor_data.map(str::to_owned),
-                ContinuationEndpoint::Browse,
-                ctx.authenticated,
-            ),
-            warnings: mapper.warnings,
+            Ok(MapResult {
+                c: Paginator::new_ext(
+                    estimated_results,
+                    mapper.items,
+                    mapper.ctoken,
+                    ctx.visitor_data.map(str::to_owned),
+                    ContinuationEndpoint::Browse,
+                    ctx.authenticated,
+                ),
+                warnings: mapper.warnings,
+            })
         })
     }
 }
 
-impl MapResponse<Paginator<MusicItem>> for response::MusicContinuation {
-    fn map_response(
-        self,
+impl MapJsonResponse<Paginator<MusicItem>> for MusicContinuationJson {
+    fn map_json_response(
+        json: &JsonDoc,
         ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<Paginator<MusicItem>>, ExtractionError> {
-        let mut mapper = if let Some(artist) = &ctx.artist {
-            MusicListMapper::with_artist(ctx.lang, artist.clone())
-        } else {
-            MusicListMapper::new(ctx.lang)
-        };
-        let mut continuations = Vec::new();
+        json.with_root(|root| {
+            let mut mapper = if let Some(artist) = &ctx.artist {
+                MusicListMapper::with_artist(ctx.lang, artist.clone())
+            } else {
+                MusicListMapper::new(ctx.lang)
+            };
+            let mut continuations = Vec::new();
 
-        match self.continuation_contents {
-            Some(response::music_item::ContinuationContents::MusicShelfContinuation(mut shelf)) => {
-                mapper.map_response(shelf.contents);
-                continuations.append(&mut shelf.continuations);
-            }
-            Some(response::music_item::ContinuationContents::SectionListContinuation(contents)) => {
-                for c in contents.contents {
-                    match c {
-                        response::music_item::ItemSection::MusicShelfRenderer(mut shelf) => {
-                            mapper.map_response(shelf.contents);
-                            continuations.append(&mut shelf.continuations);
-                        }
-                        response::music_item::ItemSection::MusicCarouselShelfRenderer(shelf) => {
-                            mapper.map_response(shelf.contents);
-                        }
-                        response::music_item::ItemSection::GridRenderer(mut grid) => {
-                            mapper.map_response(grid.items);
-                            continuations.append(&mut grid.continuations);
-                        }
-                        response::music_item::ItemSection::None => {}
+            map_music_continuation_contents(&root, ctx, &mut mapper, &mut continuations);
+
+            if let Some(actions) = root.query(ytq!(.onResponseReceivedActions)) {
+                for action in actions.items() {
+                    if let Some(items) = action.first_of(&[
+                        ytq!(.appendContinuationItemsAction.continuationItems),
+                        ytq!(.reloadContinuationItemsCommand.continuationItems),
+                    ]) {
+                        mapper.map_response_node(&items);
                     }
                 }
             }
-            Some(response::music_item::ContinuationContents::PlaylistPanelContinuation(
-                mut panel,
-            )) => {
-                continuations.append(&mut panel.continuations);
-                mapper.add_warnings(&mut panel.contents.warnings);
-                panel.contents.c.into_iter().for_each(|item| {
-                    if let PlaylistPanelVideo::PlaylistPanelVideoRenderer(item) = item {
-                        let mut track = map_queue_item(item, ctx.lang);
-                        mapper.add_item(MusicItem::Track(track.c));
-                        mapper.add_warnings(&mut track.warnings);
-                    }
-                });
-            }
-            Some(response::music_item::ContinuationContents::GridContinuation(mut grid)) => {
-                mapper.map_response(grid.items);
-                continuations.append(&mut grid.continuations);
-            }
-            None => {}
-        }
 
-        for a in self.on_response_received_actions {
-            mapper.map_response(a.append_continuation_items_action.continuation_items);
-        }
+            let ctoken = music_continuation_token(&continuations, &mapper);
+            let map_res = mapper.items();
 
-        let ctoken = mapper.ctoken.clone().or_else(|| {
-            continuations
-                .into_iter()
-                .next()
-                .map(|cont| cont.next_continuation_data.continuation)
-        });
-        let map_res = mapper.items();
-
-        Ok(MapResult {
-            c: Paginator::new_ext(
-                None,
-                map_res.c,
-                ctoken,
-                ctx.visitor_data.map(str::to_owned),
-                ContinuationEndpoint::MusicBrowse,
-                ctx.authenticated,
-            ),
-            warnings: map_res.warnings,
+            Ok(MapResult {
+                c: Paginator::new_ext(
+                    None,
+                    map_res.c,
+                    ctoken,
+                    ctx.visitor_data.map(str::to_owned),
+                    ContinuationEndpoint::MusicBrowse,
+                    ctx.authenticated,
+                ),
+                warnings: map_res.warnings,
+            })
         })
     }
 }
 
 #[cfg(feature = "userdata")]
-impl MapResponse<Paginator<HistoryItem<VideoItem>>> for response::Continuation {
-    fn map_response(
-        self,
+impl MapJsonResponse<Paginator<HistoryItem<VideoItem>>> for ContinuationJson {
+    fn map_json_response(
+        json: &JsonDoc,
         ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<Paginator<HistoryItem<VideoItem>>>, ExtractionError> {
-        let mut map_res = MapResult::default();
-        let mut ctoken = None;
+        json.with_root(|root| {
+            let mut map_res = MapResult::default();
+            let mut ctoken = None;
 
-        let items = continuation_items(self);
-        for item in items.c {
-            match item {
-                response::YouTubeListItem::ItemSectionRenderer { header, contents } => {
-                    let mut mapper = response::YouTubeListMapper::<VideoItem>::new(ctx.lang);
-                    mapper.map_response(contents);
-                    mapper.conv_history_items(
-                        header.map(|h| h.item_section_header_renderer.title),
-                        ctx.utc_offset,
-                        &mut map_res,
-                    );
-                }
-                response::YouTubeListItem::ContinuationItemRenderer(ep) => {
-                    if ctoken.is_none() {
-                        ctoken = ep.continuation_endpoint.into_token();
+            let items = yt_continuation_yt_items(&root);
+            map_res.warnings.extend(items.warnings);
+            for item in items.c {
+                match item {
+                    response::YouTubeListItem::ItemSectionRenderer { header, contents } => {
+                        let mut mapper = response::YouTubeListMapper::<VideoItem>::new(ctx.lang);
+                        mapper.map_response(contents);
+                        mapper.conv_history_items(
+                            header.map(|h| h.item_section_header_renderer.title),
+                            ctx.utc_offset,
+                            &mut map_res,
+                        );
                     }
+                    response::YouTubeListItem::ContinuationItemRenderer(ep) => {
+                        if ctoken.is_none() {
+                            ctoken = ep.continuation_endpoint.into_token();
+                        }
+                    }
+                    _ => {}
                 }
-                _ => {}
             }
-        }
 
-        Ok(MapResult {
-            c: Paginator::new_ext(
-                None,
-                map_res.c,
-                ctoken,
-                ctx.visitor_data.map(str::to_owned),
-                ContinuationEndpoint::Browse,
-                ctx.authenticated,
-            ),
-            warnings: map_res.warnings,
+            Ok(MapResult {
+                c: Paginator::new_ext(
+                    None,
+                    map_res.c,
+                    ctoken,
+                    ctx.visitor_data.map(str::to_owned),
+                    ContinuationEndpoint::Browse,
+                    ctx.authenticated,
+                ),
+                warnings: map_res.warnings,
+            })
         })
     }
 }
 
 #[cfg(feature = "userdata")]
-impl MapResponse<Paginator<HistoryItem<TrackItem>>> for response::MusicContinuation {
-    fn map_response(
-        self,
+impl MapJsonResponse<Paginator<HistoryItem<TrackItem>>> for MusicContinuationJson {
+    fn map_json_response(
+        json: &JsonDoc,
         ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<Paginator<HistoryItem<TrackItem>>>, ExtractionError> {
-        let mut map_res = MapResult::default();
-        let mut continuations = Vec::new();
+        json.with_root(|root| {
+            let mut map_res = MapResult::default();
+            let mut continuations: Vec<MusicContinuationData> = Vec::new();
 
-        let mut map_shelf = |shelf: response::music_item::MusicShelf| {
-            let mut mapper = MusicListMapper::new(ctx.lang);
-            mapper.map_response(shelf.contents);
-            mapper.conv_history_items(shelf.title, ctx.utc_offset, &mut map_res);
-            continuations.extend(shelf.continuations);
-        };
+            let mut map_shelf = |shelf: MusicShelf| {
+                let mut mapper = MusicListMapper::new(ctx.lang);
+                mapper.map_response(shelf.contents);
+                mapper.conv_history_items(shelf.title, ctx.utc_offset, &mut map_res);
+                continuations.extend(shelf.continuations);
+            };
 
-        match self.continuation_contents {
-            Some(response::music_item::ContinuationContents::MusicShelfContinuation(shelf)) => {
-                map_shelf(shelf);
-            }
-            Some(response::music_item::ContinuationContents::SectionListContinuation(contents)) => {
-                for c in contents.contents {
-                    if let response::music_item::ItemSection::MusicShelfRenderer(shelf) = c {
+            if let Some(contents) = root.query(ytq!(.continuationContents)) {
+                if let Some(shelf_node) = contents
+                    .query(ytq!(.musicShelfContinuation))
+                    .or_else(|| contents.query(ytq!(.musicPlaylistShelfContinuation)))
+                {
+                    if let Ok(shelf) = shelf_node.deserialize::<MusicShelf>() {
                         map_shelf(shelf);
+                    }
+                } else if let Some(section_list) = contents.query(ytq!(.sectionListContinuation)) {
+                    if let Some(sections) = section_list.query(ytq!(.contents)) {
+                        for section in sections.items() {
+                            if let Some(shelf_node) = section.query(ytq!(.musicShelfRenderer)) {
+                                if let Ok(shelf) = shelf_node.deserialize::<MusicShelf>() {
+                                    map_shelf(shelf);
+                                }
+                            }
+                        }
                     }
                 }
             }
-            _ => {}
-        }
 
-        let ctoken = continuations
-            .into_iter()
-            .next()
-            .map(|cont| cont.next_continuation_data.continuation);
+            let ctoken = continuations
+                .into_iter()
+                .next()
+                .map(|cont| cont.next_continuation_data.continuation);
 
-        Ok(MapResult {
-            c: Paginator::new_ext(
-                None,
-                map_res.c,
-                ctoken,
-                ctx.visitor_data.map(str::to_owned),
-                ContinuationEndpoint::MusicBrowse,
-                ctx.authenticated,
-            ),
-            warnings: map_res.warnings,
+            Ok(MapResult {
+                c: Paginator::new_ext(
+                    None,
+                    map_res.c,
+                    ctoken,
+                    ctx.visitor_data.map(str::to_owned),
+                    ContinuationEndpoint::MusicBrowse,
+                    ctx.authenticated,
+                ),
+                warnings: map_res.warnings,
+            })
         })
     }
 }
@@ -549,7 +628,7 @@ paginator!(HistoryItem<TrackItem>);
 
 #[cfg(test)]
 mod tests {
-    use std::{fs::File, io::BufReader, path::PathBuf};
+    use std::{fs, path::PathBuf};
 
     use path_macro::path;
     use rstest::rstest;
@@ -568,12 +647,9 @@ mod tests {
     #[case::recommendations("recommendations", path!("video_details" / "recommendations.json"))]
     fn map_continuation_items(#[case] name: &str, #[case] path: PathBuf) {
         let json_path = path!(*TESTFILES / path);
-        let json_file = File::open(json_path).unwrap();
-
-        let items: response::Continuation =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let json = JsonDoc::new(fs::read_to_string(json_path).unwrap());
         let map_res: MapResult<Paginator<YouTubeItem>> =
-            items.map_response(&MapRespCtx::test("")).unwrap();
+            ContinuationJson::map_json_response(&json, &MapRespCtx::test("")).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -590,12 +666,9 @@ mod tests {
     #[case::playlist("playlist", path!("playlist" / "playlist_cont.json"))]
     fn map_continuation_videos(#[case] name: &str, #[case] path: PathBuf) {
         let json_path = path!(*TESTFILES / path);
-        let json_file = File::open(json_path).unwrap();
-
-        let items: response::Continuation =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let json = JsonDoc::new(fs::read_to_string(json_path).unwrap());
         let map_res: MapResult<Paginator<YouTubeItem>> =
-            items.map_response(&MapRespCtx::test("")).unwrap();
+            ContinuationJson::map_json_response(&json, &MapRespCtx::test("")).unwrap();
         let paginator: Paginator<VideoItem> =
             map_yt_paginator(map_res.c, ContinuationEndpoint::Browse);
 
@@ -613,12 +686,9 @@ mod tests {
     #[case::channel_playlists("channel_playlists", path!("channel" / "channel_playlists_cont.json"))]
     fn map_continuation_playlists(#[case] name: &str, #[case] path: PathBuf) {
         let json_path = path!(*TESTFILES / path);
-        let json_file = File::open(json_path).unwrap();
-
-        let items: response::Continuation =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let json = JsonDoc::new(fs::read_to_string(json_path).unwrap());
         let map_res: MapResult<Paginator<YouTubeItem>> =
-            items.map_response(&MapRespCtx::test("")).unwrap();
+            ContinuationJson::map_json_response(&json, &MapRespCtx::test("")).unwrap();
         let paginator: Paginator<PlaylistItem> =
             map_yt_paginator(map_res.c, ContinuationEndpoint::Browse);
 
@@ -634,12 +704,9 @@ mod tests {
     #[case::subscriptions("subscriptions", path!("userdata" / "subscriptions.json"))]
     fn map_continuation_channels(#[case] name: &str, #[case] path: PathBuf) {
         let json_path = path!(*TESTFILES / path);
-        let json_file = File::open(json_path).unwrap();
-
-        let items: response::Continuation =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let json = JsonDoc::new(fs::read_to_string(json_path).unwrap());
         let map_res: MapResult<Paginator<YouTubeItem>> =
-            items.map_response(&MapRespCtx::test("")).unwrap();
+            ContinuationJson::map_json_response(&json, &MapRespCtx::test("")).unwrap();
         let paginator: Paginator<ChannelItem> =
             map_yt_paginator(map_res.c, ContinuationEndpoint::Browse);
 
@@ -658,12 +725,9 @@ mod tests {
     #[case::saved_tracks("saved_tracks", path!("music_userdata" / "saved_tracks.json"))]
     fn map_continuation_tracks(#[case] name: &str, #[case] path: PathBuf) {
         let json_path = path!(*TESTFILES / path);
-        let json_file = File::open(json_path).unwrap();
-
-        let items: response::MusicContinuation =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let json = JsonDoc::new(fs::read_to_string(json_path).unwrap());
         let map_res: MapResult<Paginator<MusicItem>> =
-            items.map_response(&MapRespCtx::test("")).unwrap();
+            MusicContinuationJson::map_json_response(&json, &MapRespCtx::test("")).unwrap();
         let paginator: Paginator<TrackItem> =
             map_ytm_paginator(map_res.c, ContinuationEndpoint::MusicBrowse);
 
@@ -679,12 +743,9 @@ mod tests {
     #[case::saved_artists("saved_artists", path!("music_userdata" / "saved_artists.json"))]
     fn map_continuation_artists(#[case] name: &str, #[case] path: PathBuf) {
         let json_path = path!(*TESTFILES / path);
-        let json_file = File::open(json_path).unwrap();
-
-        let items: response::MusicContinuation =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let json = JsonDoc::new(fs::read_to_string(json_path).unwrap());
         let map_res: MapResult<Paginator<MusicItem>> =
-            items.map_response(&MapRespCtx::test("")).unwrap();
+            MusicContinuationJson::map_json_response(&json, &MapRespCtx::test("")).unwrap();
         let paginator: Paginator<ArtistItem> =
             map_ytm_paginator(map_res.c, ContinuationEndpoint::MusicBrowse);
 
@@ -700,12 +761,9 @@ mod tests {
     #[case::saved_albums("saved_albums", path!("music_userdata" / "saved_albums.json"))]
     fn map_continuation_albums(#[case] name: &str, #[case] path: PathBuf) {
         let json_path = path!(*TESTFILES / path);
-        let json_file = File::open(json_path).unwrap();
-
-        let items: response::MusicContinuation =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let json = JsonDoc::new(fs::read_to_string(json_path).unwrap());
         let map_res: MapResult<Paginator<MusicItem>> =
-            items.map_response(&MapRespCtx::test("")).unwrap();
+            MusicContinuationJson::map_json_response(&json, &MapRespCtx::test("")).unwrap();
         let paginator: Paginator<AlbumItem> =
             map_ytm_paginator(map_res.c, ContinuationEndpoint::MusicBrowse);
 
@@ -722,12 +780,9 @@ mod tests {
     #[case::saved_playlists("saved_playlists", path!("music_userdata" / "saved_playlists.json"))]
     fn map_continuation_music_playlists(#[case] name: &str, #[case] path: PathBuf) {
         let json_path = path!(*TESTFILES / path);
-        let json_file = File::open(json_path).unwrap();
-
-        let items: response::MusicContinuation =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let json = JsonDoc::new(fs::read_to_string(json_path).unwrap());
         let map_res: MapResult<Paginator<MusicItem>> =
-            items.map_response(&MapRespCtx::test("")).unwrap();
+            MusicContinuationJson::map_json_response(&json, &MapRespCtx::test("")).unwrap();
         let paginator: Paginator<MusicPlaylistItem> =
             map_ytm_paginator(map_res.c, ContinuationEndpoint::MusicBrowse);
 

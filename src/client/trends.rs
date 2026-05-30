@@ -1,23 +1,29 @@
-use std::borrow::Cow;
-
 use crate::{
     error::{Error, ExtractionError},
+    json::{JsonDoc, yt_two_column_list_items},
     model::VideoItem,
+    request_body::ytbody,
     serializer::MapResult,
 };
 
-use super::{response, ClientType, MapRespCtx, MapResponse, QBrowseParams, RustyPipeQuery};
+use super::{
+    response,
+    ClientType, MapJsonResponse, MapRespCtx, RustyPipeQuery,
+};
+
+#[derive(Debug)]
+struct TrendingJson;
 
 impl RustyPipeQuery {
     /// Get the videos from the YouTube trending page
     #[tracing::instrument(skip(self), level = "error")]
     pub async fn trending(&self) -> Result<Vec<VideoItem>, Error> {
-        let request_body = QBrowseParams {
-            browse_id: "FEtrending",
-            params: "4gIOGgxtb3N0X3BvcHVsYXI%3D",
-        };
+        let request_body = ytbody!({
+            "browseId": "FEtrending",
+            "params": "4gIOGgxtb3N0X3BvcHVsYXI%3D",
+        });
 
-        self.execute_request::<response::Trending, _, _>(
+        self.execute_request::<TrendingJson, _, _>(
             ClientType::Desktop,
             "trends",
             "",
@@ -28,44 +34,33 @@ impl RustyPipeQuery {
     }
 }
 
-impl MapResponse<Vec<VideoItem>> for response::Trending {
-    fn map_response(
-        self,
+impl MapJsonResponse<Vec<VideoItem>> for TrendingJson {
+    fn map_json_response(
+        json: &JsonDoc,
         ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<Vec<VideoItem>>, ExtractionError> {
-        let items = self
-            .contents
-            .two_column_browse_results_renderer
-            .contents
-            .into_iter()
-            .next()
-            .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no contents")))?
-            .tab_renderer
-            .content
-            .section_list_renderer
-            .contents;
-
-        let mut mapper = response::YouTubeListMapper::<VideoItem>::new(ctx.lang);
-        mapper.map_response(items);
-
-        Ok(MapResult {
-            c: mapper.items,
-            warnings: mapper.warnings,
+        json.with_root(|root| {
+            let items = yt_two_column_list_items(&root)?;
+            let mut mapper = response::YouTubeListMapper::<VideoItem>::new(ctx.lang);
+            mapper.map_response_node(&items);
+            Ok(MapResult {
+                c: mapper.items,
+                warnings: mapper.warnings,
+            })
         })
     }
 }
 
 #[cfg(test)]
 mod tests {
-    use std::{fs::File, io::BufReader};
+    use std::fs;
 
     use path_macro::path;
     use rstest::rstest;
 
+    use super::*;
     use crate::{
-        client::{response, MapRespCtx, MapResponse},
         model::VideoItem,
-        serializer::MapResult,
         util::tests::TESTFILES,
     };
 
@@ -74,12 +69,9 @@ mod tests {
     #[case::page_header_renderer("20230501_page_header_renderer")]
     fn map_trending(#[case] name: &str) {
         let json_path = path!(*TESTFILES / "trends" / format!("trending_{name}.json"));
-        let json_file = File::open(json_path).unwrap();
-
-        let trending: response::Trending =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let json = JsonDoc::new(fs::read_to_string(json_path).unwrap());
         let map_res: MapResult<Vec<VideoItem>> =
-            trending.map_response(&MapRespCtx::test("")).unwrap();
+            TrendingJson::map_json_response(&json, &MapRespCtx::test("")).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),

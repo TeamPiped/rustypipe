@@ -3,11 +3,13 @@ use std::{borrow::Cow, fmt::Debug};
 use crate::{
     client::response::url_endpoint::NavigationEndpoint,
     error::{Error, ExtractionError},
+    json::{JsonDoc, JsonNode, ytq},
     model::{
         paginator::{ContinuationEndpoint, Paginator},
         richtext::RichText,
         AlbumId, ChannelId, MusicAlbum, MusicPlaylist, TrackItem, TrackType,
     },
+    request_body::ytbody,
     serializer::{text::TextComponents, MapResult},
     util::{self, dictionary, TryRemove, DOT_SEPARATOR},
 };
@@ -17,10 +19,14 @@ use self::response::url_endpoint::MusicPageType;
 use super::{
     response::{
         self,
-        music_item::{map_album_type, map_artist_id, map_artists, MusicListMapper},
+        music_item::{map_album_type, map_artist_id, map_artists, MusicListMapper, MusicMicroformat},
+        music_playlist::{Contents, Header},
     },
-    ClientType, MapRespCtx, MapResponse, QBrowse, RustyPipeQuery,
+    ClientType, MapJsonResponse, MapRespCtx, RustyPipeQuery,
 };
+
+#[derive(Debug)]
+struct MusicPlaylistJson;
 
 impl RustyPipeQuery {
     /// Get a playlist from YouTube Music
@@ -30,11 +36,11 @@ impl RustyPipeQuery {
         playlist_id: S,
     ) -> Result<MusicPlaylist, Error> {
         let playlist_id = playlist_id.as_ref();
-        let request_body = QBrowse {
-            browse_id: &format!("VL{playlist_id}"),
-        };
+        let request_body = ytbody!({
+            "browseId": format!("VL{playlist_id}"),
+        });
 
-        self.execute_request::<response::MusicPlaylist, _, _>(
+        self.execute_request::<MusicPlaylistJson, _, _>(
             ClientType::DesktopMusic,
             "music_playlist",
             playlist_id,
@@ -51,12 +57,12 @@ impl RustyPipeQuery {
         album_id: S,
     ) -> Result<MusicAlbum, Error> {
         let album_id = album_id.as_ref();
-        let request_body = QBrowse {
-            browse_id: album_id,
-        };
+        let request_body = ytbody!({
+            "browseId": album_id,
+        });
 
         let mut album = self
-            .execute_request::<response::MusicPlaylist, MusicAlbum, _>(
+            .execute_request::<MusicPlaylistJson, MusicAlbum, _>(
                 ClientType::DesktopMusic,
                 "music_album",
                 album_id,
@@ -152,15 +158,38 @@ impl RustyPipeQuery {
     }
 }
 
-impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
-    fn map_response(
-        self,
-        ctx: &MapRespCtx<'_>,
-    ) -> Result<MapResult<MusicPlaylist>, ExtractionError> {
-        let contents = match self.contents {
+struct MusicBrowseFields {
+    contents: Option<Contents>,
+    header: Option<Header>,
+    microformat: MusicMicroformat,
+}
+
+fn deserialize_music_browse_fields(root: &JsonNode<'_>) -> Result<MusicBrowseFields, ExtractionError> {
+    Ok(MusicBrowseFields {
+        contents: root
+            .query(ytq!(.contents))
+            .map(|node| node.deserialize())
+            .transpose()?,
+        header: root
+            .query(ytq!(.header))
+            .map(|node| node.deserialize())
+            .transpose()?,
+        microformat: root
+            .query(ytq!(.microformat))
+            .map(|node| node.deserialize())
+            .transpose()?
+            .unwrap_or_default(),
+    })
+}
+
+fn map_music_playlist_fields(
+    fields: MusicBrowseFields,
+    ctx: &MapRespCtx<'_>,
+) -> Result<MapResult<MusicPlaylist>, ExtractionError> {
+        let contents = match fields.contents {
             Some(c) => c,
             None => {
-                if self.microformat.microformat_data_renderer.noindex {
+                if fields.microformat.microformat_data_renderer.noindex {
                     return Err(ExtractionError::NotFound {
                         id: ctx.id.to_owned(),
                         msg: "no contents".into(),
@@ -172,8 +201,8 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
         };
 
         let (header, music_contents) = match contents {
-            response::music_playlist::Contents::SingleColumnBrowseResultsRenderer(c) => (
-                self.header,
+            Contents::SingleColumnBrowseResultsRenderer(c) => (
+                fields.header,
                 c.contents
                     .into_iter()
                     .next()
@@ -182,7 +211,7 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
                     .content
                     .section_list_renderer,
             ),
-            response::music_playlist::Contents::TwoColumnBrowseResultsRenderer {
+            Contents::TwoColumnBrowseResultsRenderer {
                 secondary_contents,
                 tabs,
             } => (
@@ -196,7 +225,7 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
                             .into_iter()
                             .next()
                     })
-                    .or(self.header),
+                    .or(fields.header),
                 secondary_contents.section_list_renderer,
             ),
         };
@@ -354,15 +383,28 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
             },
             warnings: map_res.warnings,
         })
+}
+
+impl MapJsonResponse<MusicPlaylist> for MusicPlaylistJson {
+    fn map_json_response(
+        json: &JsonDoc,
+        ctx: &MapRespCtx<'_>,
+    ) -> Result<MapResult<MusicPlaylist>, ExtractionError> {
+        json.with_root(|root| {
+            let fields = deserialize_music_browse_fields(&root)?;
+            map_music_playlist_fields(fields, ctx)
+        })
     }
 }
 
-impl MapResponse<MusicAlbum> for response::MusicPlaylist {
-    fn map_response(self, ctx: &MapRespCtx<'_>) -> Result<MapResult<MusicAlbum>, ExtractionError> {
-        let contents = match self.contents {
+fn map_music_album_fields(
+    fields: MusicBrowseFields,
+    ctx: &MapRespCtx<'_>,
+) -> Result<MapResult<MusicAlbum>, ExtractionError> {
+        let contents = match fields.contents {
             Some(c) => c,
             None => {
-                if self.microformat.microformat_data_renderer.noindex {
+                if fields.microformat.microformat_data_renderer.noindex {
                     return Err(ExtractionError::NotFound {
                         id: ctx.id.to_owned(),
                         msg: "no contents".into(),
@@ -374,8 +416,8 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
         };
 
         let (header, sections) = match contents {
-            response::music_playlist::Contents::SingleColumnBrowseResultsRenderer(c) => (
-                self.header,
+            Contents::SingleColumnBrowseResultsRenderer(c) => (
+                fields.header,
                 c.contents
                     .into_iter()
                     .next()
@@ -385,7 +427,7 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
                     .section_list_renderer
                     .contents,
             ),
-            response::music_playlist::Contents::TwoColumnBrowseResultsRenderer {
+            Contents::TwoColumnBrowseResultsRenderer {
                 secondary_contents,
                 tabs,
             } => (
@@ -399,7 +441,7 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
                             .into_iter()
                             .next()
                     })
-                    .or(self.header),
+                    .or(fields.header),
                 secondary_contents.section_list_renderer.contents,
             ),
         };
@@ -489,7 +531,7 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
             }
         }
 
-        let playlist_id = self
+        let playlist_id = fields
             .microformat
             .microformat_data_renderer
             .url_canonical
@@ -571,13 +613,22 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
             },
             warnings,
         })
+}
+
+impl MapJsonResponse<MusicAlbum> for MusicPlaylistJson {
+    fn map_json_response(
+        json: &JsonDoc,
+        ctx: &MapRespCtx<'_>,
+    ) -> Result<MapResult<MusicAlbum>, ExtractionError> {
+        json.with_root(|root| {
+            let fields = deserialize_music_browse_fields(&root)?;
+            map_music_album_fields(fields, ctx)
+        })
     }
 }
 
 #[cfg(test)]
 mod tests {
-    use std::{fs::File, io::BufReader};
-
     use path_macro::path;
     use rstest::rstest;
 
@@ -593,12 +644,9 @@ mod tests {
     #[case::facepile("20241125_facepile", "PL1J-6JOckZtE_P9Xx8D3b2O6w0idhuKBe")]
     fn map_music_playlist(#[case] name: &str, #[case] id: &str) {
         let json_path = path!(*TESTFILES / "music_playlist" / format!("playlist_{name}.json"));
-        let json_file = File::open(json_path).unwrap();
-
-        let playlist: response::MusicPlaylist =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let json = JsonDoc::new(std::fs::read_to_string(json_path).unwrap());
         let map_res: MapResult<model::MusicPlaylist> =
-            playlist.map_response(&MapRespCtx::test(id)).unwrap();
+            MusicPlaylistJson::map_json_response(&json, &MapRespCtx::test(id)).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -620,12 +668,12 @@ mod tests {
     #[case::recommends("20250225_recommends", "MPREb_u1I69lSAe5v")]
     fn map_music_album(#[case] name: &str, #[case] id: &str) {
         let json_path = path!(*TESTFILES / "music_playlist" / format!("album_{name}.json"));
-        let json_file = File::open(json_path).unwrap();
-
-        let playlist: response::MusicPlaylist =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res: MapResult<model::MusicAlbum> =
-            playlist.map_response(&MapRespCtx::test(id)).unwrap();
+        let json = JsonDoc::new(std::fs::read_to_string(json_path).unwrap());
+        let map_res: MapResult<model::MusicAlbum> = MusicPlaylistJson::map_json_response(
+            &json,
+            &MapRespCtx::test(id),
+        )
+        .unwrap();
 
         assert!(
             map_res.warnings.is_empty(),

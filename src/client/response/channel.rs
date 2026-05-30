@@ -2,76 +2,13 @@ use serde::Deserialize;
 use serde_with::{rust::deserialize_ignore_any, serde_as, DefaultOnError, VecSkipError};
 
 use super::{
-    video_item::YouTubeListRenderer, Alert, AttachmentRun, AvatarViewModel, ChannelBadge,
-    ContentRenderer, ContentsRenderer, ContinuationActionWrap, ImageView,
-    PageHeaderRendererContent, PhMetadataView, ResponseContext, Thumbnails, TwoColumnBrowseResults,
+    AttachmentRun, AvatarViewModel, ChannelBadge, ContentRenderer, ContentsRenderer, ImageView,
+    PageHeaderRendererContent, PhMetadataView, Thumbnails,
 };
 use crate::{
     model::Verification,
     serializer::text::{AttributedText, Text, TextComponent},
 };
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct Channel {
-    #[serde(default)]
-    #[serde_as(as = "DefaultOnError")]
-    pub header: Option<Header>,
-    pub contents: Option<Contents>,
-    pub metadata: Option<Metadata>,
-    pub microformat: Option<Microformat>,
-    #[serde_as(as = "Option<DefaultOnError>")]
-    pub alerts: Option<Vec<Alert>>,
-    pub response_context: ResponseContext,
-}
-
-pub(crate) type Contents = TwoColumnBrowseResults<TabRendererWrap>;
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct TabRendererWrap {
-    #[serde(alias = "expandableTabRenderer")]
-    pub tab_renderer: TabRenderer,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct TabRenderer {
-    #[serde(default)]
-    pub content: TabContent,
-    pub endpoint: Option<ChannelTabEndpoint>,
-}
-
-#[serde_as]
-#[derive(Default, Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct TabContent {
-    #[serde(default)]
-    #[serde_as(as = "DefaultOnError")]
-    pub section_list_renderer: Option<YouTubeListRenderer>,
-    #[serde(default)]
-    #[serde_as(as = "DefaultOnError")]
-    pub rich_grid_renderer: Option<YouTubeListRenderer>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct ChannelTabEndpoint {
-    pub command_metadata: ChannelTabCommandMetadata,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct ChannelTabCommandMetadata {
-    pub web_command_metadata: ChannelTabWebCommandMetadata,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct ChannelTabWebCommandMetadata {
-    pub url: String,
-}
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -198,20 +135,6 @@ pub(crate) struct Microformat {
 pub(crate) struct MicroformatDataRenderer {
     #[serde(default)]
     pub tags: Vec<String>,
-}
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(untagged)]
-pub(crate) enum ChannelAbout {
-    #[serde(rename_all = "camelCase")]
-    ReceivedEndpoints {
-        #[serde_as(as = "VecSkipError<_>")]
-        on_response_received_endpoints: Vec<ContinuationActionWrap<AboutChannelRendererWrap>>,
-    },
-    Content {
-        contents: Option<Contents>,
-    },
 }
 
 #[derive(Debug, Deserialize)]

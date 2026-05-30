@@ -1,10 +1,9 @@
-use std::{borrow::Cow, fmt::Debug};
-
-use serde::Serialize;
+use std::fmt::Debug;
 
 use crate::{
-    client::response::music_item::MusicListMapper,
+    client::response::music_item::{MusicCardShelf, MusicListMapper, MusicResponseItem},
     error::{Error, ExtractionError},
+    json::{JsonDoc, JsonNode, yt_continuation, ytq},
     model::{
         paginator::{ContinuationEndpoint, Paginator},
         traits::FromYtItem,
@@ -12,24 +11,17 @@ use crate::{
         MusicSearchSuggestion, TrackItem, UserItem,
     },
     param::search_filter::MusicSearchFilter,
+    request_body::ytbody,
     serializer::MapResult,
 };
 
-use super::{response, ClientType, MapRespCtx, MapResponse, RustyPipeQuery};
+use super::{ClientType, MapJsonResponse, MapRespCtx, RustyPipeQuery};
 
-#[derive(Debug, Serialize)]
-#[serde(rename_all = "camelCase")]
-struct QSearch<'a> {
-    query: &'a str,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    params: Option<&'a str>,
-}
+#[derive(Debug)]
+struct MusicSearchJson;
 
-#[derive(Debug, Serialize)]
-#[serde(rename_all = "camelCase")]
-struct QSearchSuggestion<'a> {
-    input: &'a str,
-}
+#[derive(Debug)]
+struct MusicSearchSuggestionJson;
 
 impl RustyPipeQuery {
     /// Search YouTube Music.
@@ -42,12 +34,12 @@ impl RustyPipeQuery {
         filter: Option<MusicSearchFilter>,
     ) -> Result<MusicSearchResult<T>, Error> {
         let query = query.as_ref();
-        let request_body = QSearch {
-            query,
-            params: filter.map(MusicSearchFilter::params),
-        };
+        let request_body = ytbody!({
+            "query": query,
+            ? "params": filter.map(MusicSearchFilter::params),
+        });
 
-        self.execute_request::<response::MusicSearch, _, _>(
+        self.execute_request::<MusicSearchJson, _, _>(
             ClientType::DesktopMusic,
             "music_search_tracks",
             query,
@@ -137,9 +129,11 @@ impl RustyPipeQuery {
         query: S,
     ) -> Result<MusicSearchSuggestion, Error> {
         let query = query.as_ref();
-        let request_body = QSearchSuggestion { input: query };
+        let request_body = ytbody!({
+            "input": query,
+        });
 
-        self.execute_request::<response::MusicSearchSuggestion, _, _>(
+        self.execute_request::<MusicSearchSuggestionJson, _, _>(
             ClientType::DesktopMusic,
             "music_search_suggestion",
             query,
@@ -150,113 +144,131 @@ impl RustyPipeQuery {
     }
 }
 
-impl<T: FromYtItem> MapResponse<MusicSearchResult<T>> for response::MusicSearch {
-    fn map_response(
-        self,
+fn yt_music_search_sections<'a>(root: &'a JsonNode<'a>) -> Result<JsonNode<'a>, ExtractionError> {
+    root.first_of(&[
+        ytq!(
+            .contents.tabbedSearchResultsRenderer.tabs[0].tabRenderer.content
+                .sectionListRenderer.contents
+        ),
+        ytq!(
+            .contents.tabbedSearchResultsRenderer.contents[0].tabRenderer.content
+                .sectionListRenderer.contents
+        ),
+    ])
+    .ok_or_else(|| ExtractionError::InvalidData("missing music search sections".into()))
+}
+
+impl<T: FromYtItem> MapJsonResponse<MusicSearchResult<T>> for MusicSearchJson {
+    fn map_json_response(
+        json: &JsonDoc,
         ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<MusicSearchResult<T>>, ExtractionError> {
-        let tabs = self.contents.tabbed_search_results_renderer.contents;
-        let sections = tabs
-            .into_iter()
-            .next()
-            .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no tab")))?
-            .tab_renderer
-            .content
-            .section_list_renderer
-            .contents;
+        json.with_root(|root| {
+            let sections = yt_music_search_sections(&root)?;
+            let mut corrected_query = None;
+            let mut ctoken = None;
+            let mut mapper = MusicListMapper::new(ctx.lang);
 
-        let mut corrected_query = None;
-        let mut ctoken = None;
-        let mut mapper = MusicListMapper::new(ctx.lang);
-
-        sections.into_iter().for_each(|section| match section {
-            response::music_search::ItemSection::MusicShelfRenderer(shelf) => {
-                mapper.map_response(shelf.contents);
-                if let Some(cont) = shelf.continuations.into_iter().next() {
-                    ctoken = Some(cont.next_continuation_data.continuation);
+            for section in sections.items() {
+                if let Some(shelf) = section.query(ytq!(.musicShelfRenderer)) {
+                    if let Some(contents) = shelf.query(ytq!(.contents)) {
+                        mapper.map_response_node(&contents);
+                    }
+                    if ctoken.is_none() {
+                        ctoken = shelf
+                            .query(ytq!(.continuations[0]))
+                            .and_then(|cont| yt_continuation(&cont));
+                    }
+                } else if let Some(card) = section.query(ytq!(.musicCardShelfRenderer)) {
+                    if let Ok(card) = card.deserialize::<MusicCardShelf>() {
+                        mapper.map_card(card);
+                    }
+                } else if let Some(corrected) = section.query(ytq!(
+                    .itemSectionRenderer.contents[0].showingResultsForRenderer.correctedQuery
+                )) {
+                    corrected_query = corrected.text();
                 }
             }
-            response::music_search::ItemSection::MusicCardShelfRenderer(card) => {
-                mapper.map_card(card);
-            }
-            response::music_search::ItemSection::ItemSectionRenderer { contents } => {
-                if let Some(corrected) = contents.into_iter().next() {
-                    corrected_query = Some(corrected.showing_results_for_renderer.corrected_query);
-                }
-            }
-            response::music_search::ItemSection::None => {}
-        });
 
-        let ctoken = ctoken.or(mapper.ctoken.clone());
-        let map_res = mapper.conv_items();
+            let ctoken = ctoken.or(mapper.ctoken.clone());
+            let map_res = mapper.conv_items();
 
-        Ok(MapResult {
-            c: MusicSearchResult {
-                items: Paginator::new_ext(
-                    None,
-                    map_res.c,
-                    ctoken,
-                    ctx.visitor_data.map(str::to_owned),
-                    ContinuationEndpoint::MusicSearch,
-                    false,
-                ),
-                corrected_query,
-            },
-            warnings: map_res.warnings,
+            Ok(MapResult {
+                c: MusicSearchResult {
+                    items: Paginator::new_ext(
+                        None,
+                        map_res.c,
+                        ctoken,
+                        ctx.visitor_data.map(str::to_owned),
+                        ContinuationEndpoint::MusicSearch,
+                        false,
+                    ),
+                    corrected_query,
+                },
+                warnings: map_res.warnings,
+            })
         })
     }
 }
 
-impl MapResponse<MusicSearchSuggestion> for response::MusicSearchSuggestion {
-    fn map_response(
-        self,
+impl MapJsonResponse<MusicSearchSuggestion> for MusicSearchSuggestionJson {
+    fn map_json_response(
+        json: &JsonDoc,
         ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<MusicSearchSuggestion>, ExtractionError> {
-        let mut mapper = MusicListMapper::new_search_suggest(ctx.lang);
-        let mut terms = Vec::new();
+        json.with_root(|root| {
+            let mut mapper = MusicListMapper::new_search_suggest(ctx.lang);
+            let mut terms = Vec::new();
 
-        for section in self.contents {
-            for item in section.search_suggestions_section_renderer.contents {
-                match item {
-                    response::music_search::SearchSuggestionItem::SearchSuggestionRenderer {
-                        suggestion,
-                    } => {
-                        terms.push(suggestion);
-                    },
-                    response::music_search::SearchSuggestionItem::MusicResponsiveListItemRenderer(item) => {
-                        mapper.add_response_item(response::music_item::MusicResponseItem::MusicResponsiveListItemRenderer(*item));
+            if let Some(sections) = root.query(ytq!(.contents)) {
+                for section in sections.items() {
+                    let Some(contents) =
+                        section.query(ytq!(.searchSuggestionsSectionRenderer.contents))
+                    else {
+                        continue;
+                    };
+
+                    for item in contents.items() {
+                        if let Some(suggestion) =
+                            item.query(ytq!(.searchSuggestionRenderer.suggestion))
+                        {
+                            if let Some(term) = suggestion.text() {
+                                terms.push(term);
+                            }
+                        } else if let Ok(response_item) = item.deserialize::<MusicResponseItem>()
+                        {
+                            mapper.add_response_item(response_item);
+                        }
                     }
-                    response::music_search::SearchSuggestionItem::None => {},
                 }
             }
-        }
 
-        let map_res = mapper.conv_items();
+            let map_res = mapper.conv_items();
 
-        Ok(MapResult {
-            c: MusicSearchSuggestion {
-                terms,
-                items: map_res.c,
-            },
-            warnings: map_res.warnings,
+            Ok(MapResult {
+                c: MusicSearchSuggestion {
+                    terms,
+                    items: map_res.c,
+                },
+                warnings: map_res.warnings,
+            })
         })
     }
 }
 
 #[cfg(test)]
 mod tests {
-    use std::{fs::File, io::BufReader};
+    use std::fs;
 
     use path_macro::path;
     use rstest::rstest;
 
+    use super::*;
     use crate::{
-        client::{response, MapRespCtx, MapResponse},
         model::{
             AlbumItem, ArtistItem, MusicItem, MusicPlaylistItem, MusicSearchResult,
             MusicSearchSuggestion, TrackItem,
         },
-        serializer::MapResult,
         util::tests::TESTFILES,
     };
 
@@ -268,12 +280,9 @@ mod tests {
     #[case::live("live")]
     fn map_music_search_main(#[case] name: &str) {
         let json_path = path!(*TESTFILES / "music_search" / format!("main_{name}.json"));
-        let json_file = File::open(json_path).unwrap();
-
-        let search: response::MusicSearch =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let json = JsonDoc::new(fs::read_to_string(json_path).unwrap());
         let map_res: MapResult<MusicSearchResult<MusicItem>> =
-            search.map_response(&MapRespCtx::test("")).unwrap();
+            MusicSearchJson::map_json_response(&json, &MapRespCtx::test("")).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -291,12 +300,9 @@ mod tests {
     #[case::no_artist_link("no_artist_link")]
     fn map_music_search_tracks(#[case] name: &str) {
         let json_path = path!(*TESTFILES / "music_search" / format!("tracks_{name}.json"));
-        let json_file = File::open(json_path).unwrap();
-
-        let search: response::MusicSearch =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let json = JsonDoc::new(fs::read_to_string(json_path).unwrap());
         let map_res: MapResult<MusicSearchResult<TrackItem>> =
-            search.map_response(&MapRespCtx::test("")).unwrap();
+            MusicSearchJson::map_json_response(&json, &MapRespCtx::test("")).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -310,12 +316,9 @@ mod tests {
     #[test]
     fn map_music_search_albums() {
         let json_path = path!(*TESTFILES / "music_search" / "albums.json");
-        let json_file = File::open(json_path).unwrap();
-
-        let search: response::MusicSearch =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let json = JsonDoc::new(fs::read_to_string(json_path).unwrap());
         let map_res: MapResult<MusicSearchResult<AlbumItem>> =
-            search.map_response(&MapRespCtx::test("")).unwrap();
+            MusicSearchJson::map_json_response(&json, &MapRespCtx::test("")).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -329,12 +332,9 @@ mod tests {
     #[test]
     fn map_music_search_artists() {
         let json_path = path!(*TESTFILES / "music_search" / "artists.json");
-        let json_file = File::open(json_path).unwrap();
-
-        let search: response::MusicSearch =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let json = JsonDoc::new(fs::read_to_string(json_path).unwrap());
         let map_res: MapResult<MusicSearchResult<ArtistItem>> =
-            search.map_response(&MapRespCtx::test("")).unwrap();
+            MusicSearchJson::map_json_response(&json, &MapRespCtx::test("")).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -350,12 +350,9 @@ mod tests {
     #[case::community("community")]
     fn map_music_search_playlists(#[case] name: &str) {
         let json_path = path!(*TESTFILES / "music_search" / format!("playlists_{name}.json"));
-        let json_file = File::open(json_path).unwrap();
-
-        let search: response::MusicSearch =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let json = JsonDoc::new(fs::read_to_string(json_path).unwrap());
         let map_res: MapResult<MusicSearchResult<MusicPlaylistItem>> =
-            search.map_response(&MapRespCtx::test("")).unwrap();
+            MusicSearchJson::map_json_response(&json, &MapRespCtx::test("")).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -371,12 +368,9 @@ mod tests {
     #[case::empty("empty")]
     fn map_music_search_suggestion(#[case] name: &str) {
         let json_path = path!(*TESTFILES / "music_search" / format!("suggestion_{name}.json"));
-        let json_file = File::open(json_path).unwrap();
-
-        let suggestion: response::MusicSearchSuggestion =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let json = JsonDoc::new(fs::read_to_string(json_path).unwrap());
         let map_res: MapResult<MusicSearchSuggestion> =
-            suggestion.map_response(&MapRespCtx::test("")).unwrap();
+            MusicSearchSuggestionJson::map_json_response(&json, &MapRespCtx::test("")).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),

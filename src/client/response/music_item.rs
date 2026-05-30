@@ -2,6 +2,7 @@ use serde::Deserialize;
 use serde_with::{rust::deserialize_ignore_any, serde_as, DefaultOnError, VecSkipError};
 
 use crate::{
+    json::{JsonNode, ytq},
     model::{
         self, traits::FromYtItem, AlbumId, AlbumItem, AlbumType, ArtistId, ArtistItem, ChannelId,
         MusicItem, MusicItemType, MusicPlaylistItem, TrackItem, UserItem,
@@ -568,6 +569,34 @@ impl MusicListMapper {
             }
         });
         etype
+    }
+
+    pub fn map_response_node(&mut self, node: &JsonNode<'_>) -> Option<MusicItemType> {
+        let items_node = match node.first_of(&[ytq!(.contents), ytq!(.items)]) {
+            Some(items) => items,
+            None => node.clone(),
+        };
+        let (items, warnings) = items_node.deserialize_items_lossy::<MusicResponseItem>();
+        self.map_response(MapResult { c: items, warnings })
+    }
+
+    pub fn map_section_node(&mut self, section: &JsonNode<'_>) -> Option<MusicItemType> {
+        if let Ok(section) = section.deserialize::<ItemSection>() {
+            return self.map_item_section(section);
+        }
+        None
+    }
+
+    fn map_item_section(&mut self, section: ItemSection) -> Option<MusicItemType> {
+        match section {
+            ItemSection::MusicShelfRenderer(shelf) => {
+                self.map_response(shelf.contents);
+                None
+            }
+            ItemSection::MusicCarouselShelfRenderer(shelf) => self.map_response(shelf.contents),
+            ItemSection::GridRenderer(grid) => self.map_response(grid.items),
+            ItemSection::None => None,
+        }
     }
 
     /// Map a ListMusicItem (album/playlist item, search result)

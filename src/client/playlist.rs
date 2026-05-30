@@ -4,27 +4,35 @@ use time::OffsetDateTime;
 
 use crate::{
     error::{Error, ExtractionError},
+    json::{JsonDoc, JsonNode, yt_first_tab, yt_response_visitor_data, yt_thumbnails, ytq},
     model::{
         paginator::{ContinuationEndpoint, Paginator},
         richtext::RichText,
         ChannelId, Playlist, VideoItem,
     },
+    request_body::ytbody,
     serializer::text::{TextComponent, TextComponents},
     util::{self, dictionary, timeago, TryRemove},
 };
 
-use super::{response, ClientType, MapRespCtx, MapResponse, MapResult, QBrowse, RustyPipeQuery};
+use super::{
+    response,
+    ClientType, MapJsonResponse, MapRespCtx, MapResult, RustyPipeQuery,
+};
+
+#[derive(Debug)]
+struct PlaylistJson;
 
 impl RustyPipeQuery {
     /// Get a YouTube playlist
     #[tracing::instrument(skip(self), level = "error")]
     pub async fn playlist<S: AsRef<str> + Debug>(&self, playlist_id: S) -> Result<Playlist, Error> {
         let playlist_id = playlist_id.as_ref();
-        let request_body = QBrowse {
-            browse_id: &format!("VL{playlist_id}"),
-        };
+        let request_body = ytbody!({
+            "browseId": format!("VL{playlist_id}"),
+        });
 
-        self.execute_request::<response::Playlist, _, _>(
+        self.execute_request::<PlaylistJson, _, _>(
             ClientType::Desktop,
             "playlist",
             playlist_id,
@@ -35,76 +43,113 @@ impl RustyPipeQuery {
     }
 }
 
-impl MapResponse<Playlist> for response::Playlist {
-    fn map_response(self, ctx: &MapRespCtx<'_>) -> Result<MapResult<Playlist>, ExtractionError> {
-        let (Some(contents), Some(header)) = (self.contents, self.header) else {
-            return Err(response::alerts_to_err(ctx.id, self.alerts));
-        };
+fn json_alerts_to_err(id: &str, root: &JsonNode<'_>) -> ExtractionError {
+    let alerts = root.query(ytq!(.alerts)).map(|node| {
+        let (alerts, _) = node.deserialize_items_lossy::<response::Alert>();
+        alerts
+    });
+    response::alerts_to_err(id, alerts)
+}
 
-        let video_items = contents
-            .two_column_browse_results_renderer
-            .contents
-            .into_iter()
-            .next()
-            .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
-                "twoColumnBrowseResultsRenderer empty",
-            )))?
-            .tab_renderer
-            .content
-            .section_list_renderer
-            .contents
-            .into_iter()
-            .next()
-            .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
-                "sectionListRenderer empty",
-            )))?
-            .item_section_renderer
-            .contents
-            .into_iter()
-            .next()
-            .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
-                "itemSectionRenderer empty",
-            )))?
-            .playlist_video_list_renderer
-            .contents;
+fn yt_playlist_video_list<'a>(root: &JsonNode<'a>) -> Result<JsonNode<'a>, ExtractionError> {
+    let browse = root.require(
+        ytq!(.contents.twoColumnBrowseResultsRenderer),
+        "two column browse results",
+    )?;
+    let tab = yt_first_tab(&browse).ok_or_else(|| {
+        ExtractionError::InvalidData(Cow::Borrowed("twoColumnBrowseResultsRenderer empty"))
+    })?;
+    let sections = tab.require(
+        ytq!(.tabRenderer.content.sectionListRenderer.contents),
+        "section list renderer",
+    )?;
+    let section = sections.items().into_iter().next().ok_or_else(|| {
+        ExtractionError::InvalidData(Cow::Borrowed("sectionListRenderer empty"))
+    })?;
+    let item_section = section.require(
+        ytq!(.itemSectionRenderer.contents),
+        "item section renderer",
+    )?;
+    let item = item_section.items().into_iter().next().ok_or_else(|| {
+        ExtractionError::InvalidData(Cow::Borrowed("itemSectionRenderer empty"))
+    })?;
+    item.first_of(&[
+        ytq!(.playlistVideoListRenderer.contents),
+        ytq!(.richGridRenderer.contents),
+    ])
+    .ok_or_else(|| ExtractionError::InvalidData(Cow::Borrowed("playlist video list empty")))
+}
 
-        let mut mapper = response::YouTubeListMapper::<VideoItem>::new(ctx.lang);
-        mapper.map_response(video_items);
-
-        let (description, thumbnails, last_update_txt) = match self.sidebar {
-            Some(sidebar) => {
-                let sidebar_items = sidebar.playlist_sidebar_renderer.contents;
-                let mut primary =
-                    sidebar_items
-                        .into_iter()
-                        .next()
-                        .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
-                            "no primary sidebar",
-                        )))?;
-
-                (
-                    primary
-                        .playlist_sidebar_primary_info_renderer
-                        .description
-                        .filter(|d| !d.0.is_empty()),
-                    Some(
-                        primary
-                            .playlist_sidebar_primary_info_renderer
-                            .thumbnail_renderer
-                            .playlist_video_thumbnail_renderer
-                            .thumbnail,
-                    ),
-                    primary
-                        .playlist_sidebar_primary_info_renderer
-                        .stats
-                        .try_swap_remove(2),
-                )
+impl MapJsonResponse<Playlist> for PlaylistJson {
+    fn map_json_response(
+        json: &JsonDoc,
+        ctx: &MapRespCtx<'_>,
+    ) -> Result<MapResult<Playlist>, ExtractionError> {
+        json.with_root(|root| {
+            let contents = root.query(ytq!(.contents.twoColumnBrowseResultsRenderer));
+            let header = root.query(ytq!(.header));
+            if contents.is_none() || header.is_none() {
+                return Err(json_alerts_to_err(ctx.id, &root));
             }
-            None => (None, None, None),
-        };
 
-        let (name, playlist_id, channel, n_videos_txt, description2, thumbnails2, last_update_txt2) =
-            match header {
+            let video_items = yt_playlist_video_list(&root)?;
+            let mut mapper = response::YouTubeListMapper::<VideoItem>::new(ctx.lang);
+            mapper.map_response_node(&video_items);
+
+            let (description, thumbnails, last_update_txt) = match root.query(ytq!(.sidebar)) {
+                Some(sidebar) => {
+                    let sidebar_items = sidebar
+                        .require(
+                            ytq!(.playlistSidebarRenderer.items),
+                            "playlist sidebar items",
+                        )?
+                        .items();
+                    let primary = sidebar_items.into_iter().next().ok_or_else(|| {
+                        ExtractionError::InvalidData(Cow::Borrowed("no primary sidebar"))
+                    })?;
+                    let info = primary.require(
+                        ytq!(.playlistSidebarPrimaryInfoRenderer),
+                        "playlist sidebar primary info",
+                    )?;
+
+                    (
+                        info.query(ytq!(.description))
+                            .and_then(|node| node.deserialize::<TextComponents>().ok())
+                            .filter(|d| !d.0.is_empty()),
+                        info.query(ytq!(.thumbnailRenderer.playlistVideoThumbnailRenderer.thumbnail))
+                            .or_else(|| {
+                                info.query(
+                                    ytq!(.thumbnailRenderer.playlistCustomThumbnailRenderer.thumbnail),
+                                )
+                            })
+                            .map(|node| yt_thumbnails(&node)),
+                        info.query(ytq!(.stats))
+                            .map(|stats| {
+                                stats
+                                    .items()
+                                    .into_iter()
+                                    .filter_map(|item| item.text())
+                                    .collect::<Vec<_>>()
+                            })
+                            .and_then(|mut stats| stats.try_swap_remove(2)),
+                    )
+                }
+                None => (None, None, None),
+            };
+
+            let header: response::playlist::Header = header
+                .ok_or_else(|| ExtractionError::InvalidData(Cow::Borrowed("no header")))?
+                .deserialize()?;
+
+            let (
+                name,
+                playlist_id,
+                channel,
+                n_videos_txt,
+                description2,
+                thumbnails2,
+                last_update_txt2,
+            ) = match header {
                 response::playlist::Header::PlaylistHeaderRenderer(header_renderer) => {
                     let mut byline = header_renderer.byline;
                     let last_update_txt = byline
@@ -179,77 +224,76 @@ impl MapResponse<Playlist> for response::Playlist {
                 }
             };
 
-        let n_videos = if mapper.ctoken.is_some() {
-            util::parse_numeric(&n_videos_txt)
-                .map_err(|_| ExtractionError::InvalidData("no video count".into()))?
-        } else {
-            mapper.items.len() as u64
-        };
+            let n_videos = if mapper.ctoken.is_some() {
+                util::parse_numeric(&n_videos_txt)
+                    .map_err(|_| ExtractionError::InvalidData("no video count".into()))?
+            } else {
+                mapper.items.len() as u64
+            };
 
-        if playlist_id != ctx.id {
-            return Err(ExtractionError::WrongResult(format!(
-                "got wrong playlist id {}, expected {}",
-                playlist_id, ctx.id
-            )));
-        }
+            if playlist_id != ctx.id {
+                return Err(ExtractionError::WrongResult(format!(
+                    "got wrong playlist id {}, expected {}",
+                    playlist_id, ctx.id
+                )));
+            }
 
-        let description = description.or(description2).map(RichText::from);
-        let thumbnails = thumbnails
-            .or(thumbnails2)
-            .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
-                "no thumbnail found",
-            )))?;
-        let last_update = last_update_txt
-            .as_deref()
-            .or(last_update_txt2.as_deref())
-            .and_then(|txt| {
-                timeago::parse_textual_date_or_warn(
-                    ctx.lang,
-                    ctx.utc_offset,
-                    txt,
-                    &mut mapper.warnings,
-                )
-                .map(OffsetDateTime::date)
-            });
+            let description = description.or(description2).map(RichText::from);
+            let thumbnails = thumbnails
+                .or_else(|| thumbnails2.map(|t| t.into()))
+                .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
+                    "no thumbnail found",
+                )))?;
+            let last_update = last_update_txt
+                .as_deref()
+                .or(last_update_txt2.as_deref())
+                .and_then(|txt| {
+                    timeago::parse_textual_date_or_warn(
+                        ctx.lang,
+                        ctx.utc_offset,
+                        txt,
+                        &mut mapper.warnings,
+                    )
+                    .map(OffsetDateTime::date)
+                });
 
-        Ok(MapResult {
-            c: Playlist {
-                id: playlist_id,
-                name,
-                videos: Paginator::new_ext(
-                    Some(n_videos),
-                    mapper.items,
-                    mapper.ctoken,
-                    ctx.visitor_data.map(str::to_owned),
-                    ContinuationEndpoint::Browse,
-                    ctx.authenticated,
-                ),
-                video_count: n_videos,
-                thumbnail: thumbnails.into(),
-                description,
-                channel,
-                last_update,
-                last_update_txt,
-                visitor_data: self
-                    .response_context
-                    .visitor_data
-                    .or_else(|| ctx.visitor_data.map(str::to_owned)),
-            },
-            warnings: mapper.warnings,
+            Ok(MapResult {
+                c: Playlist {
+                    id: playlist_id,
+                    name,
+                    videos: Paginator::new_ext(
+                        Some(n_videos),
+                        mapper.items,
+                        mapper.ctoken,
+                        ctx.visitor_data.map(str::to_owned),
+                        ContinuationEndpoint::Browse,
+                        ctx.authenticated,
+                    ),
+                    video_count: n_videos,
+                    thumbnail: thumbnails.into(),
+                    description,
+                    channel,
+                    last_update,
+                    last_update_txt,
+                    visitor_data: yt_response_visitor_data(&root)
+                        .or_else(|| ctx.visitor_data.map(str::to_owned)),
+                },
+                warnings: mapper.warnings,
+            })
         })
     }
 }
 
 #[cfg(test)]
 mod tests {
-    use std::{fs::File, io::BufReader};
+    use std::fs;
 
     use path_macro::path;
     use rstest::rstest;
 
     use crate::util::tests::TESTFILES;
 
-    use super::*;
+    use super::{MapJsonResponse, *};
 
     #[rstest]
     #[case::short("short", "RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk")]
@@ -260,11 +304,9 @@ mod tests {
     #[case::cmdexecutor("20250316_cmdexecutor", "PLbZIPy20-1pN7mqjckepWF78ndb6ci_qi")]
     fn map_playlist_data(#[case] name: &str, #[case] id: &str) {
         let json_path = path!(*TESTFILES / "playlist" / format!("playlist_{name}.json"));
-        let json_file = File::open(json_path).unwrap();
-
-        let playlist: response::Playlist =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res = playlist.map_response(&MapRespCtx::test(id)).unwrap();
+        let json = JsonDoc::new(fs::read_to_string(json_path).unwrap());
+        let map_res: MapResult<Playlist> =
+            PlaylistJson::map_json_response(&json, &MapRespCtx::test(id)).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),

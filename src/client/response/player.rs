@@ -4,26 +4,8 @@ use serde::Deserialize;
 use serde_with::serde_as;
 use serde_with::{DefaultOnError, DisplayFromStr, VecSkipError};
 
-use super::{Empty, ResponseContext, Thumbnails};
+use super::{Empty, Thumbnails};
 use crate::serializer::{text::Text, MapResult};
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct Player {
-    pub playability_status: PlayabilityStatus,
-    pub streaming_data: Option<StreamingData>,
-    pub captions: Option<Captions>,
-    pub video_details: Option<VideoDetails>,
-    #[serde(default)]
-    #[serde_as(deserialize_as = "DefaultOnError")]
-    pub storyboards: Option<Storyboards>,
-    pub response_context: ResponseContext,
-    #[serde(default)]
-    pub player_config: PlayerConfig,
-    #[serde(default)]
-    pub heartbeat_params: HeartbeatParams,
-}
 
 #[serde_as]
 #[derive(Debug, Deserialize)]
@@ -331,14 +313,6 @@ impl From<DrmFamily> for crate::model::DrmSystem {
             DrmFamily::Fairplay => Self::Fairplay,
         }
     }
-}
-
-#[derive(Default, Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct DrmLicense {
-    pub status: String,
-    pub license: String,
-    pub authorized_formats: Vec<AuthorizedFormat>,
 }
 
 #[derive(Debug, Deserialize)]

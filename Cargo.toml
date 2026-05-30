@@ -25,6 +25,7 @@ repository = "https://codeberg.org/ThetaDev/rustypipe"
 [workspace.dependencies]
 data-encoding = "2.0.0"
 fancy-regex = "0.18.0"
+flexon = {version = "0.4.6", default-features = false, features = ["simd", "runtime-detection", "serde"]}
 futures-util = "0.3.31"
 localzone = "0.3.1"
 once_cell = "1.12.0"
@@ -101,6 +102,7 @@ rustls-tls-webpki-roots = ["wreq/webpki-roots"]
 [dependencies]
 data-encoding.workspace = true
 fancy-regex.workspace = true
+flexon.workspace = true
 localzone.workspace = true
 once_cell.workspace = true
 oxc_allocator.workspace = true

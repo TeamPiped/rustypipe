@@ -13,26 +13,12 @@ use super::{
     ContinuationEndpoint, ContinuationItemRenderer, Icon, MusicContinuationData, Thumbnails,
 };
 use super::{
-    ChannelBadge, ContentsRendererLogged, FrameworkUpdates, ImageView, ResponseContext,
-    YouTubeListItem,
+    ChannelBadge, ContentsRendererLogged, ImageView, YouTubeListItem,
 };
 
 /*
 #VIDEO DETAILS
 */
-
-/// Video details response
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct VideoDetails {
-    /// Video metadata + recommended videos
-    pub contents: Option<Contents>,
-    /// Video ID
-    pub current_video_endpoint: Option<CurrentVideoEndpoint>,
-    /// Video chapters + comment section
-    pub engagement_panels: MapResult<Vec<EngagementPanel>>,
-    pub response_context: ResponseContext,
-}
 
 /// Video details main object, contains video metadata and recommended videos
 #[derive(Debug, Deserialize)]
@@ -653,24 +639,6 @@ pub(crate) struct CommentItemSectionHeaderMenuItem {
 /*
 #COMMENTS CONTINUATION
 */
-
-/// Video comments continuation response
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct VideoComments {
-    /// - Initial response: 2*reloadContinuationItemsCommand
-    ///   - 1*commentsHeaderRenderer: number of comments
-    ///   - n*commentThreadRenderer, continuationItemRenderer:
-    ///     comments + continuation
-    /// - Continuation response: appendContinuationItemsAction
-    ///   - n*commentThreadRenderer, continuationItemRenderer:
-    ///     comments + continuation
-    /// - Comment replies: appendContinuationItemsAction
-    ///   - n*commentRenderer, continuationItemRenderer:
-    ///     replies + continuation
-    pub on_response_received_endpoints: MapResult<Vec<CommentsContItem>>,
-    pub framework_updates: Option<FrameworkUpdates<Payload>>,
-}
 
 /// Video comments continuation
 #[derive(Debug, Deserialize)]

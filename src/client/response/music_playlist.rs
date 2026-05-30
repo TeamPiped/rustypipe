@@ -5,23 +5,14 @@ use crate::serializer::text::{AttributedText, Text, TextComponents};
 
 use super::{
     music_item::{
-        Button, ItemSection, MusicContentsRenderer, MusicItemMenuEntry, MusicMicroformat,
+        Button, ItemSection, MusicContentsRenderer, MusicItemMenuEntry,
         MusicThumbnailRenderer,
     },
     url_endpoint::OnTapWrap,
     ContentsRenderer, SectionList, Tab,
 };
 
-/// Response model for YouTube Music playlists and albums
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct MusicPlaylist {
-    pub contents: Option<Contents>,
-    pub header: Option<Header>,
-    #[serde(default)]
-    pub microformat: MusicMicroformat,
-}
-
+/// Playlist/album browse contents and header renderers
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]

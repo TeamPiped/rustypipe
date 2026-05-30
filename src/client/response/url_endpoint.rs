@@ -8,13 +8,6 @@ use crate::{
 
 use super::Empty;
 
-/// navigation/resolve_url response model
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct ResolvedUrl {
-    pub endpoint: NavigationEndpoint,
-}
-
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(untagged)]
