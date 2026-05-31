@@ -1,0 +1,100 @@
+name: Release CLI
+
+on:
+  push:
+    tags:
+      - "rustypipe-cli/v*.*.*"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
+            archive: tar.xz
+          - runner: ubuntu-latest
+            target: aarch64-unknown-linux-gnu
+            archive: tar.xz
+          - runner: macos-13
+            target: x86_64-apple-darwin
+            archive: tar.xz
+          - runner: macos-14
+            target: aarch64-apple-darwin
+            archive: tar.xz
+          - runner: windows-latest
+            target: x86_64-pc-windows-msvc
+            archive: zip
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Linux cross-compilation dependencies
+        if: matrix.target == 'aarch64-unknown-linux-gnu'
+        run: sudo apt-get update && sudo apt-get install -y gcc-aarch64-linux-gnu pkg-config libssl-dev
+
+      - name: Build application
+        run: cargo build --release --package=rustypipe-cli --target ${{ matrix.target }}
+        env:
+          CARGO_TARGET_AARCH64_UNKNOWN_LINUX_GNU_LINKER: aarch64-linux-gnu-gcc
+
+      - name: Prepare archive
+        shell: bash
+        if: matrix.archive == 'tar.xz'
+        run: |
+          CRATE_VERSION=$(echo '${{ github.ref_name }}' | awk 'BEGIN{RS="/"} NR==2{print}')
+          BIN="rustypipe"
+          mkdir -p dist
+          tar -cJf "dist/${BIN}-${CRATE_VERSION}-${{ matrix.target }}.tar.xz" \
+            -C "target/${{ matrix.target }}/release" "${BIN}"
+
+      - name: Prepare archive
+        if: matrix.archive == 'zip'
+        shell: pwsh
+        run: |
+          $version = ('${{ github.ref_name }}' -split '/')[1]
+          New-Item -ItemType Directory -Force -Path dist | Out-Null
+          Compress-Archive -Path "target/${{ matrix.target }}/release/rustypipe.exe" `
+            -DestinationPath "dist/rustypipe-$version-${{ matrix.target }}.zip"
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: rustypipe-cli-${{ matrix.target }}
+          path: dist/*
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+
+      - name: Get variables
+        run: |
+          echo "CRATE=rustypipe-cli" >> "$GITHUB_ENV"
+          echo "CRATE_VERSION=$(echo '${{ github.ref_name }}' | awk 'BEGIN{RS="/"} NR==2{print}')" >> "$GITHUB_ENV"
+          {
+            echo 'CHANGELOG<<END_OF_FILE'
+            awk 'BEGIN{RS="(^|\n)## [^\n]+\n*"} NR==2 { print }' "cli/CHANGELOG.md"
+            echo END_OF_FILE
+          } >> "$GITHUB_ENV"
+
+      - name: Publish release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: "${{ env.CRATE }} ${{ env.CRATE_VERSION }}"
+          body: ${{ env.CHANGELOG }}
+          files: dist/*

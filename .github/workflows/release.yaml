@@ -1,14 +1,18 @@
 name: Release
+
 on:
   push:
     tags:
       - "*/v*.*.*"
 
+permissions:
+  contents: write
+
 jobs:
-  Release:
-    runs-on: cimaster-latest
+  release:
+    runs-on: ubuntu-latest
     steps:
-      - name: 📦 Checkout repository
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Get variables
@@ -24,11 +28,12 @@ jobs:
             echo END_OF_FILE
           } >> "$GITHUB_ENV"
 
-      - name: 📤 Publish crate on crates.io
+      - name: Publish crate on crates.io
         run: cargo publish --token ${{ secrets.CARGO_TOKEN }} --package "${{ env.CRATE }}"
 
-      - name: 🎉 Publish release
-        uses: https://gitea.com/actions/release-action@main
+      - name: Publish release
+        uses: softprops/action-gh-release@v2
         with:
-          title: "${{ env.CRATE }} ${{ env.CRATE_VERSION }}"
-          body: "${{ env.CHANGELOG }}"
+          tag_name: ${{ github.ref_name }}
+          name: "${{ env.CRATE }} ${{ env.CRATE_VERSION }}"
+          body: ${{ env.CHANGELOG }}

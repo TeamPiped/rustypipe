@@ -1,12 +1,13 @@
 name: CI
+
 on:
   push:
     branches: ["main"]
   pull_request:
 
 jobs:
-  Test:
-    runs-on: cimaster-latest
+  test:
+    runs-on: ubuntu-latest
     services:
       warpproxy:
         image: thetadev256/warpproxy
@@ -16,13 +17,21 @@ jobs:
           WARP_LICENSE_KEY: ${{ secrets.WARP_LICENSE_KEY }}
           WARP_PRIVATE_KEY: ${{ secrets.WARP_PRIVATE_KEY }}
     steps:
-      - name: 📦 Checkout repository
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: 🦀 Setup Rust cache
-        uses: https://github.com/Swatinem/rust-cache@v2
+      - name: Install system dependencies
+        run: sudo apt-get update && sudo apt-get install -y pkg-config libssl-dev
+
+      - name: Setup Rust cache
+        uses: Swatinem/rust-cache@v2
         with:
-          cache-on-failure: "true"
+          cache-on-failure: true
+
+      - name: Install nextest
+        uses: taiki-e/install-action@v2
+        with:
+          tool: nextest
 
       - name: Download rustypipe-botguard
         run: |
@@ -34,7 +43,7 @@ jobs:
           rm ~/rustypipe-botguard.tar.xz
           rustypipe-botguard --version
 
-      - name: 📎 Clippy
+      - name: Clippy
         run: |
           cargo clippy --all --tests --features=rss,userdata,indicatif,audiotag -- -D warnings
           cargo clippy --package=rustypipe --tests -- -D warnings
@@ -42,8 +51,8 @@ jobs:
           cargo clippy --package=rustypipe-cli -- -D warnings
           cargo clippy --package=rustypipe-cli --features=timezone -- -D warnings
 
-      - name: 🧪 Test
-        run: cargo nextest run --config-file ~/.config/nextest.toml --profile ci --retries 2 --features rss,userdata --workspace -- --skip 'user_data::'
+      - name: Test
+        run: cargo nextest run --config-file nextest.toml --profile ci --retries 2 --features rss,userdata --workspace -- --skip 'user_data::'
         env:
           ALL_PROXY: "http://warpproxy:8124"
 
@@ -51,18 +60,17 @@ jobs:
         if: always()
         run: mv target/nextest/ci/junit.xml junit.xml || true
 
-      - name: 💌 Upload test report
+      - name: Upload test report
         if: always()
-        uses: https://code.forgejo.org/forgejo/upload-artifact@v4
+        uses: actions/upload-artifact@v4
         with:
           name: test
           path: |
             junit.xml
             rustypipe_reports
 
-      - name: 🔗 Artifactview PR comment
-        if: ${{ always() && github.event_name == 'pull_request' }}
+      - name: Artifactview PR comment
+        if: always() && github.event_name == 'pull_request'
         run: |
-          if [[ "$GITEA_ACTIONS" == "true" ]]; then RUN_NUMBER="$GITHUB_RUN_NUMBER"; else RUN_NUMBER="$GITHUB_RUN_ID"; fi
           curl -SsL --fail-with-body -w "\n" -X POST https://av.thetadev.de/.well-known/api/prComment -H "Content-Type: application/json" \
-            --data '{"url": "'"$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$RUN_NUMBER"'", "pr": ${{ github.event.number }}, "artifact_titles": {"test":"🧪 Test report"}, "artifact_paths": {"test":"/junit.xml?viewer=1"}}'
+            --data '{"url": "'"$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"'", "pr": ${{ github.event.number }}, "artifact_titles": {"test":"Test report"}, "artifact_paths": {"test":"/junit.xml?viewer=1"}}'
