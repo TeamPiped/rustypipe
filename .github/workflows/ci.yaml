@@ -8,17 +8,28 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    services:
-      warpproxy:
-        image: thetadev256/warpproxy
-        env:
-          WARP_DEVICE_ID: ${{ secrets.WARP_DEVICE_ID }}
-          WARP_ACCESS_TOKEN: ${{ secrets.WARP_ACCESS_TOKEN }}
-          WARP_LICENSE_KEY: ${{ secrets.WARP_LICENSE_KEY }}
-          WARP_PRIVATE_KEY: ${{ secrets.WARP_PRIVATE_KEY }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Start usque WARP proxy
+        run: |
+          docker run -d --name usque \
+            -p 1080:1080 \
+            --entrypoint /app/usque \
+            1337kavin/usque-rs:latest \
+            socks --auto-register -b 0.0.0.0 -p 1080
+
+          for i in $(seq 1 30); do
+            if curl -sf --max-time 10 -x socks5://127.0.0.1:1080 https://cloudflare.com/cdn-cgi/trace | grep -q 'warp='; then
+              echo "usque WARP proxy ready"
+              exit 0
+            fi
+            echo "Waiting for usque... ($i/30)"
+            sleep 2
+          done
+          docker logs usque
+          exit 1
 
       - name: Install system dependencies
         run: sudo apt-get update && sudo apt-get install -y pkg-config libssl-dev
@@ -54,7 +65,7 @@ jobs:
       - name: Test
         run: cargo nextest run --config-file nextest.toml --profile ci --retries 2 --features rss,userdata --workspace -- --skip 'user_data::'
         env:
-          ALL_PROXY: "http://warpproxy:8124"
+          ALL_PROXY: "socks5://127.0.0.1:1080"
 
       - name: Move test report
         if: always()

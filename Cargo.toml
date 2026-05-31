@@ -126,7 +126,7 @@ tokio = {workspace = true, features = ["macros", "time", "process"]}
 tracing.workspace = true
 url.workspace = true
 urlencoding.workspace = true
-wreq = {workspace = true, features = ["json", "gzip", "brotli"]}
+wreq = {workspace = true, features = ["json", "gzip", "brotli", "socks"]}
 
 [dev-dependencies]
 insta.workspace = true
