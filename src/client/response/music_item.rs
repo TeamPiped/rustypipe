@@ -19,7 +19,7 @@ use super::{
     url_endpoint::{
         BrowseEndpointWrap, MusicPage, MusicPageType, MusicVideoType, NavigationEndpoint, PageType,
     },
-    ContentsRenderer, ContinuationActionWrap, ContinuationEndpoint, MusicContinuationData,
+    ContentsRenderer, ContinuationEndpoint, MusicContinuationData,
     SimpleHeaderRenderer, Thumbnails, ThumbnailsWrap,
 };
 
@@ -34,6 +34,7 @@ pub(crate) enum ItemSection {
     #[serde(alias = "musicPlaylistShelfRenderer")]
     MusicShelfRenderer(MusicShelf),
     MusicCarouselShelfRenderer(MusicCarouselShelf),
+    #[allow(dead_code)]
     GridRenderer(GridRenderer),
     #[serde(other, deserialize_with = "deserialize_ignore_any")]
     None,
@@ -249,6 +250,7 @@ pub(crate) struct PlaylistPanelRenderer {
     /// Continuation token for fetching more radio items
     #[serde(default)]
     #[serde_as(as = "VecSkipError<_>")]
+    #[allow(dead_code)]
     pub continuations: Vec<MusicContinuationData>,
 }
 
@@ -333,28 +335,6 @@ impl From<MusicThumbnailRenderer> for Vec<model::Thumbnail> {
     }
 }
 
-/// Music list continuation response model
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct MusicContinuation {
-    pub continuation_contents: Option<ContinuationContents>,
-    #[serde(default)]
-    #[serde_as(as = "VecSkipError<_>")]
-    pub on_response_received_actions: Vec<ContinuationActionWrap<MusicResponseItem>>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-#[allow(clippy::enum_variant_names)]
-pub(crate) enum ContinuationContents {
-    #[serde(alias = "musicPlaylistShelfContinuation")]
-    MusicShelfContinuation(MusicShelf),
-    SectionListContinuation(ContentsRenderer<ItemSection>),
-    PlaylistPanelContinuation(PlaylistPanelRenderer),
-    GridContinuation(GridRenderer),
-}
-
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct MusicCarouselShelfHeader {
@@ -404,6 +384,7 @@ pub(crate) struct Grid {
 #[serde(rename_all = "camelCase")]
 pub(crate) struct GridRenderer {
     pub items: MapResult<Vec<MusicResponseItem>>,
+    #[allow(dead_code)]
     pub header: Option<GridHeader>,
     #[serde(default)]
     #[serde_as(as = "VecSkipError<_>")]
@@ -413,6 +394,7 @@ pub(crate) struct GridRenderer {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct GridHeader {
+    #[allow(dead_code)]
     pub grid_header_renderer: SimpleHeaderRenderer,
 }
 
@@ -578,25 +560,6 @@ impl MusicListMapper {
         };
         let (items, warnings) = items_node.deserialize_items_lossy::<MusicResponseItem>();
         self.map_response(MapResult { c: items, warnings })
-    }
-
-    pub fn map_section_node(&mut self, section: &JsonNode<'_>) -> Option<MusicItemType> {
-        if let Ok(section) = section.deserialize::<ItemSection>() {
-            return self.map_item_section(section);
-        }
-        None
-    }
-
-    fn map_item_section(&mut self, section: ItemSection) -> Option<MusicItemType> {
-        match section {
-            ItemSection::MusicShelfRenderer(shelf) => {
-                self.map_response(shelf.contents);
-                None
-            }
-            ItemSection::MusicCarouselShelfRenderer(shelf) => self.map_response(shelf.contents),
-            ItemSection::GridRenderer(grid) => self.map_response(grid.items),
-            ItemSection::None => None,
-        }
     }
 
     /// Map a ListMusicItem (album/playlist item, search result)

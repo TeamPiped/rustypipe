@@ -117,15 +117,6 @@ impl TimeUnit {
     }
 }
 
-#[derive(Debug, Copy, Clone, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
-pub enum ExtItemType {
-    Track,
-    Video,
-    Episode,
-    Playlist,
-    Artist,
-}
-
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct QBrowse<'a> {

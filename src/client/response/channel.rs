@@ -110,24 +110,12 @@ pub(crate) struct PhBannerView {
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub(crate) struct Metadata {
-    pub channel_metadata_renderer: ChannelMetadataRenderer,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
 pub(crate) struct ChannelMetadataRenderer {
     pub title: String,
     /// Channel ID
     pub external_id: String,
     pub description: String,
     pub vanity_channel_url: Option<String>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct Microformat {
-    pub microformat_data_renderer: MicroformatDataRenderer,
 }
 
 #[derive(Debug, Deserialize)]

@@ -41,7 +41,7 @@ fn ta_token_value(n: u8, unit: Option<TimeUnit>) -> String {
     }
 }
 
-fn phf_map_from_str_tokens(tokens: &OrderedHashMap<String, String>) -> phf_codegen::Map<&str> {
+fn phf_map_from_str_tokens(tokens: &OrderedHashMap<String, String>) -> phf_codegen::Map<'_, &str> {
     tokens
         .iter()
         .map(|(txt, tu_str)| {
@@ -51,14 +51,14 @@ fn phf_map_from_str_tokens(tokens: &OrderedHashMap<String, String>) -> phf_codeg
         .collect()
 }
 
-fn phf_map_from_str_u8(tokens: &BTreeMap<String, u8>) -> phf_codegen::Map<&str> {
+fn phf_map_from_str_u8(tokens: &BTreeMap<String, u8>) -> phf_codegen::Map<'_, &str> {
     tokens
         .iter()
         .map(|(txt, n)| (txt.as_str(), n.to_string()))
         .collect()
 }
 
-fn phf_map_from_album_types(tokens: &BTreeMap<String, AlbumType>) -> phf_codegen::Map<&str> {
+fn phf_map_from_album_types(tokens: &BTreeMap<String, AlbumType>) -> phf_codegen::Map<'_, &str> {
     tokens
         .iter()
         .map(|(txt, album_type)| (txt.as_str(), format!("AlbumType::{album_type:?}")))

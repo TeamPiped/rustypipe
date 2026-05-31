@@ -175,7 +175,7 @@ impl MapJsonResponse<Paginator<HistoryItem<VideoItem>>> for HistoryJson {
     ) -> Result<MapResult<Paginator<HistoryItem<VideoItem>>>, ExtractionError> {
         json.with_root(|root| {
             let items = yt_two_column_list_items(&root)?;
-            let (sections, mut warnings) = items.deserialize_items_lossy::<YouTubeListItem>();
+            let (sections, warnings) = items.deserialize_items_lossy::<YouTubeListItem>();
 
             let mut map_res = MapResult {
                 warnings,
@@ -194,11 +194,10 @@ impl MapJsonResponse<Paginator<HistoryItem<VideoItem>>> for HistoryJson {
                             &mut map_res,
                         );
                     }
-                    YouTubeListItem::ContinuationItemRenderer(ep) => {
-                        if ctoken.is_none() {
-                            ctoken = ep.continuation_endpoint.into_token();
-                        }
+                    YouTubeListItem::ContinuationItemRenderer(ep) if ctoken.is_none() => {
+                        ctoken = ep.continuation_endpoint.into_token();
                     }
+                    YouTubeListItem::ContinuationItemRenderer(_) => {}
                     _ => {}
                 }
             }

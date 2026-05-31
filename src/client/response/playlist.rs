@@ -4,7 +4,7 @@ use serde_with::{serde_as, DefaultOnError, VecSkipError};
 use crate::serializer::text::{AttributedText, Text, TextComponent, TextComponents};
 
 use super::{
-    url_endpoint::OnTapWrap, ContentRenderer, ContentsRenderer, ImageView,
+    url_endpoint::OnTapWrap, ContentRenderer, ImageView,
     PageHeaderRendererContent, PhMetadataView, TextBox, ThumbnailsWrap,
 };
 
@@ -45,39 +45,6 @@ pub(crate) struct PlaylistHeaderBanner {
 #[serde(rename_all = "camelCase")]
 pub(crate) struct Byline {
     pub playlist_byline_renderer: TextBox,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct Sidebar {
-    pub playlist_sidebar_renderer: ContentsRenderer<SidebarItemPrimary>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct SidebarItemPrimary {
-    pub playlist_sidebar_primary_info_renderer: SidebarPrimaryInfoRenderer,
-}
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct SidebarPrimaryInfoRenderer {
-    pub description: Option<TextComponents>,
-    pub thumbnail_renderer: PlaylistThumbnailRenderer,
-    /// - `"495", " videos"`
-    /// - `"3,310,996 views"`
-    /// - `"Last updated on ", "Aug 7, 2022"`
-    #[serde_as(as = "Vec<Text>")]
-    pub stats: Vec<String>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct PlaylistThumbnailRenderer {
-    // the alternative field name is used by YTM playlists
-    #[serde(alias = "playlistCustomThumbnailRenderer")]
-    pub playlist_video_thumbnail_renderer: ThumbnailsWrap,
 }
 
 #[derive(Debug, Deserialize)]

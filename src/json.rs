@@ -190,34 +190,6 @@ impl<'a> JsonNode<'a> {
             .unwrap_or_default()
     }
 
-    pub(crate) fn members(&self) -> Vec<(String, Self)> {
-        self.doc
-            .resolve_value(&self.path)
-            .ok()
-            .and_then(|value| {
-                value.as_object().map(|obj| {
-                    obj.as_slice()
-                        .iter()
-                        .map(|(key, _)| {
-                            let key_str: &str = key.as_ref();
-                            let mut path = self.path.clone();
-                            path.push(PathSegment::Key(Box::leak(
-                                key_str.to_owned().into_boxed_str(),
-                            )));
-                            (
-                                key_str.to_owned(),
-                                Self {
-                                    doc: self.doc,
-                                    path,
-                                },
-                            )
-                        })
-                        .collect::<Vec<_>>()
-                })
-            })
-            .unwrap_or_default()
-    }
-
     pub(crate) fn deserialize<T: DeserializeOwned>(&self) -> Result<T, ExtractionError> {
         let raw = self.doc.resolve_raw(&self.path)?;
         serde_json::from_str(&raw).map_err(|e| ExtractionError::InvalidData(e.to_string().into()))
@@ -270,21 +242,6 @@ pub(crate) fn yt_text(node: &JsonNode<'_>) -> Option<String> {
             Some(out)
         }
     })
-}
-
-pub(crate) fn yt_list_items<'a>(node: &JsonNode<'a>) -> Vec<JsonNode<'a>> {
-    node.first_of(&[ytq!(.contents), ytq!(.tabs), ytq!(.items)])
-        .map(|value| value.items())
-        .unwrap_or_default()
-}
-
-pub(crate) fn yt_renderer_kind(node: &JsonNode<'_>) -> Option<String> {
-    let members = node.members();
-    if members.len() == 1 {
-        Some(members[0].0.clone())
-    } else {
-        None
-    }
 }
 
 pub(crate) fn yt_continuation(node: &JsonNode<'_>) -> Option<String> {

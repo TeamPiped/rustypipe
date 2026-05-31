@@ -1035,8 +1035,8 @@ impl DownloadQuery {
 
                     let crop = smartcrop::find_best_crop_no_borders(
                         &img,
-                        NonZeroU32::MIN,
-                        NonZeroU32::MIN,
+                        NonZeroU32::new(1).unwrap(),
+                        NonZeroU32::new(1).unwrap(),
                     )
                     .map_err(|e| DownloadError::AudioTag(format!("image crop: {e}").into()))?
                     .crop;
@@ -1209,18 +1209,32 @@ async fn download_single_file(
         .open(&output_path_tmp)
         .await?;
 
-    let res = if is_gvideo && size.is_some() {
-        download_chunks_by_param(
-            http,
-            &mut file,
-            url,
-            size.unwrap(),
-            offset,
-            user_agent,
-            #[cfg(feature = "indicatif")]
-            pb,
-        )
-        .await
+    let res = if is_gvideo {
+        if let Some(size) = size {
+            download_chunks_by_param(
+                http,
+                &mut file,
+                url,
+                size,
+                offset,
+                user_agent,
+                #[cfg(feature = "indicatif")]
+                pb,
+            )
+            .await
+        } else {
+            download_chunks_by_header(
+                http,
+                &mut file,
+                url,
+                size,
+                offset,
+                user_agent,
+                #[cfg(feature = "indicatif")]
+                pb,
+            )
+            .await
+        }
     } else {
         download_chunks_by_header(
             http,

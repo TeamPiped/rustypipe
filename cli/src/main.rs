@@ -744,21 +744,21 @@ fn print_comments(comments: &[Comment]) {
 fn print_richtext(text: &RichText) {
     for c in &text.0 {
         match c {
-            rustypipe::model::richtext::TextComponent::Text { text, style } => {
-                if !text.is_empty() {
-                    let mut tstyle = owo_colors::Style::new();
+            rustypipe::model::richtext::TextComponent::Text { text, style }
+                if !text.is_empty() =>
+            {
+                let mut tstyle = owo_colors::Style::new();
 
-                    if style.bold {
-                        tstyle = tstyle.bold();
-                    }
-                    if style.italic {
-                        tstyle = tstyle.italic();
-                    }
-                    if style.strikethrough {
-                        tstyle = tstyle.strikethrough();
-                    }
-                    anstream::print!("{}", text.style(tstyle));
+                if style.bold {
+                    tstyle = tstyle.bold();
                 }
+                if style.italic {
+                    tstyle = tstyle.italic();
+                }
+                if style.strikethrough {
+                    tstyle = tstyle.strikethrough();
+                }
+                anstream::print!("{}", text.style(tstyle));
             }
             rustypipe::model::richtext::TextComponent::Web { url, .. } => {
                 anstream::print!("{}", url.underline());

@@ -286,19 +286,6 @@ pub(crate) struct ChannelRenderer {
     pub owner_badges: Vec<ChannelBadge>,
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct YouTubeListRendererWrap {
-    #[serde(alias = "richGridRenderer")]
-    pub section_list_renderer: YouTubeListRenderer,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct YouTubeListRenderer {
-    pub contents: MapResult<Vec<YouTubeListItem>>,
-}
-
 #[cfg(feature = "userdata")]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]

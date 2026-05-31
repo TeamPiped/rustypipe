@@ -318,11 +318,10 @@ impl MapJsonResponse<Paginator<HistoryItem<VideoItem>>> for ContinuationJson {
                             &mut map_res,
                         );
                     }
-                    response::YouTubeListItem::ContinuationItemRenderer(ep) => {
-                        if ctoken.is_none() {
-                            ctoken = ep.continuation_endpoint.into_token();
-                        }
+                    response::YouTubeListItem::ContinuationItemRenderer(ep) if ctoken.is_none() => {
+                        ctoken = ep.continuation_endpoint.into_token();
                     }
+                    response::YouTubeListItem::ContinuationItemRenderer(_) => {}
                     _ => {}
                 }
             }

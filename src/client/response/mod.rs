@@ -26,13 +26,11 @@ use serde::{
     de::{IgnoredAny, Visitor},
     Deserialize,
 };
-use serde_with::{serde_as, DisplayFromStr, VecSkipError};
+use serde_with::{serde_as, VecSkipError};
 
 use crate::error::ExtractionError;
 use crate::serializer::text::{AttributedText, Text, TextComponent};
 use crate::serializer::{MapResult, VecSkipErrorWrap};
-
-use self::video_item::YouTubeListRenderer;
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -64,12 +62,6 @@ pub(crate) struct Tab<T> {
 #[serde(rename_all = "camelCase")]
 pub(crate) struct SectionList<T> {
     pub section_list_renderer: ContentsRenderer<T>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct TwoColumnBrowseResults<T> {
-    pub two_column_browse_results_renderer: ContentsRenderer<T>,
 }
 
 #[derive(Default, Debug, Deserialize)]
@@ -231,12 +223,6 @@ pub(crate) struct TextComponentBox {
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub(crate) struct ResponseContext {
-    pub visitor_data: Option<String>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
 pub(crate) struct AttachmentRun {
     pub element: AttachmentRunElement,
 }
@@ -290,25 +276,6 @@ pub enum IconName {
 
 // CONTINUATION
 
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct Continuation {
-    /// Number of search results
-    #[serde_as(as = "Option<DisplayFromStr>")]
-    pub estimated_results: Option<u64>,
-    #[serde(
-        alias = "onResponseReceivedCommands",
-        alias = "onResponseReceivedEndpoints"
-    )]
-    #[serde_as(as = "Option<VecSkipError<_>>")]
-    pub on_response_received_actions: Option<Vec<ContinuationActionWrap<YouTubeListItem>>>,
-    /// Used for channel video rich grid renderer
-    ///
-    /// A/B test seen on 19.10.2022
-    pub continuation_contents: Option<RichGridContinuationContents>,
-}
-
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct ContinuationActionWrap<T> {
@@ -320,12 +287,6 @@ pub(crate) struct ContinuationActionWrap<T> {
 #[serde(rename_all = "camelCase")]
 pub(crate) struct ContinuationAction<T> {
     pub continuation_items: MapResult<Vec<T>>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct RichGridContinuationContents {
-    pub rich_grid_continuation: YouTubeListRenderer,
 }
 
 #[derive(Debug, Deserialize)]
