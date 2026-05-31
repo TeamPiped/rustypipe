@@ -55,7 +55,7 @@ tracing-subscriber.workspace = true
 serde_yaml.workspace = true
 dirs.workspace = true
 
-anstream = "0.6.15"
+anstream = "1.0.0"
 owo-colors = "4.0.0"
 const_format = "0.2.33"
 
