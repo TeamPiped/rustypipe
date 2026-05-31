@@ -1083,7 +1083,7 @@ impl MusicListMapper {
                     let from_ytm = subtitle_p2
                         .as_ref()
                         .and_then(|p| p.0.first())
-                        .map_or(true, util::is_ytm);
+                        .is_none_or(util::is_ytm);
                     let channel = subtitle_p2
                         .and_then(|p| p.0.into_iter().find_map(|c| ChannelId::try_from(c).ok()));
 
@@ -1219,7 +1219,7 @@ impl MusicListMapper {
                     let from_ytm = subtitle_p2
                         .as_ref()
                         .and_then(|p| p.0.first())
-                        .map_or(true, util::is_ytm);
+                        .is_none_or(util::is_ytm);
                     let channel = subtitle_p2
                         .and_then(|p| p.0.into_iter().find_map(|c| ChannelId::try_from(c).ok()));
                     let track_count =

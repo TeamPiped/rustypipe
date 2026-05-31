@@ -836,11 +836,10 @@ impl YouTubeListMapper<YouTubeItem> {
                     self.items.push(mapped);
                 }
             }
-            YouTubeListItem::ContinuationItemRenderer(r) => {
-                if self.ctoken.is_none() {
-                    self.ctoken = r.continuation_endpoint.into_token();
-                }
+            YouTubeListItem::ContinuationItemRenderer(r) if self.ctoken.is_none() => {
+                self.ctoken = r.continuation_endpoint.into_token();
             }
+            YouTubeListItem::ContinuationItemRenderer(_) => {}
             YouTubeListItem::ShowingResultsForRenderer { corrected_query } => {
                 self.corrected_query = Some(corrected_query);
             }
@@ -861,7 +860,7 @@ impl YouTubeListMapper<YouTubeItem> {
     }
 
     pub(crate) fn map_response_node(&mut self, node: &JsonNode<'_>) {
-        let (items, mut warnings) = node.deserialize_items_lossy::<YouTubeListItem>();
+        let (items, warnings) = node.deserialize_items_lossy::<YouTubeListItem>();
         self.map_response(MapResult {
             c: items,
             warnings,
@@ -894,11 +893,10 @@ impl YouTubeListMapper<VideoItem> {
                     self.items.push(mapped);
                 }
             }
-            YouTubeListItem::ContinuationItemRenderer(r) => {
-                if self.ctoken.is_none() {
-                    self.ctoken = r.continuation_endpoint.into_token();
-                }
+            YouTubeListItem::ContinuationItemRenderer(r) if self.ctoken.is_none() => {
+                self.ctoken = r.continuation_endpoint.into_token();
             }
+            YouTubeListItem::ContinuationItemRenderer(_) => {}
             YouTubeListItem::ShowingResultsForRenderer { corrected_query } => {
                 self.corrected_query = Some(corrected_query);
             }
@@ -919,7 +917,7 @@ impl YouTubeListMapper<VideoItem> {
     }
 
     pub(crate) fn map_response_node(&mut self, node: &JsonNode<'_>) {
-        let (items, mut warnings) = node.deserialize_items_lossy::<YouTubeListItem>();
+        let (items, warnings) = node.deserialize_items_lossy::<YouTubeListItem>();
         self.map_response(MapResult {
             c: items,
             warnings,
@@ -956,11 +954,10 @@ impl YouTubeListMapper<PlaylistItem> {
                     self.items.push(mapped);
                 }
             }
-            YouTubeListItem::ContinuationItemRenderer(r) => {
-                if self.ctoken.is_none() {
-                    self.ctoken = r.continuation_endpoint.into_token();
-                }
+            YouTubeListItem::ContinuationItemRenderer(r) if self.ctoken.is_none() => {
+                self.ctoken = r.continuation_endpoint.into_token();
             }
+            YouTubeListItem::ContinuationItemRenderer(_) => {}
             YouTubeListItem::ShowingResultsForRenderer { corrected_query } => {
                 self.corrected_query = Some(corrected_query);
             }
@@ -981,7 +978,7 @@ impl YouTubeListMapper<PlaylistItem> {
     }
 
     pub(crate) fn map_response_node(&mut self, node: &JsonNode<'_>) {
-        let (items, mut warnings) = node.deserialize_items_lossy::<YouTubeListItem>();
+        let (items, warnings) = node.deserialize_items_lossy::<YouTubeListItem>();
         self.map_response(MapResult {
             c: items,
             warnings,

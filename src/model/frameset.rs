@@ -35,7 +35,7 @@ pub struct FramesetUrls<'a> {
 
 impl Frameset {
     /// Gets an iterator over the page URLs of the frameset
-    pub fn urls(&self) -> FramesetUrls {
+    pub fn urls(&self) -> FramesetUrls<'_> {
         FramesetUrls {
             frameset: self,
             i: 0,

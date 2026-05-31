@@ -455,16 +455,17 @@ fn map_music_album_fields(
             match section {
                 response::music_item::ItemSection::MusicShelfRenderer(sh) => shelf = Some(sh),
                 response::music_item::ItemSection::MusicCarouselShelfRenderer(sh) => {
-                    if sh
+                    let is_album_versions = sh
                         .header
+                        .as_ref()
                         .map(|h| {
                             h.music_carousel_shelf_basic_header_renderer
                                 .title
                                 .first_str()
                                 == dictionary::entry(ctx.lang).album_versions_title
                         })
-                        .unwrap_or_default()
-                    {
+                        .unwrap_or_default();
+                    if is_album_versions {
                         album_variants = Some(sh.contents);
                     }
                 }

@@ -112,7 +112,7 @@ impl MapJsonResponse<MusicGenre> for MusicGenreJson {
     ) -> Result<MapResult<MusicGenre>, ExtractionError> {
         json.with_root(|root| {
             let sections = yt_single_column_sections(&root)?;
-            let name = yt_music_header_title(&root).ok_or_else(|| {
+            let name = yt_music_header_title(&root).ok_or({
                 ExtractionError::InvalidData(Cow::Borrowed("missing genre header title"))
             })?;
 

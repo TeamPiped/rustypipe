@@ -70,7 +70,7 @@ pub(crate) enum VideoResultsItem {
     },
     #[serde(rename_all = "camelCase")]
     VideoSecondaryInfoRenderer {
-        owner: VideoOwner,
+        owner: Box<VideoOwner>,
         #[serde(default)]
         #[serde_as(as = "DefaultOnError<Option<AttributedText>>")]
         description: Option<TextComponents>,

@@ -56,28 +56,28 @@ fn yt_playlist_video_list<'a>(root: &JsonNode<'a>) -> Result<JsonNode<'a>, Extra
         ytq!(.contents.twoColumnBrowseResultsRenderer),
         "two column browse results",
     )?;
-    let tab = yt_first_tab(&browse).ok_or_else(|| {
+    let tab = yt_first_tab(&browse).ok_or({
         ExtractionError::InvalidData(Cow::Borrowed("twoColumnBrowseResultsRenderer empty"))
     })?;
     let sections = tab.require(
         ytq!(.tabRenderer.content.sectionListRenderer.contents),
         "section list renderer",
     )?;
-    let section = sections.items().into_iter().next().ok_or_else(|| {
+    let section = sections.items().into_iter().next().ok_or({
         ExtractionError::InvalidData(Cow::Borrowed("sectionListRenderer empty"))
     })?;
     let item_section = section.require(
         ytq!(.itemSectionRenderer.contents),
         "item section renderer",
     )?;
-    let item = item_section.items().into_iter().next().ok_or_else(|| {
+    let item = item_section.items().into_iter().next().ok_or({
         ExtractionError::InvalidData(Cow::Borrowed("itemSectionRenderer empty"))
     })?;
     item.first_of(&[
         ytq!(.playlistVideoListRenderer.contents),
         ytq!(.richGridRenderer.contents),
     ])
-    .ok_or_else(|| ExtractionError::InvalidData(Cow::Borrowed("playlist video list empty")))
+    .ok_or(ExtractionError::InvalidData(Cow::Borrowed("playlist video list empty")))
 }
 
 impl MapJsonResponse<Playlist> for PlaylistJson {
@@ -104,7 +104,7 @@ impl MapJsonResponse<Playlist> for PlaylistJson {
                             "playlist sidebar items",
                         )?
                         .items();
-                    let primary = sidebar_items.into_iter().next().ok_or_else(|| {
+                    let primary = sidebar_items.into_iter().next().ok_or({
                         ExtractionError::InvalidData(Cow::Borrowed("no primary sidebar"))
                     })?;
                     let info = primary.require(
@@ -138,7 +138,7 @@ impl MapJsonResponse<Playlist> for PlaylistJson {
             };
 
             let header: response::playlist::Header = header
-                .ok_or_else(|| ExtractionError::InvalidData(Cow::Borrowed("no header")))?
+                .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no header")))?
                 .deserialize()?;
 
             let (
@@ -270,7 +270,7 @@ impl MapJsonResponse<Playlist> for PlaylistJson {
                         ctx.authenticated,
                     ),
                     video_count: n_videos,
-                    thumbnail: thumbnails.into(),
+                    thumbnail: thumbnails,
                     description,
                     channel,
                     last_update,

@@ -306,10 +306,8 @@ fn extract_js_fn(js: &str, name: &str) -> Result<String, DeobfError> {
                                 }
                                 level.bracket -= 1;
                             }
-                            Punct::SemiColon => {
-                                if var_def_this_lvl() {
-                                    var_def_stmt = None;
-                                }
+                            Punct::SemiColon if var_def_this_lvl() => {
+                                var_def_stmt = None;
                             }
                             Punct::Comma => {
                                 if let Some((lvl, rhs)) = &mut var_def_stmt {
@@ -339,21 +337,20 @@ fn extract_js_fn(js: &str, name: &str) -> Result<String, DeobfError> {
                         }
                         _ => {}
                     },
-                    Token::Ident(id) => {
-                        // Ignore object attributes
-                        if !period_before && !global_objects.contains(&id.as_ref()) {
-                            // If we are on the left hand side of a variable definition statement
-                            // or after "function", mark the variable name as defined
-                            if var_def_stmt
-                                .as_ref()
-                                .map(|(lvl, rhs)| lvl == &level && !rhs)
-                                .unwrap_or_default()
-                                || function_before
-                            {
-                                idents.insert(id.to_string(), true);
-                            } else {
-                                idents.entry(id.to_string()).or_default();
-                            }
+                    Token::Ident(id)
+                        if !period_before && !global_objects.contains(&id.as_ref()) =>
+                    {
+                        // If we are on the left hand side of a variable definition statement
+                        // or after "function", mark the variable name as defined
+                        if var_def_stmt
+                            .as_ref()
+                            .map(|(lvl, rhs)| lvl == &level && !rhs)
+                            .unwrap_or_default()
+                            || function_before
+                        {
+                            idents.insert(id.to_string(), true);
+                        } else {
+                            idents.entry(id.to_string()).or_default();
                         }
                     }
                     _ => {}
@@ -440,11 +437,9 @@ fn extract_js_var(js: &str) -> Option<&str> {
                 Punct::CloseBrace => close_brace(&mut braces, b'{')?,
                 Punct::CloseBracket => close_brace(&mut braces, b'[')?,
                 Punct::CloseParen => close_brace(&mut braces, b'(')?,
-                Punct::Comma | Punct::SemiColon => {
-                    if braces.is_empty() {
-                        end = it.span.start;
-                        break;
-                    }
+                Punct::Comma | Punct::SemiColon if braces.is_empty() => {
+                    end = it.span.start;
+                    break;
                 }
                 _ => {}
             }

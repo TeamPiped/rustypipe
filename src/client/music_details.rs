@@ -185,16 +185,15 @@ fn inspect_music_tabs<'a>(
     Ok((panel, lyrics_id, related_id))
 }
 
+type PlaylistPanelData = (
+    Vec<response::music_item::PlaylistPanelVideo>,
+    Vec<String>,
+    Option<String>,
+);
+
 fn deserialize_playlist_panel(
     panel: &JsonNode<'_>,
-) -> Result<
-    (
-        Vec<response::music_item::PlaylistPanelVideo>,
-        Vec<String>,
-        Option<String>,
-    ),
-    ExtractionError,
-> {
+) -> Result<PlaylistPanelData, ExtractionError> {
     let contents = panel.require(ytq!(.contents), "playlist panel contents")?;
     let (items, warnings) = contents.deserialize_items_lossy::<response::music_item::PlaylistPanelVideo>();
     let ctoken = panel

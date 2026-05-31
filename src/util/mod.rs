@@ -230,9 +230,7 @@ pub fn retry_delay(
 ) -> u32 {
     let unjittered_delay = backoff_base.checked_pow(n_past_retries).unwrap_or(u32::MAX);
     let jitter_factor = rand::rng().random_range(800..1500);
-    let jittered_delay = unjittered_delay
-        .checked_mul(jitter_factor)
-        .unwrap_or(u32::MAX);
+    let jittered_delay = unjittered_delay.saturating_mul(jitter_factor);
 
     min_retry_interval.max(jittered_delay.min(max_retry_interval))
 }
@@ -711,9 +709,9 @@ pub(crate) mod tests {
     #[test]
     fn t_vec_try_remove() {
         let mut v = vec![1, 2, 3];
-        assert_eq!(v.try_remove(0).unwrap(), 1);
-        assert_eq!(v.try_remove(1).unwrap(), 3);
-        assert_eq!(v.try_remove(1), None);
+        assert_eq!(TryRemove::try_remove(&mut v, 0).unwrap(), 1);
+        assert_eq!(TryRemove::try_remove(&mut v, 1).unwrap(), 3);
+        assert_eq!(TryRemove::try_remove(&mut v, 1), None);
     }
 
     #[test]
