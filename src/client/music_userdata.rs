@@ -2,23 +2,43 @@ use std::fmt::Debug;
 
 use crate::{
     client::{
-        response::{self, music_item::MusicListMapper},
-        ClientType, MapJsonResponse, RustyPipeQuery,
+        response::{self, music_item::extend_music_history_items_value},
+        ClientType, MapEndpoint, RustyPipeQuery,
     },
     error::{Error, ExtractionError},
-    json::{JsonDoc, JsonNode, yt_continuation, ytq},
+    json::{yt_continuation, ytq, JsonDoc, JsonNode},
     model::{
         paginator::{ContinuationEndpoint, Paginator},
         AlbumItem, ArtistItem, HistoryItem, MusicPlaylist, MusicPlaylistItem, TrackItem,
     },
+    param::MusicSavedKind,
     request_body::ytbody,
     serializer::MapResult,
 };
 
-use super::{pagination::MusicContinuationJson, MapRespCtx, MapRespOptions};
+use super::{pagination::MusicContinuationMarker, MapRespCtx, MapRespOptions};
+
+/// Result of [`RustyPipeQuery::music_saved`]
+///
+/// Different kinds of saved items return different `Paginator<T>` types, so the
+/// result is wrapped in an enum. Use the [`From`] impls (or the
+/// [`FromYtItem`](crate::model::traits::FromYtItem) helper) to extract the
+/// concrete paginator you need.
+#[derive(Debug)]
+#[allow(clippy::large_enum_variant)]
+pub enum MusicSavedResult {
+    /// [`MusicSavedKind::Artists`] -> [`Paginator<ArtistItem>`]
+    Artists(Paginator<ArtistItem>),
+    /// [`MusicSavedKind::Albums`] -> [`Paginator<AlbumItem>`]
+    Albums(Paginator<AlbumItem>),
+    /// [`MusicSavedKind::Tracks`] -> [`Paginator<TrackItem>`]
+    Tracks(Paginator<TrackItem>),
+    /// [`MusicSavedKind::Playlists`] -> [`Paginator<MusicPlaylistItem>`]
+    Playlists(Paginator<MusicPlaylistItem>),
+}
 
 #[derive(Debug)]
-struct MusicHistoryJson;
+struct MusicHistoryEndpoint;
 
 impl RustyPipeQuery {
     /// Get a list of tracks from YouTube Music which the current user recently played
@@ -33,7 +53,7 @@ impl RustyPipeQuery {
 
         self.clone()
             .authenticated()
-            .execute_request::<MusicHistoryJson, _, _>(
+            .execute_request::<MusicHistoryEndpoint, _, _>(
                 ClientType::DesktopMusic,
                 "music_history",
                 "",
@@ -57,7 +77,7 @@ impl RustyPipeQuery {
 
         self.clone()
             .authenticated()
-            .execute_request_ctx::<MusicContinuationJson, _, _>(
+            .execute_request_ctx::<MusicContinuationMarker, _, _>(
                 ClientType::Desktop,
                 "history_continuation",
                 ctoken,
@@ -71,72 +91,63 @@ impl RustyPipeQuery {
             .await
     }
 
-    /// Get a list of YouTube Music artists which the current user subscribed to
+    /// Get items from the user's YouTube Music library ("saved X" feed)
     ///
-    /// Requires authentication cookies.
+    /// Requires authentication cookies. The kind of items returned is
+    /// determined by [`MusicSavedKind`]; see [`MusicSavedResult`] for how to
+    /// extract the concrete paginator.
     #[tracing::instrument(skip(self), level = "error")]
-    pub async fn music_saved_artists(&self) -> Result<Paginator<ArtistItem>, Error> {
-        self.clone()
-            .authenticated()
-            .continuation(
-                "4qmFsgIyEh5GRW11c2ljX2xpYnJhcnlfY29ycHVzX2FydGlzdHMaEGdnTUdLZ1FJQUJBQm9BWUI%3D",
-                ContinuationEndpoint::MusicBrowse,
-                None,
-            )
-            .await
-    }
+    pub async fn music_saved(&self, kind: MusicSavedKind) -> Result<MusicSavedResult, Error> {
+        let ctoken = match kind {
+            MusicSavedKind::Artists => {
+                "4qmFsgIyEh5GRW11c2ljX2xpYnJhcnlfY29ycHVzX2FydGlzdHMaEGdnTUdLZ1FJQUJBQm9BWUI%3D"
+            }
+            MusicSavedKind::Albums => {
+                "4qmFsgIoEhRGRW11c2ljX2xpa2VkX2FsYnVtcxoQZ2dNR0tnUUlBQkFCb0FZQg%3D%3D"
+            }
+            MusicSavedKind::Tracks => {
+                "4qmFsgIoEhRGRW11c2ljX2xpa2VkX3ZpZGVvcxoQZ2dNR0tnUUlBQkFCb0FZQg%3D%3D"
+            }
+            MusicSavedKind::Playlists => {
+                "4qmFsgIrEhdGRW11c2ljX2xpa2VkX3BsYXlsaXN0cxoQZ2dNR0tnUUlBQkFCb0FZQg%3D%3D"
+            }
+        };
 
-    /// Get a list of YouTube Music albums which the current user has added to their collection
-    ///
-    /// Requires authentication cookies.
-    #[tracing::instrument(skip(self), level = "error")]
-    pub async fn music_saved_albums(&self) -> Result<Paginator<AlbumItem>, Error> {
-        self.clone()
-            .authenticated()
-            .continuation(
-                "4qmFsgIoEhRGRW11c2ljX2xpa2VkX2FsYnVtcxoQZ2dNR0tnUUlBQkFCb0FZQg%3D%3D",
-                ContinuationEndpoint::MusicBrowse,
-                None,
-            )
-            .await
-    }
-
-    /// Get a list of YouTube Music tracks which the current user has added to their collection
-    ///
-    /// Contains both liked tracks and tracks from saved albums.
-    ///
-    /// Requires authentication cookies.
-    #[tracing::instrument(skip(self), level = "error")]
-    pub async fn music_saved_tracks(&self) -> Result<Paginator<TrackItem>, Error> {
-        self.clone()
-            .authenticated()
-            .continuation(
-                "4qmFsgIoEhRGRW11c2ljX2xpa2VkX3ZpZGVvcxoQZ2dNR0tnUUlBQkFCb0FZQg%3D%3D",
-                ContinuationEndpoint::MusicBrowse,
-                None,
-            )
-            .await
-    }
-
-    /// Get a list of YouTube Music playlists which the current user has added to their collection
-    ///
-    /// Requires authentication cookies.
-    #[tracing::instrument(skip(self), level = "error")]
-    pub async fn music_saved_playlists(&self) -> Result<Paginator<MusicPlaylistItem>, Error> {
-        self.clone()
-            .authenticated()
-            .continuation(
-                "4qmFsgIrEhdGRW11c2ljX2xpa2VkX3BsYXlsaXN0cxoQZ2dNR0tnUUlBQkFCb0FZQg%3D%3D",
-                ContinuationEndpoint::MusicBrowse,
-                None,
-            )
-            .await
+        let q = self.clone().authenticated();
+        let res = match kind {
+            MusicSavedKind::Artists => {
+                q.continuation::<ArtistItem, _>(ctoken, ContinuationEndpoint::MusicBrowse, None)
+                    .await
+                    .map(MusicSavedResult::Artists)?
+            }
+            MusicSavedKind::Albums => {
+                q.continuation::<AlbumItem, _>(ctoken, ContinuationEndpoint::MusicBrowse, None)
+                    .await
+                    .map(MusicSavedResult::Albums)?
+            }
+            MusicSavedKind::Tracks => {
+                q.continuation::<TrackItem, _>(ctoken, ContinuationEndpoint::MusicBrowse, None)
+                    .await
+                    .map(MusicSavedResult::Tracks)?
+            }
+            MusicSavedKind::Playlists => {
+                q.continuation::<MusicPlaylistItem, _>(
+                    ctoken,
+                    ContinuationEndpoint::MusicBrowse,
+                    None,
+                )
+                .await
+                .map(MusicSavedResult::Playlists)?
+            }
+        };
+        Ok(res)
     }
 
     /// Get all liked YouTube Music tracks of the logged-in user
     ///
-    /// The difference to [`RustyPipeQuery::music_saved_tracks`] is that this function only returns
-    /// tracks that were explicitly liked by the user.
+    /// The difference to [`RustyPipeQuery::music_saved`] (with
+    /// [`MusicSavedKind::Tracks`]) is that this function only returns tracks that
+    /// were explicitly liked by the user.
     ///
     /// Requires authentication cookies.
     pub async fn music_liked_tracks(&self) -> Result<MusicPlaylist, Error> {
@@ -148,45 +159,27 @@ impl RustyPipeQuery {
     }
 }
 
-fn yt_music_history_sections<'a>(
-    root: &'a JsonNode<'a>,
-) -> Result<JsonNode<'a>, ExtractionError> {
-    root.first_of(&[
-        ytq!(
-            .contents.singleColumnBrowseResultsRenderer.tabs[0].tabRenderer.content
-                .sectionListRenderer.contents
-        ),
-        ytq!(
-            .contents.singleColumnBrowseResultsRenderer.contents[0].tabRenderer.content
-                .sectionListRenderer.contents
-        ),
-        ytq!(
-            .contents.twoColumnBrowseResultsRenderer.secondaryContents.sectionListRenderer
-                .contents
-        ),
-    ])
+fn yt_music_history_sections<'a>(root: &'a JsonNode<'a>) -> Result<JsonNode<'a>, ExtractionError> {
+    root.query(ytq!(
+        .contents.singleColumnBrowseResultsRenderer.(.tabs[0] || .contents[0]).tabRenderer.content
+            .sectionListRenderer.contents
+        || .contents.twoColumnBrowseResultsRenderer.secondaryContents.sectionListRenderer
+            .contents
+    ))
     .ok_or_else(|| ExtractionError::InvalidData("no music history contents".into()))
 }
 
 fn yt_music_history_continuations<'a>(root: &'a JsonNode<'a>) -> Option<JsonNode<'a>> {
-    root.first_of(&[
-        ytq!(
-            .contents.singleColumnBrowseResultsRenderer.tabs[0].tabRenderer.content
-                .sectionListRenderer.continuations
-        ),
-        ytq!(
-            .contents.singleColumnBrowseResultsRenderer.contents[0].tabRenderer.content
-                .sectionListRenderer.continuations
-        ),
-        ytq!(
-            .contents.twoColumnBrowseResultsRenderer.secondaryContents.sectionListRenderer
-                .continuations
-        ),
-    ])
+    root.query(ytq!(
+        .contents.singleColumnBrowseResultsRenderer.(.tabs[0] || .contents[0]).tabRenderer.content
+            .sectionListRenderer.continuations
+        || .contents.twoColumnBrowseResultsRenderer.secondaryContents.sectionListRenderer
+            .continuations
+    ))
 }
 
-impl MapJsonResponse<Paginator<HistoryItem<TrackItem>>> for MusicHistoryJson {
-    fn map_json_response(
+impl MapEndpoint<Paginator<HistoryItem<TrackItem>>> for MusicHistoryEndpoint {
+    fn map(
         json: &JsonDoc,
         ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<Paginator<HistoryItem<TrackItem>>>, ExtractionError> {
@@ -200,9 +193,13 @@ impl MapJsonResponse<Paginator<HistoryItem<TrackItem>>> for MusicHistoryJson {
                     continue;
                 };
                 if let Ok(shelf) = shelf.deserialize::<response::music_item::MusicShelf>() {
-                    let mut mapper = MusicListMapper::new(ctx.lang);
-                    mapper.map_response(shelf.contents);
-                    mapper.conv_history_items(shelf.title, ctx.utc_offset, &mut map_res);
+                    extend_music_history_items_value(
+                        shelf.contents,
+                        ctx.lang,
+                        shelf.title,
+                        ctx.utc_offset,
+                        &mut map_res,
+                    );
                 }
             }
 
@@ -239,7 +236,7 @@ mod tests {
     fn map_history() {
         let json_path = path!(*TESTFILES / "music_userdata" / "music_history.json");
         let json = JsonDoc::new(fs::read_to_string(json_path).unwrap());
-        let map_res = MusicHistoryJson::map_json_response(&json, &MapRespCtx::test("")).unwrap();
+        let map_res = MusicHistoryEndpoint::map(&json, &MapRespCtx::test("")).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),

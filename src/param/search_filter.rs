@@ -2,6 +2,9 @@
 
 use std::collections::BTreeSet;
 
+#[cfg(feature = "clap")]
+use clap::ValueEnum;
+
 use crate::util::ProtoBuilder;
 
 /// YouTube search filter
@@ -46,6 +49,7 @@ pub enum Feature {
 }
 
 /// Sort order of search results
+#[cfg_attr(feature = "clap", derive(ValueEnum))]
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Order {
     /// Sort by Like/Dislike ratio
@@ -57,6 +61,7 @@ pub enum Order {
 }
 
 /// Upload date range to filter by
+#[cfg_attr(feature = "clap", derive(ValueEnum))]
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum UploadDate {
     /// 1 hour old or newer
@@ -72,6 +77,7 @@ pub enum UploadDate {
 }
 
 /// YouTube item type to filter by
+#[cfg_attr(feature = "clap", derive(ValueEnum))]
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 #[allow(missing_docs)]
 pub enum ItemType {
@@ -81,6 +87,7 @@ pub enum ItemType {
 }
 
 /// Video length range to filter by
+#[cfg_attr(feature = "clap", derive(ValueEnum))]
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Length {
     /// < 4min
@@ -221,7 +228,9 @@ impl SearchFilter {
 
 /// YouTube Music search filter
 ///
-/// Allows you to filter YTM search results by item type.
+/// Allows you to filter YTM search results by item type. Pass `None` to
+/// [`RustyPipeQuery::music_search`](crate::client::RustyPipeQuery::music_search)
+/// for an "all types" search.
 #[derive(Debug, Copy, Clone, PartialEq, Eq)]
 pub enum MusicSearchFilter {
     /// YouTube Music tracks
@@ -232,10 +241,11 @@ pub enum MusicSearchFilter {
     Albums,
     /// Artists
     Artists,
-    /// Playlists created by YouTube Music
-    YtmPlaylists,
-    /// Playlists created by YouTube users
-    CommunityPlaylists,
+    /// Playlists (`community = true` -> user-curated; `community = false` -> curated by YTM)
+    Playlists {
+        /// Whether the playlist is created by a user (`true`) or by YouTube Music (`false`).
+        community: bool,
+    },
     /// Users
     Users,
 }
@@ -247,8 +257,12 @@ impl MusicSearchFilter {
             MusicSearchFilter::Videos => "EgWKAQIQAWoQEAMQBBAJEAoQBRAREBAQFQ%3D%3D",
             MusicSearchFilter::Albums => "EgWKAQIYAWoQEAMQBBAJEAoQBRAREBAQFQ%3D%3D",
             MusicSearchFilter::Artists => "EgWKAQIgAWoQEAMQBBAJEAoQBRAREBAQFQ%3D%3D",
-            MusicSearchFilter::YtmPlaylists => "EgeKAQQoADgBahIQAxAEEAkQDhAKEAUQERAQEBU%3D",
-            MusicSearchFilter::CommunityPlaylists => "EgeKAQQoAEABahAQAxAEEAkQChAFEBEQEBAV",
+            MusicSearchFilter::Playlists { community: false } => {
+                "EgeKAQQoADgBahIQAxAEEAkQDhAKEAUQERAQEBU%3D"
+            }
+            MusicSearchFilter::Playlists { community: true } => {
+                "EgeKAQQoAEABahAQAxAEEAkQChAFEBEQEBAV"
+            }
             MusicSearchFilter::Users => "EgWKAQJYAWoQEAMQBBAJEAoQBRAREBAQFQ%3D%3D",
         }
     }

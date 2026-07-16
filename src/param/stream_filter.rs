@@ -23,6 +23,7 @@ pub struct StreamFilter {
     video_codecs: Option<Vec<VideoCodec>>,
     video_hdr: bool,
     video_none: bool,
+    abr_only: bool,
     drm_track_types: Vec<DrmTrackType>,
     drm_system: Option<DrmSystem>,
 }
@@ -155,6 +156,16 @@ impl StreamFilter {
     #[must_use]
     pub fn no_video(mut self) -> Self {
         self.video_none = true;
+        self
+    }
+
+    /// Restrict the filter to streams that are reachable via SABR only.
+    ///
+    /// When set, the downloader will skip progressive URLs and download
+    /// through the SABR/UMP endpoint instead.
+    #[must_use]
+    pub fn allow_abr_only(mut self) -> Self {
+        self.abr_only = true;
         self
     }
 
@@ -323,6 +334,11 @@ impl StreamFilter {
     pub fn is_video_none(&self) -> bool {
         self.video_none
     }
+
+    /// Return true if the downloader should use SABR for the selected streams.
+    pub fn is_abr_only(&self) -> bool {
+        self.abr_only
+    }
 }
 
 fn filter_max(val: u32, max: u32) -> i64 {
@@ -421,28 +437,28 @@ mod tests {
         let json_path = path!(*TESTFILES / "player_model" / "multilanguage.json");
         let json_file = File::open(json_path).unwrap();
 
-        serde_json::from_reader(BufReader::new(json_file)).unwrap()
+        flexon::from_reader(BufReader::new(json_file)).unwrap()
     });
 
     static PLAYER_HDR: Lazy<VideoPlayer> = Lazy::new(|| {
         let json_path = path!(*TESTFILES / "player_model" / "hdr.json");
         let json_file = File::open(json_path).unwrap();
 
-        serde_json::from_reader(BufReader::new(json_file)).unwrap()
+        flexon::from_reader(BufReader::new(json_file)).unwrap()
     });
 
     static PLAYER_SURROUND: Lazy<VideoPlayer> = Lazy::new(|| {
         let json_path = path!(*TESTFILES / "player_model" / "surround.json");
         let json_file = File::open(json_path).unwrap();
 
-        serde_json::from_reader(BufReader::new(json_file)).unwrap()
+        flexon::from_reader(BufReader::new(json_file)).unwrap()
     });
 
     static PLAYER_DRM: Lazy<VideoPlayer> = Lazy::new(|| {
         let json_path = path!(*TESTFILES / "player_model" / "drm.json");
         let json_file = File::open(json_path).unwrap();
 
-        serde_json::from_reader(BufReader::new(json_file)).unwrap()
+        flexon::from_reader(BufReader::new(json_file)).unwrap()
     });
 
     #[rstest]

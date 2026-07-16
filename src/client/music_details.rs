@@ -5,7 +5,7 @@ use crate::{
     json::{ytq, JsonDoc, JsonNode},
     model::{
         paginator::{ContinuationEndpoint, Paginator},
-        ArtistId, Lyrics, MusicRelated, TrackDetails, TrackItem,
+        AlbumType, ArtistId, Lyrics, MusicRelated, TrackDetails, TrackItem,
     },
     request_body::ytbody,
     serializer::MapResult,
@@ -14,15 +14,15 @@ use crate::{
 use super::{
     response::{
         self,
-        music_item::{map_queue_item, MusicListMapper},
+        music_item::{map_grouped_music_items_values, map_music_items_value, map_queue_item},
     },
-    ClientType, MapJsonResponse, MapRespCtx, RustyPipeQuery,
+    ClientType, MapEndpoint, MapRespCtx, RustyPipeQuery,
 };
 
-struct MusicDetailsJson;
-struct MusicRadioJson;
-struct MusicLyricsJson;
-struct MusicRelatedJson;
+struct MusicDetailsEndpoint;
+struct MusicRadioEndpoint;
+struct MusicLyricsEndpoint;
+struct MusicRelatedEndpoint;
 
 impl RustyPipeQuery {
     /// Get the metadata of a YouTube Music track
@@ -39,7 +39,7 @@ impl RustyPipeQuery {
             "tunerSettingValue": "AUTOMIX_SETTING_NORMAL",
         });
 
-        self.execute_request_json::<MusicDetailsJson, _, _>(
+        self.execute_request_json::<MusicDetailsEndpoint, _, _>(
             ClientType::DesktopMusic,
             "music_details",
             video_id,
@@ -59,7 +59,7 @@ impl RustyPipeQuery {
             "browseId": lyrics_id,
         });
 
-        self.execute_request_json::<MusicLyricsJson, _, _>(
+        self.execute_request_json::<MusicLyricsEndpoint, _, _>(
             ClientType::DesktopMusic,
             "music_lyrics",
             lyrics_id,
@@ -82,7 +82,7 @@ impl RustyPipeQuery {
             "browseId": related_id,
         });
 
-        self.execute_request_json::<MusicRelatedJson, _, _>(
+        self.execute_request_json::<MusicRelatedEndpoint, _, _>(
             ClientType::DesktopMusic,
             "music_related",
             related_id,
@@ -109,7 +109,7 @@ impl RustyPipeQuery {
             "tunerSettingValue": "AUTOMIX_SETTING_NORMAL",
         });
 
-        self.execute_request_json::<MusicRadioJson, _, _>(
+        self.execute_request_json::<MusicRadioEndpoint, _, _>(
             ClientType::DesktopMusic,
             "music_radio",
             radio_id,
@@ -186,16 +186,24 @@ fn inspect_music_tabs<'a>(
 }
 
 type PlaylistPanelData = (
-    Vec<response::music_item::PlaylistPanelVideo>,
+    Vec<response::music_item::QueueMusicItem>,
     Vec<String>,
     Option<String>,
 );
 
-fn deserialize_playlist_panel(
-    panel: &JsonNode<'_>,
-) -> Result<PlaylistPanelData, ExtractionError> {
+fn deserialize_playlist_panel(panel: &JsonNode<'_>) -> Result<PlaylistPanelData, ExtractionError> {
     let contents = panel.require(ytq!(.contents), "playlist panel contents")?;
-    let (items, warnings) = contents.deserialize_items_lossy::<response::music_item::PlaylistPanelVideo>();
+    let mut warnings = Vec::new();
+    let items = contents
+        .items()
+        .into_iter()
+        .filter_map(|item| {
+            item.try_deserialize::<response::music_item::QueueMusicItem>(
+                ytq!(.playlistPanelVideoRenderer),
+                &mut warnings,
+            )
+        })
+        .collect();
     let ctoken = panel
         .query(ytq!(.continuations[0].nextRadioContinuationData.continuation))
         .and_then(|node| node.as_str());
@@ -203,8 +211,8 @@ fn deserialize_playlist_panel(
     Ok((items, warnings, ctoken))
 }
 
-impl MapJsonResponse<TrackDetails> for MusicDetailsJson {
-    fn map_json_response(
+impl MapEndpoint<TrackDetails> for MusicDetailsEndpoint {
+    fn map(
         json: &JsonDoc,
         ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<TrackDetails>, ExtractionError> {
@@ -213,12 +221,7 @@ impl MapJsonResponse<TrackDetails> for MusicDetailsJson {
             let (items, mut warnings, _) = deserialize_playlist_panel(&panel)?;
             let track_item = items
                 .into_iter()
-                .find_map(|item| match item {
-                    response::music_item::PlaylistPanelVideo::PlaylistPanelVideoRenderer(track) => {
-                        Some(track)
-                    }
-                    response::music_item::PlaylistPanelVideo::None => None,
-                })
+                .next()
                 .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no video item")))?;
 
             let mut track = map_queue_item(track_item, ctx.lang);
@@ -236,8 +239,8 @@ impl MapJsonResponse<TrackDetails> for MusicDetailsJson {
     }
 }
 
-impl MapJsonResponse<Paginator<TrackItem>> for MusicRadioJson {
-    fn map_json_response(
+impl MapEndpoint<Paginator<TrackItem>> for MusicRadioEndpoint {
+    fn map(
         json: &JsonDoc,
         ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<Paginator<TrackItem>>, ExtractionError> {
@@ -247,13 +250,10 @@ impl MapJsonResponse<Paginator<TrackItem>> for MusicRadioJson {
 
             let tracks = items
                 .into_iter()
-                .filter_map(|item| match item {
-                    response::music_item::PlaylistPanelVideo::PlaylistPanelVideoRenderer(item) => {
-                        let mut track = map_queue_item(item, ctx.lang);
-                        warnings.append(&mut track.warnings);
-                        Some(track.c)
-                    }
-                    response::music_item::PlaylistPanelVideo::None => None,
+                .map(|item| {
+                    let mut track = map_queue_item(item, ctx.lang);
+                    warnings.append(&mut track.warnings);
+                    track.c
                 })
                 .collect::<Vec<_>>();
 
@@ -272,18 +272,14 @@ impl MapJsonResponse<Paginator<TrackItem>> for MusicRadioJson {
     }
 }
 
-impl MapJsonResponse<Lyrics> for MusicLyricsJson {
-    fn map_json_response(
+impl MapEndpoint<Lyrics> for MusicLyricsEndpoint {
+    fn map(
         json: &JsonDoc,
         ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<Lyrics>, ExtractionError> {
         json.with_root(|root| {
-            if let Some(msg) = root
-                .first_of(&[
-                    ytq!(.contents.messageRenderer.text),
-                    ytq!(.contents.messageRenderer),
-                ])
-                .and_then(|node| node.text())
+            if let Some(msg) =
+                root.text_at(ytq!(.contents.messageRenderer.text || .contents.messageRenderer))
             {
                 return Err(ExtractionError::NotFound {
                     id: ctx.id.to_owned(),
@@ -291,7 +287,10 @@ impl MapJsonResponse<Lyrics> for MusicLyricsJson {
                 });
             }
 
-            let contents = root.require(ytq!(.contents.sectionListRenderer.contents), "lyrics contents")?;
+            let contents = root.require(
+                ytq!(.contents.sectionListRenderer.contents),
+                "lyrics contents",
+            )?;
             let shelf = contents
                 .items()
                 .into_iter()
@@ -299,13 +298,15 @@ impl MapJsonResponse<Lyrics> for MusicLyricsJson {
                 .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no content")))?;
 
             let body = shelf
-                .query(ytq!(.description))
-                .and_then(|node| node.text())
-                .ok_or(ExtractionError::InvalidData(Cow::Borrowed("missing lyrics body")))?;
+                .text_at(ytq!(.description))
+                .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
+                    "missing lyrics body",
+                )))?;
             let footer = shelf
-                .query(ytq!(.footer))
-                .and_then(|node| node.text())
-                .ok_or(ExtractionError::InvalidData(Cow::Borrowed("missing lyrics footer")))?;
+                .text_at(ytq!(.footer))
+                .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
+                    "missing lyrics footer",
+                )))?;
 
             Ok(MapResult {
                 c: Lyrics { body, footer },
@@ -315,18 +316,14 @@ impl MapJsonResponse<Lyrics> for MusicLyricsJson {
     }
 }
 
-impl MapJsonResponse<MusicRelated> for MusicRelatedJson {
-    fn map_json_response(
+impl MapEndpoint<MusicRelated> for MusicRelatedEndpoint {
+    fn map(
         json: &JsonDoc,
         ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<MusicRelated>, ExtractionError> {
         json.with_root(|root| {
-            if let Some(msg) = root
-                .first_of(&[
-                    ytq!(.contents.messageRenderer.text),
-                    ytq!(.contents.messageRenderer),
-                ])
-                .and_then(|node| node.text())
+            if let Some(msg) =
+                root.text_at(ytq!(.contents.messageRenderer.text || .contents.messageRenderer))
             {
                 return Err(ExtractionError::NotFound {
                     id: ctx.id.to_owned(),
@@ -334,56 +331,57 @@ impl MapJsonResponse<MusicRelated> for MusicRelatedJson {
                 });
             }
 
-            let contents_node =
-                root.require(ytq!(.contents.sectionListRenderer.contents), "related contents")?;
-            let (contents, mut warnings) =
-                contents_node.deserialize_items_lossy::<response::music_item::ItemSection>();
+            let contents_node = root.require(
+                ytq!(.contents.sectionListRenderer.contents),
+                "related contents",
+            )?;
+            let contents = contents_node.items();
+            let mut warnings = Vec::new();
 
-            let artist_id = contents.iter().find_map(|section| match section {
-                response::music_item::ItemSection::MusicCarouselShelfRenderer(shelf) => {
-                    shelf.header.as_ref().and_then(|h| {
-                        h.music_carousel_shelf_basic_header_renderer
-                            .title
-                            .0
-                            .iter()
-                            .find_map(|c| {
-                                let artist = ArtistId::from(c.clone());
-                                if artist.id.is_some() {
-                                    Some(artist)
-                                } else {
-                                    None
-                                }
-                            })
+            let artist_id = contents.iter().find_map(|section| {
+                response::music_item::music_carousel_node(section)
+                    .and_then(|node| {
+                        node.deserialize::<response::music_item::MusicCarouselShelf>()
+                            .ok()
                     })
-                }
-                _ => None,
+                    .and_then(|shelf| {
+                        shelf.header.and_then(|h| {
+                            h.title.0.into_iter().find_map(|c| {
+                                let artist = ArtistId::from(c);
+                                artist.id.is_some().then_some(artist)
+                            })
+                        })
+                    })
             });
-
-            let mut mapper_tracks = MusicListMapper::new(ctx.lang);
-            let mut mapper = match artist_id {
-                Some(artist_id) => MusicListMapper::with_artist(ctx.lang, artist_id),
-                None => MusicListMapper::new(ctx.lang),
-            };
 
             let mut sections = contents.into_iter();
-            if let Some(response::music_item::ItemSection::MusicCarouselShelfRenderer(shelf)) =
-                sections.next()
-            {
-                mapper_tracks.map_response(shelf.contents);
+            let mut mapped_tracks: MapResult<Vec<TrackItem>> = MapResult::default();
+            if let Some(shelf) = sections.next().and_then(|section| {
+                response::music_item::music_carousel_node(&section).and_then(|node| {
+                    node.deserialize::<response::music_item::MusicCarouselShelf>()
+                        .ok()
+                })
+            }) {
+                mapped_tracks = map_music_items_value(shelf.contents, ctx.lang).0;
             }
 
-            sections.for_each(|section| match section {
-                response::music_item::ItemSection::MusicShelfRenderer(shelf) => {
-                    mapper.map_response(shelf.contents);
+            let mut grouped_values = Vec::new();
+            sections.for_each(|section| {
+                if let Some(shelf) = response::music_item::music_shelf_node(&section)
+                    .and_then(|node| node.deserialize::<response::music_item::MusicShelf>().ok())
+                {
+                    grouped_values.push((shelf.contents, AlbumType::Single));
+                } else if let Some(shelf) = response::music_item::music_carousel_node(&section)
+                    .and_then(|node| {
+                        node.deserialize::<response::music_item::MusicCarouselShelf>()
+                            .ok()
+                    })
+                {
+                    grouped_values.push((shelf.contents, AlbumType::Single));
                 }
-                response::music_item::ItemSection::MusicCarouselShelfRenderer(shelf) => {
-                    mapper.map_response(shelf.contents);
-                }
-                _ => {}
             });
 
-            let mut mapped_tracks = mapper_tracks.conv_items();
-            let mut mapped = mapper.group_items();
+            let mut mapped = map_grouped_music_items_values(grouped_values, ctx.lang, artist_id).0;
 
             warnings.append(&mut mapped_tracks.warnings);
             warnings.append(&mut mapped.warnings);
@@ -417,7 +415,7 @@ mod tests {
         let json_path = path!(*TESTFILES / "music_details" / format!("details_{name}.json"));
         let json = JsonDoc::new(std::fs::read_to_string(json_path).unwrap());
         let map_res: MapResult<model::TrackDetails> =
-            MusicDetailsJson::map_json_response(&json, &MapRespCtx::test(id)).unwrap();
+            MusicDetailsEndpoint::map(&json, &MapRespCtx::test(id)).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -434,7 +432,7 @@ mod tests {
         let json_path = path!(*TESTFILES / "music_details" / format!("radio_{name}.json"));
         let json = JsonDoc::new(std::fs::read_to_string(json_path).unwrap());
         let map_res: MapResult<Paginator<TrackItem>> =
-            MusicRadioJson::map_json_response(&json, &MapRespCtx::test(id)).unwrap();
+            MusicRadioEndpoint::map(&json, &MapRespCtx::test(id)).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -449,7 +447,7 @@ mod tests {
         let json_path = path!(*TESTFILES / "music_details" / "lyrics.json");
         let json = JsonDoc::new(std::fs::read_to_string(json_path).unwrap());
         let map_res: MapResult<Lyrics> =
-            MusicLyricsJson::map_json_response(&json, &MapRespCtx::test("")).unwrap();
+            MusicLyricsEndpoint::map(&json, &MapRespCtx::test("")).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -464,7 +462,7 @@ mod tests {
         let json_path = path!(*TESTFILES / "music_details" / "related.json");
         let json = JsonDoc::new(std::fs::read_to_string(json_path).unwrap());
         let map_res: MapResult<MusicRelated> =
-            MusicRelatedJson::map_json_response(&json, &MapRespCtx::test("")).unwrap();
+            MusicRelatedEndpoint::map(&json, &MapRespCtx::test("")).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),

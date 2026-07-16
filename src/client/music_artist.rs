@@ -6,48 +6,51 @@ use tracing::debug;
 
 use crate::{
     client::{
-        response::{music_item::map_album_type, url_endpoint::NavigationEndpoint},
+        response::{music_item::map_album_type, url_endpoint},
         MapRespOptions,
     },
     error::{Error, ExtractionError},
-    json::{JsonDoc, JsonNode, ytq},
+    json::{ytq, JsonDoc, JsonNode, JsonValue},
     model::{
         paginator::Paginator, traits::FromYtItem, AlbumItem, AlbumType, ArtistId, MusicArtist,
         MusicItem,
     },
-    param::{AlbumFilter, AlbumOrder},
+    param::{AlbumFilter, AlbumOrder, MusicArtistAlbums},
     request_body::ytbody,
     serializer::MapResult,
     util::{self, ProtoBuilder},
 };
 
 use super::{
-    pagination::MusicContinuationJson,
+    pagination::MusicContinuationMarker,
     response::{
-        self,
-        music_item::{Grid, MusicListMapper, MusicMicroformat, SingleColumnBrowseResult},
-        music_artist::Header,
+        music_item::{
+            map_grouped_music_items_values, music_carousel_from_value, music_shelf_from_value,
+            GridRenderer, MusicMicroformat,
+        },
         url_endpoint::PageType,
-        SectionList, Tab,
+        SimpleHeaderRenderer,
     },
-    ClientType, MapJsonResponse, MapRespCtx, RustyPipeQuery,
+    ClientType, MapEndpoint, MapRespCtx, RustyPipeQuery,
 };
 
 #[derive(Debug)]
-struct MusicArtistJson;
+struct MusicArtistEndpoint;
 
 #[derive(Debug)]
-struct MusicArtistAlbumsJson;
+struct MusicArtistAlbumsEndpoint;
 
 impl RustyPipeQuery {
     /// Get a YouTube Music artist page
     ///
-    /// Set `all_albums` to [`true`] if you want to fetch the albums behind the *More* buttons, too.
+    /// Set `albums` to [`MusicArtistAlbums::Include`] if you want to fetch
+    /// the albums behind the *More* buttons, too.
     pub async fn music_artist<S: AsRef<str>>(
         &self,
         artist_id: S,
-        all_albums: bool,
+        albums: MusicArtistAlbums,
     ) -> Result<MusicArtist, Error> {
+        let all_albums = matches!(albums, MusicArtistAlbums::Include);
         let artist_id = artist_id.as_ref();
         let res = self._music_artist(artist_id, all_albums).await;
 
@@ -66,7 +69,7 @@ impl RustyPipeQuery {
 
         if all_albums {
             let (mut artist, can_fetch_more) = self
-                .execute_request::<MusicArtistJson, _, _>(
+                .execute_request::<MusicArtistEndpoint, _, _>(
                     ClientType::DesktopMusic,
                     "music_artist",
                     artist_id,
@@ -83,7 +86,7 @@ impl RustyPipeQuery {
 
             Ok(artist)
         } else {
-            self.execute_request::<MusicArtistJson, _, _>(
+            self.execute_request::<MusicArtistEndpoint, _, _>(
                 ClientType::DesktopMusic,
                 "music_artist",
                 artist_id,
@@ -107,7 +110,7 @@ impl RustyPipeQuery {
         });
 
         let first_page = self
-            .execute_request::<MusicArtistAlbumsJson, _, _>(
+            .execute_request::<MusicArtistAlbumsEndpoint, _, _>(
                 ClientType::DesktopMusic,
                 "music_artist_albums",
                 artist_id,
@@ -124,7 +127,7 @@ impl RustyPipeQuery {
                 "continuation": tkn,
             });
             let resp: Paginator<MusicItem> = self
-                .execute_request_ctx::<MusicContinuationJson, Paginator<MusicItem>, _>(
+                .execute_request_ctx::<MusicContinuationMarker, Paginator<MusicItem>, _>(
                     ClientType::DesktopMusic,
                     "music_artist_albums_cont",
                     artist_id,
@@ -147,22 +150,22 @@ impl RustyPipeQuery {
     }
 }
 
-struct MusicArtistFields {
-    contents: Option<SingleColumnBrowseResult<Tab<SectionList<response::music_item::ItemSection>>>>,
-    header: Option<Header>,
+struct MusicArtistFields<'a> {
+    sections: Option<JsonNode<'a>>,
+    header: Option<JsonNode<'a>>,
     microformat: MusicMicroformat,
 }
 
-fn deserialize_music_artist_fields(root: &JsonNode<'_>) -> Result<MusicArtistFields, ExtractionError> {
+fn deserialize_music_artist_fields<'a>(
+    root: &JsonNode<'a>,
+) -> Result<MusicArtistFields<'a>, ExtractionError> {
     Ok(MusicArtistFields {
-        contents: root
-            .query(ytq!(.contents))
-            .map(|node| node.deserialize())
-            .transpose()?,
-        header: root
-            .query(ytq!(.header))
-            .map(|node| node.deserialize())
-            .transpose()?,
+        sections: root.query(ytq!(
+            .contents.singleColumnBrowseResultsRenderer.(.tabs[0] || .contents[0]).tabRenderer.content.sectionListRenderer.contents
+        )),
+        header: root.query(ytq!(.header)).and_then(|node| {
+            node.query(ytq!(.musicImmersiveHeaderRenderer || .musicVisualHeaderRenderer))
+        }),
         microformat: root
             .query(ytq!(.microformat))
             .map(|node| node.deserialize())
@@ -171,8 +174,8 @@ fn deserialize_music_artist_fields(root: &JsonNode<'_>) -> Result<MusicArtistFie
     })
 }
 
-impl MapJsonResponse<MusicArtist> for MusicArtistJson {
-    fn map_json_response(
+impl MapEndpoint<MusicArtist> for MusicArtistEndpoint {
+    fn map(
         json: &JsonDoc,
         ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<MusicArtist>, ExtractionError> {
@@ -187,8 +190,8 @@ impl MapJsonResponse<MusicArtist> for MusicArtistJson {
     }
 }
 
-impl MapJsonResponse<(MusicArtist, bool)> for MusicArtistJson {
-    fn map_json_response(
+impl MapEndpoint<(MusicArtist, bool)> for MusicArtistEndpoint {
+    fn map(
         json: &JsonDoc,
         ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<(MusicArtist, bool)>, ExtractionError> {
@@ -200,11 +203,11 @@ impl MapJsonResponse<(MusicArtist, bool)> for MusicArtistJson {
 }
 
 fn map_artist_page(
-    fields: MusicArtistFields,
+    fields: MusicArtistFields<'_>,
     ctx: &MapRespCtx<'_>,
     skip_extendables: bool,
 ) -> Result<MapResult<(MusicArtist, bool)>, ExtractionError> {
-    let contents = match fields.contents {
+    let sections = match fields.sections {
         Some(c) => c,
         None => {
             if fields.microformat.microformat_data_renderer.noindex {
@@ -220,12 +223,16 @@ fn map_artist_page(
 
     let header = fields
         .header
-        .ok_or(ExtractionError::InvalidData("no header".into()))?
-        .music_immersive_header_renderer;
+        .ok_or(ExtractionError::InvalidData("no header".into()))?;
+    let title = header
+        .text_at(ytq!(.title))
+        .ok_or(ExtractionError::InvalidData("no artist title".into()))?;
+    let description = header.text_at(ytq!(.description));
 
-    if let Some(share) = header.share_endpoint {
-        let pb = share.share_entity_endpoint.serialized_share_entity;
-
+    if let Some(pb) = header
+        .query(ytq!(.shareEndpoint.shareEntityEndpoint.serializedShareEntity))
+        .and_then(|node| node.as_str())
+    {
         let share_channel_id = urlencoding::decode(&pb)
             .ok()
             .and_then(|pb| util::b64_decode(pb.as_bytes()).ok())
@@ -238,31 +245,21 @@ fn map_artist_page(
         }
     }
 
-    let sections = contents
-        .single_column_browse_results_renderer
-        .contents
-        .into_iter()
-        .next()
-        .map(|c| c.tab_renderer.content.section_list_renderer.contents)
-        .unwrap_or_default();
-
-    let mut mapper = MusicListMapper::with_artist(
-        ctx.lang,
-        ArtistId {
-            id: Some(ctx.id.to_owned()),
-            name: header.title.clone(),
-        },
-    );
-
     let mut tracks_playlist_id = None;
     let mut videos_playlist_id = None;
     let mut can_fetch_more = false;
+    let artist = ArtistId {
+        id: Some(ctx.id.to_owned()),
+        name: title.clone(),
+    };
+    let mut grouped_values = Vec::new();
 
-    for section in sections {
-        match section {
-            response::music_item::ItemSection::MusicShelfRenderer(shelf) => {
-                if tracks_playlist_id.is_none() {
-                    if let Some(ep) = shelf.bottom_endpoint {
+    for section in sections.items() {
+        let section_value = || section.deserialize::<JsonValue>().ok();
+        if let Some(shelf) = section_value().and_then(|section| music_shelf_from_value(&section)) {
+            if tracks_playlist_id.is_none() {
+                if let Some(ep) = shelf.bottom_endpoint {
+                    if let Some(ep) = url_endpoint::browse_endpoint(&ep) {
                         if let Some(cfg) =
                             ep.browse_endpoint.browse_endpoint_context_supported_configs
                         {
@@ -274,71 +271,70 @@ fn map_artist_page(
                         }
                     }
                 }
-                mapper.album_type = AlbumType::Single;
-                mapper.map_response(shelf.contents);
             }
-            response::music_item::ItemSection::MusicCarouselShelfRenderer(shelf) => {
-                let mut extendable_albums = false;
-                mapper.album_type = AlbumType::Single;
-                if let Some(h) = shelf.header {
-                    if let Some(button) = h
-                        .music_carousel_shelf_basic_header_renderer
-                        .more_content_button
+            grouped_values.push((shelf.contents, AlbumType::Single));
+        } else if let Some(shelf) =
+            section_value().and_then(|section| music_carousel_from_value(&section))
+        {
+            let mut extendable_albums = false;
+            let mut album_type = AlbumType::Single;
+            if let Some(h) = shelf.header {
+                if let Some(button) = h.more_content_button {
+                    if let Some(ep) = button
+                        .get("buttonRenderer")
+                        .and_then(|button| button.get("navigationEndpoint"))
+                        .and_then(url_endpoint::browse_endpoint)
                     {
-                        if let NavigationEndpoint::Browse {
-                            browse_endpoint, ..
-                        } = button.button_renderer.navigation_endpoint
+                        let browse_endpoint = ep.browse_endpoint;
+                        // Music videos
+                        if browse_endpoint
+                            .browse_endpoint_context_supported_configs
+                            .map(|cfg| {
+                                cfg.browse_endpoint_context_music_config.page_type
+                                    == PageType::Playlist
+                            })
+                            .unwrap_or_default()
                         {
-                            // Music videos
-                            if browse_endpoint
-                                .browse_endpoint_context_supported_configs
-                                .map(|cfg| {
-                                    cfg.browse_endpoint_context_music_config.page_type
-                                        == PageType::Playlist
-                                })
-                                .unwrap_or_default()
+                            if videos_playlist_id.is_none() {
+                                videos_playlist_id = Some(browse_endpoint.browse_id);
+                            }
+                        } else if browse_endpoint
+                            .browse_id
+                            .starts_with(util::ARTIST_DISCOGRAPHY_PREFIX)
+                        {
+                            can_fetch_more = true;
+                            extendable_albums = true;
+                        } else {
+                            // Peek at the first item to determine type
+                            if let Some(item) = shelf
+                                .contents
+                                .as_array()
+                                .and_then(|items| items.first())
+                                .and_then(|item| item.get("musicTwoRowItemRenderer"))
+                                .and_then(|item| item.get("navigationEndpoint"))
                             {
-                                if videos_playlist_id.is_none() {
-                                    videos_playlist_id = Some(browse_endpoint.browse_id);
-                                }
-                            } else if browse_endpoint
-                                .browse_id
-                                .starts_with(util::ARTIST_DISCOGRAPHY_PREFIX)
-                            {
-                                can_fetch_more = true;
-                                extendable_albums = true;
-                            } else {
-                                // Peek at the first item to determine type
-                                if let Some(response::music_item::MusicResponseItem::MusicTwoRowItemRenderer(item)) = shelf.contents.c.first() {
-                                    if let Some(PageType::Album) = item.navigation_endpoint.page_type() {
-                                        can_fetch_more = true;
-                                        extendable_albums = true;
-                                    }
+                                if let Some(PageType::Album) = url_endpoint::page_type(item) {
+                                    can_fetch_more = true;
+                                    extendable_albums = true;
                                 }
                             }
                         }
                     }
-                    mapper.album_type = map_album_type(
-                        h.music_carousel_shelf_basic_header_renderer
-                            .title
-                            .first_str(),
-                        ctx.lang,
-                    );
                 }
-
-                if !skip_extendables || !extendable_albums {
-                    mapper.map_response(shelf.contents);
-                }
+                album_type = map_album_type(h.title.first_str(), ctx.lang);
             }
-            _ => {}
+
+            if !skip_extendables || !extendable_albums {
+                grouped_values.push((shelf.contents, album_type));
+            }
         }
     }
 
-    let mut mapped = mapper.group_items();
+    let mut mapped = map_grouped_music_items_values(grouped_values, ctx.lang, Some(artist)).0;
 
     static WIKIPEDIA_REGEX: Lazy<Regex> =
         Lazy::new(|| Regex::new(r"\(?https://[a-z\d-]+\.wikipedia.org/wiki/[^\s]+").unwrap());
-    let wikipedia_url = header.description.as_deref().and_then(|h| {
+    let wikipedia_url = description.as_deref().and_then(|h| {
         WIKIPEDIA_REGEX.captures(h).and_then(|c| c.get(0)).map(|m| {
             let m = m.as_str();
             match m.strip_prefix('(') {
@@ -351,30 +347,32 @@ fn map_artist_page(
         })
     });
 
-    let radio_id = header.start_radio_button.and_then(|b| {
-        if let NavigationEndpoint::Watch { watch_endpoint } = b.button_renderer.navigation_endpoint
-        {
-            watch_endpoint.playlist_id
-        } else {
-            None
-        }
-    });
+    let radio_id = header
+        .query(ytq!(.startRadioButton))
+        .and_then(|node| node.query(ytq!(.buttonRenderer.navigationEndpoint)))
+        .and_then(|node| node.deserialize::<JsonValue>().ok())
+        .and_then(|endpoint| {
+            url_endpoint::watch_endpoint(&endpoint)
+                .and_then(|watch_endpoint| watch_endpoint.playlist_id)
+        });
+    let subscriber_count = header
+        .text_at(ytq!(
+            .subscriptionButton.subscribeButtonRenderer.subscriberCountText
+        ))
+        .and_then(|txt| util::parse_large_numstr_or_warn(&txt, ctx.lang, &mut mapped.warnings));
+    let header_image = header.query_thumbnails(ytq!(
+        .thumbnail.(.musicThumbnailRenderer || .croppedSquareThumbnailRenderer).thumbnail
+    ));
 
     Ok(MapResult {
         c: (
             MusicArtist {
                 id: ctx.id.to_owned(),
-                name: header.title,
-                header_image: header.thumbnail.into(),
-                description: header.description,
+                name: title,
+                header_image,
+                description,
                 wikipedia_url,
-                subscriber_count: header.subscription_button.and_then(|btn| {
-                    util::parse_large_numstr_or_warn(
-                        &btn.subscribe_button_renderer.subscriber_count_text,
-                        ctx.lang,
-                        &mut mapped.warnings,
-                    )
-                }),
+                subscriber_count,
                 tracks: mapped.c.tracks,
                 albums: mapped.c.albums,
                 playlists: mapped.c.playlists,
@@ -396,27 +394,30 @@ struct FirstAlbumPage {
     visitor_data: Option<String>,
 }
 
-struct MusicArtistAlbumsFields {
-    header: Option<response::music_item::SimpleHeader>,
-    contents: SingleColumnBrowseResult<Tab<SectionList<Grid>>>,
+struct MusicArtistAlbumsFields<'a> {
+    header: Option<SimpleHeaderRenderer>,
+    grids: JsonNode<'a>,
 }
 
-fn deserialize_music_artist_albums_fields(
-    root: &JsonNode<'_>,
-) -> Result<MusicArtistAlbumsFields, ExtractionError> {
+fn deserialize_music_artist_albums_fields<'a>(
+    root: &JsonNode<'a>,
+) -> Result<MusicArtistAlbumsFields<'a>, ExtractionError> {
     Ok(MusicArtistAlbumsFields {
         header: root
             .query(ytq!(.header))
+            .and_then(|node| node.query(ytq!(.musicHeaderRenderer)))
             .map(|node| node.deserialize())
             .transpose()?,
-        contents: root
-            .require(ytq!(.contents), "artist albums contents")?
-            .deserialize()?,
+        grids: root
+            .query(ytq!(
+                .contents.singleColumnBrowseResultsRenderer.(.tabs[0] || .contents[0]).tabRenderer.content.sectionListRenderer.contents
+            ))
+            .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no content")))?,
     })
 }
 
-impl MapJsonResponse<FirstAlbumPage> for MusicArtistAlbumsJson {
-    fn map_json_response(
+impl MapEndpoint<FirstAlbumPage> for MusicArtistAlbumsEndpoint {
+    fn map(
         json: &JsonDoc,
         ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<FirstAlbumPage>, ExtractionError> {
@@ -428,57 +429,51 @@ impl MapJsonResponse<FirstAlbumPage> for MusicArtistAlbumsJson {
 }
 
 fn map_first_album_page(
-    fields: MusicArtistAlbumsFields,
+    fields: MusicArtistAlbumsFields<'_>,
     ctx: &MapRespCtx<'_>,
 ) -> Result<MapResult<FirstAlbumPage>, ExtractionError> {
-        let Some(header) = fields.header else {
-            return Err(ExtractionError::NotFound {
-                id: ctx.id.into(),
-                msg: "no header".into(),
-            });
-        };
+    let Some(header) = fields.header else {
+        return Err(ExtractionError::NotFound {
+            id: ctx.id.into(),
+            msg: "no header".into(),
+        });
+    };
 
-        let grids = fields
-            .contents
-            .single_column_browse_results_renderer
-            .contents
-            .into_iter()
-            .next()
-            .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no content")))?
-            .tab_renderer
-            .content
-            .section_list_renderer
-            .contents;
-
-        let artist_id = ArtistId {
-            id: Some(ctx.id.to_owned()),
-            name: header.music_header_renderer.title,
+    let artist_id = ArtistId {
+        id: Some(ctx.id.to_owned()),
+        name: header.title,
+    };
+    let mut ctoken = None;
+    let mut grouped_values = Vec::new();
+    for grid_node in fields.grids.items() {
+        let Some(grid) = grid_node
+            .query(ytq!(.gridRenderer))
+            .and_then(|node| node.deserialize::<GridRenderer>().ok())
+        else {
+            continue;
         };
-        let mut mapper = MusicListMapper::with_artist(ctx.lang, artist_id.clone());
-        let mut ctoken = None;
-        for grid in grids {
-            mapper.map_response(grid.grid_renderer.items);
-            if ctoken.is_none() {
-                ctoken = grid
-                    .grid_renderer
-                    .continuations
-                    .into_iter()
-                    .next()
-                    .map(|g| g.next_continuation_data.continuation);
-            }
+        grouped_values.push((grid.items, AlbumType::Single));
+        if ctoken.is_none() {
+            ctoken = grid
+                .continuations
+                .into_iter()
+                .next()
+                .map(|g| g.next_continuation_data.continuation);
         }
+    }
 
-        let mapped = mapper.group_items();
+    let mapped =
+        map_grouped_music_items_values(grouped_values, ctx.lang, Some(artist_id.clone())).0;
 
-        Ok(MapResult {
-            c: FirstAlbumPage {
-                albums: mapped.c.albums,
-                ctoken,
-                artist: artist_id,
-                visitor_data: ctx.visitor_data.map(str::to_owned),
-            },
-            warnings: mapped.warnings,
-        })
+    Ok(MapResult {
+        c: FirstAlbumPage {
+            albums: mapped.c.albums,
+            ctoken,
+            artist: artist_id,
+            visitor_data: ctx.visitor_data.map(str::to_owned),
+        },
+        warnings: mapped.warnings,
+    })
 }
 
 fn albums_param(filter: Option<AlbumFilter>, order: Option<AlbumOrder>) -> String {
@@ -525,7 +520,7 @@ mod tests {
         }
 
         let map_res: MapResult<(MusicArtist, bool)> =
-            MusicArtistJson::map_json_response(&json, &MapRespCtx::test(id)).unwrap();
+            MusicArtistEndpoint::map(&json, &MapRespCtx::test(id)).unwrap();
         let (mut artist, can_fetch_more) = map_res.c;
 
         assert!(
@@ -539,7 +534,7 @@ mod tests {
         if let Some(album_page_path) = album_page_path {
             let json = JsonDoc::new(std::fs::read_to_string(album_page_path).unwrap());
             let map_res: MapResult<FirstAlbumPage> =
-                MusicArtistAlbumsJson::map_json_response(&json, &MapRespCtx::test(id)).unwrap();
+                MusicArtistAlbumsEndpoint::map(&json, &MapRespCtx::test(id)).unwrap();
 
             assert!(
                 map_res.warnings.is_empty(),
@@ -557,8 +552,7 @@ mod tests {
                 }
                 let json = JsonDoc::new(std::fs::read_to_string(cont_path).unwrap());
                 let map_res: MapResult<Paginator<MusicItem>> =
-                    MusicContinuationJson::map_json_response(&json, &MapRespCtx::test(id))
-                        .unwrap();
+                    MusicContinuationMarker::map(&json, &MapRespCtx::test(id)).unwrap();
                 assert!(!map_res.c.items.is_empty());
                 artist.albums.extend(
                     map_res
@@ -578,9 +572,11 @@ mod tests {
         let json_path = path!(*TESTFILES / "music_artist" / "artist_default.json");
         let json = JsonDoc::new(std::fs::read_to_string(json_path).unwrap());
 
-        let map_res: MapResult<MusicArtist> =
-            MusicArtistJson::map_json_response(&json, &MapRespCtx::test("UClmXPfaYhXOYsNn_QUyheWQ"))
-                .unwrap();
+        let map_res: MapResult<MusicArtist> = MusicArtistEndpoint::map(
+            &json,
+            &MapRespCtx::test("UClmXPfaYhXOYsNn_QUyheWQ"),
+        )
+        .unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -596,7 +592,10 @@ mod tests {
         let json = JsonDoc::new(std::fs::read_to_string(json_path).unwrap());
 
         let res: Result<MapResult<MusicArtist>, ExtractionError> =
-            MusicArtistJson::map_json_response(&json, &MapRespCtx::test("UCLkAepWjdylmXSltofFvsYQ"));
+            MusicArtistEndpoint::map(
+                &json,
+                &MapRespCtx::test("UCLkAepWjdylmXSltofFvsYQ"),
+            );
         let e = res.unwrap_err();
 
         match e {

@@ -2,63 +2,43 @@ use std::fmt::Debug;
 
 use crate::{
     error::{Error, ExtractionError},
-    json::{JsonDoc, yt_estimated_results, yt_response_visitor_data, yt_search_primary_items},
+    json::{yt_estimated_results, yt_search_primary_items, JsonDoc},
     model::{
         paginator::{ContinuationEndpoint, Paginator},
         traits::FromYtItem,
-        SearchResult, YouTubeItem,
+        SearchResult,
     },
     param::search_filter::SearchFilter,
     request_body::ytbody,
 };
 
-use super::{
-    response,
-    ClientType, MapJsonResponse, MapRespCtx, MapResult, RustyPipeQuery,
-};
+use super::{response, ClientType, MapEndpoint, MapRespCtx, MapResult, RustyPipeQuery};
 
 #[derive(Debug)]
-struct SearchJson;
+struct SearchEndpoint;
 
 impl RustyPipeQuery {
     /// Search YouTube
+    ///
+    /// Pass `filter = None` for an unfiltered search, or `filter = Some(&sf)`
+    /// to constrain results to e.g. a single item type, upload date, or
+    /// duration.
     #[tracing::instrument(skip(self), level = "error")]
     pub async fn search<T: FromYtItem, S: AsRef<str> + Debug>(
         &self,
         query: S,
+        filter: Option<&SearchFilter>,
     ) -> Result<SearchResult<T>, Error> {
         let query = query.as_ref();
+        let params = filter.map_or_else(|| "8AEB".to_owned(), |f| f.encode());
         let request_body = ytbody!({
             "query": query,
-            "params": "8AEB",
+            "params": params,
         });
 
-        self.execute_request::<SearchJson, _, _>(
+        self.execute_request::<SearchEndpoint, _, _>(
             ClientType::Desktop,
             "search",
-            query,
-            "search",
-            &request_body,
-        )
-        .await
-    }
-
-    /// Search YouTube using the given [`SearchFilter`]
-    #[tracing::instrument(skip(self), level = "error")]
-    pub async fn search_filter<T: FromYtItem, S: AsRef<str> + Debug>(
-        &self,
-        query: S,
-        filter: &SearchFilter,
-    ) -> Result<SearchResult<T>, Error> {
-        let query = query.as_ref();
-        let request_body = ytbody!({
-            "query": query,
-            "params": filter.encode(),
-        });
-
-        self.execute_request::<SearchJson, _, _>(
-            ClientType::Desktop,
-            "search_filter",
             query,
             "search",
             &request_body,
@@ -106,35 +86,30 @@ impl RustyPipeQuery {
     }
 }
 
-impl<T: FromYtItem> MapJsonResponse<SearchResult<T>> for SearchJson {
-    fn map_json_response(
+impl<T: FromYtItem> MapEndpoint<SearchResult<T>> for SearchEndpoint {
+    fn map(
         json: &JsonDoc,
         ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<SearchResult<T>>, ExtractionError> {
         json.with_root(|root| {
             let items = yt_search_primary_items(&root)?;
-            let mut mapper = response::YouTubeListMapper::<YouTubeItem>::new(ctx.lang);
-            mapper.map_response_node(&items);
+            let (mapped, ctoken, corrected_query) =
+                response::video_item::map_youtube_items(&items, ctx.lang);
 
             Ok(MapResult {
                 c: SearchResult {
                     items: Paginator::new_ext(
                         yt_estimated_results(&root),
-                        mapper
-                            .items
-                            .into_iter()
-                            .filter_map(T::from_yt_item)
-                            .collect(),
-                        mapper.ctoken,
+                        mapped.c.into_iter().filter_map(T::from_yt_item).collect(),
+                        ctoken,
                         ctx.visitor_data.map(str::to_owned),
                         ContinuationEndpoint::Search,
                         false,
                     ),
-                    corrected_query: mapper.corrected_query,
-                    visitor_data: yt_response_visitor_data(&root)
-                        .or_else(|| ctx.visitor_data.map(str::to_owned)),
+                    corrected_query,
+                    visitor_data: ctx.visitor_data(&root),
                 },
-                warnings: mapper.warnings,
+                warnings: mapped.warnings,
             })
         })
     }
@@ -163,7 +138,7 @@ mod tests {
         let json_path = path!(*TESTFILES / "search" / format!("{name}.json"));
         let json = JsonDoc::new(fs::read_to_string(json_path).unwrap());
         let map_res: MapResult<SearchResult<YouTubeItem>> =
-            SearchJson::map_json_response(&json, &MapRespCtx::test("")).unwrap();
+            SearchEndpoint::map(&json, &MapRespCtx::test("")).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),

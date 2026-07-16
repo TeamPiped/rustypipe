@@ -650,7 +650,7 @@ mod tests {
 
         let json_file = File::open(json_path).unwrap();
         let strings_map: BTreeMap<Language, Vec<String>> =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+            flexon::from_reader(BufReader::new(json_file)).unwrap();
 
         for (lang, strings) in &strings_map {
             assert_eq!(strings.len(), expect.len());
@@ -833,7 +833,7 @@ mod tests {
 
         let json_file = File::open(json_path).unwrap();
         let strings_map: BTreeMap<Language, Vec<String>> =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+            flexon::from_reader(BufReader::new(json_file)).unwrap();
 
         for (lang, strings) in &strings_map {
             assert_eq!(strings.len(), expect.len(), "Language: {lang}");
@@ -867,8 +867,7 @@ mod tests {
 
         let json_path = path!(*TESTFILES / "dict" / "timeago_table.json");
         let json_file = File::open(json_path).unwrap();
-        let timeago_table: TimeagoTable =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let timeago_table: TimeagoTable = flexon::from_reader(BufReader::new(json_file)).unwrap();
         let mut n_cases = 0;
 
         timeago_table.entries.iter().for_each(|(lang, entries)| {
@@ -940,7 +939,7 @@ mod tests {
         let json_path = path!(*TESTFILES / "dict" / "playlist_samples.json");
         let json_file = File::open(json_path).unwrap();
         let date_samples: BTreeMap<Language, BTreeMap<String, String>> =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+            flexon::from_reader(BufReader::new(json_file)).unwrap();
 
         for (lang, samples) in &date_samples {
             assert_eq!(
@@ -1035,7 +1034,7 @@ mod tests {
         let json_path = path!(*TESTFILES / "dict" / "history_date_samples.json");
         let json_file = File::open(json_path).unwrap();
         let date_samples: BTreeMap<Language, BTreeMap<String, String>> =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+            flexon::from_reader(BufReader::new(json_file)).unwrap();
 
         for (lang, samples) in date_samples {
             for (k, v) in samples {
@@ -1082,7 +1081,7 @@ mod tests {
         let json_path = path!(*TESTFILES / "dict" / "video_duration_samples.json");
         let json_file = File::open(json_path).unwrap();
         let date_samples: BTreeMap<Language, BTreeMap<String, u32>> =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+            flexon::from_reader(BufReader::new(json_file)).unwrap();
 
         for (lang, samples) in &date_samples {
             for (txt, duration) in samples {

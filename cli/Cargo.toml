@@ -13,6 +13,11 @@ description = "CLI for RustyPipe - download videos and extract data from YouTube
 [features]
 default = ["native-tls"]
 timezone = ["dep:time", "dep:time-tz"]
+chromey-po-token = [
+    "rustypipe/chromey-po-token",
+    "rustypipe-downloader/chromey-po-token",
+    "dep:chromey",
+]
 
 # wreq TLS options
 native-tls = [
@@ -37,15 +42,18 @@ rustls-tls-native-roots = [
 ]
 
 [dependencies]
-rustypipe = { workspace = true, features = ["rss", "userdata"] }
+rustypipe = { workspace = true, features = ["rss", "userdata", "clap"] }
 rustypipe-downloader.workspace = true
 tokio = { workspace = true, features = ["macros", "rt-multi-thread"] }
 futures-util.workspace = true
 serde.workspace = true
-serde_json.workspace = true
+flexon.workspace = true
 quick-xml.workspace = true
 time = { workspace = true, optional = true }
 time-tz = { version = "2.0.0", optional = true }
+# Only used by the sabr_capture debug binary, but cheap to compile.
+chromey = { workspace = true, optional = true }
+base64 = "0.22"
 
 indicatif.workspace = true
 anyhow.workspace = true
@@ -62,3 +70,8 @@ const_format = "0.2.33"
 [[bin]]
 name = "rustypipe"
 path = "src/main.rs"
+
+[[bin]]
+name = "sabr_capture"
+path = "src/bin/sabr_capture.rs"
+required-features = ["chromey-po-token"]

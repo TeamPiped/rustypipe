@@ -1,57 +1,77 @@
 use std::borrow::Cow;
+use std::marker::PhantomData;
 
 use crate::{
-    client::response::music_item::MusicListMapper,
+    client::response::music_item::{map_music_items, music_grid_items, music_grid_node},
     error::{Error, ExtractionError},
-    json::{JsonDoc, yt_single_column_sections, ytq},
+    json::{yt_single_column_sections, JsonDoc},
     model::{traits::FromYtItem, AlbumItem, TrackItem},
+    param::MusicNewKind,
     request_body::ytbody,
     serializer::MapResult,
 };
 
-use super::{ClientType, MapJsonResponse, MapRespCtx, RustyPipeQuery};
+use super::{ClientType, MapEndpoint, MapRespCtx, RustyPipeQuery};
 
 #[derive(Debug)]
-struct MusicNewJson;
+struct MusicNewEndpoint<T>(PhantomData<T>);
+
+/// Result of [`RustyPipeQuery::music_new`]
+///
+/// Different kinds of new-release feeds return different item types, so the
+/// result is wrapped in an enum.
+#[derive(Debug)]
+#[allow(clippy::large_enum_variant)]
+pub enum MusicNewResult {
+    /// [`MusicNewKind::Albums`] -> [`Vec<AlbumItem>`]
+    Albums(Vec<AlbumItem>),
+    /// [`MusicNewKind::Videos`] -> [`Vec<TrackItem>`]
+    Videos(Vec<TrackItem>),
+}
 
 impl RustyPipeQuery {
-    /// Get the new albums that were released on YouTube Music
+    /// Get new releases from YouTube Music
+    ///
+    /// The kind of items returned is controlled by [`MusicNewKind`]; see
+    /// [`MusicNewResult`] for how to extract the concrete list.
     #[tracing::instrument(skip(self), level = "error")]
-    pub async fn music_new_albums(&self) -> Result<Vec<AlbumItem>, Error> {
+    pub async fn music_new(&self, kind: MusicNewKind) -> Result<MusicNewResult, Error> {
+        let browse_id = match kind {
+            MusicNewKind::Albums => "FEmusic_new_releases_albums",
+            MusicNewKind::Videos => "FEmusic_new_releases_videos",
+        };
         let request_body = ytbody!({
-            "browseId": "FEmusic_new_releases_albums",
+            "browseId": browse_id,
         });
 
-        self.execute_request::<MusicNewJson, _, _>(
-            ClientType::DesktopMusic,
-            "music_new_albums",
-            "",
-            "browse",
-            &request_body,
-        )
-        .await
-    }
-
-    /// Get the new music videos that were released on YouTube Music
-    #[tracing::instrument(skip(self), level = "error")]
-    pub async fn music_new_videos(&self) -> Result<Vec<TrackItem>, Error> {
-        let request_body = ytbody!({
-            "browseId": "FEmusic_new_releases_videos",
-        });
-
-        self.execute_request::<MusicNewJson, _, _>(
-            ClientType::DesktopMusic,
-            "music_new_videos",
-            "",
-            "browse",
-            &request_body,
-        )
-        .await
+        let res = match kind {
+            MusicNewKind::Albums => self
+                .execute_request::<MusicNewEndpoint<AlbumItem>, _, _>(
+                    ClientType::DesktopMusic,
+                    "music_new",
+                    "",
+                    "browse",
+                    &request_body,
+                )
+                .await
+                .map(MusicNewResult::Albums)?,
+            MusicNewKind::Videos => self
+                .execute_request::<MusicNewEndpoint<TrackItem>, _, _>(
+                    ClientType::DesktopMusic,
+                    "music_new",
+                    "",
+                    "browse",
+                    &request_body,
+                )
+                .await
+                .map(MusicNewResult::Videos)?,
+        };
+        Ok(res)
     }
 }
 
-impl<T: FromYtItem> MapJsonResponse<Vec<T>> for MusicNewJson {
-    fn map_json_response(
+impl<T: FromYtItem> MapEndpoint<Vec<T>> for MusicNewEndpoint<T> {
+    fn map(
         json: &JsonDoc,
         ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<Vec<T>>, ExtractionError> {
@@ -61,15 +81,12 @@ impl<T: FromYtItem> MapJsonResponse<Vec<T>> for MusicNewJson {
                 .items()
                 .into_iter()
                 .next()
-                .and_then(|section| section.query(ytq!(.gridRenderer)))
+                .and_then(|section| music_grid_node(&section))
                 .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no content")))?;
-            let items = grid
-                .query(ytq!(.items))
+            let items = music_grid_items(&grid)
                 .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no grid items")))?;
 
-            let mut mapper = MusicListMapper::new(ctx.lang);
-            mapper.map_response_node(&items);
-            Ok(mapper.conv_items())
+            Ok(map_music_items(&items, ctx.lang).0)
         })
     }
 }
@@ -90,7 +107,7 @@ mod tests {
         let json_path = path!(*TESTFILES / "music_new" / format!("albums_{name}.json"));
         let json = JsonDoc::new(fs::read_to_string(json_path).unwrap());
         let map_res: MapResult<Vec<AlbumItem>> =
-            MusicNewJson::map_json_response(&json, &MapRespCtx::test("")).unwrap();
+            MusicNewEndpoint::<AlbumItem>::map(&json, &MapRespCtx::test("")).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -107,7 +124,7 @@ mod tests {
         let json_path = path!(*TESTFILES / "music_new" / format!("videos_{name}.json"));
         let json = JsonDoc::new(fs::read_to_string(json_path).unwrap());
         let map_res: MapResult<Vec<TrackItem>> =
-            MusicNewJson::map_json_response(&json, &MapRespCtx::test("")).unwrap();
+            MusicNewEndpoint::<TrackItem>::map(&json, &MapRespCtx::test("")).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),

@@ -2,20 +2,18 @@ use std::{borrow::Cow, fmt::Debug};
 
 use crate::{
     error::{Error, ExtractionError},
-    json::{JsonDoc, ytq},
+    json::{ytq, JsonDoc, JsonValue},
     model::UrlTarget,
+    param::AlbumResolution,
     request_body::ytbody,
     serializer::MapResult,
     util,
 };
 
-use super::{
-    response::url_endpoint::NavigationEndpoint,
-    ClientType, MapJsonResponse, MapRespCtx, RustyPipeQuery,
-};
+use super::{response::url_endpoint, ClientType, MapEndpoint, MapRespCtx, RustyPipeQuery};
 
 #[derive(Debug)]
-struct UrlResolverJson;
+struct UrlResolverEndpoint;
 
 impl RustyPipeQuery {
     /// Resolve the given YouTube URL and return its associated URL target.
@@ -25,31 +23,33 @@ impl RustyPipeQuery {
     ///
     /// The `resolve_albums` flag enables resolving YTM album URLs (e.g.
     /// `OLAK5uy_k0yFrZlFRgCf3rLPza-lkRmCrtLPbK9pE`) to their short album ids (`MPREb_GyH43gCvdM5`).
+    /// Pass [`AlbumResolution::Yes`] to enable, [`AlbumResolution::No`] to disable.
     ///
     /// # Examples
     /// ```
     /// # use rustypipe::client::RustyPipe;
     /// # use rustypipe::model::UrlTarget;
+    /// # use rustypipe::param::AlbumResolution;
     /// # let rp = RustyPipe::new();
     /// # tokio_test::block_on(async {
     /// // Channel
     /// assert_eq!(
-    ///     rp.query().resolve_url("https://www.youtube.com/LinusTechTips", true).await.unwrap(),
+    ///     rp.query().resolve_url("https://www.youtube.com/LinusTechTips", AlbumResolution::No).await.unwrap(),
     ///     UrlTarget::Channel {id: "UCXuqSBlHAE6Xw-yeJA0Tunw".to_owned()}
     /// );
     /// // Video
     /// assert_eq!(
-    ///     rp.query().resolve_url("https://youtu.be/dQw4w9WgXcQ", true).await.unwrap(),
+    ///     rp.query().resolve_url("https://youtu.be/dQw4w9WgXcQ", AlbumResolution::No).await.unwrap(),
     ///     UrlTarget::Video {id: "dQw4w9WgXcQ".to_owned(), start_time: 0}
     /// );
     /// // Album
     /// // You can choose whether album URLs should be resolved to their album id or returned as playlists
     /// assert_eq!(
-    ///     rp.query().resolve_url("https://music.youtube.com/playlist?list=OLAK5uy_k0yFrZlFRgCf3rLPza-lkRmCrtLPbK9pE", true).await.unwrap(),
+    ///     rp.query().resolve_url("https://music.youtube.com/playlist?list=OLAK5uy_k0yFrZlFRgCf3rLPza-lkRmCrtLPbK9pE", AlbumResolution::Yes).await.unwrap(),
     ///     UrlTarget::Album {id: "MPREb_GyH43gCvdM5".to_owned()}
     /// );
     /// assert_eq!(
-    ///     rp.query().resolve_url("https://music.youtube.com/playlist?list=OLAK5uy_k0yFrZlFRgCf3rLPza-lkRmCrtLPbK9pE", false).await.unwrap(),
+    ///     rp.query().resolve_url("https://music.youtube.com/playlist?list=OLAK5uy_k0yFrZlFRgCf3rLPza-lkRmCrtLPbK9pE", AlbumResolution::No).await.unwrap(),
     ///     UrlTarget::Playlist {id: "OLAK5uy_k0yFrZlFRgCf3rLPza-lkRmCrtLPbK9pE".to_owned()}
     /// );
     /// # });
@@ -58,8 +58,9 @@ impl RustyPipeQuery {
     pub async fn resolve_url<S: AsRef<str> + Debug>(
         self,
         url: S,
-        resolve_albums: bool,
+        resolve_albums: AlbumResolution,
     ) -> Result<UrlTarget, Error> {
+        let resolve_albums = matches!(resolve_albums, AlbumResolution::Yes);
         let (url, params) = util::url_to_params(url.as_ref())?;
 
         let mut is_shortlink = url.domain().and_then(|d| match d {
@@ -213,21 +214,23 @@ impl RustyPipeQuery {
     ///
     /// The `resolve_albums` flag enables resolving YTM album URLs and IDs (e.g.
     /// `OLAK5uy_k0yFrZlFRgCf3rLPza-lkRmCrtLPbK9pE`) to their short album id (`MPREb_GyH43gCvdM5`).
+    /// Pass [`AlbumResolution::Yes`] to enable, [`AlbumResolution::No`] to disable.
     ///
     /// # Examples
     /// ```
     /// # use rustypipe::client::RustyPipe;
     /// # use rustypipe::model::UrlTarget;
+    /// # use rustypipe::param::AlbumResolution;
     /// # let rp = RustyPipe::new();
     /// # tokio_test::block_on(async {
     /// // Channel
     /// assert_eq!(
-    ///     rp.query().resolve_string("LinusTechTips", true).await.unwrap(),
+    ///     rp.query().resolve_string("LinusTechTips", AlbumResolution::No).await.unwrap(),
     ///     UrlTarget::Channel {id: "UCXuqSBlHAE6Xw-yeJA0Tunw".to_owned()}
     /// );
     /// // Playlist
     /// assert_eq!(
-    ///     rp.query().resolve_string("PL4lEESSgxM_5O81EvKCmBIm_JT5Q7JeaI", true).await.unwrap(),
+    ///     rp.query().resolve_string("PL4lEESSgxM_5O81EvKCmBIm_JT5Q7JeaI", AlbumResolution::No).await.unwrap(),
     ///     UrlTarget::Playlist {id: "PL4lEESSgxM_5O81EvKCmBIm_JT5Q7JeaI".to_owned()}
     /// );
     /// # });
@@ -236,7 +239,7 @@ impl RustyPipeQuery {
     pub async fn resolve_string<S: AsRef<str> + Debug>(
         self,
         s: S,
-        resolve_albums: bool,
+        resolve_albums: AlbumResolution,
     ) -> Result<UrlTarget, Error> {
         let s = s.as_ref();
 
@@ -258,7 +261,9 @@ impl RustyPipeQuery {
         } else if util::CHANNEL_ID_REGEX.is_match(s) {
             Ok(UrlTarget::Channel { id: s.to_owned() })
         } else if util::PLAYLIST_ID_REGEX.is_match(s) || util::USER_PLAYLIST_IDS.contains(&s) {
-            if resolve_albums && s.starts_with(util::PLAYLIST_ID_ALBUM_PREFIX) {
+            if matches!(resolve_albums, AlbumResolution::Yes)
+                && s.starts_with(util::PLAYLIST_ID_ALBUM_PREFIX)
+            {
                 self._navigation_resolve_url(
                     &format!("/playlist?list={s}"),
                     ClientType::DesktopMusic,
@@ -307,7 +312,7 @@ impl RustyPipeQuery {
             "url": &resolved_url,
         });
 
-        self.execute_request::<UrlResolverJson, _, _>(
+        self.execute_request::<UrlResolverEndpoint, _, _>(
             ctype,
             "channel_id",
             &resolved_url,
@@ -318,21 +323,17 @@ impl RustyPipeQuery {
     }
 }
 
-impl MapJsonResponse<UrlTarget> for UrlResolverJson {
-    fn map_json_response(
+impl MapEndpoint<UrlTarget> for UrlResolverEndpoint {
+    fn map(
         json: &JsonDoc,
         _ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<UrlTarget>, ExtractionError> {
         json.with_root(|root| {
             let endpoint = root.require(ytq!(.endpoint), "navigation endpoint")?;
-            let endpoint: NavigationEndpoint = endpoint.deserialize()?;
-            let pt = endpoint.page_type();
-            if let NavigationEndpoint::Browse {
-                browse_endpoint, ..
-            } = endpoint
-            {
-                let target = pt
-                    .and_then(|pt| pt.to_url_target(browse_endpoint.browse_id))
+            let endpoint: JsonValue = endpoint.deserialize()?;
+            if let Some(browse) = url_endpoint::browse_endpoint(&endpoint) {
+                let target = url_endpoint::page_type(&endpoint)
+                    .and_then(|pt| pt.to_url_target(browse.browse_endpoint.browse_id))
                     .ok_or(ExtractionError::InvalidData(Cow::Borrowed("No page type")))?;
 
                 Ok(MapResult {

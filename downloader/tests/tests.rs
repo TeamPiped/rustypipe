@@ -106,7 +106,7 @@ fn assert_audio_meta(p: &Path, title: &str, artist: &str, album: &str, date: &st
     if !res.status.success() {
         panic!("ffprobe error\n{}", String::from_utf8_lossy(&res.stderr))
     }
-    let res_json = serde_json::from_slice::<serde_json::Value>(&res.stdout).unwrap();
+    let res_json = flexon::from_slice::<flexon::OwnedValue>(&res.stdout).unwrap();
     let tags = &res_json["streams"][0]["tags"];
     assert_eq!(tags["TITLE"].as_str(), Some(title));
     assert_eq!(tags["ARTIST"].as_str(), Some(artist));

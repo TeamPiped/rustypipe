@@ -104,7 +104,7 @@ pub async fn collect_dates(concurrency: usize) {
         .await;
 
     let file = File::create(json_path).unwrap();
-    serde_json::to_writer_pretty(file, &collected_dates).unwrap();
+    flexon::to_writer_pretty(file, &collected_dates).unwrap();
 }
 
 /// Attempt to parse the dates collected by `collect-playlist-dates`
@@ -116,8 +116,7 @@ pub fn write_samples_to_dict() {
     let json_path = path!(*DICT_DIR / "playlist_samples.json");
 
     let json_file = File::open(json_path).unwrap();
-    let collected_dates: CollectedDates =
-        serde_json::from_reader(BufReader::new(json_file)).unwrap();
+    let collected_dates: CollectedDates = flexon::from_reader(BufReader::new(json_file)).unwrap();
     let mut dict = util::read_dict();
     let langs = dict.keys().copied().collect::<Vec<_>>();
 

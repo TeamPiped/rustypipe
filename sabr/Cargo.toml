@@ -1,0 +1,22 @@
+[package]
+name = "sabr"
+version = "0.1.0"
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "SABR (Server-Adaptive Bitrate streaming) client for YouTube media downloads"
+rust-version = "1.75.0"
+
+[dependencies]
+base64 = "0.22"
+bytes = "1.7"
+prost = "0.13"
+tokio = { workspace = true, features = ["macros", "time"] }
+tracing = { workspace = true }
+url = "2"
+wreq = { workspace = true, features = ["stream"] }
+wreq-util = { workspace = true }
+
+[build-dependencies]
+prost-build = "0.13"

@@ -61,6 +61,9 @@ pub enum ExtractionError {
     /// Error generating Botguard tokens
     #[error("botguard error: {0}")]
     Botguard(Cow<'static, str>),
+    /// Error generating Botguard tokens in a real-browser (chromey) provider
+    #[error("chromey error: {0}")]
+    Chromey(Cow<'static, str>),
     /// YouTube returned data that does not match the queried ID
     ///
     /// Specifically YouTube may return this video <https://www.youtube.com/watch?v=aQvGIIdgFDM>,
@@ -195,8 +198,8 @@ pub(crate) mod internal {
     }
 }
 
-impl From<serde_json::Error> for ExtractionError {
-    fn from(value: serde_json::Error) -> Self {
+impl From<flexon::serde::de::Error> for ExtractionError {
+    fn from(value: flexon::serde::de::Error) -> Self {
         Self::InvalidData(value.to_string().into())
     }
 }
@@ -259,6 +262,7 @@ impl ExtractionError {
                 ..
             } | ExtractionError::WrongResult(_)
                 | ExtractionError::Botguard(_)
+                | ExtractionError::Chromey(_)
         )
     }
 

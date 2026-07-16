@@ -9,7 +9,7 @@ use serde::Deserialize;
 use serde_with::rust::deserialize_ignore_any;
 
 use crate::{
-    model::{QBrowse, SectionList, TextRuns},
+    model::{QBrowse, TextRuns},
     util::{self, DICT_DIR},
 };
 
@@ -30,12 +30,11 @@ pub async fn collect_album_versions_titles() {
             .raw(ClientType::DesktopMusic, "browse", &query)
             .await
             .unwrap();
-        let data = serde_json::from_str::<AlbumData>(&raw_resp).unwrap();
+        let data = flexon::from_str::<AlbumData>(&raw_resp).unwrap();
         let title = data
             .contents
             .two_column_browse_results_renderer
             .secondary_contents
-            .section_list_renderer
             .contents
             .into_iter()
             .find_map(|x| match x {
@@ -59,14 +58,14 @@ pub async fn collect_album_versions_titles() {
     }
 
     let file = File::create(json_path).unwrap();
-    serde_json::to_writer_pretty(file, &res).unwrap();
+    flexon::to_writer_pretty(file, &res).unwrap();
 }
 
 pub fn write_samples_to_dict() {
     let json_path = path!(*DICT_DIR / "other_versions_titles.json");
     let json_file = File::open(json_path).unwrap();
     let collected: BTreeMap<Language, String> =
-        serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        flexon::from_reader(BufReader::new(json_file)).unwrap();
     let mut dict = util::read_dict();
     let langs = dict.keys().copied().collect::<Vec<_>>();
 
@@ -102,7 +101,13 @@ struct AlbumDataContents {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct X1 {
-    secondary_contents: SectionList<ItemSection>,
+    secondary_contents: AlbumVersionSections,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct AlbumVersionSections {
+    contents: Vec<ItemSection>,
 }
 
 #[derive(Debug, Deserialize)]

@@ -1,115 +1,14 @@
 use serde::Deserialize;
-use serde_with::{rust::deserialize_ignore_any, serde_as, DefaultOnError, VecSkipError};
+use serde_with::serde_as;
 
-use super::{
-    AttachmentRun, AvatarViewModel, ChannelBadge, ContentRenderer, ContentsRenderer, ImageView,
-    PageHeaderRendererContent, PhMetadataView, Thumbnails,
-};
 use crate::{
-    model::Verification,
+    error::{ExtractionError, UnavailabilityReason},
+    json::{yt_two_column_list_items_from_browse, ytq, JsonNode},
     serializer::text::{AttributedText, Text, TextComponent},
+    FromYtNode,
 };
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-#[allow(clippy::enum_variant_names)]
-pub(crate) enum Header {
-    C4TabbedHeaderRenderer(HeaderRenderer),
-    /// Used for special channels like YouTube Music
-    CarouselHeaderRenderer(ContentsRenderer<CarouselHeaderRendererItem>),
-    PageHeaderRenderer(ContentRenderer<PageHeaderRendererContent<PageHeaderRendererInner>>),
-}
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct HeaderRenderer {
-    /// Approximate subscriber count (e.g. `880K subscribers`), depends on language.
-    ///
-    /// `None` if the subscriber count is hidden.
-    #[serde_as(as = "Option<Text>")]
-    pub subscriber_count_text: Option<String>,
-    #[serde(default)]
-    pub avatar: Thumbnails,
-    #[serde(default)]
-    #[serde_as(as = "VecSkipError<_>")]
-    pub badges: Vec<ChannelBadge>,
-    #[serde(default)]
-    pub banner: Thumbnails,
-}
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) enum CarouselHeaderRendererItem {
-    #[serde(rename_all = "camelCase")]
-    TopicChannelDetailsRenderer {
-        #[serde_as(as = "Option<Text>")]
-        subscriber_count_text: Option<String>,
-        #[serde_as(as = "Option<Text>")]
-        subtitle: Option<String>,
-        #[serde(default)]
-        avatar: Thumbnails,
-    },
-    #[serde(other, deserialize_with = "deserialize_ignore_any")]
-    None,
-}
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct PageHeaderRendererInner {
-    /// Channel title (only used to extract verification badges)
-    #[serde_as(as = "DefaultOnError")]
-    pub title: Option<PhTitleView>,
-    /// Channel avatar
-    pub image: PhAvatarView,
-    /// Channel metadata (subscribers, video count)
-    pub metadata: PhMetadataView,
-    #[serde(default)]
-    pub banner: PhBannerView,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct PhTitleView {
-    pub dynamic_text_view_model: PhTitleView2,
-}
-
-#[derive(Default, Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct PhTitleView2 {
-    pub text: PhTitleView3,
-}
-
-#[serde_as]
-#[derive(Default, Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct PhTitleView3 {
-    #[serde_as(as = "VecSkipError<_>")]
-    pub attachment_runs: Vec<AttachmentRun>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct PhAvatarView {
-    pub decorated_avatar_view_model: PhAvatarView2,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct PhAvatarView2 {
-    pub avatar: AvatarViewModel,
-}
-
-#[derive(Default, Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct PhBannerView {
-    pub image_banner_view_model: ImageView,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug, FromYtNode)]
 pub(crate) struct ChannelMetadataRenderer {
     pub title: String,
     /// Channel ID
@@ -118,17 +17,10 @@ pub(crate) struct ChannelMetadataRenderer {
     pub vanity_channel_url: Option<String>,
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug, Default, FromYtNode)]
 pub(crate) struct MicroformatDataRenderer {
-    #[serde(default)]
+    #[ytq_default]
     pub tags: Vec<String>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct AboutChannelRendererWrap {
-    pub about_channel_renderer: AboutChannelRenderer,
 }
 
 #[derive(Debug, Deserialize)]
@@ -143,24 +35,22 @@ pub(crate) struct ChannelMetadata {
     pub about_channel_view_model: ChannelMetadataView,
 }
 
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug, Default, FromYtNode)]
 pub(crate) struct ChannelMetadataView {
     pub channel_id: String,
     pub canonical_channel_url: String,
     pub country: Option<String>,
-    #[serde(default)]
+    #[ytq_default]
     pub description: String,
-    #[serde_as(as = "Option<Text>")]
+    #[ytq_text]
     pub joined_date_text: Option<String>,
-    #[serde_as(as = "Option<Text>")]
+    #[ytq_text]
     pub subscriber_count_text: Option<String>,
-    #[serde_as(as = "Option<Text>")]
+    #[ytq_text]
     pub video_count_text: Option<String>,
-    #[serde_as(as = "Option<Text>")]
+    #[ytq_text]
     pub view_count_text: Option<String>,
-    #[serde(default)]
+    #[ytq_default]
     pub links: Vec<ExternalLink>,
 }
 
@@ -180,15 +70,101 @@ pub(crate) struct ExternalLinkInner {
     pub link: TextComponent,
 }
 
-impl From<PhTitleView> for crate::model::Verification {
-    fn from(value: PhTitleView) -> Self {
-        value
-            .dynamic_text_view_model
-            .text
-            .attachment_runs
-            .into_iter()
-            .next()
-            .map(Verification::from)
-            .unwrap_or_default()
+pub(crate) struct MappedChannelContent<'a> {
+    pub list_node: Option<JsonNode<'a>>,
+    pub has_shorts: bool,
+    pub has_live: bool,
+}
+
+fn tab_renderer<'a>(tab: &JsonNode<'a>) -> Option<JsonNode<'a>> {
+    tab.query(ytq!(($root || .expandableTabRenderer).tabRenderer))
+}
+
+fn tab_endpoint_url(tab: &JsonNode<'_>) -> Option<String> {
+    tab_renderer(tab).and_then(|tr| {
+        tr.query(ytq!(.endpoint.commandMetadata.webCommandMetadata.url))
+            .and_then(|url| url.as_str())
+    })
+}
+
+pub(crate) fn map_channel_content<'a>(
+    id: &str,
+    root: &JsonNode<'a>,
+    alerts_to_err: impl FnOnce() -> ExtractionError,
+) -> Result<MappedChannelContent<'a>, ExtractionError> {
+    let browse = root
+        .query(ytq!(.contents.twoColumnBrowseResultsRenderer))
+        .ok_or_else(alerts_to_err)?;
+    let tabs = browse
+        .query(ytq!(.tabs || .contents))
+        .map(|node| node.items())
+        .unwrap_or_default();
+
+    let mut has_shorts = false;
+    let mut has_live = false;
+    let mut featured_tab = false;
+
+    for tab in &tabs {
+        if let Some(url) = tab_endpoint_url(tab) {
+            let selected = tab_renderer(tab)
+                .and_then(|tr| tr.query(ytq!(.selected)))
+                .and_then(|node| node.as_bool())
+                .unwrap_or(false);
+            if selected && url.ends_with("/featured") {
+                if tab_renderer(tab)
+                    .and_then(|tr| tr.query(ytq!(.content.(.sectionListRenderer || .richGridRenderer))))
+                    .is_some()
+                {
+                    featured_tab = true;
+                }
+            } else if url.ends_with("/shorts") {
+                has_shorts = true;
+            } else if url.ends_with("/streams") {
+                has_live = true;
+            }
+        } else if let Some(sl) =
+            tab_renderer(tab).and_then(|tr| tr.query(ytq!(.content.sectionListRenderer.contents)))
+        {
+            if let Some(first) = sl.items().first() {
+                if let Some(msg) = first
+                    .query(ytq!(.channelAgeGateRenderer))
+                    .and_then(|node| node.deserialize::<ChannelAgeGateRenderer>().ok())
+                    .map(|renderer| format!("{}: {}", renderer.channel_title, renderer.main_text))
+                {
+                    return Err(ExtractionError::Unavailable {
+                        reason: UnavailabilityReason::AgeRestricted,
+                        msg,
+                    });
+                }
+            }
+
+            #[serde_as]
+            #[derive(Debug, Deserialize)]
+            #[serde(rename_all = "camelCase")]
+            struct ChannelAgeGateRenderer {
+                channel_title: String,
+                #[serde_as(as = "Text")]
+                main_text: String,
+            }
+        }
     }
+
+    let list_node = if featured_tab {
+        None
+    } else {
+        Some(
+            yt_two_column_list_items_from_browse(&browse).ok_or_else(|| {
+                ExtractionError::NotFound {
+                    id: id.to_owned(),
+                    msg: "no tabs".into(),
+                }
+            })?,
+        )
+    };
+
+    Ok(MappedChannelContent {
+        list_node,
+        has_shorts,
+        has_live,
+    })
 }

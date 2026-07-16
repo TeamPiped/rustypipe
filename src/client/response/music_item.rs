@@ -1,11 +1,14 @@
-use serde::Deserialize;
-use serde_with::{rust::deserialize_ignore_any, serde_as, DefaultOnError, VecSkipError};
+use serde::{Deserialize, Deserializer};
+use serde_with::{serde_as, DefaultOnError, VecSkipError};
 
 use crate::{
-    json::{JsonNode, ytq},
+    json::{
+        json_null, value_from_json_value_owned, value_to_json_string, yt_continuation_value, ytq,
+        JsonDoc, JsonNode, JsonValue,
+    },
     model::{
         self, traits::FromYtItem, AlbumId, AlbumItem, AlbumType, ArtistId, ArtistItem, ChannelId,
-        MusicItem, MusicItemType, MusicPlaylistItem, TrackItem, UserItem,
+        MusicItem, MusicItemType, MusicPlaylistItem, TrackItem,
     },
     param::Language,
     serializer::{
@@ -13,31 +16,70 @@ use crate::{
         MapResult,
     },
     util::{self, dictionary, timeago},
+    yt_string_enum,
+    FromYtNode,
 };
 
 use super::{
-    url_endpoint::{
-        BrowseEndpointWrap, MusicPage, MusicPageType, MusicVideoType, NavigationEndpoint, PageType,
-    },
-    ContentsRenderer, ContinuationEndpoint, MusicContinuationData,
-    SimpleHeaderRenderer, Thumbnails, ThumbnailsWrap,
+    url_endpoint::{self, MusicPage, MusicPageType, MusicVideoType, PageType},
+    MusicContinuationData, SimpleHeaderRenderer, Thumbnails,
 };
+
+fn continuation_token(endpoint: &JsonValue) -> Option<String> {
+    yt_continuation_value(endpoint)
+}
 
 #[cfg(feature = "userdata")]
 use crate::model::HistoryItem;
 #[cfg(feature = "userdata")]
 use time::UtcOffset;
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) enum ItemSection {
-    #[serde(alias = "musicPlaylistShelfRenderer")]
-    MusicShelfRenderer(MusicShelf),
-    MusicCarouselShelfRenderer(MusicCarouselShelf),
-    #[allow(dead_code)]
-    GridRenderer(GridRenderer),
-    #[serde(other, deserialize_with = "deserialize_ignore_any")]
-    None,
+pub(crate) fn music_shelf_node<'a>(section: &JsonNode<'a>) -> Option<JsonNode<'a>> {
+    section.query(ytq!(.musicShelfRenderer || .musicPlaylistShelfRenderer))
+}
+
+pub(crate) fn music_carousel_node<'a>(section: &JsonNode<'a>) -> Option<JsonNode<'a>> {
+    section.query(ytq!(.musicCarouselShelfRenderer))
+}
+
+pub(crate) fn music_grid_node<'a>(section: &JsonNode<'a>) -> Option<JsonNode<'a>> {
+    section.query(ytq!(.gridRenderer))
+}
+
+pub(crate) fn music_shelf_from_value(value: &JsonValue) -> Option<MusicShelf> {
+    value
+        .get("musicShelfRenderer")
+        .or_else(|| value.get("musicPlaylistShelfRenderer"))
+        .cloned()
+        .and_then(value_from_json_value_owned)
+}
+
+pub(crate) fn music_carousel_from_value(value: &JsonValue) -> Option<MusicCarouselShelf> {
+    value
+        .get("musicCarouselShelfRenderer")
+        .cloned()
+        .and_then(value_from_json_value_owned)
+}
+
+pub(crate) fn music_grid_items<'a>(grid: &JsonNode<'a>) -> Option<JsonNode<'a>> {
+    grid.query(ytq!(.items || .contents))
+}
+
+pub(crate) fn music_item_contents<'a>(node: &JsonNode<'a>) -> Option<JsonNode<'a>> {
+    node.query(ytq!(.contents || .items))
+}
+
+pub(crate) fn music_shelf_continuation_node<'a>(
+    continuation_contents: &JsonNode<'a>,
+) -> Option<JsonNode<'a>> {
+    continuation_contents
+        .query(ytq!(.musicShelfContinuation || .musicPlaylistShelfContinuation))
+}
+
+pub(crate) fn music_section_list_continuation_node<'a>(
+    continuation_contents: &JsonNode<'a>,
+) -> Option<JsonNode<'a>> {
+    continuation_contents.query(ytq!(.sectionListContinuation))
 }
 
 /// MusicShelf represents the standard, vertical list of music items
@@ -51,7 +93,7 @@ pub(crate) struct MusicShelf {
     pub title: Option<String>,
     /// Playlist ID (only for playlists)
     pub playlist_id: Option<String>,
-    pub contents: MapResult<Vec<MusicResponseItem>>,
+    pub contents: JsonValue,
     /// Continuation token for fetching more (>100) playlist items
     #[serde(default)]
     #[serde_as(as = "VecSkipError<_>")]
@@ -59,7 +101,7 @@ pub(crate) struct MusicShelf {
     /// "More" button at the bottom (artist pages)
     #[serde(default)]
     #[serde_as(as = "DefaultOnError")]
-    pub bottom_endpoint: Option<BrowseEndpointWrap>,
+    pub bottom_endpoint: Option<JsonValue>,
 }
 
 /// MusicCarouselShelf represents a horizontal list of music items displayed with
@@ -67,8 +109,26 @@ pub(crate) struct MusicShelf {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct MusicCarouselShelf {
-    pub header: Option<MusicCarouselShelfHeader>,
-    pub contents: MapResult<Vec<MusicResponseItem>>,
+    #[serde(default)]
+    #[serde(deserialize_with = "deserialize_music_carousel_header")]
+    pub header: Option<MusicCarouselShelfHeaderRenderer>,
+    pub contents: JsonValue,
+}
+
+fn deserialize_music_carousel_header<'de, D>(
+    deserializer: D,
+) -> Result<Option<MusicCarouselShelfHeaderRenderer>, D::Error>
+where
+    D: Deserializer<'de>,
+{
+    let value = Option::<JsonValue>::deserialize(deserializer)?;
+    Ok(value.and_then(|value| {
+        value
+            .get("musicCarouselShelfBasicHeaderRenderer")
+            .cloned()
+            .or(Some(value))
+            .and_then(value_from_json_value_owned)
+    }))
 }
 
 /// MusicCardShelf is used to display the top search result. It contains
@@ -79,26 +139,13 @@ pub(crate) struct MusicCarouselShelf {
 pub(crate) struct MusicCardShelf {
     #[serde_as(as = "Text")]
     pub title: String,
-    pub on_tap: NavigationEndpoint,
+    pub on_tap: JsonValue,
     #[serde(default)]
     pub subtitle: TextComponents,
     #[serde(default)]
     pub thumbnail: MusicThumbnailRenderer,
-    #[serde(default)]
-    pub contents: MapResult<Vec<MusicResponseItem>>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-#[allow(clippy::enum_variant_names)]
-pub(crate) enum MusicResponseItem {
-    MusicResponsiveListItemRenderer(ListMusicItem),
-    MusicTwoRowItemRenderer(CoverMusicItem),
-    MessageRenderer(serde::de::IgnoredAny),
-    #[serde(rename_all = "camelCase")]
-    ContinuationItemRenderer {
-        continuation_endpoint: ContinuationEndpoint,
-    },
+    #[serde(default = "json_null")]
+    pub contents: JsonValue,
 }
 
 #[serde_as]
@@ -172,7 +219,7 @@ pub(crate) struct ListMusicItem {
     #[serde(default)]
     pub fixed_columns: Vec<MusicColumn>,
     /// Content type + ID (for non-track search items)
-    pub navigation_endpoint: Option<NavigationEndpoint>,
+    pub navigation_endpoint: Option<JsonValue>,
     #[serde(default)]
     pub flex_column_display_style: FlexColumnDisplayStyle,
     #[serde(default)]
@@ -182,37 +229,37 @@ pub(crate) struct ListMusicItem {
     /// Album track number
     #[serde_as(as = "Option<Text>")]
     pub index: Option<String>,
-    pub menu: Option<MusicItemMenu>,
+    pub menu: Option<JsonValue>,
     #[serde(default)]
     #[serde_as(deserialize_as = "VecSkipError<_>")]
     pub badges: Vec<TrackBadge>,
 }
 
-#[derive(Default, Debug, Copy, Clone, Deserialize)]
-pub(crate) enum FlexColumnDisplayStyle {
-    #[serde(rename = "MUSIC_RESPONSIVE_LIST_ITEM_FLEX_COLUMN_DISPLAY_STYLE_TWO_LINE_STACK")]
-    TwoLines,
-    #[default]
-    #[serde(other)]
-    Default,
+yt_string_enum! {
+    pub(crate) enum FlexColumnDisplayStyle {
+        TwoLines = "MUSIC_RESPONSIVE_LIST_ITEM_FLEX_COLUMN_DISPLAY_STYLE_TWO_LINE_STACK",
+        Default = "",
+    }
+    default: FlexColumnDisplayStyle::Default,
+    fallback_to_default
 }
 
-#[derive(Default, Debug, Copy, Clone, PartialEq, Eq, Deserialize)]
-pub(crate) enum ItemHeight {
-    #[serde(rename = "MUSIC_RESPONSIVE_LIST_ITEM_HEIGHT_MEDIUM_COMPACT")]
-    Compact,
-    #[default]
-    #[serde(other)]
-    Default,
+yt_string_enum! {
+    pub(crate) enum ItemHeight {
+        Compact = "MUSIC_RESPONSIVE_LIST_ITEM_HEIGHT_MEDIUM_COMPACT",
+        Default = "",
+    }
+    default: ItemHeight::Default,
+    fallback_to_default
 }
 
-#[derive(Default, Debug, Copy, Clone, PartialEq, Eq, Deserialize)]
-pub(crate) enum DisplayPolicy {
-    #[serde(rename = "MUSIC_ITEM_RENDERER_DISPLAY_POLICY_GREY_OUT")]
-    GreyOut,
-    #[default]
-    #[serde(other)]
-    Default,
+yt_string_enum! {
+    pub(crate) enum DisplayPolicy {
+        GreyOut = "MUSIC_ITEM_RENDERER_DISPLAY_POLICY_GREY_OUT",
+        Default = "",
+    }
+    default: DisplayPolicy::Default,
+    fallback_to_default
 }
 
 #[serde_as]
@@ -239,27 +286,19 @@ pub(crate) struct CoverMusicItem {
     #[serde(default)]
     pub thumbnail_renderer: MusicThumbnailRenderer,
     /// Content type + ID
-    pub navigation_endpoint: NavigationEndpoint,
+    pub navigation_endpoint: JsonValue,
 }
 
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct PlaylistPanelRenderer {
-    pub contents: MapResult<Vec<PlaylistPanelVideo>>,
+    pub contents: Vec<JsonValue>,
     /// Continuation token for fetching more radio items
     #[serde(default)]
     #[serde_as(as = "VecSkipError<_>")]
     #[allow(dead_code)]
     pub continuations: Vec<MusicContinuationData>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) enum PlaylistPanelVideo {
-    PlaylistPanelVideoRenderer(QueueMusicItem),
-    #[serde(other, deserialize_with = "deserialize_ignore_any")]
-    None,
 }
 
 /// Music item from a playback queue (`playlistPanelVideoRenderer`)
@@ -281,46 +320,76 @@ pub(crate) struct QueueMusicItem {
     pub long_byline_text: TextComponents,
     #[serde(default)]
     pub thumbnail: Thumbnails,
-    pub menu: Option<MusicItemMenu>,
+    pub menu: Option<JsonValue>,
 }
 
 #[derive(Default, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct MusicThumbnailRenderer {
     #[serde(default, alias = "croppedSquareThumbnailRenderer")]
-    pub music_thumbnail_renderer: ThumbnailsWrap,
+    #[serde(deserialize_with = "deserialize_music_thumbnail")]
+    pub music_thumbnail_renderer: Thumbnails,
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+fn deserialize_music_thumbnail<'de, D>(deserializer: D) -> Result<Thumbnails, D::Error>
+where
+    D: Deserializer<'de>,
+{
+    let value = JsonValue::deserialize(deserializer)?;
+    Ok(value
+        .get("thumbnail")
+        .cloned()
+        .and_then(value_from_json_value_owned)
+        .unwrap_or_default())
+}
+
+#[derive(Debug, FromYtNode)]
 pub(crate) struct PlaylistItemData {
     pub video_id: String,
 }
 
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct MusicContentsRenderer<T> {
-    pub contents: Vec<T>,
-    /// Continuation token for fetching recommended items
-    #[serde(default)]
-    #[serde_as(as = "VecSkipError<_>")]
-    pub continuations: Vec<MusicContinuationData>,
-}
-
-#[derive(Debug, Deserialize)]
+#[derive(Debug)]
 pub(crate) struct MusicColumn {
-    #[serde(
-        rename = "musicResponsiveListItemFlexColumnRenderer",
-        alias = "musicResponsiveListItemFixedColumnRenderer"
-    )]
     pub renderer: MusicColumnRenderer,
 }
 
-#[serde_as]
-#[derive(Debug, Deserialize)]
+impl<'de> Deserialize<'de> for MusicColumn {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        let value = JsonValue::deserialize(deserializer)?;
+        let renderer_value = value
+            .get("musicResponsiveListItemFlexColumnRenderer")
+            .or_else(|| value.get("musicResponsiveListItemFixedColumnRenderer"))
+            .ok_or_else(|| serde::de::Error::missing_field("musicResponsiveListItem*ColumnRenderer"))?;
+        let raw = crate::json::value_to_json_string(renderer_value);
+        let renderer: MusicColumnRenderer = flexon::from_str(&raw)
+            .map_err(|e| serde::de::Error::custom(format!("column renderer: {e}")))?;
+        Ok(Self { renderer })
+    }
+}
+
+#[derive(Debug)]
 pub(crate) struct MusicColumnRenderer {
     pub text: TextComponents,
+}
+
+impl<'de> Deserialize<'de> for MusicColumnRenderer {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        let value = JsonValue::deserialize(deserializer)?;
+        let raw = crate::json::value_to_json_string(
+            value
+                .get("text")
+                .ok_or_else(|| serde::de::Error::missing_field("text"))?,
+        );
+        let text: TextComponents = flexon::from_str(&raw)
+            .map_err(|e| serde::de::Error::custom(format!("column text: {e}")))?;
+        Ok(Self { text })
+    }
 }
 
 impl From<MusicColumn> for TextComponents {
@@ -331,59 +400,44 @@ impl From<MusicColumn> for TextComponents {
 
 impl From<MusicThumbnailRenderer> for Vec<model::Thumbnail> {
     fn from(tr: MusicThumbnailRenderer) -> Self {
-        tr.music_thumbnail_renderer.thumbnail.into()
+        tr.music_thumbnail_renderer.into()
     }
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct MusicCarouselShelfHeader {
-    pub music_carousel_shelf_basic_header_renderer: MusicCarouselShelfHeaderRenderer,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug, Default)]
 pub(crate) struct MusicCarouselShelfHeaderRenderer {
-    pub more_content_button: Option<Button>,
-    #[serde(default)]
+    pub more_content_button: Option<JsonValue>,
     pub title: TextComponents,
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct Button {
-    pub button_renderer: ButtonRenderer,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct ButtonRenderer {
-    pub navigation_endpoint: NavigationEndpoint,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct MusicItemMenu {
-    pub menu_renderer: ContentsRenderer<MusicItemMenuEntry>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct MusicItemMenuEntry {
-    pub menu_navigation_item_renderer: ButtonRenderer,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct Grid {
-    pub grid_renderer: GridRenderer,
+impl<'de> Deserialize<'de> for MusicCarouselShelfHeaderRenderer {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        let value = JsonValue::deserialize(deserializer)?;
+        let title = match value.get("title") {
+            Some(v) => {
+                let raw = crate::json::value_to_json_string(v);
+                match flexon::from_str::<TextComponents>(&raw) {
+                    Ok(t) => t,
+                    Err(e) => return Err(serde::de::Error::custom(format!("carousel title: {e}"))),
+                }
+            }
+            None => TextComponents::default(),
+        };
+        Ok(Self {
+            more_content_button: value.get("moreContentButton").cloned(),
+            title,
+        })
+    }
 }
 
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct GridRenderer {
-    pub items: MapResult<Vec<MusicResponseItem>>,
+    pub items: JsonValue,
     #[allow(dead_code)]
     pub header: Option<GridHeader>,
     #[serde(default)]
@@ -391,44 +445,61 @@ pub(crate) struct GridRenderer {
     pub continuations: Vec<MusicContinuationData>,
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug)]
 pub(crate) struct GridHeader {
     #[allow(dead_code)]
     pub grid_header_renderer: SimpleHeaderRenderer,
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct SingleColumnBrowseResult<T> {
-    pub single_column_browse_results_renderer: ContentsRenderer<T>,
+impl<'de> Deserialize<'de> for GridHeader {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        let value = JsonValue::deserialize(deserializer)?;
+        let raw = crate::json::value_to_json_string(
+            value
+                .get("gridHeaderRenderer")
+                .ok_or_else(|| serde::de::Error::missing_field("gridHeaderRenderer"))?,
+        );
+        let inner: SimpleHeaderRenderer = flexon::from_str(&raw)
+            .map_err(|e| serde::de::Error::custom(format!("grid header: {e}")))?;
+        Ok(Self {
+            grid_header_renderer: inner,
+        })
+    }
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct SimpleHeader {
-    pub music_header_renderer: SimpleHeaderRenderer,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug)]
 pub(crate) enum TrackBadge {
     LiveBadgeRenderer {},
 }
 
+impl<'de> Deserialize<'de> for TrackBadge {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        let value = JsonValue::deserialize(deserializer)?;
+        if value.get("liveBadgeRenderer").is_some() {
+            Ok(TrackBadge::LiveBadgeRenderer {})
+        } else {
+            Err(serde::de::Error::custom("unknown track badge"))
+        }
+    }
+}
+
 #[serde_as]
-#[derive(Default, Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Default, Debug, FromYtNode)]
 pub(crate) struct MusicMicroformat {
-    #[serde_as(as = "DefaultOnError")]
+    #[ytq_default]
     pub microformat_data_renderer: MicroformatData,
 }
 
-#[derive(Default, Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Default, Debug, FromYtNode)]
 pub(crate) struct MicroformatData {
     pub url_canonical: Option<String>,
-    #[serde(default)]
+    #[ytq_default]
     pub noindex: bool,
 }
 
@@ -437,18 +508,18 @@ pub(crate) struct MicroformatData {
 */
 
 #[derive(Debug)]
-pub(crate) struct MusicListMapper {
+struct MusicItemParser {
     lang: Language,
     /// Artists list + various artists flag
     artists: Option<(Vec<ArtistId>, bool)>,
     album: Option<AlbumId>,
     /// Default album type in case an album is unlabeled
-    pub album_type: AlbumType,
+    album_type: AlbumType,
     artist_page: bool,
     search_suggestion: bool,
     items: Vec<MusicItem>,
     warnings: Vec<String>,
-    pub ctoken: Option<String>,
+    ctoken: Option<String>,
 }
 
 #[derive(Debug)]
@@ -459,8 +530,8 @@ pub(crate) struct GroupedMusicItems {
     pub playlists: Vec<MusicPlaylistItem>,
 }
 
-impl MusicListMapper {
-    pub fn new(lang: Language) -> Self {
+impl MusicItemParser {
+    fn new(lang: Language) -> Self {
         Self {
             lang,
             artists: None,
@@ -474,7 +545,7 @@ impl MusicListMapper {
         }
     }
 
-    pub fn new_search_suggest(lang: Language) -> Self {
+    fn new_search_suggest(lang: Language) -> Self {
         Self {
             lang,
             artists: None,
@@ -488,8 +559,8 @@ impl MusicListMapper {
         }
     }
 
-    /// Create a new MusicListMapper for an artist page
-    pub fn with_artist(lang: Language, artist: ArtistId) -> Self {
+    /// Create parser context for an artist page
+    fn with_artist(lang: Language, artist: ArtistId) -> Self {
         Self {
             lang,
             artists: Some((vec![artist], false)),
@@ -503,8 +574,8 @@ impl MusicListMapper {
         }
     }
 
-    /// Create a new MusicListMapper for an album page
-    pub fn with_album(lang: Language, artists: Vec<ArtistId>, by_va: bool, album: AlbumId) -> Self {
+    /// Create parser context for an album page
+    fn with_album(lang: Language, artists: Vec<ArtistId>, by_va: bool, album: AlbumId) -> Self {
         Self {
             lang,
             artists: Some((artists, by_va)),
@@ -518,33 +589,17 @@ impl MusicListMapper {
         }
     }
 
-    /// Map a MusicResponseItem (list item or tile)
-    fn map_item(&mut self, item: MusicResponseItem) -> Result<Option<MusicItemType>, String> {
-        match item {
-            // List item
-            MusicResponseItem::MusicResponsiveListItemRenderer(item) => self.map_list_item(item),
-            // Tile
-            MusicResponseItem::MusicTwoRowItemRenderer(item) => self.map_tile(item),
-            MusicResponseItem::MessageRenderer(_) => Ok(None),
-            MusicResponseItem::ContinuationItemRenderer {
-                continuation_endpoint,
-            } => {
-                if self.ctoken.is_none() {
-                    self.ctoken = continuation_endpoint.into_token();
-                }
-                Ok(None)
-            }
-        }
+    fn map_response_value(&mut self, value: JsonValue) -> Option<MusicItemType> {
+        let doc = JsonDoc::new(value_to_json_string(&value));
+        doc.with_root(|root| Ok(self.map_response_node(&root)))
+            .ok()
+            .flatten()
     }
 
-    pub fn map_response(
-        &mut self,
-        mut res: MapResult<Vec<MusicResponseItem>>,
-    ) -> Option<MusicItemType> {
+    fn map_response_items(&mut self, items_node: &JsonNode<'_>) -> Option<MusicItemType> {
         let mut etype = None;
-        self.warnings.append(&mut res.warnings);
-        res.c.into_iter().for_each(|item| {
-            if let Some(et) = self.add_response_item(item) {
+        items_node.items().into_iter().for_each(|item| {
+            if let Some(et) = self.add_response_item_node(&item) {
                 if etype.is_none() {
                     etype = Some(et);
                 }
@@ -553,13 +608,12 @@ impl MusicListMapper {
         etype
     }
 
-    pub fn map_response_node(&mut self, node: &JsonNode<'_>) -> Option<MusicItemType> {
-        let items_node = match node.first_of(&[ytq!(.contents), ytq!(.items)]) {
+    fn map_response_node(&mut self, node: &JsonNode<'_>) -> Option<MusicItemType> {
+        let items_node = match node.query(ytq!(.contents || .items)) {
             Some(items) => items,
             None => node.clone(),
         };
-        let (items, warnings) = items_node.deserialize_items_lossy::<MusicResponseItem>();
-        self.map_response(MapResult { c: items, warnings })
+        self.map_response_items(&items_node)
     }
 
     /// Map a ListMusicItem (album/playlist item, search result)
@@ -572,16 +626,11 @@ impl MusicListMapper {
 
         let title = c1.as_ref().map(|col| col.renderer.text.to_string());
 
-        let first_tn = item
-            .thumbnail
-            .music_thumbnail_renderer
-            .thumbnail
-            .thumbnails
-            .first();
+        let first_tn = item.thumbnail.music_thumbnail_renderer.thumbnails.first();
 
         let music_page = item
             .navigation_endpoint
-            .and_then(NavigationEndpoint::music_page)
+            .and_then(|endpoint| url_endpoint::music_page(&endpoint))
             .or_else(|| {
                 c1.and_then(|c1| {
                     c1.renderer
@@ -900,7 +949,7 @@ impl MusicListMapper {
                         let handle = map_channel_handle(subtitle_p2.as_ref())
                             .or_else(|| map_channel_handle(subtitle_p1.as_ref()));
 
-                        self.items.push(MusicItem::User(UserItem {
+                        self.items.push(MusicItem::User(model::UserItem {
                             id,
                             name: title,
                             handle,
@@ -932,7 +981,7 @@ impl MusicListMapper {
         let subtitle_p1 = subtitle_parts.next();
         let subtitle_p2 = subtitle_parts.next();
 
-        match item.navigation_endpoint.music_page() {
+        match url_endpoint::music_page(&item.navigation_endpoint) {
             Some(music_page) => match music_page.typ {
                 MusicPageType::Track { vtype } => {
                     let (artists, by_va, view_count, duration) = if vtype == MusicVideoType::Episode
@@ -1068,7 +1117,7 @@ impl MusicListMapper {
     }
 
     /// Map a MusicCardShelf (used for the top search result)
-    pub fn map_card(&mut self, card: MusicCardShelf) -> Option<MusicItemType> {
+    fn map_card(&mut self, card: MusicCardShelf) -> Option<MusicItemType> {
         /*
         "Artist" " • " "<subscriber count>"
         "Album" " • " "<artist>"
@@ -1082,7 +1131,7 @@ impl MusicListMapper {
         let subtitle_p3 = subtitle_parts.next();
         let subtitle_p4 = subtitle_parts.next();
 
-        let item_type = match card.on_tap.music_page() {
+        let item_type = match url_endpoint::music_page(&card.on_tap) {
             Some(music_page) => match music_page.typ {
                 MusicPageType::Artist => {
                     let subscriber_count = subtitle_p2.and_then(|p| {
@@ -1204,7 +1253,7 @@ impl MusicListMapper {
                     let handle = map_channel_handle(subtitle_p2.as_ref())
                         .or_else(|| map_channel_handle(subtitle_p1.as_ref()));
 
-                    self.items.push(MusicItem::User(UserItem {
+                    self.items.push(MusicItem::User(model::UserItem {
                         id: music_page.id,
                         name: card.title,
                         handle,
@@ -1221,17 +1270,39 @@ impl MusicListMapper {
             }
         };
 
-        self.map_response(card.contents);
+        self.map_response_value(card.contents);
 
         item_type
     }
 
-    pub fn add_item(&mut self, item: MusicItem) {
+    fn add_item(&mut self, item: MusicItem) {
         self.items.push(item);
     }
 
-    pub fn add_response_item(&mut self, item: MusicResponseItem) -> Option<MusicItemType> {
-        match self.map_item(item) {
+    fn add_response_item_node(&mut self, item: &JsonNode<'_>) -> Option<MusicItemType> {
+        let result = if let Some(item) = item
+            .query(ytq!(.musicResponsiveListItemRenderer))
+            .and_then(|node| node.deserialize::<ListMusicItem>().ok())
+        {
+            self.map_list_item(item)
+        } else if let Some(item) = item
+            .query(ytq!(.musicTwoRowItemRenderer))
+            .and_then(|node| node.deserialize::<CoverMusicItem>().ok())
+        {
+            self.map_tile(item)
+        } else if let Some(endpoint) = item
+            .query(ytq!(.continuationItemRenderer.continuationEndpoint))
+            .and_then(|node| node.deserialize::<JsonValue>().ok())
+        {
+            if self.ctoken.is_none() {
+                self.ctoken = continuation_token(&endpoint);
+            }
+            Ok(None)
+        } else {
+            Ok(None)
+        };
+
+        match result {
             Ok(et) => et,
             Err(e) => {
                 self.warnings.push(e);
@@ -1240,18 +1311,18 @@ impl MusicListMapper {
         }
     }
 
-    pub fn add_warnings(&mut self, warnings: &mut Vec<String>) {
+    fn add_warnings(&mut self, warnings: &mut Vec<String>) {
         self.warnings.append(warnings);
     }
 
-    pub fn items(self) -> MapResult<Vec<MusicItem>> {
+    fn items(self) -> MapResult<Vec<MusicItem>> {
         MapResult {
             c: self.items,
             warnings: self.warnings,
         }
     }
 
-    pub fn conv_items<T: FromYtItem>(self) -> MapResult<Vec<T>> {
+    fn conv_items<T: FromYtItem>(self) -> MapResult<Vec<T>> {
         MapResult {
             c: self
                 .items
@@ -1262,7 +1333,7 @@ impl MusicListMapper {
         }
     }
 
-    pub fn group_items(self) -> MapResult<GroupedMusicItems> {
+    fn group_items(self) -> MapResult<GroupedMusicItems> {
         let mut tracks = Vec::new();
         let mut albums = Vec::new();
         let mut artists = Vec::new();
@@ -1290,7 +1361,7 @@ impl MusicListMapper {
     }
 
     #[cfg(feature = "userdata")]
-    pub fn conv_history_items(
+    fn conv_history_items(
         self,
         date_txt: Option<String>,
         utc_offset: UtcOffset,
@@ -1315,6 +1386,132 @@ impl MusicListMapper {
                 }),
         );
     }
+}
+
+pub(crate) fn map_music_items<T: FromYtItem>(
+    node: &JsonNode<'_>,
+    lang: Language,
+) -> (MapResult<Vec<T>>, Option<String>) {
+    let mut mapper = MusicItemParser::new(lang);
+    mapper.map_response_node(node);
+    let ctoken = mapper.ctoken.clone();
+    (mapper.conv_items(), ctoken)
+}
+
+pub(crate) fn map_music_items_value<T: FromYtItem>(
+    value: JsonValue,
+    lang: Language,
+) -> (MapResult<Vec<T>>, Option<String>) {
+    let mut mapper = MusicItemParser::new(lang);
+    mapper.map_response_value(value);
+    let ctoken = mapper.ctoken.clone();
+    (mapper.conv_items(), ctoken)
+}
+
+pub(crate) fn map_album_track_items(
+    value: JsonValue,
+    lang: Language,
+    artists: Vec<ArtistId>,
+    by_va: bool,
+    album: AlbumId,
+) -> (MapResult<Vec<TrackItem>>, Option<String>) {
+    let mut mapper = MusicItemParser::with_album(lang, artists, by_va, album);
+    mapper.map_response_value(value);
+    let ctoken = mapper.ctoken.clone();
+    (mapper.conv_items(), ctoken)
+}
+
+pub(crate) fn map_grouped_music_items_values(
+    values: impl IntoIterator<Item = (JsonValue, AlbumType)>,
+    lang: Language,
+    artist: Option<ArtistId>,
+) -> (MapResult<GroupedMusicItems>, Option<String>) {
+    let mut mapper = match artist {
+        Some(artist) => MusicItemParser::with_artist(lang, artist),
+        None => MusicItemParser::new(lang),
+    };
+    for (value, album_type) in values {
+        mapper.album_type = album_type;
+        mapper.map_response_value(value);
+    }
+    let ctoken = mapper.ctoken.clone();
+    (mapper.group_items(), ctoken)
+}
+
+pub(crate) fn map_music_item_card(
+    card: MusicCardShelf,
+    lang: Language,
+) -> (
+    MapResult<Vec<MusicItem>>,
+    Option<String>,
+    Option<MusicItemType>,
+) {
+    let mut mapper = MusicItemParser::new(lang);
+    let item_type = mapper.map_card(card);
+    let ctoken = mapper.ctoken.clone();
+    (mapper.items(), ctoken, item_type)
+}
+
+pub(crate) fn map_search_suggestion_item(
+    item: &JsonNode<'_>,
+    lang: Language,
+) -> (
+    MapResult<Vec<MusicItem>>,
+    Option<String>,
+    Option<MusicItemType>,
+) {
+    let mut mapper = MusicItemParser::new_search_suggest(lang);
+    let item_type = mapper.add_response_item_node(item);
+    let ctoken = mapper.ctoken.clone();
+    (mapper.items(), ctoken, item_type)
+}
+
+pub(crate) fn map_music_continuation_items<'a>(
+    root: &JsonNode<'_>,
+    lang: Language,
+    artist: Option<ArtistId>,
+    values: impl IntoIterator<Item = JsonValue>,
+    items_nodes: impl IntoIterator<Item = JsonNode<'a>>,
+    extra_items: impl IntoIterator<Item = MapResult<MusicItem>>,
+) -> (MapResult<Vec<MusicItem>>, Option<String>) {
+    let mut mapper = match artist {
+        Some(artist) => MusicItemParser::with_artist(lang, artist),
+        None => MusicItemParser::new(lang),
+    };
+    for value in values {
+        mapper.map_response_value(value);
+    }
+    for items in items_nodes {
+        mapper.map_response_node(&items);
+    }
+    for mut item in extra_items {
+        mapper.add_item(item.c);
+        mapper.add_warnings(&mut item.warnings);
+    }
+    if let Some(actions) = root.query(ytq!(.onResponseReceivedActions)) {
+        for action in actions.items() {
+            if let Some(items) = action.query(ytq!(
+                .(.appendContinuationItemsAction || .reloadContinuationItemsCommand).continuationItems
+            )) {
+                mapper.map_response_node(&items);
+            }
+        }
+    }
+    let ctoken = mapper.ctoken.clone();
+    (mapper.items(), ctoken)
+}
+
+#[cfg(feature = "userdata")]
+pub(crate) fn extend_music_history_items_value(
+    value: JsonValue,
+    lang: Language,
+    date_txt: Option<String>,
+    utc_offset: UtcOffset,
+    res: &mut MapResult<Vec<HistoryItem<TrackItem>>>,
+) {
+    let mut mapper = MusicItemParser::new(lang);
+    mapper.map_response_value(value);
+    mapper.conv_history_items(date_txt, utc_offset, res);
 }
 
 /// Map TextComponents containing artist names to a list of artists and a 'Various Artists' flag
@@ -1345,10 +1542,11 @@ pub(crate) fn map_artists(artists_p: Option<TextComponents>) -> (Vec<ArtistId>, 
 }
 
 fn map_artist_id_fallback(
-    menu: Option<MusicItemMenu>,
+    menu: Option<JsonValue>,
     fallback_artist: Option<&ArtistId>,
 ) -> Option<String> {
-    menu.and_then(|m| map_artist_id(m.menu_renderer.contents))
+    menu.as_ref()
+        .and_then(map_artist_id)
         .or_else(|| fallback_artist.and_then(|a| a.id.clone()))
 }
 
@@ -1358,25 +1556,31 @@ fn map_channel_handle(st: Option<&TextComponents>) -> Option<String> {
         .map(str::to_owned)
 }
 
-pub(crate) fn map_artist_id(entries: Vec<MusicItemMenuEntry>) -> Option<String> {
-    entries.into_iter().find_map(|i| {
-        if let NavigationEndpoint::Browse {
-            browse_endpoint, ..
-        } = i.menu_navigation_item_renderer.navigation_endpoint
-        {
-            browse_endpoint
-                .browse_endpoint_context_supported_configs
-                .and_then(|cfg| {
-                    if cfg.browse_endpoint_context_music_config.page_type == PageType::Artist {
-                        Some(browse_endpoint.browse_id)
-                    } else {
-                        None
-                    }
+pub(crate) fn map_artist_id(menu: &JsonValue) -> Option<String> {
+    menu.get("menuRenderer")
+        .and_then(|renderer| renderer.get("items"))
+        .and_then(|items| items.as_array())
+        .into_iter()
+        .flat_map(|items| items.iter())
+        .find_map(|item| {
+            item.get("menuNavigationItemRenderer")
+                .and_then(|item| item.get("navigationEndpoint"))
+                .and_then(url_endpoint::browse_endpoint)
+                .and_then(|ep| {
+                    let browse_endpoint = ep.browse_endpoint;
+                    browse_endpoint
+                        .browse_endpoint_context_supported_configs
+                        .and_then(|cfg| {
+                            if cfg.browse_endpoint_context_music_config.page_type
+                                == PageType::Artist
+                            {
+                                Some(browse_endpoint.browse_id)
+                            } else {
+                                None
+                            }
+                        })
                 })
-        } else {
-            None
-        }
-    })
+        })
 }
 
 pub(crate) fn map_album_type(txt: &str, lang: Language) -> AlbumType {
@@ -1437,6 +1641,79 @@ pub(crate) fn map_queue_item(item: QueueMusicItem, lang: Language) -> MapResult<
     }
 }
 
+/// Resolves the music header renderer from a top-level header node.
+pub(crate) fn music_header_node<'a>(node: &JsonNode<'a>) -> Option<JsonNode<'a>> {
+    node.query(ytq!(.musicDetailHeaderRenderer || .musicResponsiveHeaderRenderer))
+}
+
+/// Resolve a text field at the given `path` of a music header node.
+pub(crate) fn music_header_text(
+    header: &JsonNode<'_>,
+    path: crate::json::Query,
+) -> Option<String> {
+    header.text_at(path)
+}
+
+/// Resolve an attributed text (`TextComponents`) field at the given `path` of
+/// a music header node.
+pub(crate) fn music_header_components(
+    header: &JsonNode<'_>,
+    path: crate::json::Query,
+) -> Option<TextComponents> {
+    header
+        .query(path)
+        .and_then(|node| node.deserialize::<TextComponents>().ok())
+}
+
+/// Resolve the description (`TextComponents`) of a music header node.
+pub(crate) fn music_header_description(header: &JsonNode<'_>) -> Option<TextComponents> {
+    let description = header.query(ytq!(.description))?;
+    description
+        .query(ytq!(.musicDescriptionShelfRenderer.description))
+        .unwrap_or(description)
+        .deserialize()
+        .ok()
+}
+
+/// Resolve the `secondSubtitle` of a music header as a `Vec<String>` of plain
+/// text components.
+pub(crate) fn music_header_second_subtitle(header: &JsonNode<'_>) -> Vec<String> {
+    header
+        .query(ytq!(.secondSubtitle))
+        .and_then(|node| node.deserialize::<TextComponents>().ok())
+        .map(|components| {
+            components
+                .0
+                .into_iter()
+                .map(|component| component.as_str().to_owned())
+                .collect()
+        })
+        .unwrap_or_default()
+}
+
+/// Resolve the `menu` JSON value of a music header, falling back to a button
+/// under `buttons` if no menu is present.
+pub(crate) fn music_header_menu(header: &JsonNode<'_>) -> Option<JsonValue> {
+    header
+        .query(ytq!(.menu))
+        .and_then(|node| node.deserialize::<JsonValue>().ok())
+        .or_else(|| {
+            header.query(ytq!(.buttons)).and_then(|buttons| {
+                buttons
+                    .items()
+                    .into_iter()
+                    .find_map(|button| button.deserialize::<JsonValue>().ok())
+            })
+        })
+}
+
+/// Resolve the cover thumbnail of a music header.
+pub(crate) fn music_header_thumbnail(header: &JsonNode<'_>) -> Vec<crate::model::Thumbnail> {
+    header.query_thumbnails(ytq!(
+        .thumbnail.(.musicThumbnailRenderer || .croppedSquareThumbnailRenderer).thumbnail
+    ))
+}
+
 #[cfg(test)]
 mod tests {
     use std::{collections::BTreeMap, fs::File, io::BufReader};
@@ -1451,7 +1728,7 @@ mod tests {
         let json_path = path!(*TESTFILES / "dict" / "album_type_samples.json");
         let json_file = File::open(json_path).unwrap();
         let atype_samples: BTreeMap<Language, BTreeMap<String, String>> =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+            flexon::from_reader(BufReader::new(json_file)).unwrap();
 
         for (lang, entry) in &atype_samples {
             for (album_type_str, txt) in entry {

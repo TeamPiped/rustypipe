@@ -6,8 +6,8 @@ use std::{
 use once_cell::sync::Lazy;
 use rand::RngExt;
 use regex::Regex;
-use wreq::{header, Client};
 use time::OffsetDateTime;
+use wreq::{header, Client};
 
 use crate::{
     client::{PoToken, CONSENT_COOKIE, YOUTUBE_MUSIC_HOME_URL},

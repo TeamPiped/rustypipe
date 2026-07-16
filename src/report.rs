@@ -141,7 +141,7 @@ impl FileReporter {
     fn _report(&self, report: &Report) -> Result<(), String> {
         let report_path = get_report_path(&self.path, report, "json").map_err(|e| e.to_string())?;
         let file = File::create(&report_path).map_err(|e| e.to_string())?;
-        serde_json::to_writer_pretty(&file, &report).map_err(|e| e.to_string())?;
+        flexon::to_writer_pretty(&file, &report).map_err(|e| e.to_string())?;
         tracing::warn!(
             "created report: {}",
             report_path.to_str().unwrap_or_default()

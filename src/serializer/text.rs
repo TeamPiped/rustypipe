@@ -3,13 +3,14 @@ use std::{borrow::Cow, convert::TryFrom};
 use serde::{Deserialize, Deserializer};
 use serde_with::{serde_as, DefaultOnError, DeserializeAs, VecSkipError};
 
+use crate::json::JsonNode;
+
 use crate::{
     client::response::{
-        url_endpoint::{
-            MusicPage, MusicPageType, MusicVideoType, NavigationEndpoint, OnTap, PageType,
-        },
+        url_endpoint::{self, MusicPage, MusicPageType, MusicVideoType, OnTap, PageType},
         AttachmentRun,
     },
+    json::JsonValue,
     model::{richtext::Style, UrlTarget, Verification},
     util,
 };
@@ -116,6 +117,15 @@ pub(crate) enum TextComponent {
     },
 }
 
+impl Default for TextComponent {
+    fn default() -> Self {
+        Self::Text {
+            text: String::new(),
+            style: Style::default(),
+        }
+    }
+}
+
 /// YouTube's representation of a text with links. It consists of multiple
 /// runs aka components, which can be simple strings or links.
 #[derive(Deserialize)]
@@ -132,7 +142,7 @@ struct RichTextRun {
     text: String,
     #[serde(default)]
     #[serde_as(as = "DefaultOnError")]
-    navigation_endpoint: Option<NavigationEndpoint>,
+    navigation_endpoint: Option<JsonValue>,
     #[serde(default)]
     bold: bool,
     #[serde(default)]
@@ -222,7 +232,7 @@ struct AttributedTextRun {
 }
 
 enum AttributedTextRunContent {
-    Link(NavigationEndpoint, Option<String>),
+    Link(JsonValue, Option<String>),
     Style(Style),
 }
 
@@ -279,49 +289,51 @@ impl StyleRun {
 fn map_text_component(
     text: String,
     style: Style,
-    nav: Option<NavigationEndpoint>,
+    nav: Option<JsonValue>,
     verification: Verification,
 ) -> TextComponent {
-    match nav {
-        Some(NavigationEndpoint::Watch { watch_endpoint }) => TextComponent::Video {
+    let Some(nav) = nav else {
+        return TextComponent::Text { text, style };
+    };
+
+    if let Some(watch_endpoint) = url_endpoint::watch_endpoint(&nav) {
+        TextComponent::Video {
             text,
             video_id: watch_endpoint.video_id,
             start_time: watch_endpoint.start_time_seconds,
             vtype: watch_endpoint
                 .watch_endpoint_music_supported_configs
-                .watch_endpoint_music_config
                 .music_video_type,
-        },
-        Some(NavigationEndpoint::Browse {
-            browse_endpoint,
-            command_metadata,
-        }) => TextComponent::Browse {
-            page_type: match &browse_endpoint.browse_endpoint_context_supported_configs {
-                Some(bc) => bc.browse_endpoint_context_music_config.page_type,
-                None => match &command_metadata {
-                    Some(cm) => cm.web_command_metadata.web_page_type,
-                    None => return TextComponent::Text { text, style },
-                },
+        }
+    } else if let Some(browse) = url_endpoint::browse_endpoint(&nav) {
+        let browse_endpoint = browse.browse_endpoint;
+        let page_type = match &browse_endpoint.browse_endpoint_context_supported_configs {
+            Some(bc) => bc.browse_endpoint_context_music_config.page_type,
+            None => match &browse.command_metadata {
+                Some(cm) => cm.web_command_metadata.web_page_type,
+                None => return TextComponent::Text { text, style },
             },
+        };
+        TextComponent::Browse {
+            page_type,
             text,
             browse_id: browse_endpoint.browse_id,
             verification,
-        },
-        Some(NavigationEndpoint::Url { url_endpoint }) => TextComponent::Web {
+        }
+    } else if let Some(url_endpoint) = url_endpoint::url_endpoint(&nav) {
+        TextComponent::Web {
             text,
             url: url_endpoint.url,
-        },
-        Some(NavigationEndpoint::WatchPlaylist {
-            watch_playlist_endpoint,
-        }) => TextComponent::Browse {
+        }
+    } else if let Some(watch_playlist_endpoint) = url_endpoint::watch_playlist_endpoint(&nav) {
+        TextComponent::Browse {
             text,
             page_type: PageType::Playlist,
             browse_id: watch_playlist_endpoint.playlist_id,
             verification,
-        },
-        None | Some(NavigationEndpoint::CreatePlaylist { .. }) => {
-            TextComponent::Text { text, style }
         }
+    } else {
+        TextComponent::Text { text, style }
     }
 }
 
@@ -357,6 +369,26 @@ impl<'de> DeserializeAs<'de, TextComponents> for AttributedText {
         D: Deserializer<'de>,
     {
         let text = AttributedText::deserialize(deserializer)?;
+        text.into_text_components().map_err(serde::de::Error::custom)
+    }
+}
+
+impl AttributedText {
+    /// Build an `AttributedText` from a `JsonNode` and convert it to
+    /// `TextComponents`.
+    pub(crate) fn from_node(node: &JsonNode<'_>) -> Option<TextComponents> {
+        let text: Self = node.deserialize().ok()?;
+        text.into_text_components().ok()
+    }
+
+    /// Convert a parsed `AttributedText` into a `TextComponents`, applying the
+    /// same UTF-16-aware run-to-component logic used by the `AttributedText`
+    /// serde shim.
+    pub(crate) fn into_text_components(self) -> Result<TextComponents, String> {
+        let text = self;
+
+        let mut i_utf16 = 0;
+        let mut chars = text.content.chars();
 
         let mut i_utf16 = 0;
         let mut chars = text.content.chars();
@@ -457,8 +489,8 @@ impl<'de> DeserializeAs<'de, TextComponents> for AttributedText {
 
                     if let Some(txt_link) = txt_link.strip_prefix(['/', '•']) {
                         let txt_link = txt_link.trim_start();
-                        match (&link, label) {
-                            (NavigationEndpoint::Url { .. }, Some(label)) => {
+                        match (url_endpoint::url_endpoint(&link).is_some(), label) {
+                            (true, Some(label)) => {
                                 // Prefix chip-style web links with the service name from accessibility label
                                 // Example: `Twitter: aespa_official`
                                 if let Some(first_word) = label.split_whitespace().next() {
@@ -660,6 +692,39 @@ impl From<TextComponents> for crate::model::richtext::RichText {
     }
 }
 
+impl From<TextComponents> for TextComponent {
+    fn from(components: TextComponents) -> Self {
+        components
+            .0
+            .into_iter()
+            .next()
+            .unwrap_or(TextComponent::Text {
+                text: String::new(),
+                style: Default::default(),
+            })
+    }
+}
+
+impl From<TextComponents> for String {
+    fn from(components: TextComponents) -> Self {
+        components
+            .0
+            .into_iter()
+            .map(|c| c.into_string())
+            .collect()
+    }
+}
+
+impl From<TextComponents> for Option<String> {
+    fn from(components: TextComponents) -> Self {
+        if components.0.is_empty() {
+            None
+        } else {
+            Some(String::from(components))
+        }
+    }
+}
+
 impl TextComponent {
     pub fn new<S: Into<String>>(s: S) -> Self {
         Self::Text {
@@ -668,16 +733,11 @@ impl TextComponent {
         }
     }
 
-    pub fn as_str(&self) -> &str {
-        match self {
-            TextComponent::Video { text, .. }
-            | TextComponent::Browse { text, .. }
-            | TextComponent::Web { text, .. }
-            | TextComponent::Text { text, .. } => text,
-        }
+    pub fn into_string(self) -> String {
+        self.as_str().to_owned()
     }
 
-    pub fn into_string(self) -> String {
+    pub fn as_str(&self) -> &str {
         match self {
             TextComponent::Video { text, .. }
             | TextComponent::Browse { text, .. }
@@ -706,12 +766,7 @@ impl TextComponent {
 
 impl From<TextComponent> for String {
     fn from(value: TextComponent) -> Self {
-        match value {
-            TextComponent::Video { text, .. }
-            | TextComponent::Browse { text, .. }
-            | TextComponent::Web { text, .. }
-            | TextComponent::Text { text, .. } => text,
-        }
+        value.into_string()
     }
 }
 
@@ -851,8 +906,8 @@ mod tests {
             txt: Vec<String>,
         }
 
-        let res_str = serde_json::from_str::<S>(test_json).unwrap();
-        let res_vec = serde_json::from_str::<SVec>(test_json).unwrap();
+        let res_str = flexon::from_str::<S>(test_json).unwrap();
+        let res_vec = flexon::from_str::<SVec>(test_json).unwrap();
 
         assert_eq!(res_str.txt, exp.join(""));
         assert_eq!(res_vec.txt, exp);
@@ -895,7 +950,7 @@ mod tests {
             }
         }"#;
 
-        let res = serde_json::from_str::<SLink>(test_json).unwrap();
+        let res = flexon::from_str::<SLink>(test_json).unwrap();
         insta::assert_debug_snapshot!(res, @r###"
         SLink {
             ln: Video {
@@ -930,7 +985,7 @@ mod tests {
             }
         }"#;
 
-        let res = serde_json::from_str::<SLink>(test_json).unwrap();
+        let res = flexon::from_str::<SLink>(test_json).unwrap();
         insta::assert_debug_snapshot!(res, @r###"
         SLink {
             ln: Browse {
@@ -965,7 +1020,7 @@ mod tests {
             }
         }"#;
 
-        let res = serde_json::from_str::<SLink>(test_json).unwrap();
+        let res = flexon::from_str::<SLink>(test_json).unwrap();
         insta::assert_debug_snapshot!(res, @r###"
         SLink {
             ln: Browse {
@@ -990,7 +1045,7 @@ mod tests {
             }
         }"#;
 
-        let res = serde_json::from_str::<SLink>(test_json).unwrap();
+        let res = flexon::from_str::<SLink>(test_json).unwrap();
         insta::assert_debug_snapshot!(res, @r###"
         SLink {
             ln: Text {
@@ -1030,7 +1085,7 @@ mod tests {
             }
         }"#;
 
-        let res = serde_json::from_str::<SLink>(test_json).unwrap();
+        let res = flexon::from_str::<SLink>(test_json).unwrap();
         insta::assert_debug_snapshot!(res, @r###"
         SLink {
             ln: Web {
@@ -1079,7 +1134,7 @@ mod tests {
             }
         }"#;
 
-        let res = serde_json::from_str::<SLinks>(test_json).unwrap();
+        let res = flexon::from_str::<SLinks>(test_json).unwrap();
         insta::assert_debug_snapshot!(res, @r###"
         SLinks {
             ln: TextComponents(
@@ -1114,7 +1169,7 @@ mod tests {
     fn t_links_empty() {
         let test_json = r#"{"ln": {}}"#;
 
-        let res = serde_json::from_str::<SLinks>(test_json).unwrap();
+        let res = flexon::from_str::<SLinks>(test_json).unwrap();
         assert!(res.ln.0.is_empty());
     }
 
@@ -1122,7 +1177,7 @@ mod tests {
     fn t_attributed_description() {
         let json_path = path!(*TESTFILES / "text" / "attributed_description.json");
         let json_file = File::open(json_path).unwrap();
-        let res: SAttributed = serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let res: SAttributed = flexon::from_reader(BufReader::new(json_file)).unwrap();
         insta::assert_debug_snapshot!(res);
     }
 
@@ -1130,7 +1185,7 @@ mod tests {
     fn styled_comment() {
         let json_path = path!(*TESTFILES / "text" / "styled_comment.json");
         let json_file = File::open(json_path).unwrap();
-        let res: SAttributed = serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let res: SAttributed = flexon::from_reader(BufReader::new(json_file)).unwrap();
         insta::assert_debug_snapshot!(res);
     }
 

@@ -44,7 +44,7 @@ pub async fn collect_chan_prefixes() {
     }
 
     let file = File::create(json_path).unwrap();
-    serde_json::to_writer_pretty(file, &res).unwrap();
+    flexon::to_writer_pretty(file, &res).unwrap();
 }
 
 pub fn write_samples_to_dict() {
@@ -52,7 +52,7 @@ pub fn write_samples_to_dict() {
 
     let json_file = File::open(json_path).unwrap();
     let collected: BTreeMap<Language, Entry> =
-        serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        flexon::from_reader(BufReader::new(json_file)).unwrap();
     let mut dict = util::read_dict();
     let langs = dict.keys().copied().collect::<Vec<_>>();
 

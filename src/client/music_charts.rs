@@ -1,6 +1,6 @@
 use crate::{
     error::{Error, ExtractionError},
-    json::{JsonDoc, yt_single_column_sections, ytq},
+    json::{yt_single_column_sections, ytq, JsonDoc, JsonValue},
     model::{MusicCharts, TrackItem},
     param::Country,
     request_body::ytbody,
@@ -8,12 +8,16 @@ use crate::{
 };
 
 use super::{
-    response::{self, music_item::MusicListMapper, url_endpoint::MusicPageType},
-    ClientType, MapJsonResponse, MapRespCtx, RustyPipeQuery,
+    response::{
+        self,
+        music_item::{map_music_items, music_carousel_node, music_item_contents},
+        url_endpoint::MusicPageType,
+    },
+    ClientType, MapEndpoint, MapRespCtx, RustyPipeQuery,
 };
 
 #[derive(Debug)]
-struct MusicChartsJson;
+struct MusicChartsEndpoint;
 
 impl RustyPipeQuery {
     /// Get the YouTube Music charts for a given country
@@ -27,7 +31,7 @@ impl RustyPipeQuery {
             })),
         });
 
-        self.execute_request::<MusicChartsJson, _, _>(
+        self.execute_request::<MusicChartsEndpoint, _, _>(
             ClientType::DesktopMusic,
             "music_charts",
             "",
@@ -54,8 +58,8 @@ fn map_charts_countries(root: &crate::json::JsonNode<'_>) -> std::collections::B
         .unwrap_or_default()
 }
 
-impl MapJsonResponse<MusicCharts> for MusicChartsJson {
-    fn map_json_response(
+impl MapEndpoint<MusicCharts> for MusicChartsEndpoint {
+    fn map(
         json: &JsonDoc,
         ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<MusicCharts>, ExtractionError> {
@@ -65,12 +69,13 @@ impl MapJsonResponse<MusicCharts> for MusicChartsJson {
 
             let mut top_playlist_id = None;
             let mut trending_playlist_id = None;
-            let mut mapper_top = MusicListMapper::new(ctx.lang);
-            let mut mapper_trending = MusicListMapper::new(ctx.lang);
-            let mut mapper_other = MusicListMapper::new(ctx.lang);
+            let mut mapped_top: MapResult<Vec<TrackItem>> = MapResult::default();
+            let mut mapped_trending: MapResult<Vec<TrackItem>> = MapResult::default();
+            let mut other_items = Vec::new();
+            let mut other_warnings = Vec::new();
 
             for section in sections.items() {
-                let Some(shelf) = section.query(ytq!(.musicCarouselShelfRenderer)) else {
+                let Some(shelf) = music_carousel_node(&section) else {
                     continue;
                 };
                 let page = shelf
@@ -78,47 +83,55 @@ impl MapJsonResponse<MusicCharts> for MusicChartsJson {
                         .header.musicCarouselShelfBasicHeaderRenderer.moreContentButton
                             .buttonRenderer.navigationEndpoint
                     ))
+                    .and_then(|endpoint| endpoint.deserialize::<JsonValue>().ok())
                     .and_then(|endpoint| {
-                        endpoint
-                            .deserialize::<response::url_endpoint::NavigationEndpoint>()
-                            .ok()
-                            .and_then(|ep| ep.music_page())
-                            .map(|mp| (mp.typ, mp.id))
+                        response::url_endpoint::music_page(&endpoint).map(|mp| (mp.typ, mp.id))
                     });
 
-                let Some(contents) = shelf.query(ytq!(.contents)) else {
+                let Some(contents) = music_item_contents(&shelf) else {
                     continue;
                 };
 
                 match page {
                     Some((MusicPageType::Playlist { .. }, id)) if top_playlist_id.is_none() => {
-                        mapper_top.map_response_node(&contents);
+                        mapped_top.extend_vec(map_music_items(&contents, ctx.lang).0);
                         top_playlist_id = Some(id);
                     }
-                    Some((MusicPageType::Playlist { .. }, id)) if trending_playlist_id.is_none() => {
-                        mapper_trending.map_response_node(&contents);
+                    Some((MusicPageType::Playlist { .. }, id))
+                        if trending_playlist_id.is_none() =>
+                    {
+                        mapped_trending.extend_vec(map_music_items(&contents, ctx.lang).0);
                         trending_playlist_id = Some(id);
                     }
                     _ => {
-                        mapper_other.map_response_node(&contents);
+                        let mut mapped: MapResult<Vec<crate::model::MusicItem>> =
+                            map_music_items(&contents, ctx.lang).0;
+                        other_items.append(&mut mapped.c);
+                        other_warnings.append(&mut mapped.warnings);
                     }
                 }
             }
 
-            let mapped_top = mapper_top.conv_items::<TrackItem>();
-            let mapped_trending = mapper_trending.conv_items::<TrackItem>();
-            let mapped_other = mapper_other.group_items();
+            let mut artists = Vec::new();
+            let mut playlists = Vec::new();
+            for item in other_items {
+                match item {
+                    crate::model::MusicItem::Artist(artist) => artists.push(artist),
+                    crate::model::MusicItem::Playlist(playlist) => playlists.push(playlist),
+                    _ => {}
+                }
+            }
 
             let mut warnings = mapped_top.warnings;
             warnings.extend(mapped_trending.warnings);
-            warnings.extend(mapped_other.warnings);
+            warnings.extend(other_warnings);
 
             Ok(MapResult {
                 c: MusicCharts {
                     top_tracks: mapped_top.c,
                     trending_tracks: mapped_trending.c,
-                    artists: mapped_other.c.artists,
-                    playlists: mapped_other.c.playlists,
+                    artists,
+                    playlists,
                     top_playlist_id,
                     trending_playlist_id,
                     available_countries: countries,
@@ -145,7 +158,7 @@ mod tests {
         let json_path = Path::new(&filename);
         let json = JsonDoc::new(fs::read_to_string(json_path).unwrap());
         let map_res: MapResult<MusicCharts> =
-            MusicChartsJson::map_json_response(&json, &MapRespCtx::test("")).unwrap();
+            MusicChartsEndpoint::map(&json, &MapRespCtx::test("")).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),

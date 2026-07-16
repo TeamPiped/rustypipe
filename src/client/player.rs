@@ -12,7 +12,7 @@ use url::Url;
 use crate::{
     deobfuscate::{DeobfData, Deobfuscator},
     error::{internal::DeobfError, AuthError, Error, ExtractionError, UnavailabilityReason},
-    json::{JsonDoc, JsonNode, yt_response_visitor_data, ytq},
+    json::{ytq, JsonDoc, JsonNode},
     model::{
         traits::QualityOrd, AudioCodec, AudioFormat, AudioStream, AudioTrack, DrmLicense,
         DrmSystem, Frameset, Subtitle, VideoCodec, VideoFormat, VideoPlayer, VideoPlayerDetails,
@@ -27,14 +27,14 @@ use super::{
         self,
         player::{self, Format},
     },
-    ClientType, MapJsonResponse, MapRespCtx, MapRespOptions, MapResult, PoToken, RustyPipeQuery,
+    ClientType, MapEndpoint, MapRespCtx, MapRespOptions, MapResult, PoToken, RustyPipeQuery,
 };
 
 #[derive(Debug)]
-struct PlayerJson;
+struct PlayerEndpoint;
 
 #[derive(Debug)]
-struct DrmLicenseJson;
+struct DrmLicenseEndpoint;
 
 #[derive(Default)]
 struct PlayerPoToken {
@@ -108,7 +108,7 @@ impl RustyPipeQuery {
                 (visitor_data.to_owned(), Some(visitor_data))
             };
 
-            if bg.po_token_cache {
+            if bg.botguard_bin.as_ref().is_some_and(|b| b.po_token_cache) {
                 let session_token = self.get_session_po_token(&ident).await?;
                 Ok(PlayerPoToken {
                     visitor_data,
@@ -116,7 +116,30 @@ impl RustyPipeQuery {
                     content_po_token: None,
                 })
             } else {
-                let (po_tokens, valid_until) = self.get_po_tokens(&[video_id, &ident]).await?;
+                // The botguard binary path doesn't support
+                // binding — it always mints with just the
+                // video-id identifier. The chromey path does,
+                // and we want the bound minter for the same
+                // reason player.js does: a content token
+                // minted by a bound minter is what GVS will
+                // accept as a valid attestation refresh.
+                let deobf = self.client.get_deobf_data().await.ok();
+                let sts = deobf.as_ref().map(|d| d.sts.as_str());
+                // Navigate the chromey page to this video's
+                // watch page before minting — the botguard
+                // VM fingerprints the page's navigation
+                // context, and minting on the watch page
+                // produces PoTokens GVS accepts as
+                // attestation refreshes.
+                let watch_url = format!("https://www.youtube.com/watch?v={}", video_id);
+                let (po_tokens, valid_until) = self
+                    .get_po_tokens(
+                        &[video_id, &ident],
+                        visitor_data.as_deref(),
+                        sts,
+                        Some(&watch_url),
+                    )
+                    .await?;
                 let mut po_tokens = po_tokens.into_iter();
                 let po_token = po_tokens.next().unwrap();
                 let session_po_token = po_tokens.next().unwrap();
@@ -165,9 +188,23 @@ impl RustyPipeQuery {
             }
         )?;
 
+        // The browser sends a fuller playbackContext than just
+        // signatureTimestamp+referer. It also includes `vis`,
+        // `splay`, `autoCaptionsDefaultOn`, `html5Preference`, and
+        // `lactMilliseconds`. These tell YouTube we are a real
+        // embedded player that supports capabilities like pcm2cms
+        // (CMS audio) and the SABR streaming protocol. Without them
+        // the response omits pcm2cms from lsparams, and the
+        // resulting SABR URL signature gets rejected by GVS with
+        // 403 Forbidden.
         let playback_context = deobf.as_ref().map(|deobf| {
             ytbody!({
                 "contentPlaybackContext": ytbody!({
+                    "vis": 0,
+                    "splay": false,
+                    "autoCaptionsDefaultOn": false,
+                    "html5Preference": "HTML5_PREF_WANTS",
+                    "lactMilliseconds": "-1",
                     "signatureTimestamp": &deobf.sts,
                     "referer": format!("https://www.youtube.com/watch?v={video_id}"),
                 }),
@@ -184,7 +221,7 @@ impl RustyPipeQuery {
             })),
         });
 
-        self.execute_request_ctx::<PlayerJson, _, _>(
+        self.execute_request_ctx::<PlayerEndpoint, _, _>(
             client_type,
             "player",
             video_id,
@@ -195,6 +232,7 @@ impl RustyPipeQuery {
                 deobf: deobf.as_ref(),
                 unlocalized: true,
                 session_po_token: player_po.session_po_token,
+                content_po_token: player_po.content_po_token,
                 ..Default::default()
             },
         )
@@ -242,7 +280,7 @@ impl RustyPipeQuery {
 
         self.clone()
             .authenticated()
-            .execute_request::<DrmLicenseJson, _, _>(
+            .execute_request::<DrmLicenseEndpoint, _, _>(
                 client_type,
                 "drm_license",
                 video_id,
@@ -268,10 +306,27 @@ fn deserialize_player_fields(root: &JsonNode<'_>) -> Result<PlayerFields, Extrac
         playability_status: root
             .require(ytq!(.playabilityStatus), "playability status")?
             .deserialize()?,
-        streaming_data: root
-            .query(ytq!(.streamingData))
-            .map(|node| node.deserialize())
-            .transpose()?,
+        streaming_data: {
+            let sd: Option<player::StreamingData> = root
+                .query(ytq!(.streamingData))
+                .map(|node| node.deserialize())
+                .transpose()?;
+            // `ustreamerConfig` lives at
+            // `playerConfig.mediaCommonConfig.mediaUstreamerRequestConfig.videoPlaybackUstreamerConfig`
+            // rather than at the top level of `streamingData`. Pull it from
+            // the nested path so SABR downloads can find it.
+            sd.map(|mut sd| {
+                if sd.ustreamer_config.is_none() {
+                    sd.ustreamer_config = root
+                        .query(ytq!(
+                            .playerConfig.mediaCommonConfig
+                                .mediaUstreamerRequestConfig.videoPlaybackUstreamerConfig
+                        ))
+                        .and_then(|n| n.as_str());
+                }
+                sd
+            })
+        },
         captions: root
             .query(ytq!(.captions))
             .map(|node| node.deserialize())
@@ -300,258 +355,271 @@ fn map_player_fields(
     visitor_data: Option<String>,
     ctx: &MapRespCtx<'_>,
 ) -> Result<MapResult<VideoPlayer>, ExtractionError> {
-        let mut warnings = vec![];
+    let mut warnings = vec![];
 
-        // Check playability status
-        let is_live = match fields.playability_status {
-            response::player::PlayabilityStatus::Ok { live_streamability } => {
-                live_streamability.is_some()
+    // Check playability status
+    let is_live = match fields.playability_status {
+        response::player::PlayabilityStatus::Ok { live_streamability } => {
+            live_streamability.is_some()
+        }
+        response::player::PlayabilityStatus::Unplayable {
+            reason,
+            error_screen,
+        } => {
+            let mut msg = reason;
+            if let Some(error_screen) = error_screen.player_error_message_renderer {
+                msg.push_str(" - ");
+                msg.push_str(&error_screen.subreason);
             }
-            response::player::PlayabilityStatus::Unplayable {
-                reason,
-                error_screen,
-            } => {
-                let mut msg = reason;
-                if let Some(error_screen) = error_screen.player_error_message_renderer {
-                    msg.push_str(" - ");
-                    msg.push_str(&error_screen.subreason);
-                }
 
-                let reason = if error_screen.player_captcha_view_model.is_some() {
-                    UnavailabilityReason::Captcha
-                } else {
-                    msg.split_whitespace()
-                        .find_map(|word| match word {
-                            "payment" => Some(UnavailabilityReason::Paid),
-                            "Premium" => Some(UnavailabilityReason::Premium),
-                            "members-only" => Some(UnavailabilityReason::MembersOnly),
-                            "country" => Some(UnavailabilityReason::Geoblocked),
-                            "version" | "websites" => Some(UnavailabilityReason::UnsupportedClient),
-                            "bot" => Some(UnavailabilityReason::IpBan),
-                            "VPN/Proxy" => Some(UnavailabilityReason::VpnBan),
-                            "later." => Some(UnavailabilityReason::TryAgain),
-                            _ => None,
-                        })
-                        .unwrap_or_default()
-                };
-                return Err(ExtractionError::Unavailable { reason, msg });
-            }
-            response::player::PlayabilityStatus::LoginRequired { reason, messages } => {
-                let mut msg = reason;
-                for m in &messages {
-                    if !msg.is_empty() {
-                        msg.push(' ');
-                    }
-                    msg.push_str(m);
-                }
-
-                // reason (age restriction): "Sign in to confirm your age"
-                // or: "This video may be inappropriate for some users."
-                // reason (private): "This video is private"
-                let reason = msg
-                    .split_whitespace()
+            let reason = if error_screen.player_captcha_view_model.is_some() {
+                UnavailabilityReason::Captcha
+            } else {
+                msg.split_whitespace()
                     .find_map(|word| match word {
-                        "age" | "inappropriate" => Some(UnavailabilityReason::AgeRestricted),
-                        "private" => Some(UnavailabilityReason::Private),
+                        "payment" => Some(UnavailabilityReason::Paid),
+                        "Premium" => Some(UnavailabilityReason::Premium),
+                        "members-only" => Some(UnavailabilityReason::MembersOnly),
+                        "country" => Some(UnavailabilityReason::Geoblocked),
+                        "version" | "websites" => Some(UnavailabilityReason::UnsupportedClient),
                         "bot" => Some(UnavailabilityReason::IpBan),
+                        "VPN/Proxy" => Some(UnavailabilityReason::VpnBan),
+                        "later." => Some(UnavailabilityReason::TryAgain),
                         _ => None,
                     })
-                    .unwrap_or_default();
-                return Err(ExtractionError::Unavailable { reason, msg });
-            }
-            response::player::PlayabilityStatus::LiveStreamOffline { reason } => {
-                return Err(ExtractionError::Unavailable {
-                    reason: UnavailabilityReason::OfflineLivestream,
-                    msg: reason,
-                });
-            }
-            response::player::PlayabilityStatus::Error { reason } => {
-                // reason (censored): "This video has been removed for violating YouTube's policy on hate speech. Learn more about combating hate speech in your country."
-                // reason: "This video is unavailable"
-                return Err(ExtractionError::Unavailable {
-                    reason: UnavailabilityReason::Deleted,
-                    msg: reason,
-                });
-            }
-        };
-
-        let streaming_data =
-            fields.streaming_data
-                .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
-                    "no streaming data",
-                )))?;
-        let video_details =
-            fields.video_details
-                .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
-                    "no video details",
-                )))?;
-
-        if video_details.video_id != ctx.id {
-            return Err(ExtractionError::WrongResult(format!(
-                "video id {}, expected {}",
-                video_details.video_id, ctx.id
-            )));
+                    .unwrap_or_default()
+            };
+            return Err(ExtractionError::Unavailable { reason, msg });
         }
-        // Sometimes YouTube Desktop does not output any URLs for adaptive streams.
-        // Since this is currently rare, it is best to retry the request in this case.
-        if !is_live
-            && !streaming_data.adaptive_formats.c.is_empty()
-            && streaming_data
-                .adaptive_formats
-                .c
-                .iter()
-                .all(|f| f.url.is_none() && f.signature_cipher.is_none())
-        {
+        response::player::PlayabilityStatus::LoginRequired { reason, messages } => {
+            let mut msg = reason;
+            for m in &messages {
+                if !msg.is_empty() {
+                    msg.push(' ');
+                }
+                msg.push_str(m);
+            }
+
+            // reason (age restriction): "Sign in to confirm your age"
+            // or: "This video may be inappropriate for some users."
+            // reason (private): "This video is private"
+            let reason = msg
+                .split_whitespace()
+                .find_map(|word| match word {
+                    "age" | "inappropriate" => Some(UnavailabilityReason::AgeRestricted),
+                    "private" => Some(UnavailabilityReason::Private),
+                    "bot" => Some(UnavailabilityReason::IpBan),
+                    _ => None,
+                })
+                .unwrap_or_default();
+            return Err(ExtractionError::Unavailable { reason, msg });
+        }
+        response::player::PlayabilityStatus::LiveStreamOffline { reason } => {
             return Err(ExtractionError::Unavailable {
-                reason: UnavailabilityReason::TryAgain,
-                msg: "no adaptive stream URLs".to_owned(),
+                reason: UnavailabilityReason::OfflineLivestream,
+                msg: reason,
             });
         }
+        response::player::PlayabilityStatus::Error { reason } => {
+            // reason (censored): "This video has been removed for violating YouTube's policy on hate speech. Learn more about combating hate speech in your country."
+            // reason: "This video is unavailable"
+            return Err(ExtractionError::Unavailable {
+                reason: UnavailabilityReason::Deleted,
+                msg: reason,
+            });
+        }
+    };
 
-        let video_info = VideoPlayerDetails {
-            id: video_details.video_id,
-            name: video_details.title,
-            description: video_details.short_description,
-            duration: video_details.length_seconds,
-            thumbnail: video_details.thumbnail.into(),
-            channel_id: video_details.channel_id,
-            channel_name: video_details.author,
-            view_count: video_details.view_count,
-            keywords: video_details.keywords,
-            is_live,
-            is_live_content: video_details.is_live_content,
-        };
+    let streaming_data =
+        fields
+            .streaming_data
+            .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
+                "no streaming data",
+            )))?;
+    let video_details = fields
+        .video_details
+        .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
+            "no video details",
+        )))?;
 
-        let streams = if !is_live {
-            let mut mapper = StreamsMapper::new(
-                ctx.deobf,
-                ctx.session_po_token.as_ref().map(|t| t.po_token.as_str()),
-            )?;
-            mapper.map_streams(streaming_data.formats);
-            mapper.map_streams(streaming_data.adaptive_formats);
-            let mut res = mapper.output()?;
-            warnings.append(&mut res.warnings);
-            res.c
-        } else {
-            Streams::default()
-        };
+    if video_details.video_id != ctx.id {
+        return Err(crate::client::check_id_matches(
+            &video_details.video_id,
+            ctx.id,
+            "video",
+        ));
+    }
+    // Sometimes YouTube Desktop does not output any URLs for adaptive streams.
+    // Since this is currently rare, it is best to retry the request in this case
+    // — *unless* the server is also advertising SABR, in which case
+    // "no adaptive URLs" is the normal SABR response and we should keep going.
+    if !is_live
+        && streaming_data.server_abr_streaming_url.is_none()
+        && !streaming_data.adaptive_formats.c.is_empty()
+        && streaming_data
+            .adaptive_formats
+            .c
+            .iter()
+            .all(|f| f.url.is_none() && f.signature_cipher.is_none())
+    {
+        return Err(ExtractionError::Unavailable {
+            reason: UnavailabilityReason::TryAgain,
+            msg: "no adaptive stream URLs".to_owned(),
+        });
+    }
 
-        let subtitles = fields.captions.map_or(Vec::new(), |captions| {
-            captions
-                .player_captions_tracklist_renderer
-                .caption_tracks
+    let video_info = VideoPlayerDetails {
+        id: video_details.video_id,
+        name: video_details.title,
+        description: video_details.short_description,
+        duration: video_details.length_seconds,
+        thumbnail: video_details.thumbnail.into(),
+        channel_id: video_details.channel_id,
+        channel_name: video_details.author,
+        view_count: video_details.view_count,
+        keywords: video_details.keywords,
+        is_live,
+        is_live_content: video_details.is_live_content,
+    };
+
+    let streams = if !is_live {
+        let mut mapper = StreamsMapper::new(
+            ctx.deobf,
+            ctx.session_po_token.as_ref().map(|t| t.po_token.as_str()),
+        )?;
+        mapper.map_streams(streaming_data.formats);
+        mapper.map_streams(streaming_data.adaptive_formats);
+        let mut res = mapper.output()?;
+        warnings.append(&mut res.warnings);
+        res.c
+    } else {
+        Streams::default()
+    };
+
+    let subtitles = fields.captions.map_or(Vec::new(), |captions| {
+        captions
+            .tracklist
+            .caption_tracks
+            .into_iter()
+            .map(|c| {
+                let lang_auto = c.name.strip_suffix(" (auto-generated)");
+                Subtitle {
+                    url: c.base_url,
+                    lang: c.language_code,
+                    lang_name: lang_auto.unwrap_or(&c.name).to_owned(),
+                    auto_generated: lang_auto.is_some(),
+                }
+            })
+            .collect()
+    });
+
+    let preview_frames = fields
+        .storyboards
+        .and_then(|sb| {
+            let spec = sb.storyboard.spec;
+            let mut spec_parts = spec.split('|');
+            let url_tmpl = spec_parts.next()?;
+
+            Some(
+                spec_parts
+                    .enumerate()
+                    .filter_map(|(i, fs_spec)| {
+                        // Example: 160#90#131#5#5#2000#M$M#rs$AOn4CLCV3TJ2Nty5fbw2r-Lqg4VDOZcVvQ
+                        let mut parts = fs_spec.split('#');
+
+                        let frame_width = parts.next()?.parse().ok()?;
+                        let frame_height = parts.next()?.parse().ok()?;
+                        let total_count = parts.next()?.parse().ok()?;
+                        let frames_per_page_x = parts.next()?.parse().ok()?;
+                        let frames_per_page_y = parts.next()?.parse().ok()?;
+                        let duration_per_frame = parts.next()?.parse().ok()?;
+
+                        let n = parts.next()?;
+                        let sigh = parts.next()?;
+
+                        let url = url_tmpl.replace("$L", &i.to_string()).replace("$N", n)
+                            + "&sigh="
+                            + sigh;
+
+                        let sprite_count =
+                            util::div_ceil(total_count, frames_per_page_x * frames_per_page_y);
+
+                        Some(Frameset {
+                            url_template: url,
+                            frame_width,
+                            frame_height,
+                            page_count: sprite_count,
+                            total_count,
+                            duration_per_frame,
+                            frames_per_page_x,
+                            frames_per_page_y,
+                        })
+                    })
+                    .collect(),
+            )
+        })
+        .unwrap_or_default();
+
+    let drm = streaming_data
+        .drm_params
+        .zip(fields.heartbeat_params.drm_session_id)
+        .map(|(drm_params, drm_session_id)| VideoPlayerDrm {
+            widevine_service_cert: fields
+                .player_config
+                .web_drm_config
+                .and_then(|c| c.widevine_service_cert)
+                .and_then(|c| data_encoding::BASE64URL.decode(c.as_bytes()).ok()),
+            drm_params,
+            authorized_track_types: streaming_data
+                .initial_authorized_drm_track_types
                 .into_iter()
-                .map(|c| {
-                    let lang_auto = c.name.strip_suffix(" (auto-generated)");
-                    Subtitle {
-                        url: c.base_url,
-                        lang: c.language_code,
-                        lang_name: lang_auto.unwrap_or(&c.name).to_owned(),
-                        auto_generated: lang_auto.is_some(),
-                    }
-                })
-                .collect()
+                .map(|t| t.into())
+                .collect(),
+            drm_session_id,
         });
 
-        let preview_frames = fields
-            .storyboards
-            .and_then(|sb| {
-                let spec = sb.player_storyboard_spec_renderer.spec;
-                let mut spec_parts = spec.split('|');
-                let url_tmpl = spec_parts.next()?;
+    let mut valid_until = OffsetDateTime::now_utc()
+        + time::Duration::seconds(streaming_data.expires_in_seconds.into());
+    if let Some(pot) = &ctx.session_po_token {
+        valid_until = valid_until.min(pot.valid_until);
+    }
 
-                Some(
-                    spec_parts
-                        .enumerate()
-                        .filter_map(|(i, fs_spec)| {
-                            // Example: 160#90#131#5#5#2000#M$M#rs$AOn4CLCV3TJ2Nty5fbw2r-Lqg4VDOZcVvQ
-                            let mut parts = fs_spec.split('#');
-
-                            let frame_width = parts.next()?.parse().ok()?;
-                            let frame_height = parts.next()?.parse().ok()?;
-                            let total_count = parts.next()?.parse().ok()?;
-                            let frames_per_page_x = parts.next()?.parse().ok()?;
-                            let frames_per_page_y = parts.next()?.parse().ok()?;
-                            let duration_per_frame = parts.next()?.parse().ok()?;
-
-                            let n = parts.next()?;
-                            let sigh = parts.next()?;
-
-                            let url = url_tmpl.replace("$L", &i.to_string()).replace("$N", n)
-                                + "&sigh="
-                                + sigh;
-
-                            let sprite_count =
-                                util::div_ceil(total_count, frames_per_page_x * frames_per_page_y);
-
-                            Some(Frameset {
-                                url_template: url,
-                                frame_width,
-                                frame_height,
-                                page_count: sprite_count,
-                                total_count,
-                                duration_per_frame,
-                                frames_per_page_x,
-                                frames_per_page_y,
-                            })
-                        })
-                        .collect(),
-                )
-            })
-            .unwrap_or_default();
-
-        let drm = streaming_data
-            .drm_params
-            .zip(fields.heartbeat_params.drm_session_id)
-            .map(|(drm_params, drm_session_id)| VideoPlayerDrm {
-                widevine_service_cert: fields
-                    .player_config
-                    .web_drm_config
-                    .and_then(|c| c.widevine_service_cert)
-                    .and_then(|c| data_encoding::BASE64URL.decode(c.as_bytes()).ok()),
-                drm_params,
-                authorized_track_types: streaming_data
-                    .initial_authorized_drm_track_types
-                    .into_iter()
-                    .map(|t| t.into())
-                    .collect(),
-                drm_session_id,
-            });
-
-        let mut valid_until = OffsetDateTime::now_utc()
-            + time::Duration::seconds(streaming_data.expires_in_seconds.into());
-        if let Some(pot) = &ctx.session_po_token {
-            valid_until = valid_until.min(pot.valid_until);
-        }
-
-        Ok(MapResult {
-            c: VideoPlayer {
-                details: video_info,
-                video_streams: streams.video_streams,
-                video_only_streams: streams.video_only_streams,
-                audio_streams: streams.audio_streams,
-                subtitles,
-                expires_in_seconds: streaming_data.expires_in_seconds,
-                valid_until,
-                hls_manifest_url: streaming_data.hls_manifest_url,
-                dash_manifest_url: streaming_data.dash_manifest_url,
-                preview_frames,
-                drm,
-                client_type: ctx.client_type,
-                visitor_data: visitor_data.or_else(|| ctx.visitor_data.map(str::to_owned)),
-            },
-            warnings,
-        })
+    Ok(MapResult {
+        c: VideoPlayer {
+            details: video_info,
+            video_streams: streams.video_streams,
+            video_only_streams: streams.video_only_streams,
+            audio_streams: streams.audio_streams,
+            subtitles,
+            expires_in_seconds: streaming_data.expires_in_seconds,
+            valid_until,
+            hls_manifest_url: streaming_data.hls_manifest_url,
+            dash_manifest_url: streaming_data.dash_manifest_url,
+            preview_frames,
+            drm,
+            client_type: ctx.client_type,
+            visitor_data,
+            abr_streaming_url: streaming_data.server_abr_streaming_url,
+            abr_ustreamer_config: streaming_data.ustreamer_config,
+            po_token: ctx.content_po_token.clone(),
+            session_po_token: ctx
+                .session_po_token
+                .as_ref()
+                .map(|p| p.po_token.clone()),
+            client_version: ctx.client_version.clone(),
+        },
+        warnings,
+    })
 }
 
-impl MapJsonResponse<VideoPlayer> for PlayerJson {
-    fn map_json_response(
+impl MapEndpoint<VideoPlayer> for PlayerEndpoint {
+    fn map(
         json: &JsonDoc,
         ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<VideoPlayer>, ExtractionError> {
         json.with_root(|root| {
             let fields = deserialize_player_fields(&root)?;
-            let visitor_data = yt_response_visitor_data(&root);
+            let visitor_data = ctx.visitor_data(&root);
             map_player_fields(fields, visitor_data, ctx)
         })
     }
@@ -722,9 +790,11 @@ impl<'a> StreamsMapper<'a> {
                     )
                         })
                     }
-                    None => Err(ExtractionError::InvalidData(
-                        "stream contained neither url or cipher".into(),
-                    )),
+                    // SABR-only streams come back with neither `url` nor
+                    // `signatureCipher`. Keep the stream in the player model so
+                    // the downloader can use the SABR endpoint; the empty URL
+                    // will simply be rejected by the progressive download path.
+                    None => return Ok(UrlMapRes::empty()),
                 },
             }?;
 
@@ -765,6 +835,8 @@ impl<'a> StreamsMapper<'a> {
             bitrate: f.bitrate,
             average_bitrate: f.average_bitrate.unwrap_or(f.bitrate),
             size: f.content_length,
+            last_modified: f.last_modified,
+            xtags: f.xtags.clone().or(map_res.xtags.clone()),
             index_range: f.index_range,
             init_range: f.init_range,
             duration_ms: f.approx_duration_ms,
@@ -809,6 +881,8 @@ impl<'a> StreamsMapper<'a> {
                     format!("no audio content length. itag: {}", f.itag).into(),
                 )
             })?,
+            last_modified: f.last_modified,
+            xtags: f.xtags.clone().or(map_res.xtags.clone()),
             index_range: f.index_range,
             init_range: f.init_range,
             duration_ms: f.approx_duration_ms,
@@ -867,6 +941,17 @@ impl<'a> StreamsMapper<'a> {
 struct UrlMapRes {
     url: String,
     xtags: Option<String>,
+}
+
+impl UrlMapRes {
+    /// Empty URL map used for SABR-only streams that don't ship a progressive
+    /// URL or signature cipher.
+    fn empty() -> Self {
+        Self {
+            url: String::new(),
+            xtags: None,
+        }
+    }
 }
 
 fn parse_mime(mime: &str) -> Option<(&str, Vec<&str>)> {
@@ -932,8 +1017,8 @@ fn get_audio_codec(codecs: Vec<&str>) -> AudioCodec {
     AudioCodec::Unknown
 }
 
-impl MapJsonResponse<DrmLicense> for DrmLicenseJson {
-    fn map_json_response(
+impl MapEndpoint<DrmLicense> for DrmLicenseEndpoint {
+    fn map(
         json: &JsonDoc,
         _ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<DrmLicense>, ExtractionError> {
@@ -1009,7 +1094,7 @@ mod tests {
             .replace('_', "");
         let json_path = path!(*TESTFILES / "player" / format!("{name}_video.json"));
         let json = JsonDoc::new(std::fs::read_to_string(json_path).unwrap());
-        let map_res = PlayerJson::map_json_response(
+        let map_res = PlayerEndpoint::map(
             &json,
             &MapRespCtx {
                 id: "pPvd8UxmSbQ",
@@ -1021,6 +1106,8 @@ mod tests {
                 artist: None,
                 authenticated: false,
                 session_po_token: None,
+                content_po_token: None,
+                client_version: String::new(),
             },
         )
         .unwrap();

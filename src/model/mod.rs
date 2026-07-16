@@ -157,6 +157,24 @@ pub struct VideoPlayer {
     pub client_type: ClientType,
     /// YouTube visitor data ID
     pub visitor_data: Option<String>,
+    /// Client version string of the YouTube WEB client used to fetch the player.
+    ///
+    /// Required for SABR downloads, since the `StreamerContext` reported by the
+    /// server has to match.
+    pub client_version: String,
+    /// URL pointing to the SABR/UMP stream endpoint.
+    ///
+    /// [`None`] if the player response did not advertise SABR.
+    pub abr_streaming_url: Option<String>,
+    /// base64-encoded `ustreamerConfig` blob from the player response.
+    ///
+    /// Required for SABR downloads.
+    pub abr_ustreamer_config: Option<String>,
+    /// Content PO token returned with the player response, if any.
+    pub po_token: Option<String>,
+    /// Session-bound PO token (visitor data). Needed by SABR for the
+    /// `&pot=` URL parameter.
+    pub session_po_token: Option<String>,
 }
 
 /// Video metadata from the player
@@ -203,6 +221,11 @@ pub struct VideoStream {
     pub average_bitrate: u32,
     /// Video file size in bytes
     pub size: Option<u64>,
+    /// Last-modified timestamp from the stream URL (`lmt` parameter).
+    /// Required when downloading via SABR.
+    pub last_modified: Option<u64>,
+    /// `xtags` from the stream URL. Required when downloading via SABR.
+    pub xtags: Option<String>,
     /// Index range (used for DASH streaming)
     pub index_range: Option<Range<u32>>,
     /// Init range (used for DASH streaming)
@@ -247,6 +270,11 @@ pub struct AudioStream {
     pub average_bitrate: u32,
     /// Audio file size in bytes
     pub size: u64,
+    /// Last-modified timestamp from the stream URL (`lmt` parameter).
+    /// Required when downloading via SABR.
+    pub last_modified: Option<u64>,
+    /// `xtags` from the stream URL. Required when downloading via SABR.
+    pub xtags: Option<String>,
     /// Index range (used for DASH streaming)
     pub index_range: Option<Range<u32>>,
     /// Init range (used for DASH streaming)

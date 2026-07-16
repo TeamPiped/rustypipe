@@ -22,7 +22,7 @@ pub async fn collect_dates_music() {
 
     let mut res: CollectedDates = {
         let json_file = File::open(&json_path).unwrap();
-        serde_json::from_reader(BufReader::new(json_file)).unwrap()
+        flexon::from_reader(BufReader::new(json_file)).unwrap()
     };
 
     for lang in LANGUAGES {
@@ -45,7 +45,7 @@ pub async fn collect_dates_music() {
     }
 
     let file = File::create(&json_path).unwrap();
-    serde_json::to_writer_pretty(file, &res).unwrap();
+    flexon::to_writer_pretty(file, &res).unwrap();
 }
 
 pub async fn collect_dates() {
@@ -57,7 +57,7 @@ pub async fn collect_dates() {
 
     let mut res: CollectedDates = {
         let json_file = File::open(&json_path).unwrap();
-        serde_json::from_reader(BufReader::new(json_file)).unwrap()
+        flexon::from_reader(BufReader::new(json_file)).unwrap()
     };
 
     for lang in LANGUAGES {
@@ -83,15 +83,14 @@ pub async fn collect_dates() {
     }
 
     let file = File::create(&json_path).unwrap();
-    serde_json::to_writer_pretty(file, &res).unwrap();
+    flexon::to_writer_pretty(file, &res).unwrap();
 }
 
 pub fn write_samples_to_dict() {
     let json_path = path!(*DICT_DIR / "history_date_samples.json");
 
     let json_file = File::open(json_path).unwrap();
-    let collected_dates: CollectedDates =
-        serde_json::from_reader(BufReader::new(json_file)).unwrap();
+    let collected_dates: CollectedDates = flexon::from_reader(BufReader::new(json_file)).unwrap();
     let mut dict = util::read_dict();
     let langs = dict.keys().copied().collect::<Vec<_>>();
 

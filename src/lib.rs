@@ -8,10 +8,9 @@
 //! - Client ([`rustypipe::client::Rustypipe`](crate::client::RustyPipe))
 //! - Query ([`rustypipe::client::RustypipeQuery`](crate::client::RustyPipeQuery))
 
-mod deobfuscate;
-mod json;
-mod request_body;
-mod serializer;
+pub mod deobfuscate;
+pub mod json;
+mod request_body;mod serializer;
 mod util;
 
 pub mod cache;
@@ -24,3 +23,6 @@ pub mod validate;
 
 /// Version of the RustyPipe crate
 pub const VERSION: &str = env!("CARGO_PKG_VERSION");
+
+#[doc(hidden)]
+pub use rustypipe_derive::{ytq, FromYtNode};

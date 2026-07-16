@@ -7,7 +7,8 @@ use futures_util::{stream, StreamExt};
 use path_macro::path;
 use rustypipe::{
     client::{RustyPipe, RustyPipeQuery},
-    param::{Language, LANGUAGES},
+    model::VideoItem,
+    param::{ChannelContent, Language, LANGUAGES},
 };
 
 use crate::util::DICT_DIR;
@@ -69,11 +70,16 @@ pub async fn collect_video_dates(concurrency: usize) {
         .collect::<BTreeMap<_, _>>();
 
     let file = File::create(json_path).unwrap();
-    serde_json::to_writer_pretty(file, &strings_map).unwrap();
+    flexon::to_writer_pretty(file, &strings_map).unwrap();
 }
 
 async fn get_channel_datestrings(rp: &RustyPipeQuery, id: &str) -> Vec<String> {
-    let channel = rp.channel_videos(id).await.unwrap();
+    let channel = rp
+        .channel_content::<_, VideoItem>(id, ChannelContent::Videos, None)
+        .await
+        .unwrap()
+        .full()
+        .unwrap();
 
     channel
         .content

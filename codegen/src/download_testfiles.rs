@@ -8,10 +8,11 @@ use std::{
 use path_macro::path;
 use rustypipe::{
     client::{ClientType, RustyPipe},
-    model::YouTubeItem,
+    model::{AlbumItem, ArtistItem, MusicItem, MusicPlaylistItem, PlaylistItem, TrackItem, UserItem,
+        VideoItem, YouTubeItem},
     param::{
-        search_filter::{self, ItemType, SearchFilter},
-        ChannelVideoTab, Country,
+        search_filter::{self, ItemType, MusicSearchFilter, SearchFilter},
+        ChannelContent, Country, MusicArtistAlbums, MusicNewKind, MusicSavedKind,
     },
     report::{Report, Reporter},
 };
@@ -128,10 +129,9 @@ impl Reporter for TestFileReporter {
             p
         };
 
-        let data =
-            serde_json::from_str::<serde_json::Value>(&report.http_request.resp_body).unwrap();
+        let data = flexon::from_str::<flexon::OwnedValue>(&report.http_request.resp_body).unwrap();
         let file = File::create(&path).unwrap();
-        serde_json::to_writer_pretty(file, &data).unwrap();
+        flexon::to_writer_pretty(file, &data).unwrap();
 
         println!("Downloaded {}", path.display());
     }
@@ -181,7 +181,7 @@ async fn player_model() {
             .await
             .unwrap();
         let file = File::create(&json_path).unwrap();
-        serde_json::to_writer_pretty(file, &player_data).unwrap();
+        flexon::to_writer_pretty(file, &player_data).unwrap();
 
         println!("Downloaded {}", json_path.display());
     }
@@ -306,7 +306,10 @@ async fn channel_videos() {
         }
 
         let rp = rp_testfile(&json_path);
-        rp.query().channel_videos(id).await.unwrap();
+        rp.query()
+            .channel_content::<_, VideoItem>(id, ChannelContent::Videos, None)
+            .await
+            .unwrap();
     }
 }
 
@@ -318,7 +321,11 @@ async fn channel_shorts() {
 
     let rp = rp_testfile(&json_path);
     rp.query()
-        .channel_videos_tab("UCh8gHdtzO2tXd593_bjErWg", ChannelVideoTab::Shorts)
+        .channel_content::<_, VideoItem>(
+            "UCh8gHdtzO2tXd593_bjErWg",
+            ChannelContent::Shorts,
+            None,
+        )
         .await
         .unwrap();
 }
@@ -331,7 +338,11 @@ async fn channel_livestreams() {
 
     let rp = rp_testfile(&json_path);
     rp.query()
-        .channel_videos_tab("UC2DjFE7Xf11URZqWBigcVOQ", ChannelVideoTab::Live)
+        .channel_content::<_, VideoItem>(
+            "UC2DjFE7Xf11URZqWBigcVOQ",
+            ChannelContent::Live,
+            None,
+        )
         .await
         .unwrap();
 }
@@ -344,7 +355,11 @@ async fn channel_playlists() {
 
     let rp = rp_testfile(&json_path);
     rp.query()
-        .channel_playlists("UC2DjFE7Xf11URZqWBigcVOQ")
+        .channel_content::<_, PlaylistItem>(
+            "UC2DjFE7Xf11URZqWBigcVOQ",
+            ChannelContent::Playlists,
+            None,
+        )
         .await
         .unwrap();
 }
@@ -371,8 +386,14 @@ async fn channel_videos_cont() {
     let rp = RustyPipe::new();
     let videos = rp
         .query()
-        .channel_videos("UC2DjFE7Xf11URZqWBigcVOQ")
+        .channel_content::<_, VideoItem>(
+            "UC2DjFE7Xf11URZqWBigcVOQ",
+            ChannelContent::Videos,
+            None,
+        )
         .await
+        .unwrap()
+        .full()
         .unwrap();
 
     let rp = rp_testfile(&json_path);
@@ -388,8 +409,14 @@ async fn channel_playlists_cont() {
     let rp = RustyPipe::new();
     let playlists = rp
         .query()
-        .channel_playlists("UC2DjFE7Xf11URZqWBigcVOQ")
+        .channel_content::<_, PlaylistItem>(
+            "UC2DjFE7Xf11URZqWBigcVOQ",
+            ChannelContent::Playlists,
+            None,
+        )
         .await
+        .unwrap()
+        .full()
         .unwrap();
 
     let rp = rp_testfile(&json_path);
@@ -404,7 +431,7 @@ async fn search() {
 
     let rp = rp_testfile(&json_path);
     rp.query()
-        .search::<YouTubeItem, _>("doobydoobap")
+        .search::<YouTubeItem, _>("doobydoobap", None)
         .await
         .unwrap();
 }
@@ -418,7 +445,7 @@ async fn search_cont() {
     let rp = RustyPipe::new();
     let search = rp
         .query()
-        .search::<YouTubeItem, _>("doobydoobap")
+        .search::<YouTubeItem, _>("doobydoobap", None)
         .await
         .unwrap();
 
@@ -434,7 +461,10 @@ async fn search_playlists() {
 
     let rp = rp_testfile(&json_path);
     rp.query()
-        .search_filter::<YouTubeItem, _>("pop", &SearchFilter::new().item_type(ItemType::Playlist))
+        .search::<YouTubeItem, _>(
+            "pop",
+            Some(&SearchFilter::new().item_type(ItemType::Playlist)),
+        )
         .await
         .unwrap();
 }
@@ -447,11 +477,13 @@ async fn search_empty() {
 
     let rp = rp_testfile(&json_path);
     rp.query()
-        .search_filter::<YouTubeItem, _>(
+        .search::<YouTubeItem, _>(
             "test",
-            &SearchFilter::new()
-                .feature(search_filter::Feature::IsLive)
-                .feature(search_filter::Feature::Is3d),
+            Some(
+                &SearchFilter::new()
+                    .feature(search_filter::Feature::IsLive)
+                    .feature(search_filter::Feature::Is3d),
+            ),
         )
         .await
         .unwrap();
@@ -583,7 +615,10 @@ async fn music_search() {
         }
 
         let rp = rp_testfile(&json_path);
-        rp.query().music_search_main(query).await.unwrap();
+        rp.query()
+            .music_search::<MusicItem, _>(query, None)
+            .await
+            .unwrap();
     }
 }
 
@@ -605,9 +640,15 @@ async fn music_search_tracks() {
 
         let rp = rp_testfile(&json_path);
         if videos {
-            rp.query().music_search_videos(query).await.unwrap();
+            rp.query()
+                .music_search::<TrackItem, _>(query, Some(MusicSearchFilter::Videos))
+                .await
+                .unwrap();
         } else {
-            rp.query().music_search_tracks(query).await.unwrap();
+            rp.query()
+                .music_search::<TrackItem, _>(query, Some(MusicSearchFilter::Tracks))
+                .await
+                .unwrap();
         }
     }
 }
@@ -619,7 +660,10 @@ async fn music_search_albums() {
     }
 
     let rp = rp_testfile(&json_path);
-    rp.query().music_search_albums("black mamba").await.unwrap();
+    rp.query()
+        .music_search::<AlbumItem, _>("black mamba", Some(MusicSearchFilter::Albums))
+        .await
+        .unwrap();
 }
 
 async fn music_search_artists() {
@@ -630,7 +674,7 @@ async fn music_search_artists() {
 
     let rp = rp_testfile(&json_path);
     rp.query()
-        .music_search_artists("black mamba")
+        .music_search::<ArtistItem, _>("black mamba", Some(MusicSearchFilter::Artists))
         .await
         .unwrap();
 }
@@ -644,7 +688,10 @@ async fn music_search_playlists() {
 
         let rp = rp_testfile(&json_path);
         rp.query()
-            .music_search_playlists("pop", community)
+            .music_search::<MusicPlaylistItem, _>(
+                "pop",
+                Some(MusicSearchFilter::Playlists { community }),
+            )
             .await
             .unwrap();
     }
@@ -657,7 +704,11 @@ async fn music_search_cont() {
     }
 
     let rp = RustyPipe::new();
-    let res = rp.query().music_search_tracks("black mamba").await.unwrap();
+    let res = rp
+        .query()
+        .music_search::<TrackItem, _>("black mamba", Some(MusicSearchFilter::Tracks))
+        .await
+        .unwrap();
 
     let rp = rp_testfile(&json_path);
     res.items.next(rp.query()).await.unwrap().unwrap();
@@ -689,7 +740,12 @@ async fn music_artist() {
         }
 
         let rp = rp_testfile(&json_path);
-        rp.query().music_artist(id, all_albums).await.unwrap();
+        let albums = if all_albums {
+            MusicArtistAlbums::Include
+        } else {
+            MusicArtistAlbums::Exclude
+        };
+        rp.query().music_artist(id, albums).await.unwrap();
     }
 }
 
@@ -769,7 +825,10 @@ async fn music_new_albums() {
     }
 
     let rp = rp_testfile(&json_path);
-    rp.query().music_new_albums().await.unwrap();
+    rp.query()
+        .music_new(MusicNewKind::Albums)
+        .await
+        .unwrap();
 }
 
 async fn music_new_videos() {
@@ -779,7 +838,10 @@ async fn music_new_videos() {
     }
 
     let rp = rp_testfile(&json_path);
-    rp.query().music_new_videos().await.unwrap();
+    rp.query()
+        .music_new(MusicNewKind::Videos)
+        .await
+        .unwrap();
 }
 
 async fn music_charts() {
@@ -836,7 +898,10 @@ async fn music_saved_artists() {
     }
 
     let rp = rp_testfile(&json_path);
-    rp.query().music_saved_artists().await.unwrap();
+    rp.query()
+        .music_saved(MusicSavedKind::Artists)
+        .await
+        .unwrap();
 }
 
 async fn music_saved_albums() {
@@ -846,7 +911,10 @@ async fn music_saved_albums() {
     }
 
     let rp = rp_testfile(&json_path);
-    rp.query().music_saved_albums().await.unwrap();
+    rp.query()
+        .music_saved(MusicSavedKind::Albums)
+        .await
+        .unwrap();
 }
 
 async fn music_saved_tracks() {
@@ -856,7 +924,10 @@ async fn music_saved_tracks() {
     }
 
     let rp = rp_testfile(&json_path);
-    rp.query().music_saved_tracks().await.unwrap();
+    rp.query()
+        .music_saved(MusicSavedKind::Tracks)
+        .await
+        .unwrap();
 }
 
 async fn music_saved_playlists() {
@@ -866,5 +937,8 @@ async fn music_saved_playlists() {
     }
 
     let rp = rp_testfile(&json_path);
-    rp.query().music_saved_playlists().await.unwrap();
+    rp.query()
+        .music_saved(MusicSavedKind::Playlists)
+        .await
+        .unwrap();
 }

@@ -7,9 +7,9 @@ use num_enum::TryFromPrimitive;
 use once_cell::sync::Lazy;
 use regex::Regex;
 use rustypipe::client::{ClientType, RustyPipe, RustyPipeQuery};
-use rustypipe::model::{MusicItem, YouTubeItem};
+use rustypipe::model::{MusicItem, VideoItem, YouTubeItem};
 use rustypipe::param::search_filter::{ItemType, SearchFilter};
-use rustypipe::param::ChannelVideoTab;
+use rustypipe::param::ChannelContent;
 use serde::de::IgnoredAny;
 use serde::{Deserialize, Serialize};
 
@@ -180,13 +180,20 @@ pub async fn attributed_text_description(rp: &RustyPipeQuery) -> Result<bool> {
 }
 
 pub async fn three_tab_channel_layout(rp: &RustyPipeQuery) -> Result<bool> {
-    let channel = rp.channel_videos("UCR-DXc1voovS8nhAvccRZhg").await?;
+    let channel = rp
+        .channel_content::<_, VideoItem>("UCR-DXc1voovS8nhAvccRZhg", ChannelContent::Videos, None)
+        .await?
+        .full()
+        .unwrap();
     Ok(channel.has_live || channel.has_shorts)
 }
 
 pub async fn channel_handles_in_search_results(rp: &RustyPipeQuery) -> Result<bool> {
     let search = rp
-        .search_filter("rust", &SearchFilter::new().item_type(ItemType::Channel))
+        .search::<YouTubeItem, _>(
+            "rust",
+            Some(&SearchFilter::new().item_type(ItemType::Channel)),
+        )
         .await
         .unwrap();
 
@@ -231,7 +238,7 @@ pub async fn trends_page_header_renderer(rp: &RustyPipeQuery) -> Result<bool> {
         header: BTreeMap<String, IgnoredAny>,
     }
 
-    let data = serde_json::from_str::<D>(&res)?;
+    let data = flexon::from_str::<D>(&res)?;
 
     Ok(data.header.contains_key("pageHeaderRenderer"))
 }
@@ -253,7 +260,15 @@ pub async fn discography_page(rp: &RustyPipeQuery) -> Result<bool> {
 
 pub async fn short_date_format(rp: &RustyPipeQuery) -> Result<bool> {
     static SHORT_DATE: Lazy<Regex> = Lazy::new(|| Regex::new("\\d(?:y|mo|w|d|h|min) ").unwrap());
-    let channel = rp.channel_videos("UC2DjFE7Xf11URZqWBigcVOQ").await?;
+    let channel = rp
+        .channel_content::<_, VideoItem>(
+            "UC2DjFE7Xf11URZqWBigcVOQ",
+            ChannelContent::Videos,
+            None,
+        )
+        .await?
+        .full()
+        .unwrap();
 
     Ok(channel.content.items.iter().any(|itm| {
         itm.publish_date_txt
@@ -274,7 +289,9 @@ pub async fn playlists_for_shorts(rp: &RustyPipeQuery) -> Result<bool> {
 }
 
 pub async fn track_viewcount(rp: &RustyPipeQuery) -> Result<bool> {
-    let res = rp.music_search_main("lieblingsmensch namika").await?;
+    let res = rp
+        .music_search::<MusicItem, _>("lieblingsmensch namika", None)
+        .await?;
 
     let track = &res
         .items
@@ -330,8 +347,14 @@ pub async fn like_button_viewmodel(rp: &RustyPipeQuery) -> Result<bool> {
 
 pub async fn channel_page_header(rp: &RustyPipeQuery) -> Result<bool> {
     let channel = rp
-        .channel_videos_tab("UCh8gHdtzO2tXd593_bjErWg", ChannelVideoTab::Shorts)
-        .await?;
+        .channel_content::<_, VideoItem>(
+            "UCh8gHdtzO2tXd593_bjErWg",
+            ChannelContent::Shorts,
+            None,
+        )
+        .await?
+        .full()
+        .unwrap();
     Ok(channel.video_count.is_some())
 }
 

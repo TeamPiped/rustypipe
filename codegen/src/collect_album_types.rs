@@ -11,7 +11,7 @@ use serde::{Deserialize, Serialize};
 use serde_with::rust::deserialize_ignore_any;
 
 use crate::{
-    model::{ContentsRenderer, QBrowse, SectionList, Tab, TextRuns},
+    model::{QBrowse, TextRuns},
     util::{self, DICT_DIR},
 };
 
@@ -77,7 +77,7 @@ pub async fn collect_album_types(concurrency: usize) {
         .await;
 
     let file = File::create(json_path).unwrap();
-    serde_json::to_writer_pretty(file, &collected_album_types).unwrap();
+    flexon::to_writer_pretty(file, &collected_album_types).unwrap();
 }
 
 pub fn write_samples_to_dict() {
@@ -85,7 +85,7 @@ pub fn write_samples_to_dict() {
 
     let json_file = File::open(json_path).unwrap();
     let collected: BTreeMap<Language, BTreeMap<String, String>> =
-        serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        flexon::from_reader(BufReader::new(json_file)).unwrap();
     let mut dict = util::read_dict();
     let langs = dict.keys().copied().collect::<Vec<_>>();
 
@@ -117,7 +117,37 @@ struct AlbumData {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct AlbumContents {
-    two_column_browse_results_renderer: ContentsRenderer<Tab<SectionList<AlbumHeader>>>,
+    two_column_browse_results_renderer: AlbumTabs,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct AlbumTabs {
+    contents: Vec<AlbumTab>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct AlbumTab {
+    tab_renderer: AlbumTabRenderer,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct AlbumTabRenderer {
+    content: AlbumSectionList,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct AlbumSectionList {
+    section_list_renderer: AlbumHeaderSections,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct AlbumHeaderSections {
+    contents: Vec<AlbumHeader>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -140,7 +170,7 @@ async fn get_album_type(query: &RustyPipeQuery, id: &str) -> String {
         .raw(ClientType::DesktopMusic, "browse", &body)
         .await
         .unwrap();
-    let album = serde_json::from_str::<AlbumData>(&response_txt).unwrap();
+    let album = flexon::from_str::<AlbumData>(&response_txt).unwrap();
 
     album
         .contents
@@ -176,7 +206,7 @@ async fn get_album_groups(query: &RustyPipeQuery) -> (String, String) {
         .raw(ClientType::DesktopMusic, "browse", &body)
         .await
         .unwrap();
-    let artist = serde_json::from_str::<ArtistData>(&response_txt).unwrap();
+    let artist = flexon::from_str::<ArtistData>(&response_txt).unwrap();
 
     let sections = artist
         .contents
@@ -219,7 +249,37 @@ struct ArtistData {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct ArtistDataContents {
-    single_column_browse_results_renderer: ContentsRenderer<Tab<SectionList<ItemSection>>>,
+    single_column_browse_results_renderer: ArtistTabs,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct ArtistTabs {
+    contents: Vec<ArtistTab>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct ArtistTab {
+    tab_renderer: ArtistTabRenderer,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct ArtistTabRenderer {
+    content: ArtistSectionList,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct ArtistSectionList {
+    section_list_renderer: ArtistSections,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct ArtistSections {
+    contents: Vec<ItemSection>,
 }
 
 #[derive(Debug, Deserialize)]

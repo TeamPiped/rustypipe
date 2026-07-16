@@ -135,7 +135,7 @@ pub async fn collect_large_numbers(concurrency: usize) {
         .await;
 
     let file = File::create(json_path).unwrap();
-    serde_json::to_writer_pretty(file, &collected_numbers).unwrap();
+    flexon::to_writer_pretty(file, &collected_numbers).unwrap();
 }
 
 /// Attempt to parse the numbers collected by `collect-large-numbers`
@@ -144,8 +144,7 @@ pub fn write_samples_to_dict() {
     let json_path = path!(*DICT_DIR / "large_number_samples.json");
 
     let json_file = File::open(json_path).unwrap();
-    let collected_nums: CollectedNumbers =
-        serde_json::from_reader(BufReader::new(json_file)).unwrap();
+    let collected_nums: CollectedNumbers = flexon::from_reader(BufReader::new(json_file)).unwrap();
     let mut dict = util::read_dict();
     let langs = dict.keys().copied().collect::<Vec<_>>();
 
@@ -356,7 +355,7 @@ async fn get_channel(query: &RustyPipeQuery, channel_id: &str) -> Result<Channel
         )
         .await?;
 
-    let channel = serde_json::from_str::<Channel>(&resp)?;
+    let channel = flexon::from_str::<Channel>(&resp)?;
 
     let tab = &channel.contents.two_column_browse_results_renderer.tabs[0]
         .tab_renderer
@@ -396,7 +395,7 @@ async fn get_channel(query: &RustyPipeQuery, channel_id: &str) -> Result<Channel
             )
             .await?;
 
-        let continuation = serde_json::from_str::<ContinuationResponse>(&resp)?;
+        let continuation = flexon::from_str::<ContinuationResponse>(&resp)?;
 
         for action in &continuation.on_response_received_actions {
             action
@@ -435,7 +434,7 @@ async fn music_channel_subscribers(query: &RustyPipeQuery, channel_id: &str) -> 
         )
         .await?;
 
-    let channel = serde_json::from_str::<MusicChannel>(&resp)?;
+    let channel = flexon::from_str::<MusicChannel>(&resp)?;
     channel
         .header
         .music_immersive_header_renderer

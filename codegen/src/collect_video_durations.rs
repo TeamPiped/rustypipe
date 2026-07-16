@@ -58,13 +58,13 @@ pub async fn collect_video_durations(concurrency: usize) {
         .await;
 
     let file = File::create(json_path).unwrap();
-    serde_json::to_writer_pretty(file, &durations).unwrap();
+    flexon::to_writer_pretty(file, &durations).unwrap();
 }
 
 pub fn parse_video_durations() {
     let json_path = path!(*DICT_DIR / "video_duration_samples.json");
     let json_file = File::open(json_path).unwrap();
-    let durations: CollectedDurations = serde_json::from_reader(BufReader::new(json_file)).unwrap();
+    let durations: CollectedDurations = flexon::from_reader(BufReader::new(json_file)).unwrap();
 
     let mut dict = util::read_dict();
     let langs = dict.keys().copied().collect::<Vec<_>>();
@@ -274,7 +274,7 @@ async fn get_channel_vlengths(
         )
         .await?;
 
-    let channel = serde_json::from_str::<Channel>(&resp)?;
+    let channel = flexon::from_str::<Channel>(&resp)?;
 
     let tab = channel
         .contents
@@ -334,8 +334,7 @@ mod tests {
     fn check_video_duration_samples() {
         let json_path = path!(*DICT_DIR / "video_duration_samples.json");
         let json_file = File::open(json_path).unwrap();
-        let durations: CollectedDurations =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let durations: CollectedDurations = flexon::from_reader(BufReader::new(json_file)).unwrap();
         let mut failed = false;
 
         for (lang, durations) in durations {

@@ -9,18 +9,20 @@ use rustypipe::model::TrackType;
 use rustypipe::param::{AlbumOrder, LANGUAGES};
 use time::{macros::date, OffsetDateTime};
 
-use rustypipe::client::{ClientType, RustyPipe, RustyPipeQuery};
+use rustypipe::client::{ClientType, MusicNewResult, MusicSavedResult, RustyPipe, RustyPipeQuery};
 use rustypipe::error::{Error, ExtractionError, UnavailabilityReason};
 use rustypipe::model::{
     paginator::{ContinuationEndpoint, Paginator},
     richtext::ToPlaintext,
     traits::{FromYtItem, YtStream},
-    AlbumType, AudioCodec, AudioFormat, AudioTrackType, Channel, Frameset, MusicGenre, MusicItem,
-    UrlTarget, Verification, VideoCodec, VideoFormat, VideoId, YouTubeItem,
+    AlbumItem, AlbumType, ArtistItem, AudioCodec, AudioFormat, AudioTrackType, Channel, Frameset,
+    MusicGenre, MusicItem, MusicPlaylistItem, PlaylistItem, TrackItem, UrlTarget, UserItem,
+    Verification, VideoCodec, VideoFormat, VideoId, VideoItem, YouTubeItem,
 };
 use rustypipe::param::{
-    search_filter::{self, SearchFilter},
-    ChannelOrder, ChannelVideoTab, Country, Language,
+    search_filter::{self, MusicSearchFilter, SearchFilter},
+    AlbumResolution, ChannelContent, ChannelOrder, Country, Language, MusicArtistAlbums,
+    MusicNewKind, MusicSavedKind, TrendingTab, UserPlaylistKind,
 };
 use rustypipe::validate;
 
@@ -868,8 +870,10 @@ async fn get_video_comments(rp: RustyPipe) {
 async fn channel_videos(rp: RustyPipe) {
     let channel = rp
         .query()
-        .channel_videos("UC2DjFE7Xf11URZqWBigcVOQ")
+        .channel_content::<_, VideoItem>("UC2DjFE7Xf11URZqWBigcVOQ", ChannelContent::Videos, None)
         .await
+        .unwrap()
+        .full()
         .unwrap();
 
     assert_channel_eevblog(&channel);
@@ -893,8 +897,14 @@ async fn channel_videos(rp: RustyPipe) {
 async fn channel_shorts(rp: RustyPipe) {
     let channel = rp
         .query()
-        .channel_videos_tab("UCh8gHdtzO2tXd593_bjErWg", ChannelVideoTab::Shorts)
+        .channel_content::<_, VideoItem>(
+            "UCh8gHdtzO2tXd593_bjErWg",
+            ChannelContent::Shorts,
+            None,
+        )
         .await
+        .unwrap()
+        .full()
         .unwrap();
 
     assert_eq!(channel.id, "UCh8gHdtzO2tXd593_bjErWg");
@@ -921,8 +931,14 @@ async fn channel_shorts(rp: RustyPipe) {
 async fn channel_livestreams(rp: RustyPipe) {
     let channel = rp
         .query()
-        .channel_videos_tab("UC2DjFE7Xf11URZqWBigcVOQ", ChannelVideoTab::Live)
+        .channel_content::<_, VideoItem>(
+            "UC2DjFE7Xf11URZqWBigcVOQ",
+            ChannelContent::Live,
+            None,
+        )
         .await
+        .unwrap()
+        .full()
         .unwrap();
 
     assert_channel_eevblog(&channel);
@@ -940,8 +956,14 @@ async fn channel_livestreams(rp: RustyPipe) {
 async fn channel_playlists(rp: RustyPipe) {
     let channel = rp
         .query()
-        .channel_playlists("UC2DjFE7Xf11URZqWBigcVOQ")
+        .channel_content::<_, PlaylistItem>(
+            "UC2DjFE7Xf11URZqWBigcVOQ",
+            ChannelContent::Playlists,
+            None,
+        )
         .await
+        .unwrap()
+        .full()
         .unwrap();
 
     assert_channel_eevblog(&channel);
@@ -993,8 +1015,14 @@ async fn channel_info(rp: RustyPipe) {
 async fn channel_search(rp: RustyPipe) {
     let channel = rp
         .query()
-        .channel_search("UC2DjFE7Xf11URZqWBigcVOQ", "test")
+        .channel_content::<_, VideoItem>(
+            "UC2DjFE7Xf11URZqWBigcVOQ",
+            ChannelContent::Search("test"),
+            None,
+        )
         .await
+        .unwrap()
+        .full()
         .unwrap();
 
     assert_channel_eevblog(&channel);
@@ -1043,13 +1071,25 @@ async fn channel_more(
     }
 
     if has_videos {
-        let channel_videos = rp.query().channel_videos(&id).await.unwrap();
+        let channel_videos = rp
+            .query()
+            .channel_content::<_, VideoItem>(&id, ChannelContent::Videos, None)
+            .await
+            .unwrap()
+            .full()
+            .unwrap();
         assert_channel(&channel_videos, id, name, unlocalized || name_unlocalized);
         assert!(!channel_videos.content.items.is_empty(), "got no videos");
     }
 
     if has_playlists {
-        let channel_playlists = rp.query().channel_playlists(&id).await.unwrap();
+        let channel_playlists = rp
+            .query()
+            .channel_content::<_, PlaylistItem>(&id, ChannelContent::Playlists, None)
+            .await
+            .unwrap()
+            .full()
+            .unwrap();
         assert_channel(
             &channel_playlists,
             id,
@@ -1067,18 +1107,22 @@ async fn channel_more(
 }
 
 #[rstest]
-#[case::videos("UCcdwLMPsaU2ezNSJU1nFoBQ", ChannelVideoTab::Videos)]
-#[case::live("UCvqRdlKsE5Q8mf8YXbdIJLw", ChannelVideoTab::Live)]
-#[case::shorts("UCcdwLMPsaU2ezNSJU1nFoBQ", ChannelVideoTab::Shorts)]
+#[case::videos("UCcdwLMPsaU2ezNSJU1nFoBQ", ChannelContent::Videos)]
+#[case::live("UCvqRdlKsE5Q8mf8YXbdIJLw", ChannelContent::Live)]
+#[case::shorts("UCcdwLMPsaU2ezNSJU1nFoBQ", ChannelContent::Shorts)]
 #[tokio::test]
-async fn channel_order_latest(#[case] id: &str, #[case] tab: ChannelVideoTab, rp: RustyPipe) {
+async fn channel_order_latest(#[case] id: &str, #[case] tab: ChannelContent<'_>, rp: RustyPipe) {
+    let is_videos = tab == ChannelContent::Videos;
+    let is_shorts = tab == ChannelContent::Shorts;
     let latest = rp
         .query()
-        .channel_videos_tab_order(id, tab, ChannelOrder::Latest)
+        .channel_content::<_, VideoItem>(id, tab, Some(ChannelOrder::Latest))
         .await
+        .unwrap()
+        .into_paginator()
         .unwrap();
     // Upload dates should be in descending order
-    if tab == ChannelVideoTab::Videos {
+    if is_videos {
         let mut latest_items = latest.items.iter().peekable();
         while let (Some(v), Some(next_v)) = (latest_items.next(), latest_items.peek()) {
             if !v.is_upcoming && !v.is_live && !next_v.is_upcoming && !next_v.is_live {
@@ -1091,26 +1135,29 @@ async fn channel_order_latest(#[case] id: &str, #[case] tab: ChannelVideoTab, rp
         }
     }
 
-    if tab != ChannelVideoTab::Shorts {
+    if !is_shorts {
         assert_next(latest, rp.query(), 15, 1, true).await;
     }
 }
 
 #[rstest]
-#[case::videos("UCcdwLMPsaU2ezNSJU1nFoBQ", ChannelVideoTab::Videos, "XqZsoesa55w")]
-#[case::live("UCvqRdlKsE5Q8mf8YXbdIJLw", ChannelVideoTab::Live, "ojes5ULOqhc")]
-#[case::shorts("UCcdwLMPsaU2ezNSJU1nFoBQ", ChannelVideoTab::Shorts, "k91vRvXGwHs")]
+#[case::videos("UCcdwLMPsaU2ezNSJU1nFoBQ", ChannelContent::Videos, "XqZsoesa55w")]
+#[case::live("UCvqRdlKsE5Q8mf8YXbdIJLw", ChannelContent::Live, "ojes5ULOqhc")]
+#[case::shorts("UCcdwLMPsaU2ezNSJU1nFoBQ", ChannelContent::Shorts, "k91vRvXGwHs")]
 #[tokio::test]
 async fn channel_order_popular(
     #[case] id: &str,
-    #[case] tab: ChannelVideoTab,
+    #[case] tab: ChannelContent<'_>,
     #[case] most_popular: &str,
     rp: RustyPipe,
 ) {
+    let is_shorts = tab == ChannelContent::Shorts;
     let popular = rp
         .query()
-        .channel_videos_tab_order(id, tab, ChannelOrder::Popular)
+        .channel_content::<_, VideoItem>(id, tab, Some(ChannelOrder::Popular))
         .await
+        .unwrap()
+        .into_paginator()
         .unwrap();
     // Most popular video should be in top 5
     assert!(
@@ -1119,7 +1166,7 @@ async fn channel_order_popular(
     );
 
     // View counts should be in descending order
-    if tab != ChannelVideoTab::Shorts {
+    if !is_shorts {
         let mut popular_items = popular.items.iter().peekable();
         while let (Some(v), Some(next_v)) = (popular_items.next(), popular_items.peek()) {
             let vc = v.view_count.expect("views");
@@ -1131,25 +1178,27 @@ async fn channel_order_popular(
         }
     }
 
-    if tab != ChannelVideoTab::Shorts {
+    if !is_shorts {
         assert_next(popular, rp.query(), 15, 1, true).await;
     }
 }
 
 #[rstest]
-#[case::videos("UCcdwLMPsaU2ezNSJU1nFoBQ", ChannelVideoTab::Videos, "P2gDffkC0rY")]
-#[case::live("UCvqRdlKsE5Q8mf8YXbdIJLw", ChannelVideoTab::Live, "aW43RH1kQ70")]
+#[case::videos("UCcdwLMPsaU2ezNSJU1nFoBQ", ChannelContent::Videos, "P2gDffkC0rY")]
+#[case::live("UCvqRdlKsE5Q8mf8YXbdIJLw", ChannelContent::Live, "aW43RH1kQ70")]
 #[tokio::test]
 async fn channel_order_oldest(
     #[case] id: &str,
-    #[case] tab: ChannelVideoTab,
+    #[case] tab: ChannelContent<'_>,
     #[case] oldest: &str,
     rp: RustyPipe,
 ) {
     let videos = rp
         .query()
-        .channel_videos_tab_order(id, tab, ChannelOrder::Oldest)
+        .channel_content::<_, VideoItem>(id, tab, Some(ChannelOrder::Oldest))
         .await
+        .unwrap()
+        .into_paginator()
         .unwrap();
 
     // Check oldest video
@@ -1179,7 +1228,11 @@ async fn channel_order_oldest(
 // #[case::news("UCYfdidRxbB8Qhf0Nx7ioOYw")]
 #[tokio::test]
 async fn channel_not_found(#[case] id: &str, rp: RustyPipe) {
-    let err = rp.query().channel_videos(&id).await.unwrap_err();
+    let err = rp
+        .query()
+        .channel_content::<_, VideoItem>(&id, ChannelContent::Videos, None)
+        .await
+        .unwrap_err();
 
     assert!(
         matches!(err, Error::Extraction(ExtractionError::NotFound { .. })),
@@ -1188,22 +1241,21 @@ async fn channel_not_found(#[case] id: &str, rp: RustyPipe) {
 }
 
 #[rstest]
-#[case::shorts(ChannelVideoTab::Shorts)]
-#[case::live(ChannelVideoTab::Live)]
+#[case::shorts(ChannelContent::Shorts)]
+#[case::live(ChannelContent::Live)]
 #[tokio::test]
-async fn channel_tab_not_found(#[case] tab: ChannelVideoTab, rp: RustyPipe) {
+async fn channel_tab_not_found(#[case] tab: ChannelContent<'_>, rp: RustyPipe) {
     let channel = rp
         .query()
-        .channel_videos_tab("UCGiJh0NZ52wRhYKYnuZI08Q", tab)
-        .await;
+        .channel_content::<_, VideoItem>("UCGiJh0NZ52wRhYKYnuZI08Q", tab, None)
+        .await
+        .unwrap()
+        .full();
 
     // YouTube removed empty tabs from the menu, so they may return no data
     match channel {
-        Ok(channel) => assert!(channel.content.is_empty(), "got: {:?}", channel.content),
-        Err(err) => assert!(
-            matches!(err, Error::Extraction(ExtractionError::NotFound { .. })),
-            "got: {err}"
-        ),
+        Some(channel) => assert!(channel.content.is_empty(), "got: {:?}", channel.content),
+        None => panic!("expected full channel response"),
     }
 }
 
@@ -1212,7 +1264,10 @@ async fn channel_tab_not_found(#[case] tab: ChannelVideoTab, rp: RustyPipe) {
 async fn channel_age_restriction(rp: RustyPipe) {
     let id = "UCbfnHqxXs_K3kvaH-WlNlig";
 
-    let res = rp.query().channel_videos(&id).await;
+    let res = rp
+        .query()
+        .channel_content::<_, VideoItem>(&id, ChannelContent::Videos, None)
+        .await;
     if let Err(Error::Extraction(ExtractionError::Unavailable { reason, msg })) = res {
         assert_eq!(reason, UnavailabilityReason::AgeRestricted);
         assert!(msg.starts_with("Laphroaig Whisky: "));
@@ -1291,7 +1346,7 @@ mod channel_rss {
 async fn search(rp: RustyPipe, unlocalized: bool) {
     let result = rp
         .query()
-        .search::<YouTubeItem, _>("arudino")
+        .search::<YouTubeItem, _>("arudino", None)
         .await
         .unwrap();
 
@@ -1316,9 +1371,9 @@ async fn search(rp: RustyPipe, unlocalized: bool) {
 async fn search_filter_item_type(#[case] item_type: search_filter::ItemType, rp: RustyPipe) {
     let mut result = rp
         .query()
-        .search_filter::<YouTubeItem, _>(
+        .search::<YouTubeItem, _>(
             "with no videos",
-            &SearchFilter::new().item_type(item_type),
+            Some(&SearchFilter::new().item_type(item_type)),
         )
         .await
         .unwrap();
@@ -1344,11 +1399,13 @@ async fn search_filter_item_type(#[case] item_type: search_filter::ItemType, rp:
 async fn search_empty(rp: RustyPipe) {
     let result = rp
         .query()
-        .search_filter::<YouTubeItem, _>(
+        .search::<YouTubeItem, _>(
             "3gig84hgi34gu8vj34gj489",
-            &search_filter::SearchFilter::new()
-                .feature(search_filter::Feature::IsLive)
-                .feature(search_filter::Feature::Is3d),
+            Some(
+                &search_filter::SearchFilter::new()
+                    .feature(search_filter::Feature::IsLive)
+                    .feature(search_filter::Feature::Is3d),
+            ),
         )
         .await
         .unwrap();
@@ -1364,10 +1421,10 @@ async fn search_sensitive(rp: RustyPipe, #[case] filter: bool) {
     let q = "suicide";
     let result = if filter {
         rp.query()
-            .search_filter::<YouTubeItem, _>(q, &search_filter::SearchFilter::new())
+            .search::<YouTubeItem, _>(q, Some(&search_filter::SearchFilter::new()))
             .await
     } else {
-        rp.query().search::<YouTubeItem, _>(q).await
+        rp.query().search::<YouTubeItem, _>(q, None).await
     }
     .unwrap();
     assert_gteo(result.items.count, 10_000, "results");
@@ -1424,7 +1481,11 @@ async fn search_suggestion_empty(rp: RustyPipe) {
 #[case("https://music.youtube.com/playlist?list=OLAK5uy_noT8bq6-DUEJ5KsdX1D4-wWcYtjiuYEnU", UrlTarget::Album {id: "MPREb_5CPCpzS3imM".to_owned()})]
 #[tokio::test]
 async fn resolve_url(#[case] url: &str, #[case] expect: UrlTarget, rp: RustyPipe) {
-    let target = rp.query().resolve_url(url, true).await.unwrap();
+    let target = rp
+        .query()
+        .resolve_url(url, AlbumResolution::Yes)
+        .await
+        .unwrap();
     assert_eq!(target, expect);
 }
 
@@ -1443,7 +1504,11 @@ async fn resolve_url(#[case] url: &str, #[case] expect: UrlTarget, rp: RustyPipe
 #[case("MPADUC7cl4MmM6ZZ2TcFyMk_b4pg", UrlTarget::Channel {id: "UC7cl4MmM6ZZ2TcFyMk_b4pg".to_owned()})]
 #[tokio::test]
 async fn resolve_string(#[case] string: &str, #[case] expect: UrlTarget, rp: RustyPipe) {
-    let target = rp.query().resolve_string(string, true).await.unwrap();
+    let target = rp
+        .query()
+        .resolve_string(string, AlbumResolution::Yes)
+        .await
+        .unwrap();
     assert_eq!(target, expect);
 }
 
@@ -1452,7 +1517,10 @@ async fn resolve_string(#[case] string: &str, #[case] expect: UrlTarget, rp: Rus
 async fn resolve_channel_not_found(rp: RustyPipe) {
     let err = rp
         .query()
-        .resolve_url("https://www.youtube.com/feeqegnhq3rkwghjq43ruih43io3", true)
+        .resolve_url(
+            "https://www.youtube.com/feeqegnhq3rkwghjq43ruih43io3",
+            AlbumResolution::Yes,
+        )
         .await
         .unwrap_err();
 
@@ -1469,7 +1537,17 @@ async fn resolve_channel_not_found(rp: RustyPipe) {
 async fn trending(rp: RustyPipe) {
     let result = rp.query().trending().await.unwrap();
 
-    assert_gte(result.len(), 40, "items");
+    assert_gte(result.items.len(), 40, "items");
+}
+
+#[rstest]
+#[case(TrendingTab::News)]
+#[case(TrendingTab::Sports)]
+#[case(TrendingTab::Live)]
+#[tokio::test]
+async fn trending_tabs(#[case] tab: TrendingTab, rp: RustyPipe) {
+    let result = rp.query().trending_tab(tab).await.unwrap();
+    assert_gte(result.items.len(), 10, "items");
 }
 
 //#MUSIC
@@ -1663,7 +1741,18 @@ async fn music_artist(
     rp: RustyPipe,
     unlocalized: bool,
 ) {
-    let mut artist = rp.query().music_artist(id, all_albums).await.unwrap();
+    let mut artist = rp
+        .query()
+        .music_artist(
+            id,
+            if all_albums {
+                MusicArtistAlbums::Include
+            } else {
+                MusicArtistAlbums::Exclude
+            },
+        )
+        .await
+        .unwrap();
 
     assert_gte(artist.tracks.len(), min_tracks, "tracks");
     assert_gte(artist.playlists.len(), min_playlists, "playlists");
@@ -1778,7 +1867,7 @@ async fn music_artist_albums_recency(rp: RustyPipe) {
 async fn music_artist_not_found(rp: RustyPipe) {
     let err = rp
         .query()
-        .music_artist("UC7cl4MmM6ZZ2TcFyMk_b4pq", false)
+        .music_artist("UC7cl4MmM6ZZ2TcFyMk_b4pq", MusicArtistAlbums::Exclude)
         .await
         .unwrap_err();
 
@@ -1810,10 +1899,13 @@ async fn music_artist_albums_not_found(rp: RustyPipe) {
 async fn music_search_main(#[case] typo: bool, rp: RustyPipe, unlocalized: bool) {
     let res = rp
         .query()
-        .music_search_main(match typo {
-            false => "lieblingsmensch namika",
-            true => "lieblingsmesch namika",
-        })
+        .music_search::<MusicItem, _>(
+            match typo {
+                false => "lieblingsmensch namika",
+                true => "lieblingsmesch namika",
+            },
+            None,
+        )
         .await
         .unwrap();
     let items = res.items.items;
@@ -1870,7 +1962,11 @@ async fn music_search_main(#[case] typo: bool, rp: RustyPipe, unlocalized: bool)
 #[rstest]
 #[tokio::test]
 async fn music_search_main2(rp: RustyPipe, unlocalized: bool) {
-    let res = rp.query().music_search_main("taylor swift").await.unwrap();
+    let res = rp
+        .query()
+        .music_search::<MusicItem, _>("taylor swift", None)
+        .await
+        .unwrap();
     let items = res.items.items;
 
     check_search_result(&items);
@@ -1935,7 +2031,11 @@ fn check_search_result(items: &[MusicItem]) {
 #[rstest]
 #[tokio::test]
 async fn music_search_tracks(rp: RustyPipe, unlocalized: bool) {
-    let res = rp.query().music_search_tracks("black mamba").await.unwrap();
+    let res = rp
+        .query()
+        .music_search::<TrackItem, _>("black mamba", Some(MusicSearchFilter::Tracks))
+        .await
+        .unwrap();
 
     let track = &res
         .items
@@ -1970,7 +2070,11 @@ async fn music_search_tracks(rp: RustyPipe, unlocalized: bool) {
 #[rstest]
 #[tokio::test]
 async fn music_search_videos(rp: RustyPipe, unlocalized: bool) {
-    let res = rp.query().music_search_videos("black mamba").await.unwrap();
+    let res = rp
+        .query()
+        .music_search::<TrackItem, _>("black mamba", Some(MusicSearchFilter::Videos))
+        .await
+        .unwrap();
 
     let track = &res
         .items
@@ -2008,7 +2112,7 @@ async fn music_search_episode(rp: RustyPipe) {
 
     let items = rp
         .query()
-        .music_search_main(query)
+        .music_search::<MusicItem, _>(query, None)
         .await
         .unwrap()
         .items
@@ -2086,7 +2190,11 @@ async fn music_search_albums(
     rp: RustyPipe,
     unlocalized: bool,
 ) {
-    let res = rp.query().music_search_albums(query).await.unwrap();
+    let res = rp
+        .query()
+        .music_search::<AlbumItem, _>(query, Some(MusicSearchFilter::Albums))
+        .await
+        .unwrap();
 
     let album = &res
         .items
@@ -2120,7 +2228,11 @@ async fn music_search_albums(
 #[rstest]
 #[tokio::test]
 async fn music_search_artists(rp: RustyPipe, unlocalized: bool) {
-    let res = rp.query().music_search_artists("namika").await.unwrap();
+    let res = rp
+        .query()
+        .music_search::<ArtistItem, _>("namika", Some(MusicSearchFilter::Artists))
+        .await
+        .unwrap();
 
     let artist = res
         .items
@@ -2141,7 +2253,11 @@ async fn music_search_artists(rp: RustyPipe, unlocalized: bool) {
 #[rstest]
 #[tokio::test]
 async fn music_search_artists_cont(rp: RustyPipe) {
-    let res = rp.query().music_search_artists("girls").await.unwrap();
+    let res = rp
+        .query()
+        .music_search::<ArtistItem, _>("girls", Some(MusicSearchFilter::Artists))
+        .await
+        .unwrap();
 
     assert_eq!(res.corrected_query, None);
     if !res.items.is_exhausted() {
@@ -2154,7 +2270,10 @@ async fn music_search_artists_cont(rp: RustyPipe) {
 async fn music_search_playlists(rp: RustyPipe, unlocalized: bool) {
     let res = rp
         .query()
-        .music_search_playlists("Massive Rock Hits", false)
+        .music_search::<MusicPlaylistItem, _>(
+            "Massive Rock Hits",
+            Some(MusicSearchFilter::Playlists { community: false }),
+        )
         .await
         .unwrap();
 
@@ -2187,7 +2306,10 @@ async fn music_search_playlists(rp: RustyPipe, unlocalized: bool) {
 async fn music_search_playlists_community(rp: RustyPipe) {
     let res = rp
         .query()
-        .music_search_playlists("PLgAAMoX4rK3KhSGmIsN0LEoC3qowEr2Lz", true)
+        .music_search::<MusicPlaylistItem, _>(
+            "PLgAAMoX4rK3KhSGmIsN0LEoC3qowEr2Lz",
+            Some(MusicSearchFilter::Playlists { community: true }),
+        )
         .await
         .unwrap();
 
@@ -2218,7 +2340,7 @@ async fn music_search_playlists_community(rp: RustyPipe) {
 async fn music_search_users(rp: RustyPipe) {
     let res = rp
         .query()
-        .music_search_users("amyprincesspink")
+        .music_search::<UserItem, _>("amyprincesspink", Some(MusicSearchFilter::Users))
         .await
         .unwrap();
 
@@ -2241,7 +2363,10 @@ async fn music_search_users(rp: RustyPipe) {
 #[rstest]
 #[tokio::test]
 async fn music_search_genre_radio(rp: RustyPipe) {
-    rp.query().music_search_main("pop radio").await.unwrap();
+    rp.query()
+        .music_search::<MusicItem, _>("pop radio", None)
+        .await
+        .unwrap();
 }
 
 #[rstest]
@@ -2559,7 +2684,14 @@ async fn music_charts(
 #[rstest]
 #[tokio::test]
 async fn music_new_albums(rp: RustyPipe) {
-    let albums = rp.query().music_new_albums().await.unwrap();
+    let MusicNewResult::Albums(albums) = rp
+        .query()
+        .music_new(MusicNewKind::Albums)
+        .await
+        .unwrap()
+    else {
+        panic!("wrong result kind");
+    };
     assert_gte(albums.len(), 10, "albums");
 
     for album in albums {
@@ -2572,7 +2704,14 @@ async fn music_new_albums(rp: RustyPipe) {
 #[rstest]
 #[tokio::test]
 async fn music_new_videos(rp: RustyPipe) {
-    let videos = rp.query().music_new_videos().await.unwrap();
+    let MusicNewResult::Videos(videos) = rp
+        .query()
+        .music_new(MusicNewKind::Videos)
+        .await
+        .unwrap()
+    else {
+        panic!("wrong result kind");
+    };
     assert_gte(videos.len(), 5, "videos");
 
     for video in videos {
@@ -2721,7 +2860,10 @@ async fn isrc_search_languages(rp: RustyPipe) {
         let tracks = rp
             .query()
             .lang(lang)
-            .music_search_tracks("\"DEUM71602459\"")
+            .music_search::<TrackItem, _>(
+                "\"DEUM71602459\"",
+                Some(MusicSearchFilter::Tracks),
+            )
             .await
             .unwrap();
         let track_id = &tracks.items.items[0].id;
@@ -2769,14 +2911,22 @@ mod user_data {
     #[rstest]
     #[tokio::test]
     async fn liked_videos(rp: RustyPipe) {
-        let videos = rp.query().liked_videos().await.unwrap();
+        let videos = rp
+            .query()
+            .user_playlist(UserPlaylistKind::LikedVideos)
+            .await
+            .unwrap();
         assert_next_items(videos.videos, rp.query(), 5).await;
     }
 
     #[rstest]
     #[tokio::test]
     async fn watch_later(rp: RustyPipe) {
-        let videos = rp.query().watch_later().await.unwrap();
+        let videos = rp
+            .query()
+            .user_playlist(UserPlaylistKind::WatchLater)
+            .await
+            .unwrap();
         assert_next_items(videos.videos, rp.query(), 5).await;
     }
 
@@ -2790,28 +2940,56 @@ mod user_data {
     #[rstest]
     #[tokio::test]
     async fn music_saved_artists(rp: RustyPipe) {
-        let artists = rp.query().music_saved_artists().await.unwrap();
+        let MusicSavedResult::Artists(artists) = rp
+            .query()
+            .music_saved(MusicSavedKind::Artists)
+            .await
+            .unwrap()
+        else {
+            panic!("wrong result kind");
+        };
         assert_next_items(artists, rp.query(), 5).await;
     }
 
     #[rstest]
     #[tokio::test]
     async fn music_saved_albums(rp: RustyPipe) {
-        let albums = rp.query().music_saved_albums().await.unwrap();
+        let MusicSavedResult::Albums(albums) = rp
+            .query()
+            .music_saved(MusicSavedKind::Albums)
+            .await
+            .unwrap()
+        else {
+            panic!("wrong result kind");
+        };
         assert_next_items(albums, rp.query(), 5).await;
     }
 
     #[rstest]
     #[tokio::test]
     async fn music_saved_tracks(rp: RustyPipe) {
-        let tracks = rp.query().music_saved_tracks().await.unwrap();
+        let MusicSavedResult::Tracks(tracks) = rp
+            .query()
+            .music_saved(MusicSavedKind::Tracks)
+            .await
+            .unwrap()
+        else {
+            panic!("wrong result kind");
+        };
         assert_next_items(tracks, rp.query(), 50).await;
     }
 
     #[rstest]
     #[tokio::test]
     async fn music_saved_playlists(rp: RustyPipe) {
-        let playlists = rp.query().music_saved_playlists().await.unwrap();
+        let MusicSavedResult::Playlists(playlists) = rp
+            .query()
+            .music_saved(MusicSavedKind::Playlists)
+            .await
+            .unwrap()
+        else {
+            panic!("wrong result kind");
+        };
         assert_next_items(playlists, rp.query(), 5).await;
     }
 
@@ -3020,58 +3198,69 @@ async fn all_send_and_sync() {
     send_and_sync(rp.user_auth_wait_for_login(&dc));
 
     send_and_sync(rp.query().channel_info(""));
-    send_and_sync(rp.query().channel_playlists(""));
     #[cfg(feature = "rss")]
     send_and_sync(rp.query().channel_rss(""));
-    send_and_sync(rp.query().channel_search("", ""));
-    send_and_sync(rp.query().channel_videos(""));
-    send_and_sync(rp.query().channel_videos_order("", ChannelOrder::Latest));
-    send_and_sync(rp.query().channel_videos_tab("", ChannelVideoTab::Live));
-    send_and_sync(rp.query().channel_videos_tab_order(
+    send_and_sync(rp.query().channel_content::<_, VideoItem>(
         "",
-        ChannelVideoTab::Live,
-        ChannelOrder::Latest,
+        ChannelContent::Videos,
+        None,
+    ));
+    send_and_sync(rp.query().channel_content::<_, VideoItem>(
+        "",
+        ChannelContent::Videos,
+        Some(ChannelOrder::Latest),
+    ));
+    send_and_sync(rp.query().channel_content::<_, VideoItem>(
+        "",
+        ChannelContent::Live,
+        None,
+    ));
+    send_and_sync(rp.query().channel_content::<_, PlaylistItem>(
+        "",
+        ChannelContent::Playlists,
+        None,
     ));
     send_and_sync(
         rp.query()
             .drm_license("", rustypipe::model::DrmSystem::Widevine, "", "", &[]),
     );
     send_and_sync(rp.query().music_album(""));
-    send_and_sync(rp.query().music_artist("", false));
+    send_and_sync(rp.query().music_artist("", MusicArtistAlbums::Exclude));
     send_and_sync(rp.query().music_artist_albums("", None, None));
-    send_and_sync(rp.query().music_new_albums());
+    send_and_sync(rp.query().music_new(MusicNewKind::Albums));
     send_and_sync(rp.query().music_charts(None));
     send_and_sync(rp.query().music_details(""));
     send_and_sync(rp.query().music_genre(""));
     send_and_sync(rp.query().music_genres());
     send_and_sync(rp.query().music_lyrics(""));
-    send_and_sync(rp.query().music_new_albums());
-    send_and_sync(rp.query().music_new_videos());
+    send_and_sync(rp.query().music_new(MusicNewKind::Albums));
+    send_and_sync(rp.query().music_new(MusicNewKind::Videos));
     send_and_sync(rp.query().music_playlist(""));
     send_and_sync(rp.query().music_radio(""));
     send_and_sync(rp.query().music_radio_playlist(""));
     send_and_sync(rp.query().music_radio_track(""));
     send_and_sync(rp.query().music_related(""));
     send_and_sync(rp.query().music_search::<MusicItem, _>("", None));
-    send_and_sync(rp.query().music_search_albums(""));
-    send_and_sync(rp.query().music_search_artists(""));
-    send_and_sync(rp.query().music_search_albums(""));
-    send_and_sync(rp.query().music_search_main(""));
-    send_and_sync(rp.query().music_search_playlists("", false));
+    send_and_sync(rp.query().music_search::<AlbumItem, _>("", Some(MusicSearchFilter::Albums)));
+    send_and_sync(rp.query().music_search::<ArtistItem, _>("", Some(MusicSearchFilter::Artists)));
+    send_and_sync(rp.query().music_search::<TrackItem, _>("", Some(MusicSearchFilter::Tracks)));
+    send_and_sync(rp.query().music_search::<TrackItem, _>("", Some(MusicSearchFilter::Videos)));
+    send_and_sync(rp.query().music_search::<MusicPlaylistItem, _>(
+        "",
+        Some(MusicSearchFilter::Playlists { community: false }),
+    ));
+    send_and_sync(rp.query().music_search::<UserItem, _>("", Some(MusicSearchFilter::Users)));
     send_and_sync(rp.query().music_search_suggestion(""));
-    send_and_sync(rp.query().music_search_tracks(""));
-    send_and_sync(rp.query().music_search_users(""));
-    send_and_sync(rp.query().music_search_videos(""));
     send_and_sync(rp.query().player(""));
     send_and_sync(rp.query().player_from_client("", ClientType::Desktop));
     send_and_sync(rp.query().player_from_clients("", &[]));
     send_and_sync(rp.query().raw(ClientType::Desktop, "", ""));
-    send_and_sync(rp.query().resolve_string("", false));
-    send_and_sync(rp.query().resolve_url("", false));
-    send_and_sync(rp.query().search::<YouTubeItem, _>(""));
+    send_and_sync(rp.query().resolve_string("", AlbumResolution::No));
+    send_and_sync(rp.query().resolve_url("", AlbumResolution::No));
+    send_and_sync(rp.query().search::<YouTubeItem, _>("", None));
     send_and_sync(
         rp.query()
-            .search_filter::<YouTubeItem, _>("", &SearchFilter::default()),
+            .search::<YouTubeItem, _>("", Some(&SearchFilter::default())),
     );
     send_and_sync(rp.query().search_suggestion(""));
     send_and_sync(rp.query().trending());
@@ -3083,14 +3272,14 @@ async fn all_send_and_sync() {
         send_and_sync(rp.query().history());
         send_and_sync(rp.query().history_continuation("", None));
         send_and_sync(rp.query().history_search(""));
-        send_and_sync(rp.query().liked_videos());
-        send_and_sync(rp.query().watch_later());
+        send_and_sync(rp.query().user_playlist(UserPlaylistKind::LikedVideos));
+        send_and_sync(rp.query().user_playlist(UserPlaylistKind::WatchLater));
         send_and_sync(rp.query().music_history());
         send_and_sync(rp.query().music_history_continuation("", None));
-        send_and_sync(rp.query().music_saved_albums());
-        send_and_sync(rp.query().music_saved_artists());
-        send_and_sync(rp.query().music_saved_playlists());
-        send_and_sync(rp.query().music_saved_tracks());
+        send_and_sync(rp.query().music_saved(MusicSavedKind::Albums));
+        send_and_sync(rp.query().music_saved(MusicSavedKind::Artists));
+        send_and_sync(rp.query().music_saved(MusicSavedKind::Playlists));
+        send_and_sync(rp.query().music_saved(MusicSavedKind::Tracks));
         send_and_sync(rp.query().saved_playlists());
         send_and_sync(rp.query().subscription_feed());
         send_and_sync(rp.query().subscriptions());

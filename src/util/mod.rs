@@ -763,7 +763,7 @@ pub(crate) mod tests {
         let json_path = path!(*TESTFILES / "dict" / "large_number_samples.json");
         let json_file = File::open(json_path).unwrap();
         let number_samples: BTreeMap<Language, BTreeMap<String, u64>> =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+            flexon::from_reader(BufReader::new(json_file)).unwrap();
 
         for (lang, entry) in &number_samples {
             for (txt, expect) in entry {

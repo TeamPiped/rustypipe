@@ -32,13 +32,13 @@ struct DictOverrideEntry {
 pub fn read_dict() -> Dictionary {
     let json_path = path!(*DICT_DIR / "dictionary.json");
     let json_file = File::open(json_path).unwrap();
-    serde_json::from_reader(BufReader::new(json_file)).unwrap()
+    flexon::from_reader(BufReader::new(json_file)).unwrap()
 }
 
 fn read_dict_override() -> DictionaryOverride {
     let json_path = path!(*DICT_DIR / "dictionary_override.json");
     let json_file = File::open(json_path).unwrap();
-    serde_json::from_reader(BufReader::new(json_file)).unwrap()
+    flexon::from_reader(BufReader::new(json_file)).unwrap()
 }
 
 pub fn write_dict(dict: Dictionary) {
@@ -69,7 +69,7 @@ pub fn write_dict(dict: Dictionary) {
         })
         .collect();
 
-    serde_json::to_writer_pretty(json_file, &dict).unwrap();
+    flexon::to_writer_pretty(json_file, &dict).unwrap();
 }
 
 pub fn filter_datestr(string: &str) -> String {

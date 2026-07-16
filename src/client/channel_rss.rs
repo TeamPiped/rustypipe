@@ -102,9 +102,7 @@ impl response::ChannelRss {
         };
 
         if channel_id != id {
-            return Err(ExtractionError::WrongResult(format!(
-                "got wrong channel id {channel_id}, expected {id}",
-            )));
+            return Err(crate::client::check_id_matches(&channel_id, id, "channel"));
         }
 
         Ok(ChannelRss {

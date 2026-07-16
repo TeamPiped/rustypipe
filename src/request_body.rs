@@ -1,37 +1,79 @@
-use serde::Serialize;
-use serde_json::{Map, Value};
+use serde::{Serialize, Serializer};
 
-pub(crate) fn to_value<T>(value: T) -> Value
-where
-    T: Serialize,
-{
-    serde_json::to_value(value).expect("request body value should serialize")
-}
+use crate::json::{json_from_str, json_to_string, JsonValue};
 
-pub(crate) fn insert_value<T>(map: &mut Map<String, Value>, key: &str, value: T)
-where
-    T: Serialize,
-{
-    map.insert(key.to_owned(), to_value(value));
-}
+#[derive(Clone, Debug)]
+pub(crate) struct RequestBody(String);
 
-pub(crate) fn insert_optional_value<T>(map: &mut Map<String, Value>, key: &str, value: Option<T>)
-where
-    T: Serialize,
-{
-    if let Some(value) = value {
-        insert_value(map, key, value);
+impl RequestBody {
+    pub(crate) fn into_string(self) -> String {
+        self.0
     }
 }
 
-pub(crate) fn extend_object<T>(map: &mut Map<String, Value>, value: T)
+impl Serialize for RequestBody {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: Serializer,
+    {
+        let value: JsonValue = json_from_str(&self.0).map_err(serde::ser::Error::custom)?;
+        value.serialize(serializer)
+    }
+}
+
+pub(crate) fn to_raw<T>(value: T) -> String
 where
     T: Serialize,
 {
-    let Value::Object(other) = to_value(value) else {
+    json_to_string(&value).expect("request body value should serialize")
+}
+
+pub(crate) fn from_items(items: Vec<(String, String)>) -> RequestBody {
+    let values = items.into_iter().map(|(key, raw)| {
+        (
+            key,
+            json_from_str::<JsonValue>(&raw).expect("request body value should parse"),
+        )
+    });
+    RequestBody(
+        json_to_string(&crate::json::object_value(values)).expect("request body should serialize"),
+    )
+}
+
+pub(crate) fn insert_value<T>(items: &mut Vec<(String, String)>, key: &str, value: T)
+where
+    T: Serialize,
+{
+    items.push((key.to_owned(), to_raw(value)));
+}
+
+pub(crate) fn insert_optional_value<T>(
+    items: &mut Vec<(String, String)>,
+    key: &str,
+    value: Option<T>,
+) where
+    T: Serialize,
+{
+    if let Some(value) = value {
+        insert_value(items, key, value);
+    }
+}
+
+pub(crate) fn extend_object<T>(items: &mut Vec<(String, String)>, value: T)
+where
+    T: Serialize,
+{
+    let JsonValue::Object(other) =
+        json_from_str::<JsonValue>(&to_raw(value)).expect("request body merge value should parse")
+    else {
         panic!("request body merge value must serialize to an object");
     };
-    map.extend(other);
+    items.extend(
+        other
+            .as_slice()
+            .iter()
+            .map(|(key, value)| (key.as_str().to_owned(), json_to_string(value).unwrap())),
+    );
 }
 
 macro_rules! __ytbody_entries {
@@ -60,9 +102,9 @@ macro_rules! __ytbody_entries {
 
 macro_rules! ytbody {
     ({ $($entries:tt)* }) => {{
-        let mut map = ::serde_json::Map::new();
+        let mut map = Vec::new();
         $crate::request_body::__ytbody_entries!(map; $($entries)*);
-        ::serde_json::Value::Object(map)
+        $crate::request_body::from_items(map)
     }};
 }
 

@@ -1,4 +1,14 @@
 //! YouTube API Client
+//!
+//! Endpoint flow: each endpoint file declares a unit struct (`*Endpoint`) that
+//! implements [`MapEndpoint<M>`]. The `MapEndpoint::map` method receives a
+//! [`JsonDoc`] of the raw response body and walks it with `ytq!` queries
+//! against lazy [`JsonNode`]s, building public `model::*` values directly.
+//!
+//! No `serde::Deserialize` is invoked on intermediate `*Renderer` shapes
+//! during request execution. The only deserialization that remains in
+//! `client::*` is for the OAuth / cache types in this module (the on-disk
+//! cache) and the HTTP request bodies.
 
 pub(crate) mod response;
 
@@ -25,6 +35,15 @@ mod music_userdata;
 #[cfg_attr(docsrs, doc(cfg(feature = "userdata")))]
 mod userdata;
 
+#[cfg(feature = "chromey-po-token")]
+#[cfg_attr(docsrs, doc(cfg(feature = "chromey-po-token")))]
+pub mod chromey;
+
+#[cfg(feature = "userdata")]
+pub use music_userdata::MusicSavedResult;
+
+pub use music_new::MusicNewResult;
+
 #[cfg(feature = "rss")]
 #[cfg_attr(docsrs, doc(cfg(feature = "rss")))]
 mod channel_rss;
@@ -37,8 +56,7 @@ use std::{borrow::Cow, fmt::Debug, time::Duration};
 
 use once_cell::sync::Lazy;
 use regex::Regex;
-use serde::{de::DeserializeOwned, Deserialize, Serialize};
-use serde_json::Value;
+use serde::{Deserialize, Serialize};
 use sha1::{Digest, Sha1};
 use time::{OffsetDateTime, UtcOffset};
 use tokio::sync::RwLock as AsyncRwLock;
@@ -63,6 +81,7 @@ use crate::{
 ///
 /// There are multiple clients for accessing the YouTube API which have
 /// slightly different features
+#[cfg_attr(feature = "clap", derive(clap::ValueEnum))]
 #[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq, Eq, Hash)]
 #[serde(rename_all = "snake_case")]
 #[non_exhaustive]
@@ -217,9 +236,9 @@ const YOUTUBE_TV_URL: &str = "https://www.youtube.com/tv";
 const DISABLE_PRETTY_PRINT_PARAMETER: &str = "prettyPrint=false";
 
 // Web client
-const DESKTOP_CLIENT_VERSION: &str = "2.20241216.05.00";
-const DESKTOP_MUSIC_CLIENT_VERSION: &str = "1.20241216.01.00";
-const MOBILE_CLIENT_VERSION: &str = "2.20241217.07.00";
+const DESKTOP_CLIENT_VERSION: &str = "2.20260611.01.00";
+const DESKTOP_MUSIC_CLIENT_VERSION: &str = "1.20260608.01.00";
+const MOBILE_CLIENT_VERSION: &str = "2.20260609.05.00";
 const TV_CLIENT_VERSION: &str = "7.20241211.14.00";
 
 // Mobile app client
@@ -286,9 +305,24 @@ pub struct RustyPipeBuilder {
     botguard_bin: DefaultOpt<OsString>,
     snapshot_file: Option<PathBuf>,
     po_token_cache: bool,
+    chromey_provider: bool,
+    chrome_executable: Option<PathBuf>,
+    chromey_fallback_botguard: bool,
+    chromey_headful: bool,
+    chromey_intercept_file: Option<PathBuf>,
 }
 
 struct BotguardCfg {
+    /// `None` when the rustypipe-botguard binary is not configured.
+    /// The chromey provider is still usable when this is `None`.
+    botguard_bin: Option<BotguardBin>,
+    #[cfg(feature = "chromey-po-token")]
+    chromey: Option<crate::client::chromey::ChromeyProvider>,
+    #[cfg(feature = "chromey-po-token")]
+    chromey_fallback_botguard: bool,
+}
+
+struct BotguardBin {
     program: OsString,
     version: String,
     snapshot_file: PathBuf,
@@ -331,20 +365,14 @@ impl<T> DefaultOpt<T> {
 ///   - [`video_details`](RustyPipeQuery::video_details)
 ///   - [`video_comments`](RustyPipeQuery::video_comments)
 /// - **Channel**
-///   - [`channel_videos`](RustyPipeQuery::channel_videos)
-///   - [`channel_videos_order`](RustyPipeQuery::channel_videos_order)
-///   - [`channel_videos_tab`](RustyPipeQuery::channel_videos_tab)
-///   - [`channel_videos_tab_order`](RustyPipeQuery::channel_videos_tab_order)
-///   - [`channel_playlists`](RustyPipeQuery::channel_playlists)
-///   - [`channel_search`](RustyPipeQuery::channel_search)
+///   - [`channel_content`](RustyPipeQuery::channel_content)
 ///   - [`channel_info`](RustyPipeQuery::channel_info)
 ///   - [`channel_rss`](RustyPipeQuery::channel_rss) (🔒 Feature `rss`)
 /// - **Playlist** [`playlist`](RustyPipeQuery::playlist)
 /// - **Search**
-///   - [`search`](RustyPipeQuery::search)
-///   - [`search_filter`](RustyPipeQuery::search_filter)
+///   - [`search`](RustyPipeQuery::search) (filter by [`SearchFilter`])
 ///   - [`search_suggestion`](RustyPipeQuery::search_suggestion)
-/// - **Trending** [`trending`](RustyPipeQuery::trending)
+/// - **Trending / Explore Tabs** [`trending`](RustyPipeQuery::trending), [`trending_tab`](RustyPipeQuery::trending_tab)
 /// - **Resolver** (convert URLs and strings to YouTube IDs)
 ///   - [`resolve_url`](RustyPipeQuery::resolve_url)
 ///   - [`resolve_string`](RustyPipeQuery::resolve_string)
@@ -355,12 +383,7 @@ impl<T> DefaultOpt<T> {
 /// - **Album** [`music_album`](RustyPipeQuery::music_album)
 /// - **Artist** [`music_artist`](RustyPipeQuery::music_artist)
 /// - **Search**
-///   - [`music_search`](RustyPipeQuery::music_search)
-///   - [`music_search_tracks`](RustyPipeQuery::music_search_tracks)
-///   - [`music_search_videos`](RustyPipeQuery::music_search_videos)
-///   - [`music_search_albums`](RustyPipeQuery::music_search_albums)
-///   - [`music_search_artists`](RustyPipeQuery::music_search_artists)
-///   - [`music_search_playlists`](RustyPipeQuery::music_search_playlists)
+///   - [`music_search`](RustyPipeQuery::music_search) (filter by [`MusicSearchFilter`])
 ///   - [`music_search_suggestion`](RustyPipeQuery::music_search_suggestion)
 /// - **Radio**
 ///   - [`music_radio`](RustyPipeQuery::music_radio)
@@ -375,8 +398,7 @@ impl<T> DefaultOpt<T> {
 ///   - [`music_genre`](RustyPipeQuery::music_genre)
 /// - **Charts** [`music_charts`](RustyPipeQuery::music_charts)
 /// - **New**
-///   - [`music_new_albums`](RustyPipeQuery::music_new_albums)
-///   - [`music_new_videos`](RustyPipeQuery::music_new_videos)
+///   - [`music_new`](RustyPipeQuery::music_new) (by [`MusicNewKind`])
 ///
 /// ### User data (🔒 Feature `userdata`)
 ///
@@ -385,14 +407,10 @@ impl<T> DefaultOpt<T> {
 ///   - [`history_search`](RustyPipeQuery::history_search)
 ///   - [`music_history`](RustyPipeQuery::music_history)
 /// - **YouTube library**
-///   - [`liked_videos`](RustyPipeQuery::liked_videos)
-///   - [`watch_later`](RustyPipeQuery::watch_later)
+///   - [`user_playlist`](RustyPipeQuery::user_playlist) (by [`UserPlaylistKind`])
 ///   - [`saved_playlists`](RustyPipeQuery::saved_playlists)
 /// - **Music library**
-///   - [`music_saved_artists`](RustyPipeQuery::music_saved_artists)
-///   - [`music_saved_albums`](RustyPipeQuery::music_saved_albums)
-///   - [`music_saved_tracks`](RustyPipeQuery::music_saved_tracks)
-///   - [`music_saved_playlists`](RustyPipeQuery::music_saved_playlists)
+///   - [`music_saved`](RustyPipeQuery::music_saved) (by [`MusicSavedKind`])
 ///   - [`music_liked_tracks`](RustyPipeQuery::music_liked_tracks)
 /// - **Subscriptions**
 ///   - [`subscriptions`](RustyPipeQuery::subscriptions)
@@ -556,6 +574,11 @@ impl RustyPipeBuilder {
             botguard_bin: DefaultOpt::Default,
             snapshot_file: None,
             po_token_cache: false,
+            chromey_provider: false,
+            chrome_executable: None,
+            chromey_fallback_botguard: true,
+            chromey_headful: false,
+            chromey_intercept_file: None,
         }
     }
 
@@ -566,6 +589,21 @@ impl RustyPipeBuilder {
 
     /// Create a new, configured RustyPipe instance using a wreq [`ClientBuilder`].
     pub fn build_with_client(self, mut client_builder: ClientBuilder) -> Result<RustyPipe, Error> {
+        // If the user did not set a custom UA, default to the
+        // chromey provider's UA when chromey is enabled. GVS
+        // cross-checks the SABR request's User-Agent against the
+        // environment the PoToken was minted in; if the rustypipe
+        // HTTP client claims Firefox and the chromey browser
+        // claims Chrome-on-Linux, GVS rejects the PoToken.
+        #[cfg(feature = "chromey-po-token")]
+        let user_agent = match self.user_agent {
+            Some(ua) => Cow::Owned(ua),
+            None if self.chromey_provider => {
+                Cow::Borrowed(crate::client::chromey::DEFAULT_UA)
+            }
+            None => Cow::Borrowed(DEFAULT_UA),
+        };
+        #[cfg(not(feature = "chromey-po-token"))]
         let user_agent = self
             .user_agent
             .map(Cow::Owned)
@@ -592,7 +630,7 @@ impl RustyPipeBuilder {
         });
 
         let mut cdata = if let Some(data) = storage.as_ref().and_then(|storage| storage.read()) {
-            match serde_json::from_str::<CacheData>(&data) {
+            match flexon::from_str::<CacheData>(&data) {
                 Ok(data) => data,
                 Err(e) => {
                     tracing::error!("Could not deserialize cache. Error: {}", e);
@@ -606,6 +644,7 @@ impl RustyPipeBuilder {
         let cache_clients = [
             ClientType::Desktop,
             ClientType::DesktopMusic,
+            ClientType::Ios,
             ClientType::Mobile,
             ClientType::Tv,
         ]
@@ -620,7 +659,7 @@ impl RustyPipeBuilder {
 
         let visitor_data_cache = VisitorDataCache::new(http.clone(), 50, 20);
 
-        let botguard = match self.botguard_bin {
+        let botguard_bin = match self.botguard_bin {
             DefaultOpt::Some(botguard_bin) => Some(detect_botguard_bin(botguard_bin)?),
             DefaultOpt::None => None,
             DefaultOpt::Default => detect_botguard_bin("./rustypipe-botguard".into())
@@ -634,8 +673,7 @@ impl RustyPipeBuilder {
                 version,
                 program.to_string_lossy()
             );
-
-            BotguardCfg {
+            BotguardBin {
                 program: program.to_owned(),
                 version,
                 snapshot_file: self.snapshot_file.unwrap_or_else(|| {
@@ -646,6 +684,37 @@ impl RustyPipeBuilder {
                 po_token_cache: self.po_token_cache,
             }
         });
+
+        #[cfg(feature = "chromey-po-token")]
+        let chromey_provider = if self.chromey_provider {
+            let mut provider = crate::client::chromey::ChromeyProvider::new(
+                self.chrome_executable.clone(),
+            )
+            .with_headful(self.chromey_headful);
+            if let Some(path) = self.chromey_intercept_file.clone() {
+                provider = provider.with_intercept_file(path);
+            }
+            Some(provider)
+        } else {
+            None
+        };
+        #[cfg(not(feature = "chromey-po-token"))]
+        let _ = (self.chromey_provider, self.chromey_headful, self.chromey_intercept_file);
+
+        // Build a BotguardCfg whenever the user requested the
+        // chromey provider (even when the botguard binary isn't
+        // found), or whenever a botguard binary is configured.
+        let botguard = if botguard_bin.is_some() || cfg!(feature = "chromey-po-token") {
+            Some(BotguardCfg {
+                botguard_bin,
+                #[cfg(feature = "chromey-po-token")]
+                chromey: chromey_provider,
+                #[cfg(feature = "chromey-po-token")]
+                chromey_fallback_botguard: self.chromey_fallback_botguard,
+            })
+        } else {
+            None
+        };
 
         Ok(RustyPipe {
             inner: Arc::new(RustyPipeRef {
@@ -926,6 +995,89 @@ impl RustyPipeBuilder {
         self.po_token_cache = true;
         self
     }
+
+    /// Enable the real-browser (chromey) PoToken provider.
+    ///
+    /// When enabled, the chromey provider is preferred over the
+    /// `rustypipe-botguard` binary. If chromey fails to launch or
+    /// the browser-side BotGuard challenge fails, rustypipe falls
+    /// back to the botguard binary if it is also configured
+    /// (disable that with [`RustyPipeBuilder::chromey_no_botguard_fallback`]).
+    ///
+    /// The provider requires a Chrome/Chromium binary on the host
+    /// (or a path passed to [`RustyPipeBuilder::chrome_executable`]).
+    ///
+    /// This method is a no-op when the `chromey-po-token` cargo
+    /// feature is disabled at build time.
+    #[must_use]
+    pub fn chromey_provider(mut self) -> Self {
+        self.chromey_provider = true;
+        self
+    }
+
+    /// Override the path to the Chrome/Chromium binary used by the
+    /// chromey provider. When unset, the provider tries the
+    /// standard system locations (`google-chrome`, `chromium`, the
+    /// `CHROME` env var, etc.) at the first `mint_token` call.
+    #[must_use]
+    pub fn chrome_executable<P: Into<PathBuf>>(mut self, path: P) -> Self {
+        self.chrome_executable = Some(path.into());
+        self
+    }
+
+    /// Disable the botguard binary fallback used when the chromey
+    /// provider is enabled and fails.
+    ///
+    /// When the fallback is disabled, a chromey failure surfaces
+    /// directly to the caller instead of transparently retrying
+    /// with the botguard binary.
+    #[must_use]
+    pub fn chromey_no_botguard_fallback(mut self) -> Self {
+        self.chromey_fallback_botguard = false;
+        self
+    }
+
+    /// Launch the chromey provider's Chrome in headful mode
+    /// (real window, no `--headless=new`) instead of the default
+    /// headless mode.
+    ///
+    /// Headful Chrome is the most "real" environment we can present
+    /// to YouTube's BotGuard VM — it sidesteps the headless-only
+    /// fingerprint checks that the VM runs (`navigator.webdriver`,
+    /// `window.chrome` shape, missing-window checks). The trade-off
+    /// is that you need a display: on a headless host, run under
+    /// `xvfb-run` or set `DISPLAY` to a persistent `Xvfb :N`.
+    ///
+    /// Only takes effect when [`Self::chromey_provider`] is also
+    /// set. No-op when the `chromey-po-token` cargo feature is
+    /// disabled at build time.
+    #[must_use]
+    pub fn chromey_headful(mut self, headful: bool) -> Self {
+        self.chromey_headful = headful;
+        self
+    }
+
+    /// Let the chromey watch page actually play, capture the
+    /// first `videoplayback` POST the browser sends, and write
+    /// its `StreamerContext.po_token` to `path`. The downloader
+    /// reads the same path via the `RUSTYPIPE_SABR_PO_TOKEN_FILE`
+    /// env-var override to send the *real browser's* PoToken
+    /// instead of the one we mint ourselves.
+    ///
+    /// Use this for diagnostics: if rustypipe's SABR stream gets
+    /// 403 with our own PoToken but works with the browser's,
+    /// the issue is in the PoToken we mint. If both still 403,
+    /// the issue is in rustypipe's request envelope (URL
+    /// signature, `ClientAbrState`, headers, etc.).
+    ///
+    /// Only takes effect when [`Self::chromey_provider`] is also
+    /// set. No-op when the `chromey-po-token` cargo feature is
+    /// disabled at build time.
+    #[must_use]
+    pub fn chromey_intercept_file<P: Into<PathBuf>>(mut self, path: P) -> Self {
+        self.chromey_intercept_file = Some(path.into());
+        self
+    }
 }
 
 impl Default for RustyPipe {
@@ -935,6 +1087,12 @@ impl Default for RustyPipe {
 }
 
 impl RustyPipe {
+    /// Get the deobfuscation data (signature/n-sig functions) extracted from
+    /// the YouTube player JS. Useful for verifying SABR stream URLs.
+    pub async fn deobf_data(&self) -> Result<DeobfData, Error> {
+        DeobfData::extract(&self.inner.http, self.inner.reporter.as_deref()).await
+    }
+
     /// Create a new RustyPipe instance with default settings.
     ///
     /// To create an instance with custom options, use [`RustyPipeBuilder`] instead.
@@ -1012,7 +1170,7 @@ impl RustyPipe {
 
         if status.is_client_error() || status.is_server_error() {
             let error_msg = if let Ok(body) = res.text().await {
-                serde_json::from_str::<response::ErrorResponse>(&body)
+                flexon::from_str::<response::ErrorResponse>(&body)
                     .map(|r| Cow::from(r.error.message))
                     .ok()
             } else {
@@ -1051,6 +1209,12 @@ impl RustyPipe {
                 Some(MOBILE_UA),
             ),
             ClientType::Tv => (None, YOUTUBE_TV_URL, YOUTUBE_TV_URL, Some(TV_UA)),
+            ClientType::Ios => (
+                None,
+                "https://www.youtube.com/results?search_query=",
+                YOUTUBE_HOME_URL,
+                None,
+            ),
             _ => panic!("cannot extract client version for {client_type:?}"),
         };
 
@@ -1141,7 +1305,7 @@ impl RustyPipe {
     }
 
     /// Get deobfuscation data (either from cache or extracted from YouTube's JavaScript code)
-    async fn get_deobf_data(&self) -> Result<DeobfData, Error> {
+    pub async fn get_deobf_data(&self) -> Result<DeobfData, Error> {
         // Write lock here to prevent concurrent tasks from fetching the same data
         let mut deobf_data = self.inner.cache.deobf.write().await;
 
@@ -1212,7 +1376,7 @@ impl RustyPipe {
                 auth_cookie: self.inner.cache.auth_cookie.read().unwrap().clone(),
             };
 
-            match serde_json::to_string(&cdata) {
+            match flexon::to_string(&cdata) {
                 Ok(data) => storage.write(&data),
                 Err(e) => tracing::error!("Could not serialize cache. Error: {}", e),
             }
@@ -1236,7 +1400,7 @@ impl RustyPipe {
             .header(header::USER_AGENT, TV_UA)
             .header(header::ORIGIN, YOUTUBE_HOME_URL)
             .header(header::REFERER, YOUTUBE_TV_URL)
-            .json(&code_request)
+            .body(code_request.into_string())
             .send()
             .await?
             .error_for_status()?
@@ -1270,7 +1434,7 @@ impl RustyPipe {
             .header(header::USER_AGENT, TV_UA)
             .header(header::ORIGIN, YOUTUBE_HOME_URL)
             .header(header::REFERER, YOUTUBE_TV_URL)
-            .json(&token_request)
+            .body(token_request.into_string())
             .send()
             .await?
             .error_for_status()?
@@ -1348,7 +1512,7 @@ impl RustyPipe {
             .header(header::USER_AGENT, TV_UA)
             .header(header::ORIGIN, YOUTUBE_HOME_URL)
             .header(header::REFERER, YOUTUBE_TV_URL)
-            .json(&revoke_request)
+            .body(revoke_request.into_string())
             .send()
             .await?;
 
@@ -1400,7 +1564,7 @@ impl RustyPipe {
             .header(header::USER_AGENT, TV_UA)
             .header(header::ORIGIN, YOUTUBE_HOME_URL)
             .header(header::REFERER, YOUTUBE_TV_URL)
-            .json(&token_request)
+            .body(token_request.into_string())
             .send()
             .await?
             .json::<OauthTokenResponse>()
@@ -1587,7 +1751,10 @@ impl RustyPipe {
 
     /// Get the version string (e.g. `rustypipe-botguard 0.1.1`) of the used botguard binary
     pub async fn version_botguard(&self) -> Option<String> {
-        self.inner.botguard.as_ref().map(|bg| bg.version.to_owned())
+        self.inner
+            .botguard
+            .as_ref()
+            .and_then(|bg| bg.botguard_bin.as_ref().map(|b| b.version.to_owned()))
     }
 }
 
@@ -1774,7 +1941,7 @@ impl RustyPipeQuery {
         ctype: ClientType,
         localized: bool,
         visitor_data: &str,
-    ) -> Value {
+    ) -> crate::request_body::RequestBody {
         let (hl, gl) = if localized {
             (self.opts.lang, self.opts.country)
         } else {
@@ -2079,7 +2246,31 @@ impl RustyPipeQuery {
     }
 
     /// Generate PO tokens
-    async fn get_po_tokens(&self, idents: &[&str]) -> Result<(Vec<String>, OffsetDateTime), Error> {
+    ///
+    /// `content_binding` and `signed_timestamp` are bound into
+    /// the resulting minter by the chromey path; they should
+    /// be `(visitor_data, deobf.sts)` for the same reason
+    /// YouTube's player.js passes them. Pass `None, None` to
+    /// keep the historical cold-start behaviour (each mint is
+    /// treated as a fresh session by GVS).
+    ///
+    /// `watch_url` is the YouTube `watch?v=<id>` URL whose
+    /// page-context the chromey minter should be loaded on.
+    /// YouTube's player.js runs the botguard VM inside the
+    /// watch page; minting from a generic `youtube.com` page
+    /// produces PoTokens GVS rejects with
+    /// `attestation_required` after a few SABR segments, so
+    /// the downloader and player paths should pass a real
+    /// watch URL. Pass `None` for callers that don't have one
+    /// handy (the public `get_po_token` API, the session
+    /// token cache).
+    async fn get_po_tokens(
+        &self,
+        idents: &[&str],
+        content_binding: Option<&str>,
+        signed_timestamp: Option<&str>,
+        watch_url: Option<&str>,
+    ) -> Result<(Vec<String>, OffsetDateTime), Error> {
         let bg = self
             .client
             .inner
@@ -2087,10 +2278,57 @@ impl RustyPipeQuery {
             .as_ref()
             .ok_or(ExtractionError::Botguard("not enabled".into()))?;
 
+        // Prefer the chromey (real-browser) provider when it's
+        // enabled. Fall through to the botguard binary on any
+        // chromey-side failure (unless the user disabled the
+        // fallback).
+        #[cfg(feature = "chromey-po-token")]
+        if let Some(chromey) = bg.chromey.as_ref() {
+            // The watch URL is `https://www.youtube.com/watch?v=<id>`
+            // and we want the video id, not the full URL. The
+            // chromey provider navigates to the watch page
+            // using the bare id; this gives the botguard VM
+            // the same navigation context YouTube's player
+            // would when minting the same tokens.
+            let watch_video_id =
+                watch_url.and_then(Self::extract_video_id_from_watch_url);
+            match chromey
+                .mint(idents, content_binding, signed_timestamp, watch_video_id.as_deref())
+                .await
+            {
+                Ok((tokens, valid_until)) => {
+                    tracing::debug!(
+                        "chromey minted {} PO token(s) (bound={}, video_id={:?}, valid_until {})",
+                        tokens.len(),
+                        content_binding.is_some(),
+                        watch_video_id,
+                        valid_until
+                    );
+                    return Ok((tokens, valid_until));
+                }
+                Err(e) => {
+                    if !bg.chromey_fallback_botguard {
+                        return Err(e);
+                    }
+                    tracing::warn!(
+                        "chromey PoToken provider failed ({}); falling back to botguard binary",
+                        e
+                    );
+                }
+            }
+        }
+
+        let botguard_bin = bg
+            .botguard_bin
+            .as_ref()
+            .ok_or(ExtractionError::Botguard(
+                "rustypipe-botguard binary not found and no chromey provider configured".into(),
+            ))?;
+
         let start = std::time::Instant::now();
-        let cmd = tokio::process::Command::new(&bg.program)
+        let cmd = tokio::process::Command::new(&botguard_bin.program)
             .arg("--snapshot-file")
-            .arg(&bg.snapshot_file)
+            .arg(&botguard_bin.snapshot_file)
             .arg("--")
             .args(idents)
             .output()
@@ -2151,13 +2389,66 @@ impl RustyPipeQuery {
         Ok((tokens, valid_until))
     }
 
-    /// Get a session-bound PO token (either from cache or newly generated)
+    /// Extract the bare video id (`dQw4w9WgXcQ` style) from a
+    /// YouTube `watch?v=<id>` URL. Returns `None` if the URL
+    /// doesn't have a recognisable `v=` parameter.
+    ///
+    /// Used by the chromey (real-browser) PoToken provider to
+    /// navigate to the watch page before running the botguard
+    /// VM. The VM fingerprints the page's navigation context
+    /// (referrer, history, document.title) and binds the
+    /// resulting PoToken to that context. GVS only accepts
+    /// PoTokens whose VM environment matches the page that
+    /// issued the SABR request, so minting on the watch page
+    /// is what makes the resulting tokens survive an
+    /// `attestation_required` retry loop.
+    fn extract_video_id_from_watch_url(url: &str) -> Option<String> {
+        // Strip the optional query prefix (`?...`) and look
+        // for the `v=<id>` parameter. Handles
+        // `?v=<id>`, `?si=<id>&v=<id>`, and the `youtu.be/<id>`
+        // short form. We don't try to be a full URL parser —
+        // YouTube watch URLs have a stable shape and a
+        // substring check is enough.
+        if let Some(q) = url.find('?') {
+            let qs = &url[q + 1..];
+            for pair in qs.split('&') {
+                if let Some(rest) = pair.strip_prefix("v=") {
+                    // Trim any `&` connector and any further
+                    // query parameters that follow.
+                    let id_end = rest
+                        .find(|c: char| c == '&' || c == '#')
+                        .unwrap_or(rest.len());
+                    let id = &rest[..id_end];
+                    if !id.is_empty() {
+                        return Some(id.to_owned());
+                    }
+                }
+            }
+        }
+        None
+    }
+
+    /// Get the YouTube signature timestamp (`deobf.sts`).
+    /// Used by callers that need to bind a chromey minter
+    /// the way player.js does — see `get_po_token_bound`.
+    pub async fn get_signature_timestamp(&self) -> Result<String, Error> {
+        Ok(self.client.get_deobf_data().await?.sts)
+    }
+
+    /// Get a session-bound PO token (either from cache or newly generated).
+    /// Mints with a (visitor_data, deobf.sts) binding so the
+    /// resulting token is accepted by GVS as a session-bound
+    /// token — which is what the chromey path needs to produce
+    /// tokens that survive across multiple SABR requests.
     async fn get_session_po_token(&self, visitor_data: &str) -> Result<PoToken, Error> {
         if let Some(po_token) = self.client.inner.visitor_data_cache.get_pot(visitor_data) {
             return Ok(po_token);
         }
 
-        let po_token = self.get_po_token(visitor_data).await?;
+        let sts = self.get_signature_timestamp().await.ok();
+        let po_token = self
+            .get_po_token_impl(visitor_data, Some(visitor_data), sts.as_deref())
+            .await?;
         self.client
             .inner
             .visitor_data_cache
@@ -2171,7 +2462,70 @@ impl RustyPipeQuery {
     ///
     /// See <https://codeberg.org/ThetaDev/rustypipe-botguard> for more information
     pub async fn get_po_token<S: AsRef<str>>(&self, ident: S) -> Result<PoToken, Error> {
-        let (tokens, valid_until) = self.get_po_tokens(&[ident.as_ref()]).await?;
+        self.get_po_token_impl(ident.as_ref(), None, None).await
+    }
+
+    /// Get a PO token bound to a (visitor_data, signedTimestamp)
+    /// pair, the way YouTube's player.js does.
+    ///
+    /// Binding is what makes the resulting PoToken survive a
+    /// SABR attestation refresh: the botguard `asyncSnapshotFunction`
+    /// bakes `(contentBinding, signedTimestamp)` into the
+    /// minter, and GVS only accepts refreshed PoTokens that
+    /// come from a minter bound to the current session. Pass
+    /// `None` for both to fall back to the unbound / cold-start
+    /// behaviour of `get_po_token`.
+    pub async fn get_po_token_bound<S: AsRef<str>>(
+        &self,
+        ident: S,
+        content_binding: Option<&str>,
+        signed_timestamp: Option<&str>,
+    ) -> Result<PoToken, Error> {
+        self.get_po_token_impl(ident.as_ref(), content_binding, signed_timestamp)
+            .await
+    }
+
+    /// Get a PO token bound to `(visitor_data, deobf.sts)` AND
+    /// minted on this video's watch page, the way
+    /// YouTube's player.js does. The chromey provider navigates
+    /// to `https://www.youtube.com/watch?v=<video_id>` before
+    /// running the botguard VM, so the resulting PoToken is
+    /// bound to the same navigation context the player would
+    /// produce. This is what makes the token survive a SABR
+    /// `attestation_required` retry loop, where the server
+    /// cross-checks the VM environment against the page that
+    /// issued the request.
+    pub async fn get_po_token_watch_bound<S: AsRef<str>>(
+        &self,
+        ident: S,
+        video_id: S,
+        content_binding: Option<&str>,
+        signed_timestamp: Option<&str>,
+    ) -> Result<PoToken, Error> {
+        let watch_url = format!("https://www.youtube.com/watch?v={}", video_id.as_ref());
+        let (tokens, valid_until) = self
+            .get_po_tokens(
+                &[ident.as_ref()],
+                content_binding,
+                signed_timestamp,
+                Some(&watch_url),
+            )
+            .await?;
+        Ok(PoToken {
+            po_token: tokens.into_iter().next().unwrap(),
+            valid_until,
+        })
+    }
+
+    async fn get_po_token_impl(
+        &self,
+        ident: &str,
+        content_binding: Option<&str>,
+        signed_timestamp: Option<&str>,
+    ) -> Result<PoToken, Error> {
+        let (tokens, valid_until) = self
+            .get_po_tokens(&[ident], content_binding, signed_timestamp, None)
+            .await?;
 
         Ok(PoToken {
             po_token: tokens.into_iter().next().unwrap(),
@@ -2187,7 +2541,7 @@ impl RustyPipeQuery {
                 .inner
                 .botguard
                 .as_ref()
-                .map(|bg| bg.version.as_str()),
+                .and_then(|bg| bg.botguard_bin.as_ref().map(|b| b.version.as_str())),
         )
     }
 
@@ -2195,11 +2549,7 @@ impl RustyPipeQuery {
     ///
     /// Runs a single attempt, returns Ok with a erroneous RequestResult in case of a
     /// HTTP or mapping error so it can be retried/reported.
-    async fn execute_request_attempt<
-        R: MapJsonResponse<M> + Debug,
-        M,
-        B: Serialize + ?Sized,
-    >(
+    async fn execute_request_attempt<R: MapEndpoint<M> + Debug, M, B: Serialize + ?Sized>(
         &self,
         ctype: ClientType,
         id: &str,
@@ -2235,12 +2585,14 @@ impl RustyPipeQuery {
             artist: ctx_src.artist.clone(),
             authenticated: self.opts.auth.unwrap_or_default(),
             session_po_token: ctx_src.session_po_token.clone(),
+            content_po_token: ctx_src.content_po_token.clone(),
+            client_version: self.client.get_client_version(ctype).await.into_owned(),
         };
 
         let request = self
             .request_builder(ctype, endpoint, ctx.visitor_data)
             .await?
-            .json(&req_body)
+            .body(req_body.into_string())
             .build()?;
 
         let response = self
@@ -2255,7 +2607,7 @@ impl RustyPipeQuery {
         tracing::debug!("fetched {} bytes from YT", body.len());
 
         let res = if status.is_client_error() || status.is_server_error() {
-            let error_msg = serde_json::from_str::<response::ErrorResponse>(&body)
+            let error_msg = flexon::from_str::<response::ErrorResponse>(&body)
                 .map(|r| Cow::from(r.error.message));
 
             Err(match status {
@@ -2271,7 +2623,7 @@ impl RustyPipeQuery {
             })
         } else {
             let json = JsonDoc::new(body.clone());
-            match R::map_json_response(&json, &ctx) {
+            match R::map(&json, &ctx) {
                 Ok(mapres) => Ok(mapres),
                 Err(e) => Err(e.into()),
             }
@@ -2291,11 +2643,7 @@ impl RustyPipeQuery {
     ///
     /// Runs up to n_request_attempts, returns Ok with a erroneous RequestResult in case of a
     /// HTTP or mapping error so it can be reported.
-    async fn execute_request_inner<
-        R: MapJsonResponse<M> + Debug,
-        M,
-        B: Serialize + ?Sized,
-    >(
+    async fn execute_request_inner<R: MapEndpoint<M> + Debug, M, B: Serialize + ?Sized>(
         &self,
         ctype: ClientType,
         id: &str,
@@ -2340,7 +2688,7 @@ impl RustyPipeQuery {
 
     /// Runs a single attempt for lazy JSON mappers, returns Ok with an erroneous
     /// RequestResult in case of HTTP or mapping error so it can be retried/reported.
-    async fn execute_request_attempt_json<R: MapJsonResponse<M>, M, B: Serialize + ?Sized>(
+    async fn execute_request_attempt_json<R: MapEndpoint<M>, M, B: Serialize + ?Sized>(
         &self,
         ctype: ClientType,
         id: &str,
@@ -2376,12 +2724,14 @@ impl RustyPipeQuery {
             artist: ctx_src.artist.clone(),
             authenticated: self.opts.auth.unwrap_or_default(),
             session_po_token: ctx_src.session_po_token.clone(),
+            content_po_token: ctx_src.content_po_token.clone(),
+            client_version: self.client.get_client_version(ctype).await.into_owned(),
         };
 
         let request = self
             .request_builder(ctype, endpoint, ctx.visitor_data)
             .await?
-            .json(&req_body)
+            .body(req_body.into_string())
             .build()?;
 
         let response = self
@@ -2396,7 +2746,7 @@ impl RustyPipeQuery {
         tracing::debug!("fetched {} bytes from YT", body.len());
 
         let res = if status.is_client_error() || status.is_server_error() {
-            let error_msg = serde_json::from_str::<response::ErrorResponse>(&body)
+            let error_msg = flexon::from_str::<response::ErrorResponse>(&body)
                 .map(|r| Cow::from(r.error.message));
 
             Err(match status {
@@ -2412,7 +2762,7 @@ impl RustyPipeQuery {
             })
         } else {
             let json = JsonDoc::new(body.clone());
-            match R::map_json_response(&json, &ctx) {
+            match R::map(&json, &ctx) {
                 Ok(mapres) => Ok(mapres),
                 Err(e) => Err(e.into()),
             }
@@ -2442,11 +2792,7 @@ impl RustyPipeQuery {
     /// - `endpoint`: YouTube API endpoint (`https://www.youtube.com/youtubei/v1/<XYZ>?key=...`)
     /// - `body`: Serializable request body to be sent in json format
     /// - `ctx_src`: Context source (additional parameters for fetching and mapping, used to build the MapRespCtx)
-    async fn execute_request_ctx<
-        R: MapJsonResponse<M> + Debug,
-        M,
-        B: Serialize + ?Sized,
-    >(
+    async fn execute_request_ctx<R: MapEndpoint<M> + Debug, M, B: Serialize + ?Sized>(
         &self,
         ctype: ClientType,
         operation: &str,
@@ -2534,7 +2880,7 @@ impl RustyPipeQuery {
     /// Execute a request to the YouTube API, then map the response from lazy JSON.
     ///
     /// Creates a report in case of failure for easy debugging.
-    async fn execute_request_ctx_json<R: MapJsonResponse<M>, M, B: Serialize + ?Sized>(
+    async fn execute_request_ctx_json<R: MapEndpoint<M>, M, B: Serialize + ?Sized>(
         &self,
         ctype: ClientType,
         operation: &str,
@@ -2629,11 +2975,7 @@ impl RustyPipeQuery {
     /// - `method`: HTTP method
     /// - `endpoint`: YouTube API endpoint (`https://www.youtube.com/youtubei/v1/<XYZ>?key=...`)
     /// - `body`: Serializable request body to be sent in json format
-    async fn execute_request<
-        R: MapJsonResponse<M> + Debug,
-        M,
-        B: Serialize + ?Sized,
-    >(
+    async fn execute_request<R: MapEndpoint<M> + Debug, M, B: Serialize + ?Sized>(
         &self,
         ctype: ClientType,
         operation: &str,
@@ -2652,7 +2994,7 @@ impl RustyPipeQuery {
         .await
     }
 
-    async fn execute_request_json<R: MapJsonResponse<M>, M, B: Serialize + ?Sized>(
+    async fn execute_request_json<R: MapEndpoint<M>, M, B: Serialize + ?Sized>(
         &self,
         ctype: ClientType,
         operation: &str,
@@ -2697,7 +3039,7 @@ impl RustyPipeQuery {
         let request = self
             .request_builder(ctype, endpoint, None)
             .await?
-            .json(&req_body)
+            .body(req_body.into_string())
             .build()?;
 
         self.client.http_request_txt(&request).await
@@ -2721,6 +3063,10 @@ struct MapRespCtx<'a> {
     artist: Option<ArtistId>,
     authenticated: bool,
     session_po_token: Option<PoToken>,
+    content_po_token: Option<String>,
+    /// YouTube WEB client version used to fetch the player response.
+    /// Needed for SABR downloads.
+    client_version: String,
 }
 
 /// Options to give to the mapper when making requests;
@@ -2732,6 +3078,8 @@ struct MapRespOptions<'a> {
     artist: Option<ArtistId>,
     unlocalized: bool,
     session_po_token: Option<PoToken>,
+    /// Content PO token returned with the player response, if any.
+    content_po_token: Option<String>,
 }
 
 #[allow(clippy::needless_lifetimes)]
@@ -2749,49 +3097,42 @@ impl<'a> MapRespCtx<'a> {
             artist: None,
             authenticated: false,
             session_po_token: None,
+            content_po_token: None,
+            client_version: String::new(),
         }
+    }
+
+    /// Resolve the visitor data for a response, preferring the value embedded
+    /// in the response body and falling back to the value carried on this
+    /// context.
+    pub(crate) fn visitor_data(&self, root: &crate::json::JsonNode<'_>) -> Option<String> {
+        crate::json::yt_response_visitor_data(root)
+            .or_else(|| self.visitor_data.map(str::to_owned))
     }
 }
 
-/// Implement this for YouTube API response structs that need to be mapped to
-/// RustyPipe models.
-trait MapResponse<T> {
-    /// Map the YouTube API response structs to a RustyPipe model.
-    ///
-    /// Returns an error if crucial data required for the model could not be extracted.
-    ///
-    /// Returns a `MapResult` with warnings if there were issues with the deserializing/mapping,
-    /// but the resulting data is still usable.
-    ///
-    /// # Parameters
-    /// - `id`: The ID of the requested entity (Video ID, Channel ID, ...). If possible, assert
-    ///   that the returned entity matches this ID and return an error instead.
-    /// - `lang`: Language of the request. Used for mapping localized information like dates.
-    /// - `deobf`: Deobfuscator (if passed to the `execute_request_deobf` method)
-    /// - `visitor_data`: Visitor data option of the client
-    fn map_response(self, ctx: &MapRespCtx<'_>) -> Result<MapResult<T>, ExtractionError>;
+/// Build a `WrongResult` error message for a mismatched ID.
+pub(crate) fn check_id_matches<T: std::fmt::Display>(
+    got: T,
+    expected: &str,
+    what: &str,
+) -> ExtractionError {
+    let got_s = got.to_string();
+    ExtractionError::WrongResult(format!(
+        "got wrong {what} id {got_s}, expected {expected}"
+    ))
 }
 
-/// Implement this for mappers that operate on the internal lazy JSON layer.
-trait MapJsonResponse<T> {
-    fn map_json_response(
+/// Implement this on a per-endpoint unit struct to map a lazy-JSON
+/// `JsonDoc` response directly to a public `model::*` value.
+///
+/// The body is walked via `ytq!` queries against `JsonNode` — no serde
+/// `Deserialize` of intermediate `*Renderer` shapes is performed.
+trait MapEndpoint<T> {
+    fn map(
         json: &JsonDoc,
         ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<T>, ExtractionError>;
-}
-
-impl<R, T> MapJsonResponse<T> for R
-where
-    R: DeserializeOwned + MapResponse<T>,
-{
-    fn map_json_response(
-        json: &JsonDoc,
-        ctx: &MapRespCtx<'_>,
-    ) -> Result<MapResult<T>, ExtractionError> {
-        let deserialized = flexon::from_str::<R>(json.body())
-            .map_err(|e| ExtractionError::InvalidData(e.to_string().into()))?;
-        deserialized.map_response(ctx)
-    }
 }
 
 fn validate_country(country: Country) -> Country {

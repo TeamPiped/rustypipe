@@ -1,62 +1,186 @@
 use std::ops::Range;
 
-use serde::Deserialize;
+use serde::{Deserialize, Deserializer};
 use serde_with::serde_as;
 use serde_with::{DefaultOnError, DisplayFromStr, VecSkipError};
 
 use super::{Empty, Thumbnails};
+use crate::json::{JsonGet, JsonValue};
 use crate::serializer::{text::Text, MapResult};
+use crate::yt_string_enum;
+use crate::FromYtNode;
 
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(tag = "status", rename_all = "SCREAMING_SNAKE_CASE")]
+yt_string_enum! {
+    pub(crate) enum Quality {
+        Tiny = "tiny",
+        Small = "small",
+        Medium = "medium",
+        Large = "large",
+        Highres = "highres",
+        Hd720 = "hd720",
+        Hd1080 = "hd1080",
+        Hd1440 = "hd1440",
+        Hd2160 = "hd2160",
+    }
+    default: Quality::Medium
+}
+
+yt_string_enum! {
+    pub(crate) enum AudioQuality {
+        UltraLow = "AUDIO_QUALITY_ULTRALOW",
+        Low = "AUDIO_QUALITY_LOW",
+        Medium = "AUDIO_QUALITY_MEDIUM",
+        High = "AUDIO_QUALITY_HIGH",
+    }
+    default: AudioQuality::Medium
+}
+
+yt_string_enum! {
+    pub(crate) enum FormatType {
+        Default = "",
+        /// This stream only works via DASH and not via progressive HTTP.
+        FormatStreamTypeOtf = "FORMAT_STREAM_TYPE_OTF",
+    }
+    default: FormatType::Default,
+    fallback_to_default
+}
+
+yt_string_enum! {
+    pub(crate) enum Primaries {
+        ColorPrimariesBt709 = "COLOR_PRIMARIES_BT709",
+        ColorPrimariesBt2020 = "COLOR_PRIMARIES_BT2020",
+    }
+    default: Primaries::ColorPrimariesBt709
+}
+
+yt_string_enum! {
+    #[allow(clippy::enum_variant_names)]
+    pub(crate) enum DrmTrackType {
+        DrmTrackTypeAudio = "DRM_TRACK_TYPE_AUDIO",
+        DrmTrackTypeSd = "DRM_TRACK_TYPE_SD",
+        DrmTrackTypeHd = "DRM_TRACK_TYPE_HD",
+        DrmTrackTypeUhd1 = "DRM_TRACK_TYPE_UHD1",
+    }
+    default: DrmTrackType::DrmTrackTypeAudio
+}
+
+yt_string_enum! {
+    pub(crate) enum DrmFamily {
+        Widevine = "WIDEVINE",
+        Playready = "PLAYREADY",
+        Fairplay = "FAIRPLAY",
+    }
+    default: DrmFamily::Widevine
+}
+
+#[derive(Default, Debug, FromYtNode)]
+pub(crate) struct ColorInfo {
+    pub primaries: Primaries,
+}
+
+#[derive(Debug)]
 pub(crate) enum PlayabilityStatus {
-    #[serde(rename_all = "camelCase")]
     Ok { live_streamability: Option<Empty> },
     /// Video cant be played because of DRM / Geoblock
-    #[serde(rename_all = "camelCase")]
     Unplayable {
-        #[serde(default)]
         reason: String,
-        #[serde(default)]
         error_screen: ErrorScreen,
     },
     /// Age limit / Private video
-    #[serde(rename_all = "camelCase")]
     LoginRequired {
-        #[serde(default)]
         reason: String,
-        #[serde(default)]
         messages: Vec<String>,
     },
-    #[serde(rename_all = "camelCase")]
     LiveStreamOffline {
-        #[serde(default)]
         reason: String,
     },
     /// Video was censored / deleted
-    #[serde(rename_all = "camelCase")]
     Error {
-        #[serde(default)]
         reason: String,
     },
 }
 
+impl<'de> Deserialize<'de> for PlayabilityStatus {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        let value = JsonValue::deserialize(deserializer)?;
+        let status = value
+            .get_str("status")
+            .ok_or_else(|| serde::de::Error::missing_field("status"))?;
+        // The `errorScreen`/`playerErrorMessageRenderer` shim uses `Text`
+        // (rich text) so we round-trip the entire `value` for that branch
+        // through `flexon::from_str`. The other variants are simple enough
+        // to extract via ytq!.
+        match status.as_str() {
+            "OK" => Ok(Self::Ok {
+                live_streamability: value
+                    .get("liveStreamability")
+                    .filter(|v| v.is_object())
+                    .map(|_| Empty {}),
+            }),
+            "UNPLAYABLE" => {
+                let raw = crate::json::value_to_json_string(&value);
+                let unplayable: Unplayable = flexon::from_str(&raw)
+                    .map_err(|e| serde::de::Error::custom(format!("unplayable: {e}")))?;
+                Ok(Self::Unplayable {
+                    reason: unplayable.reason,
+                    error_screen: unplayable.error_screen,
+                })
+            }
+            "LOGIN_REQUIRED" => {
+                let raw = crate::json::value_to_json_string(&value);
+                let login: LoginRequired = flexon::from_str(&raw)
+                    .map_err(|e| serde::de::Error::custom(format!("login_required: {e}")))?;
+                Ok(Self::LoginRequired {
+                    reason: login.reason,
+                    messages: login.messages,
+                })
+            }
+            "LIVE_STREAM_OFFLINE" => Ok(Self::LiveStreamOffline {
+                reason: value.get_str("reason").unwrap_or_default(),
+            }),
+            "ERROR" => Ok(Self::Error {
+                reason: value.get_str("reason").unwrap_or_default(),
+            }),
+            other => Err(serde::de::Error::custom(format!(
+                "unknown playability status: {other}"
+            ))),
+        }
+    }
+}
+
 #[serde_as]
-#[derive(Default, Debug, Deserialize)]
+#[derive(Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub(crate) struct ErrorScreen {
+struct Unplayable {
     #[serde(default)]
-    #[serde_as(deserialize_as = "DefaultOnError")]
+    reason: String,
+    #[serde(default)]
+    error_screen: ErrorScreen,
+}
+
+#[serde_as]
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct LoginRequired {
+    #[serde(default)]
+    reason: String,
+    #[serde(default)]
+    messages: Vec<String>,
+}
+
+#[derive(Default, Debug, FromYtNode)]
+pub(crate) struct ErrorScreen {
     pub player_error_message_renderer: Option<ErrorMessage>,
     pub player_captcha_view_model: Option<Empty>,
 }
 
 #[serde_as]
-#[derive(Default, Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Default, Debug, FromYtNode)]
 pub(crate) struct ErrorMessage {
-    #[serde_as(as = "Text")]
+    #[ytq_text]
     pub subreason: String,
 }
 
@@ -78,6 +202,10 @@ pub(crate) struct StreamingData {
     #[serde(default)]
     #[serde_as(deserialize_as = "VecSkipError<_>")]
     pub initial_authorized_drm_track_types: Vec<DrmTrackType>,
+    /// URL pointing to a SABR/UMP stream (returned when SABR is used).
+    pub server_abr_streaming_url: Option<String>,
+    /// base64-encoded ustreamer config blob (required for SABR).
+    pub ustreamer_config: Option<String>,
 }
 
 #[serde_as]
@@ -127,6 +255,13 @@ pub(crate) struct Format {
 
     pub signature_cipher: Option<String>,
 
+    /// Last-modified timestamp from the stream URL (`lmt` parameter).
+    /// Used by SABR to identify the format.
+    #[serde_as(as = "Option<DisplayFromStr>")]
+    pub last_modified: Option<u64>,
+    /// `xtags` from the stream URL. Used by SABR.
+    pub xtags: Option<String>,
+
     #[serde(default)]
     #[serde_as(deserialize_as = "VecSkipError<_>")]
     pub drm_families: Vec<DrmFamily>,
@@ -147,85 +282,21 @@ impl Format {
     }
 }
 
-#[derive(Clone, Copy, Debug, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
-#[serde(rename_all = "lowercase")]
-pub(crate) enum Quality {
-    Tiny,
-    Small,
-    Medium,
-    Large,
-    Highres,
-    Hd720,
-    Hd1080,
-    Hd1440,
-    Hd2160,
-}
-
-#[derive(Clone, Copy, Debug, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
-pub(crate) enum AudioQuality {
-    #[serde(rename = "AUDIO_QUALITY_ULTRALOW")]
-    UltraLow,
-    #[serde(rename = "AUDIO_QUALITY_LOW")]
-    Low,
-    #[serde(rename = "AUDIO_QUALITY_MEDIUM")]
-    Medium,
-    #[serde(rename = "AUDIO_QUALITY_HIGH")]
-    High,
-}
-
-#[derive(Default, Clone, Copy, Debug, Deserialize, PartialEq, Eq)]
-#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
-pub(crate) enum FormatType {
-    #[default]
-    Default,
-    /// This stream only works via DASH and not via progressive HTTP.
-    FormatStreamTypeOtf,
-}
-
-#[derive(Default, Debug, Deserialize)]
-#[serde(default, rename_all = "camelCase")]
-pub(crate) struct ColorInfo {
-    pub primaries: Primaries,
-}
-
-#[derive(Default, Clone, Copy, Debug, Deserialize, PartialEq, Eq)]
-#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
-pub(crate) enum Primaries {
-    #[default]
-    ColorPrimariesBt709,
-    ColorPrimariesBt2020,
-}
-
-#[derive(Clone, Copy, Debug, Deserialize, PartialEq, Eq)]
-#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
-#[allow(clippy::enum_variant_names)]
-pub(crate) enum DrmTrackType {
-    DrmTrackTypeAudio,
-    DrmTrackTypeSd,
-    DrmTrackTypeHd,
-    DrmTrackTypeUhd1,
-}
-
-#[derive(Clone, Copy, Debug, Deserialize, PartialEq, Eq)]
-#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
-pub(crate) enum DrmFamily {
-    Widevine,
-    Playready,
-    Fairplay,
-}
-
-#[derive(Default, Debug, Deserialize)]
-#[serde(default, rename_all = "camelCase")]
+#[derive(Default, Debug, FromYtNode)]
 pub(crate) struct AudioTrack {
+    #[ytq_default]
     pub id: String,
+    #[ytq_default]
     pub display_name: String,
+    #[ytq_default]
     pub audio_is_default: bool,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct Captions {
-    pub player_captions_tracklist_renderer: PlayerCaptionsTracklistRenderer,
+    #[serde(rename = "playerCaptionsTracklistRenderer")]
+    pub tracklist: PlayerCaptionsTracklistRenderer,
 }
 
 #[derive(Debug, Deserialize)]
@@ -234,12 +305,10 @@ pub(crate) struct PlayerCaptionsTracklistRenderer {
     pub caption_tracks: Vec<CaptionTrack>,
 }
 
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug, FromYtNode)]
 pub(crate) struct CaptionTrack {
     pub base_url: String,
-    #[serde_as(as = "Text")]
+    #[ytq_text]
     pub name: String,
     pub language_code: String,
 }
@@ -267,29 +336,42 @@ pub(crate) struct VideoDetails {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct Storyboards {
-    pub player_storyboard_spec_renderer: StoryboardRenderer,
+    #[serde(rename = "playerStoryboardSpecRenderer")]
+    pub storyboard: StoryboardRenderer,
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug)]
 pub(crate) struct StoryboardRenderer {
     pub spec: String,
 }
 
-#[derive(Default, Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+impl<'de> Deserialize<'de> for StoryboardRenderer {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        let value = JsonValue::deserialize(deserializer)?;
+        Ok(Self {
+            spec: value
+                .get("spec")
+                .and_then(|v| v.as_str())
+                .unwrap_or_default()
+                .to_owned(),
+        })
+    }
+}
+
+#[derive(Default, Debug, FromYtNode)]
 pub(crate) struct PlayerConfig {
     pub web_drm_config: Option<WebDrmConfig>,
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Default, Debug, FromYtNode)]
 pub(crate) struct WebDrmConfig {
     pub widevine_service_cert: Option<String>,
 }
 
-#[derive(Default, Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Default, Debug, FromYtNode)]
 pub(crate) struct HeartbeatParams {
     pub drm_session_id: Option<String>,
 }

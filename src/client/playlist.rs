@@ -4,11 +4,11 @@ use time::OffsetDateTime;
 
 use crate::{
     error::{Error, ExtractionError},
-    json::{JsonDoc, JsonNode, yt_first_tab, yt_response_visitor_data, yt_thumbnails, ytq},
+    json::{yt_thumbnails, ytq, JsonDoc, JsonNode, JsonValue},
+    ytq_attributed_text,
     model::{
         paginator::{ContinuationEndpoint, Paginator},
-        richtext::RichText,
-        ChannelId, Playlist, VideoItem,
+        ChannelId, Playlist,
     },
     request_body::ytbody,
     serializer::text::{TextComponent, TextComponents},
@@ -16,12 +16,12 @@ use crate::{
 };
 
 use super::{
-    response,
-    ClientType, MapJsonResponse, MapRespCtx, MapResult, RustyPipeQuery,
+    response::{self, url_endpoint},
+    ClientType, MapEndpoint, MapRespCtx, MapResult, RustyPipeQuery,
 };
 
 #[derive(Debug)]
-struct PlaylistJson;
+struct PlaylistEndpoint;
 
 impl RustyPipeQuery {
     /// Get a YouTube playlist
@@ -32,7 +32,7 @@ impl RustyPipeQuery {
             "browseId": format!("VL{playlist_id}"),
         });
 
-        self.execute_request::<PlaylistJson, _, _>(
+        self.execute_request::<PlaylistEndpoint, _, _>(
             ClientType::Desktop,
             "playlist",
             playlist_id,
@@ -51,37 +51,149 @@ fn json_alerts_to_err(id: &str, root: &JsonNode<'_>) -> ExtractionError {
     response::alerts_to_err(id, alerts)
 }
 
-fn yt_playlist_video_list<'a>(root: &JsonNode<'a>) -> Result<JsonNode<'a>, ExtractionError> {
-    let browse = root.require(
-        ytq!(.contents.twoColumnBrowseResultsRenderer),
-        "two column browse results",
-    )?;
-    let tab = yt_first_tab(&browse).ok_or({
-        ExtractionError::InvalidData(Cow::Borrowed("twoColumnBrowseResultsRenderer empty"))
-    })?;
-    let sections = tab.require(
-        ytq!(.tabRenderer.content.sectionListRenderer.contents),
-        "section list renderer",
-    )?;
-    let section = sections.items().into_iter().next().ok_or({
-        ExtractionError::InvalidData(Cow::Borrowed("sectionListRenderer empty"))
-    })?;
-    let item_section = section.require(
-        ytq!(.itemSectionRenderer.contents),
-        "item section renderer",
-    )?;
-    let item = item_section.items().into_iter().next().ok_or({
-        ExtractionError::InvalidData(Cow::Borrowed("itemSectionRenderer empty"))
-    })?;
-    item.first_of(&[
-        ytq!(.playlistVideoListRenderer.contents),
-        ytq!(.richGridRenderer.contents),
-    ])
-    .ok_or(ExtractionError::InvalidData(Cow::Borrowed("playlist video list empty")))
+struct PlaylistHeaderParts {
+    name: String,
+    playlist_id: String,
+    channel: Option<ChannelId>,
+    n_videos_txt: String,
+    description: Option<TextComponents>,
+    thumbnails: Option<Vec<crate::model::Thumbnail>>,
+    last_update_txt: Option<String>,
 }
 
-impl MapJsonResponse<Playlist> for PlaylistJson {
-    fn map_json_response(
+fn metadata_part_text(part: &JsonNode<'_>) -> Option<String> {
+    part.text_at(ytq!(($root || .avatarStack.avatarStackViewModel).text))
+}
+
+fn metadata_part_channel(part: &JsonNode<'_>) -> Option<ChannelId> {
+    let avatar_text = part.query(ytq!(.avatarStack.avatarStackViewModel.text))?;
+    let name = avatar_text.text()?;
+    let id = avatar_text
+        .query(ytq!(.commandRuns))
+        .and_then(|runs| {
+            runs.items().into_iter().find_map(|run| {
+                run.query(ytq!(.onTap.innertubeCommand))
+                    .and_then(|node| node.deserialize::<JsonValue>().ok())
+                    .and_then(|endpoint| url_endpoint::browse_endpoint(&endpoint))
+                    .map(|endpoint| endpoint.browse_endpoint.browse_id)
+            })
+        })
+        .or_else(|| {
+            avatar_text
+                .query(ytq!(.rendererContext.commandContext.onTap.innertubeCommand))
+                .and_then(|node| node.deserialize::<JsonValue>().ok())
+                .and_then(|endpoint| url_endpoint::browse_endpoint(&endpoint))
+                .map(|endpoint| endpoint.browse_endpoint.browse_id)
+        })?;
+    Some(ChannelId { id, name })
+}
+
+fn map_playlist_header(
+    header: &JsonNode<'_>,
+    ctx: &MapRespCtx<'_>,
+) -> Result<PlaylistHeaderParts, ExtractionError> {
+    let page_header = header.query(ytq!(.pageHeaderRenderer.content.pageHeaderViewModel));
+    let metadata_rows = page_header
+        .as_ref()
+        .and_then(|header| header.query(ytq!(.metadata.contentMetadataViewModel.metadataRows)))
+        .map(|rows| rows.items())
+        .unwrap_or_default();
+
+    let legacy_header = header.query(ytq!(.playlistHeaderRenderer));
+    let legacy_header = legacy_header.as_ref();
+
+    let n_videos_txt = legacy_header
+        .and_then(|header| header.text_at(ytq!(.numVideosText)))
+        .or_else(|| {
+            metadata_rows
+                .get(1)
+                .and_then(|row| row.query(ytq!(.metadataParts)))
+                .and_then(|parts| parts.items().get(1).cloned())
+                .and_then(|part| metadata_part_text(&part))
+        })
+        .ok_or(ExtractionError::InvalidData("no video count".into()))?;
+
+    let mut channel = legacy_header
+        .and_then(|header| header.query(ytq!(.ownerText)))
+        .and_then(|node| node.deserialize::<TextComponent>().ok())
+        .and_then(|link| ChannelId::try_from(link).ok())
+        .or_else(|| {
+            metadata_rows
+                .first()
+                .and_then(|row| row.query(ytq!(.metadataParts)))
+                .and_then(|parts| parts.items().into_iter().next())
+                .and_then(|part| metadata_part_channel(&part))
+        });
+
+    // remove "by" prefix
+    if let Some(c) = channel.as_mut() {
+        let entry = dictionary::entry(ctx.lang);
+        let n = c.name.strip_prefix(entry.chan_prefix).unwrap_or(&c.name);
+        let n = n.strip_suffix(entry.chan_suffix).unwrap_or(n);
+        c.name = n.trim().to_owned();
+    }
+
+    let playlist_id = header
+        .query(ytq!(.playlistHeaderRenderer.playlistId))
+        .and_then(|node| node.as_str())
+        .or_else(|| {
+            page_header
+                .as_ref()
+                .and_then(|header| {
+                    header.query(ytq!(
+                        .actions.flexibleActionsViewModel.actionsRows[0].actions[0]
+                            .buttonViewModel.onTap.innertubeCommand
+                    ))
+                })
+                .and_then(|node| node.deserialize::<JsonValue>().ok())
+                .and_then(|endpoint| url_endpoint::playlist_id(&endpoint))
+        })
+        .ok_or(ExtractionError::InvalidData("no playlist id".into()))?;
+
+    let mut byline = legacy_header
+        .and_then(|header| header.query(ytq!(.byline)))
+        .map(|node| {
+            node.items()
+                .into_iter()
+                .filter_map(|item| item.query(ytq!(.playlistBylineRenderer.text))?.text())
+                .collect::<Vec<_>>()
+        })
+        .unwrap_or_default();
+
+    Ok(PlaylistHeaderParts {
+        name: header
+            .text_at(ytq!(
+                .playlistHeaderRenderer.title
+                    || .pageHeaderRenderer.content.pageHeaderViewModel.title
+                        .dynamicTextViewModel.text
+            ))
+            .ok_or(ExtractionError::InvalidData("no playlist title".into()))?,
+        playlist_id,
+        channel,
+        n_videos_txt,
+        description: header
+            .text_at(ytq!(.playlistHeaderRenderer.descriptionText))
+            .map(|text| TextComponents(vec![TextComponent::new(text)]))
+            .or_else(|| {
+                ytq_attributed_text!(
+                    header,
+                    .pageHeaderRenderer.content.pageHeaderViewModel.description
+                        .descriptionPreviewViewModel.description
+                )
+            }),
+        thumbnails: header
+            .query(ytq!(
+                .playlistHeaderRenderer.playlistHeaderBanner.heroPlaylistThumbnailRenderer.thumbnail
+                    || .pageHeaderRenderer.content.pageHeaderViewModel.heroImage
+                        .contentPreviewImageViewModel.image
+            ))
+            .map(|node| yt_thumbnails(&node)),
+        last_update_txt: byline.try_swap_remove(1),
+    })
+}
+
+impl MapEndpoint<Playlist> for PlaylistEndpoint {
+    fn map(
         json: &JsonDoc,
         ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<Playlist>, ExtractionError> {
@@ -92,193 +204,75 @@ impl MapJsonResponse<Playlist> for PlaylistJson {
                 return Err(json_alerts_to_err(ctx.id, &root));
             }
 
-            let video_items = yt_playlist_video_list(&root)?;
-            let mut mapper = response::YouTubeListMapper::<VideoItem>::new(ctx.lang);
-            mapper.map_response_node(&video_items);
+            let video_items = response::playlist::video_list_node(&root)?;
+            let (mut mapped, ctoken, _) =
+                response::video_item::map_video_items(&video_items, ctx.lang);
 
-            let (description, thumbnails, last_update_txt) = match root.query(ytq!(.sidebar)) {
-                Some(sidebar) => {
-                    let sidebar_items = sidebar
-                        .require(
-                            ytq!(.playlistSidebarRenderer.items),
-                            "playlist sidebar items",
-                        )?
-                        .items();
-                    let primary = sidebar_items.into_iter().next().ok_or({
-                        ExtractionError::InvalidData(Cow::Borrowed("no primary sidebar"))
-                    })?;
-                    let info = primary.require(
-                        ytq!(.playlistSidebarPrimaryInfoRenderer),
-                        "playlist sidebar primary info",
-                    )?;
+            let sidebar = response::playlist::sidebar_info(&root)?;
+            let description = sidebar.description;
+            let thumbnails = sidebar.thumbnails;
+            let last_update_txt = sidebar.last_update_txt;
 
-                    (
-                        info.query(ytq!(.description))
-                            .and_then(|node| node.deserialize::<TextComponents>().ok())
-                            .filter(|d| !d.0.is_empty()),
-                        info.query(ytq!(.thumbnailRenderer.playlistVideoThumbnailRenderer.thumbnail))
-                            .or_else(|| {
-                                info.query(
-                                    ytq!(.thumbnailRenderer.playlistCustomThumbnailRenderer.thumbnail),
-                                )
-                            })
-                            .map(|node| yt_thumbnails(&node)),
-                        info.query(ytq!(.stats))
-                            .map(|stats| {
-                                stats
-                                    .items()
-                                    .into_iter()
-                                    .filter_map(|item| item.text())
-                                    .collect::<Vec<_>>()
-                            })
-                            .and_then(|mut stats| stats.try_swap_remove(2)),
-                    )
-                }
-                None => (None, None, None),
-            };
+            let header = header.ok_or(ExtractionError::InvalidData(Cow::Borrowed("no header")))?;
 
-            let header: response::playlist::Header = header
-                .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no header")))?
-                .deserialize()?;
+            let header_parts = map_playlist_header(&header, ctx)?;
 
-            let (
-                name,
-                playlist_id,
-                channel,
-                n_videos_txt,
-                description2,
-                thumbnails2,
-                last_update_txt2,
-            ) = match header {
-                response::playlist::Header::PlaylistHeaderRenderer(header_renderer) => {
-                    let mut byline = header_renderer.byline;
-                    let last_update_txt = byline
-                        .try_swap_remove(1)
-                        .map(|b| b.playlist_byline_renderer.text);
-
-                    (
-                        header_renderer.title,
-                        header_renderer.playlist_id,
-                        header_renderer
-                            .owner_text
-                            .and_then(|link| ChannelId::try_from(link).ok()),
-                        header_renderer.num_videos_text,
-                        header_renderer
-                            .description_text
-                            .map(|text| TextComponents(vec![TextComponent::new(text)])),
-                        header_renderer
-                            .playlist_header_banner
-                            .map(|b| b.hero_playlist_thumbnail_renderer.thumbnail),
-                        last_update_txt,
-                    )
-                }
-                response::playlist::Header::PageHeaderRenderer(content_renderer) => {
-                    let h = content_renderer.content.page_header_view_model;
-                    let rows = h.metadata.content_metadata_view_model.metadata_rows;
-                    let n_videos_txt = rows
-                        .get(1)
-                        .and_then(|r| r.metadata_parts.get(1))
-                        .map(|p| p.as_str().to_owned())
-                        .ok_or(ExtractionError::InvalidData("no video count".into()))?;
-                    let mut channel = rows
-                        .into_iter()
-                        .next()
-                        .and_then(|r| r.metadata_parts.into_iter().next())
-                        .and_then(|p| match p {
-                            response::MetadataPart::Text { .. } => None,
-                            response::MetadataPart::AvatarStack { avatar_stack } => {
-                                ChannelId::try_from(avatar_stack.avatar_stack_view_model.text).ok()
-                            }
-                        });
-                    // remove "by" prefix
-                    if let Some(c) = channel.as_mut() {
-                        let entry = dictionary::entry(ctx.lang);
-                        let n = c.name.strip_prefix(entry.chan_prefix).unwrap_or(&c.name);
-                        let n = n.strip_suffix(entry.chan_suffix).unwrap_or(n);
-                        c.name = n.trim().to_owned();
-                    }
-
-                    let playlist_id = h
-                        .actions
-                        .flexible_actions_view_model
-                        .actions_rows
-                        .into_iter()
-                        .next()
-                        .and_then(|r| r.actions.into_iter().next())
-                        .and_then(|a| {
-                            a.button_view_model
-                                .on_tap
-                                .innertube_command
-                                .into_playlist_id()
-                        })
-                        .ok_or(ExtractionError::InvalidData("no playlist id".into()))?;
-                    (
-                        h.title.dynamic_text_view_model.text,
-                        playlist_id,
-                        channel,
-                        n_videos_txt,
-                        h.description.description_preview_view_model.description,
-                        h.hero_image.content_preview_image_view_model.image.into(),
-                        None,
-                    )
-                }
-            };
-
-            let n_videos = if mapper.ctoken.is_some() {
-                util::parse_numeric(&n_videos_txt)
+            let n_videos = if ctoken.is_some() {
+                util::parse_numeric(&header_parts.n_videos_txt)
                     .map_err(|_| ExtractionError::InvalidData("no video count".into()))?
             } else {
-                mapper.items.len() as u64
+                mapped.c.len() as u64
             };
 
-            if playlist_id != ctx.id {
-                return Err(ExtractionError::WrongResult(format!(
-                    "got wrong playlist id {}, expected {}",
-                    playlist_id, ctx.id
-                )));
+            if header_parts.playlist_id != ctx.id {
+                return Err(crate::client::check_id_matches(
+                    &header_parts.playlist_id,
+                    ctx.id,
+                    "playlist",
+                ));
             }
 
-            let description = description.or(description2).map(RichText::from);
-            let thumbnails = thumbnails
-                .or_else(|| thumbnails2.map(|t| t.into()))
-                .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
-                    "no thumbnail found",
-                )))?;
+            let description = description.or(header_parts.description);
+            let thumbnails =
+                thumbnails
+                    .or(header_parts.thumbnails)
+                    .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
+                        "no thumbnail found",
+                    )))?;
             let last_update = last_update_txt
                 .as_deref()
-                .or(last_update_txt2.as_deref())
+                .or(header_parts.last_update_txt.as_deref())
                 .and_then(|txt| {
                     timeago::parse_textual_date_or_warn(
                         ctx.lang,
                         ctx.utc_offset,
                         txt,
-                        &mut mapper.warnings,
+                        &mut mapped.warnings,
                     )
                     .map(OffsetDateTime::date)
                 });
 
             Ok(MapResult {
                 c: Playlist {
-                    id: playlist_id,
-                    name,
+                    id: header_parts.playlist_id,
+                    name: header_parts.name,
                     videos: Paginator::new_ext(
                         Some(n_videos),
-                        mapper.items,
-                        mapper.ctoken,
+                        mapped.c,
+                        ctoken,
                         ctx.visitor_data.map(str::to_owned),
                         ContinuationEndpoint::Browse,
                         ctx.authenticated,
                     ),
                     video_count: n_videos,
                     thumbnail: thumbnails,
-                    description,
-                    channel,
+                    description: description.map(Into::into),
+                    channel: header_parts.channel,
                     last_update,
                     last_update_txt,
-                    visitor_data: yt_response_visitor_data(&root)
-                        .or_else(|| ctx.visitor_data.map(str::to_owned)),
+                    visitor_data: ctx.visitor_data(&root),
                 },
-                warnings: mapper.warnings,
+                warnings: mapped.warnings,
             })
         })
     }
@@ -293,7 +287,7 @@ mod tests {
 
     use crate::util::tests::TESTFILES;
 
-    use super::{MapJsonResponse, *};
+    use super::{MapEndpoint, *};
 
     #[rstest]
     #[case::short("short", "RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk")]
@@ -306,7 +300,7 @@ mod tests {
         let json_path = path!(*TESTFILES / "playlist" / format!("playlist_{name}.json"));
         let json = JsonDoc::new(fs::read_to_string(json_path).unwrap());
         let map_res: MapResult<Playlist> =
-            PlaylistJson::map_json_response(&json, &MapRespCtx::test(id)).unwrap();
+            PlaylistEndpoint::map(&json, &MapRespCtx::test(id)).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),

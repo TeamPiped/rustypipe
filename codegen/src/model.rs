@@ -172,32 +172,19 @@ pub struct TwoColumnBrowseResults {
 #[serde(rename_all = "camelCase")]
 pub struct TabsRenderer {
     #[serde_as(as = "VecSkipError<_>")]
-    pub tabs: Vec<Tab<RichGrid>>,
+    pub tabs: Vec<ChannelTab>,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct ContentsRenderer<T> {
-    #[serde(alias = "tabs")]
-    pub contents: Vec<T>,
+pub struct ChannelTab {
+    pub tab_renderer: ChannelTabRenderer,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct Tab<T> {
-    pub tab_renderer: TabRenderer<T>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct TabRenderer<T> {
-    pub content: T,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct SectionList<T> {
-    pub section_list_renderer: ContentsRenderer<T>,
+pub struct ChannelTabRenderer {
+    pub content: RichGrid,
 }
 
 #[derive(Debug, Deserialize)]

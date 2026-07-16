@@ -9,12 +9,12 @@ repository.workspace = true
 publish = false
 
 [dependencies]
-rustypipe = { path = "../", features = ["userdata"] }
+rustypipe = { path = "../", features = ["userdata", "clap"] }
 wreq.workspace = true
 tokio = { workspace = true, features = ["rt-multi-thread"] }
 futures-util.workspace = true
 serde.workspace = true
-serde_json.workspace = true
+flexon.workspace = true
 serde_plain.workspace = true
 serde_with.workspace = true
 once_cell.workspace = true

@@ -1,110 +1,46 @@
 #![allow(clippy::enum_variant_names)]
 
-use serde::Deserialize;
+use serde::{Deserialize, Deserializer};
 use serde_with::{rust::deserialize_ignore_any, serde_as, DefaultOnError, VecSkipError};
 
-use crate::serializer::{
-    text::{AccessibilityText, AttributedText, Text, TextComponent, TextComponents},
-    MapResult,
+use crate::{
+    json::{value_from_json_value, yt_continuation_value, JsonNode, JsonValue},
+    serializer::text::{AccessibilityText, AttributedText, Text, TextComponent, TextComponents},
+    yt_string_enum, FromYtNode, ytq,
 };
 
-use super::{
-    url_endpoint::{BrowseEndpoint, BrowseEndpointWrap, OnTap},
-    ContinuationEndpoint, ContinuationItemRenderer, Icon, MusicContinuationData, Thumbnails,
-};
-use super::{
-    ChannelBadge, ContentsRendererLogged, ImageView, YouTubeListItem,
-};
+use super::{url_endpoint::BrowseEndpoint, Icon, Thumbnails};
+
+pub(crate) fn continuation_token(endpoint: &JsonValue) -> Option<String> {
+    yt_continuation_value(endpoint)
+}
+use super::{ChannelBadge, ImageView};
+use crate::error::ExtractionError;
 
 /*
 #VIDEO DETAILS
 */
 
-/// Video details main object, contains video metadata and recommended videos
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct Contents {
-    pub two_column_watch_next_results: TwoColumnWatchNextResults,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct TwoColumnWatchNextResults {
-    /// Metadata about the video
-    pub results: VideoResultsWrap,
-    /// Video recommendations
-    ///
-    /// Can be `None` for age-restricted videos
-    pub secondary_results: Option<RecommendationResultsWrap>,
-}
-
-/// Metadata about the video
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct VideoResultsWrap {
-    pub results: VideoResults,
-}
-
-/// Video metadata items
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct VideoResults {
-    pub contents: Option<MapResult<Vec<VideoResultsItem>>>,
-}
-
-/// Video metadata item
 #[serde_as]
 #[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) enum VideoResultsItem {
-    #[serde(rename_all = "camelCase")]
-    VideoPrimaryInfoRenderer {
-        #[serde_as(as = "Text")]
-        title: String,
-        view_count: Option<ViewCount>,
-        /// Like/Dislike button
-        video_actions: VideoActions,
-        /// Absolute textual date (e.g. `Dec 29, 2019`)
-        #[serde_as(as = "Option<Text>")]
-        date_text: Option<String>,
-    },
-    #[serde(rename_all = "camelCase")]
-    VideoSecondaryInfoRenderer {
-        owner: Box<VideoOwner>,
-        #[serde(default)]
-        #[serde_as(as = "DefaultOnError<Option<AttributedText>>")]
-        description: Option<TextComponents>,
-        #[serde(default)]
-        #[serde_as(as = "DefaultOnError<Option<AttributedText>>")]
-        attributed_description: Option<TextComponents>,
-        /// Additional metadata (e.g. Creative Commons License)
-        #[serde(default)]
-        #[serde_as(deserialize_as = "DefaultOnError")]
-        metadata_row_container: Option<MetadataRowContainer>,
-    },
-    /// The comment section consists of 2 ItemSectionRenderers:
-    ///
-    /// 1. sectionIdentifier: "comments-entry-point", contains number of comments
-    /// 2. sectionIdentifier: "comment-item-section", contains continuation token
-    ItemSectionRenderer(#[serde_as(deserialize_as = "DefaultOnError")] ItemSection),
-    #[serde(other, deserialize_with = "deserialize_ignore_any")]
-    None,
+#[serde(transparent)]
+pub(crate) struct AttributedDescription {
+    #[serde_as(as = "DefaultOnError<AttributedText>")]
+    pub text: TextComponents,
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct ViewCount {
-    pub video_view_count_renderer: ViewCountRenderer,
+impl AttributedDescription {
+    pub(crate) fn deserialize_node(node: &JsonNode<'_>) -> Result<TextComponents, ExtractionError> {
+        Ok(node.deserialize::<Self>()?.text)
+    }
 }
 
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug, Default, FromYtNode)]
 pub(crate) struct ViewCountRenderer {
     /// View count (`232,975,196 views`)
-    #[serde_as(as = "Text")]
+    #[ytq_text]
     pub view_count: String,
-    #[serde(default)]
+    #[ytq_default]
     pub is_live: bool,
 }
 
@@ -121,70 +57,7 @@ pub(crate) struct VideoActions {
 #[serde(rename_all = "camelCase")]
 pub(crate) struct VideoActionsMenu {
     #[serde_as(as = "VecSkipError<_>")]
-    pub top_level_buttons: Vec<TopLevelButton>,
-}
-
-/// The different TopLevelButtons
-///
-/// YouTube seems to be A/B testing the SegmentedLikeDislikeButtonRenderer
-///
-/// See: https://github.com/TeamNewPipe/NewPipeExtractor/pull/926
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) enum TopLevelButton {
-    ToggleButtonRenderer(ToggleButton),
-    #[serde(rename_all = "camelCase")]
-    SegmentedLikeDislikeButtonRenderer {
-        like_button: ToggleButtonWrap,
-    },
-    #[serde(rename_all = "camelCase")]
-    SegmentedLikeDislikeButtonViewModel {
-        like_button_view_model: LikeButtonViewModelWrap,
-    },
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct LikeButtonViewModelWrap {
-    pub like_button_view_model: LikeButtonViewModel,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct LikeButtonViewModel {
-    pub toggle_button_view_model: ToggleButtonViewModelWrap,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct ToggleButtonViewModelWrap {
-    pub toggle_button_view_model: ToggleButtonViewModel,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct ToggleButtonViewModel {
-    pub default_button_view_model: ButtonViewModelWrap,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct ButtonViewModelWrap {
-    pub button_view_model: ButtonViewModel,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct ButtonViewModel {
-    pub accessibility_text: String,
-}
-
-/// Like/Dislike button
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct ToggleButtonWrap {
-    pub toggle_button_renderer: ToggleButton,
+    pub top_level_buttons: Vec<JsonValue>,
 }
 
 /// Like/Dislike button
@@ -202,13 +75,6 @@ pub(crate) struct ToggleButton {
 }
 
 /// Video channel information
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct VideoOwner {
-    pub video_owner_renderer: VideoOwnerRenderer,
-}
-
-/// Video channel information
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -222,7 +88,7 @@ pub(crate) struct VideoOwnerRenderer {
     #[serde(default)]
     pub thumbnail: Thumbnails,
     #[serde(default)]
-    pub avatar_stack: Option<AvatarStackWrap>,
+    pub avatar_stack: Option<JsonValue>,
     #[serde_as(as = "Option<Text>")]
     pub subscriber_count_text: Option<String>,
     #[serde(default)]
@@ -231,134 +97,101 @@ pub(crate) struct VideoOwnerRenderer {
 }
 
 /// Channel title for videos with multiple collaborators
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug, FromYtNode)]
 pub(crate) struct OwnerAttributedTitle {
     #[allow(dead_code)]
+    #[ytq_default]
     pub content: String,
-    #[serde(default)]
+    #[ytq_lossy]
     pub command_runs: Vec<OwnerAttributedTitleCommandRun>,
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug, Default, FromYtNode)]
 pub(crate) struct OwnerAttributedTitleCommandRun {
-    #[serde(default)]
     pub on_tap: Option<OwnerAttributedTitleOnTap>,
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug)]
 pub(crate) struct OwnerAttributedTitleOnTap {
     pub innertube_command: OwnerAttributedTitleInnertubeCommand,
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct OwnerAttributedTitleInnertubeCommand {
-    #[serde(default)]
-    pub show_dialog_command: Option<CollaboratorsDialogCommand>,
+impl<'de> Deserialize<'de> for OwnerAttributedTitleOnTap {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        let value = JsonValue::deserialize(deserializer)?;
+        let raw = crate::json::value_to_json_string(
+            value
+                .get("innertubeCommand")
+                .ok_or_else(|| serde::de::Error::missing_field("innertubeCommand"))?,
+        );
+        let inner: OwnerAttributedTitleInnertubeCommand = flexon::from_str(&raw)
+            .map_err(|e| serde::de::Error::custom(format!("innertube command: {e}")))?;
+        Ok(Self {
+            innertube_command: inner,
+        })
+    }
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug)]
+pub(crate) struct OwnerAttributedTitleInnertubeCommand {
+    pub show_dialog_command: Option<JsonValue>,
+}
+
+impl<'de> Deserialize<'de> for OwnerAttributedTitleInnertubeCommand {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        let value = JsonValue::deserialize(deserializer)?;
+        Ok(Self {
+            show_dialog_command: value.get("showDialogCommand").cloned(),
+        })
+    }
+}
+
+#[derive(Debug)]
 pub(crate) struct OwnerNavigationEndpoint {
-    #[serde(default)]
     #[allow(dead_code)]
     pub browse_endpoint: Option<BrowseEndpoint>,
-    #[serde(default)]
-    pub show_dialog_command: Option<CollaboratorsDialogCommand>,
+    pub show_dialog_command: Option<JsonValue>,
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct CollaboratorsDialogCommand {
-    pub panel_loading_strategy: CollaboratorsPanelLoadingStrategy,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct CollaboratorsPanelLoadingStrategy {
-    pub inline_content: CollaboratorsInlineContent,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct CollaboratorsInlineContent {
-    pub dialog_view_model: CollaboratorsDialogViewModel,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct CollaboratorsDialogViewModel {
-    pub custom_content: CollaboratorsCustomContent,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct CollaboratorsCustomContent {
-    pub list_view_model: CollaboratorsListViewModel,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct CollaboratorsListViewModel {
-    #[serde(default)]
-    pub list_items: Vec<CollaboratorsListItem>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct CollaboratorsListItem {
-    pub list_item_view_model: CollaboratorsListItemViewModel,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct CollaboratorsListItemViewModel {
-    pub title: CollaboratorsListItemTitle,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct CollaboratorsListItemTitle {
-    pub content: String,
-    #[serde(default)]
-    pub command_runs: Vec<CollaboratorsListItemCommandRun>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct CollaboratorsListItemCommandRun {
-    pub on_tap: OnTap,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct AvatarStackWrap {
-    pub avatar_stack_view_model: AvatarStackViewModel,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct AvatarStackViewModel {
-    #[serde(default)]
-    pub avatars: Vec<super::AvatarViewModel>,
+impl<'de> Deserialize<'de> for OwnerNavigationEndpoint {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        let value = JsonValue::deserialize(deserializer)?;
+        let browse_endpoint = value
+            .get("browseEndpoint")
+            .map(|v| {
+                let raw = crate::json::value_to_json_string(v);
+                flexon::from_str::<BrowseEndpoint>(&raw)
+            })
+            .transpose()
+            .ok()
+            .flatten();
+        Ok(Self {
+            browse_endpoint,
+            show_dialog_command: value.get("showDialogCommand").cloned(),
+        })
+    }
 }
 
 impl VideoOwnerRenderer {
-    pub(crate) fn collaborators_dialog(&self) -> Option<&CollaboratorsDialogCommand> {
+    pub(crate) fn collaborators_dialog(&self) -> Option<&JsonValue> {
         self.navigation_endpoint
             .as_ref()
             .and_then(|ep| ep.show_dialog_command.as_ref())
             .or_else(|| {
                 self.attributed_title.as_ref().and_then(|title| {
                     title.command_runs.iter().find_map(|run| {
-                        run.on_tap.as_ref().and_then(|tap| {
-                            tap.innertube_command
-                                .show_dialog_command
-                                .as_ref()
-                        })
+                        run.on_tap
+                            .as_ref()
+                            .and_then(|tap| tap.innertube_command.show_dialog_command.as_ref())
                     })
                 })
             })
@@ -369,22 +202,31 @@ impl VideoOwnerRenderer {
             return Vec::new();
         };
         dialog
-            .panel_loading_strategy
-            .inline_content
-            .dialog_view_model
-            .custom_content
-            .list_view_model
-            .list_items
-            .iter()
+            .get("panelLoadingStrategy")
+            .and_then(|v| v.get("inlineContent"))
+            .and_then(|v| v.get("dialogViewModel"))
+            .and_then(|v| v.get("customContent"))
+            .and_then(|v| v.get("listViewModel"))
+            .and_then(|v| v.get("listItems"))
+            .and_then(|v| v.as_array())
+            .into_iter()
+            .flat_map(|items| items.iter())
             .filter_map(|item| {
-                let title = &item.list_item_view_model.title;
-                let browse_id = title.command_runs.iter().find_map(|run| match &run.on_tap.innertube_command {
-                    super::url_endpoint::NavigationEndpoint::Browse { browse_endpoint, .. } => {
-                        Some(browse_endpoint.browse_id.clone())
-                    }
-                    _ => None,
-                })?;
-                Some((browse_id, title.content.clone()))
+                let title = item.get("listItemViewModel")?.get("title")?;
+                let name = title.get("content")?.as_str()?.to_owned();
+                let browse_id = title
+                    .get("commandRuns")
+                    .and_then(|v| v.as_array())
+                    .into_iter()
+                    .flat_map(|items| items.iter())
+                    .filter_map(|run| {
+                        run.get("onTap")
+                            .and_then(|v| v.get("innertubeCommand"))
+                            .and_then(super::url_endpoint::browse_endpoint)
+                            .map(|ep| ep.browse_endpoint.browse_id)
+                    })
+                    .next()?;
+                Some((browse_id, name))
             })
             .collect()
     }
@@ -395,129 +237,31 @@ impl VideoOwnerRenderer {
         }
         self.avatar_stack
             .as_ref()
-            .map(|stack| {
+            .and_then(|stack| {
                 stack
-                    .avatar_stack_view_model
-                    .avatars
-                    .first()
-                    .map(|a| a.avatar_view_model.image.clone())
-                    .unwrap_or_default()
+                    .get("avatarStackViewModel")
+                    .and_then(|v| v.get("avatars"))
+                    .and_then(|v| v.as_array())
+                    .and_then(|avatars| avatars.first())
+                    .and_then(|avatar| avatar.get("avatarViewModel"))
+                    .and_then(|avatar| avatar.get("image"))
+                    .cloned()
+                    .and_then(|value| value_from_json_value::<Thumbnails>(&value))
             })
             .unwrap_or_default()
     }
 }
 
-/// Shows additional video metadata. Its only known use is for
-/// the Creative Commonse License.
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct MetadataRowContainer {
-    pub metadata_row_container_renderer: MetadataRowContainerRenderer,
-}
-
-/// Shows additional video metadata. Its only known use is for
-/// the Creative Commonse License.
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct MetadataRowContainerRenderer {
-    pub rows: Vec<MetadataRow>,
-}
-
-/// Additional video metadata item (Creative Commons License)
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct MetadataRow {
-    pub metadata_row_renderer: MetadataRowRenderer,
-}
-
-/// Additional video metadata item (Creative Commons License)
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct MetadataRowRenderer {
-    // `License`
-    // #[serde_as(as = "Text")]
-    // pub title: String,
-    /// Creative commons license:
-    ///
-    /// Text (en): `Creative Commons Attribution license (reuse allowed)`
-    ///
-    /// URL: `https://www.youtube.com/t/creative_commons`
-    pub contents: Vec<TextComponents>,
-}
-
 /// Contains current video ID
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug, FromYtNode)]
 pub(crate) struct CurrentVideoEndpoint {
     pub watch_endpoint: CurrentVideoWatchEndpoint,
 }
+
 /// Contains current video ID
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug, Default, FromYtNode)]
 pub(crate) struct CurrentVideoWatchEndpoint {
     pub video_id: String,
-}
-
-/// The comment section consists of 2 ItemSections:
-///
-/// 1. CommentsEntryPointHeaderRenderer: contains number of comments
-/// 2. ContinuationItemRenderer: contains continuation token
-#[serde_as]
-#[derive(Default, Debug, Deserialize)]
-#[serde(rename_all = "kebab-case", tag = "sectionIdentifier")]
-pub(crate) enum ItemSection {
-    CommentsEntryPoint {
-        #[serde_as(as = "VecSkipError<_>")]
-        contents: Vec<ItemSectionCommentCount>,
-    },
-    CommentItemSection {
-        #[serde_as(as = "VecSkipError<_>")]
-        contents: Vec<ItemSectionComments>,
-    },
-    #[default]
-    None,
-}
-
-/// Item section containing comment count
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct ItemSectionCommentCount {
-    pub comments_entry_point_header_renderer: CommentsEntryPointHeaderRenderer,
-}
-
-/// Renderer of item section containing comment count
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct CommentsEntryPointHeaderRenderer {
-    #[serde_as(as = "Text")]
-    pub comment_count: String,
-}
-
-/// Item section containing comments ctoken
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct ItemSectionComments {
-    pub continuation_item_renderer: ContinuationItemRenderer,
-}
-
-/// Video recommendations
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct RecommendationResultsWrap {
-    pub secondary_results: RecommendationResults,
-}
-
-/// Video recommendations
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct RecommendationResults {
-    /// Can be `None` for age-restricted videos
-    pub results: Option<MapResult<Vec<YouTubeListItem>>>,
-    #[serde_as(as = "Option<VecSkipError<_>>")]
-    pub continuations: Option<Vec<MusicContinuationData>>,
 }
 
 /// The engagement panels are displayed below the video and contain chapter markers
@@ -528,112 +272,7 @@ pub(crate) struct RecommendationResults {
 pub(crate) struct EngagementPanel {
     #[serde(default)]
     #[serde_as(deserialize_as = "DefaultOnError")]
-    pub engagement_panel_section_list_renderer: Option<EngagementPanelRenderer>,
-}
-
-/// The engagement panels are displayed below the video and contain chapter markers
-/// and the comment section.
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "kebab-case", tag = "targetId")]
-pub(crate) enum EngagementPanelRenderer {
-    /// Chapter markers
-    EngagementPanelMacroMarkersDescriptionChapters { content: ChapterMarkersContent },
-    /// Comment section (contains no comments, but the
-    /// continuation tokens for fetching top/latest comments)
-    EngagementPanelCommentsSection { header: CommentItemSectionHeader },
-    /// Ignored items:
-    /// - `engagement-panel-ads`
-    /// - `engagement-panel-structured-description`
-    ///   (Description already included in `VideoSecondaryInfoRenderer`)
-    /// - `engagement-panel-searchable-transcript`
-    ///   (basically video subtitles in a different format)
-    #[serde(other, deserialize_with = "deserialize_ignore_any")]
-    None,
-}
-
-/// Chapter markers
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct ChapterMarkersContent {
-    pub macro_markers_list_renderer: ContentsRendererLogged<MacroMarkersListItem>,
-}
-
-/// Chapter marker
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct MacroMarkersListItem {
-    pub macro_markers_list_item_renderer: MacroMarkersListItemRenderer,
-}
-
-/// Chapter marker
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct MacroMarkersListItemRenderer {
-    /// Contains chapter start time in seconds
-    pub on_tap: MacroMarkersListItemOnTap,
-    #[serde(default)]
-    pub thumbnail: Thumbnails,
-    /// Chapter title
-    #[serde_as(as = "Text")]
-    pub title: String,
-}
-
-/// Contains chapter start time in seconds
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct MacroMarkersListItemOnTap {
-    pub watch_endpoint: MacroMarkersListItemWatchEndpoint,
-}
-/// Contains chapter start time in seconds
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct MacroMarkersListItemWatchEndpoint {
-    /// Chapter start time in seconds
-    pub start_time_seconds: u32,
-}
-
-/// Comment section header
-/// (contains continuation tokens for fetching top/latest comments)
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct CommentItemSectionHeader {
-    pub engagement_panel_title_header_renderer: CommentItemSectionHeaderRenderer,
-}
-
-/// Comment section header
-/// (contains continuation tokens for fetching top/latest comments)
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct CommentItemSectionHeaderRenderer {
-    pub menu: CommentItemSectionHeaderMenu,
-}
-
-/// Comment section menu
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct CommentItemSectionHeaderMenu {
-    pub sort_filter_sub_menu_renderer: CommentItemSectionHeaderMenuRenderer,
-}
-
-/// Comment section menu
-///
-/// Items:
-/// - Top comments
-/// - Latest comments
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct CommentItemSectionHeaderMenuRenderer {
-    pub sub_menu_items: Vec<CommentItemSectionHeaderMenuItem>,
-}
-
-/// Comment section menu item
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct CommentItemSectionHeaderMenuItem {
-    /// Continuation token for fetching comments
-    pub service_endpoint: ContinuationEndpoint,
+    pub engagement_panel_section_list_renderer: Option<JsonValue>,
 }
 
 /*
@@ -641,62 +280,52 @@ pub(crate) struct CommentItemSectionHeaderMenuItem {
 */
 
 /// Video comments continuation
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug)]
 pub(crate) struct CommentsContItem {
-    #[serde(alias = "reloadContinuationItemsCommand")]
     pub append_continuation_items_action: AppendComments,
 }
 
+impl<'de> Deserialize<'de> for CommentsContItem {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        let value = JsonValue::deserialize(deserializer)?;
+        let inner_value = value
+            .get("appendContinuationItemsAction")
+            .or_else(|| value.get("reloadContinuationItemsCommand"))
+            .ok_or_else(|| {
+                serde::de::Error::missing_field("appendContinuationItemsAction")
+            })?;
+        let raw = crate::json::value_to_json_string(inner_value);
+        let append: AppendComments = flexon::from_str(&raw)
+            .map_err(|e| serde::de::Error::custom(format!("append comments: {e}")))?;
+        Ok(Self {
+            append_continuation_items_action: append,
+        })
+    }
+}
+
 /// Video comments continuation action
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug)]
 pub(crate) struct AppendComments {
-    pub continuation_items: MapResult<Vec<CommentListItem>>,
+    pub continuation_items: Vec<JsonValue>,
 }
 
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) enum CommentListItem {
-    /// Top-level comment
-    CommentThreadRenderer(CommentThreadRenderer),
-    /// Reply comment
-    CommentRenderer(CommentRenderer),
-    /// Reply comment (A/B #14)
-    CommentViewModel(CommentViewModel),
-    /// Continuation token to fetch more comments
-    ContinuationItemRenderer(ContinuationItemVariants),
-    /// Header of the comment section (contains number of comments)
-    #[serde(rename_all = "camelCase")]
-    CommentsHeaderRenderer {
-        /// `4,238,993 Comments`
-        #[serde_as(as = "Option<Text>")]
-        count_text: Option<String>,
-    },
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(untagged)]
-pub(crate) enum ContinuationItemVariants {
-    #[serde(rename_all = "camelCase")]
-    Ep {
-        continuation_endpoint: ContinuationEndpoint,
-    },
-    Btn {
-        button: ContinuationButton,
-    },
-}
-
-impl ContinuationItemVariants {
-    pub fn into_token(self) -> Option<String> {
-        match self {
-            ContinuationItemVariants::Ep {
-                continuation_endpoint,
-            } => continuation_endpoint,
-            ContinuationItemVariants::Btn { button } => button.button_renderer.command,
-        }
-        .into_token()
+impl<'de> Deserialize<'de> for AppendComments {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        let value = JsonValue::deserialize(deserializer)?;
+        let items = value
+            .get("continuationItems")
+            .and_then(|v| v.as_array())
+            .map(|arr| arr.iter().cloned().collect::<Vec<_>>())
+            .unwrap_or_default();
+        Ok(Self {
+            continuation_items: items,
+        })
     }
 }
 
@@ -705,20 +334,14 @@ impl ContinuationItemVariants {
 #[serde(rename_all = "camelCase")]
 pub(crate) struct CommentThreadRenderer {
     /// Missing on the FrameworkUpdate data model (A/B #14)
-    pub comment: Option<Comment>,
-    pub comment_view_model: Option<CommentViewModelWrap>,
+    pub comment: Option<JsonValue>,
+    pub comment_view_model: Option<JsonValue>,
     /// Continuation token to fetch replies
-    #[serde(default)]
-    pub replies: Replies,
+    #[serde(default = "crate::json::json_null")]
+    pub replies: JsonValue,
     #[serde(default)]
     #[serde_as(deserialize_as = "DefaultOnError")]
     pub rendering_priority: CommentPriority,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct Comment {
-    pub comment_renderer: CommentRenderer,
 }
 
 #[serde_as]
@@ -736,7 +359,7 @@ pub(crate) struct CommentRenderer {
     /// ID of the author's channel
     #[serde(default)]
     #[serde_as(as = "DefaultOnError")]
-    pub author_endpoint: Option<BrowseEndpointWrap>,
+    pub author_endpoint: Option<JsonValue>,
     /// Comment text
     pub content_text: TextComponents,
     /// Textual publish date (e.g. `15 minutes ago`, `2 days ago`)
@@ -755,14 +378,15 @@ pub(crate) struct CommentRenderer {
     pub action_buttons: CommentActionButtons,
 }
 
-#[derive(Default, Clone, Copy, Debug, Deserialize)]
-#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
-pub(crate) enum CommentPriority {
-    /// Default rendering priority
-    #[default]
-    RenderingPriorityUnknown,
-    /// Comment pinned by the creator
-    RenderingPriorityPinnedComment,
+yt_string_enum! {
+    pub(crate) enum CommentPriority {
+        /// Default rendering priority
+        RenderingPriorityUnknown = "",
+        /// Comment pinned by the creator
+        RenderingPriorityPinnedComment = "RENDERING_PRIORITY_PINNED_COMMENT",
+    }
+    default: CommentPriority::RenderingPriorityUnknown,
+    fallback_to_default
 }
 
 impl From<CommentPriority> for bool {
@@ -771,14 +395,7 @@ impl From<CommentPriority> for bool {
     }
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct CommentViewModelWrap {
-    pub comment_view_model: CommentViewModel,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug, FromYtNode)]
 pub(crate) struct CommentViewModel {
     pub comment_id: String,
     pub comment_key: String,
@@ -786,68 +403,51 @@ pub(crate) struct CommentViewModel {
     pub toolbar_state_key: String,
 }
 
-/// Does not contain replies directly but a continuation token
-/// for fetching them.
-#[derive(Default, Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct Replies {
-    pub comment_replies_renderer: RepliesRenderer,
-}
-
-/// Does not contain replies directly but a continuation token
-/// for fetching them.
-#[serde_as]
-#[derive(Default, Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct RepliesRenderer {
-    #[serde_as(as = "VecSkipError<_>")]
-    pub contents: Vec<CommentListItem>,
-}
-
 /// These are the buttons for comment interaction (Like/Dislike/Reply).
 /// Contains the CreatorHeart.
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug, FromYtNode)]
 pub(crate) struct CommentActionButtons {
-    pub comment_action_buttons_renderer: CommentActionButtonsRenderer,
-}
-
-/// These are the buttons for comment interaction (Like/Dislike/Reply).
-/// Contains the CreatorHeart.
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct CommentActionButtonsRenderer {
+    #[ytq(.commentActionButtonsRenderer.creatorHeart)]
     pub creator_heart: Option<CreatorHeart>,
 }
 
 /// Video creators can endorse comments by marking them with a ❤️.
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug, FromYtNode)]
 pub(crate) struct CreatorHeart {
-    pub creator_heart_renderer: CreatorHeartRenderer,
-}
-
-/// Video creators can endorse comments by marking them with a ❤️.
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct CreatorHeartRenderer {
+    #[ytq(.creatorHeartRenderer.isHearted)]
     pub is_hearted: bool,
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug)]
 pub(crate) struct AuthorCommentBadge {
-    pub author_comment_badge_renderer: AuthorCommentBadgeRenderer,
-}
-
-/// YouTube channel badge (verified) of the comment author
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct AuthorCommentBadgeRenderer {
     /// Verified: `CHECK`
     ///
     /// Artist: `OFFICIAL_ARTIST_BADGE`
     pub icon: Icon,
+}
+
+impl<'de> Deserialize<'de> for AuthorCommentBadge {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        #[derive(Deserialize)]
+        #[serde(rename_all = "camelCase")]
+        struct Inner {
+            icon: Icon,
+        }
+
+        #[derive(Deserialize)]
+        #[serde(rename_all = "camelCase")]
+        struct Wrap {
+            author_comment_badge_renderer: Inner,
+        }
+
+        let wrap = Wrap::deserialize(deserializer)?;
+        Ok(Self {
+            icon: wrap.author_comment_badge_renderer.icon,
+        })
+    }
 }
 
 #[derive(Debug, Deserialize)]
@@ -905,8 +505,7 @@ pub(crate) struct CommentAuthor {
     pub is_creator: bool,
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug, FromYtNode)]
 pub(crate) struct CommentToolbar {
     pub like_count_notliked: String,
     pub reply_count: String,
@@ -926,18 +525,6 @@ impl From<HeartState> for bool {
             HeartState::ToolbarHeartStateHearted => true,
         }
     }
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct ContinuationButton {
-    pub button_renderer: ContinuationButtonRenderer,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct ContinuationButtonRenderer {
-    pub command: ContinuationEndpoint,
 }
 
 #[derive(Debug, Deserialize)]

@@ -29,8 +29,17 @@ rustls-tls-native-roots = [
 
 audiotag = ["dep:lofty", "dep:image", "dep:smartcrop2"]
 
+# SABR attestation refresh prefers the chromey (real-browser)
+# PoToken provider over the botguard binary. The chromey path
+# uses botguard's `asyncSnapshotFunction` bound to a real
+# `(visitor_data, deobf.sts)` pair, which is what GVS expects
+# for a valid attestation refresh — see
+# `mint_attestation_po_token` and the chromey provider.
+chromey-po-token = []
+
 [dependencies]
 rustypipe.workspace = true
+sabr = { path = "../sabr" }
 once_cell.workspace = true
 regex.workspace = true
 thiserror.workspace = true
@@ -38,10 +47,12 @@ futures-util.workspace = true
 wreq = { workspace = true, features = ["stream"] }
 rand.workspace = true
 tokio = { workspace = true, features = ["macros", "fs", "process"] }
+url = "2"
 indicatif = { workspace = true, optional = true }
 filenamify.workspace = true
 tracing.workspace = true
 time.workspace = true
+data-encoding.workspace = true
 lofty = { version = "0.22.0", optional = true }
 image = { version = "0.25.0", optional = true, default-features = false, features = [
     "rayon",
@@ -51,9 +62,9 @@ image = { version = "0.25.0", optional = true, default-features = false, feature
 smartcrop2 = { version = "0.4.0", optional = true }
 
 [dev-dependencies]
+flexon.workspace = true
 path_macro.workspace = true
 rstest.workspace = true
-serde_json.workspace = true
 temp_testdir = "0.2.3"
 
 [package.metadata.docs.rs]

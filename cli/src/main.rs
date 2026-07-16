@@ -16,14 +16,19 @@ use indicatif::{MultiProgress, ProgressBar, ProgressStyle};
 use owo_colors::OwoColorize;
 use rustypipe::{
     cache::FileStorage,
-    client::{ClientType, RustyPipe},
+    client::{ClientType, MusicNewResult, MusicSavedResult, RustyPipe},
     model::{
         richtext::{RichText, ToPlaintext},
         traits::YtEntity,
-        ArtistId, AudioCodec, Comment, MusicSearchResult, TrackItem, TrackType, UrlTarget,
-        Verification, YouTubeItem,
+        ArtistId, AlbumItem, ArtistItem, AudioCodec, Comment, MusicItem, MusicPlaylistItem,
+        MusicSearchResult, PlaylistItem, TrackItem, TrackType, UrlTarget, UserItem, Verification,
+        VideoItem, YouTubeItem,
     },
-    param::{search_filter, ChannelVideoTab, Country, Language, StreamFilter},
+    param::{
+        search_filter::{self, MusicSearchFilter},
+        AlbumResolution, ChannelContent, Country, Language, MusicArtistAlbums, MusicNewKind,
+        MusicSavedKind, StreamFilter,
+    },
     report::FileReporter,
 };
 use rustypipe_downloader::{
@@ -80,6 +85,37 @@ struct Cli {
     /// Enable caching for session-bound PO tokens
     #[clap(long, global = true)]
     pot_cache: bool,
+    /// Use the real-browser (chromey) PoToken provider
+    #[cfg(feature = "chromey-po-token")]
+    #[clap(long, global = true)]
+    chromey: bool,
+    /// Path to the Chrome/Chromium binary (default: auto-detect)
+    #[cfg(feature = "chromey-po-token")]
+    #[clap(long, global = true)]
+    chrome_executable: Option<PathBuf>,
+    /// On chromey failure, retry with the botguard binary (default: true)
+    #[cfg(feature = "chromey-po-token")]
+    #[clap(long, global = true)]
+    chromey_no_botguard_fallback: bool,
+    /// Launch chromey in headful mode (real Chrome window instead of
+    /// --headless=new). Needs an X server; on a headless host use
+    /// `xvfb-run -a`. Implies `--chromey`.
+    #[cfg(feature = "chromey-po-token")]
+    #[clap(long, global = true)]
+    chromey_headful: bool,
+    /// Path to write the PoToken captured from a real browser's SABR
+    /// `videoplayback` request. The watch page is auto-played; the
+    /// first `googlevideo.com/videoplayback?…&sabr=1` POST is
+    /// intercepted, its `StreamerContext.po_token` is extracted, and
+    /// the raw bytes are written here. Pair with
+    /// `RUSTYPIPE_SABR_PO_TOKEN_FILE=<same path>` so the downloader
+    /// uses the captured token instead of the chromey-minted one.
+    /// Diagnostic: if rustypipe's SABR stream works with this
+    /// captured token, our minted token was the issue. Implies
+    /// `--chromey`.
+    #[cfg(feature = "chromey-po-token")]
+    #[clap(long, global = true)]
+    chromey_intercept_file: Option<PathBuf>,
     /// Enable debug logging
     #[clap(short, long, global = true)]
     verbose: bool,
@@ -132,12 +168,11 @@ enum Commands {
         id: String,
         #[clap(flatten)]
         target: DownloadTarget,
-        /// Video resolution (e.g. 720, 1080). Set to 0 for audio-only.
-        #[clap(short, long)]
-        resolution: Option<u32>,
-        /// Download only the audio track and write track information
-        #[clap(short, long)]
-        audio: bool,
+        /// Quality: `audio` for audio-only, or a video resolution like `720`/`1080`
+        ///
+        /// Examples: `-q audio`, `-q 1080`, `-q 720`
+        #[clap(short, long, value_parser = parse_quality)]
+        quality: Option<Quality>,
         /// Number of videos downloaded in parallel
         #[clap(short, long, default_value_t = 8)]
         parallel: usize,
@@ -149,7 +184,7 @@ enum Commands {
         limit: usize,
         /// YT Client used to fetch player data
         #[clap(short, long)]
-        client_type: Option<Vec<ClientTypeArg>>,
+        client_type: Option<Vec<ClientType>>,
     },
     /// Extract video, playlist, album or channel data
     Get {
@@ -184,7 +219,7 @@ enum Commands {
         player: bool,
         /// YT Client used to fetch player data
         #[clap(short, long)]
-        client_type: Option<Vec<ClientTypeArg>>,
+        client_type: Option<Vec<ClientType>>,
     },
     /// Search YouTube
     Search {
@@ -201,16 +236,16 @@ enum Commands {
         limit: usize,
         /// Filter results by item type
         #[clap(long)]
-        item_type: Option<SearchItemType>,
+        item_type: Option<search_filter::ItemType>,
         /// Filter results by video length
         #[clap(long)]
-        length: Option<SearchLength>,
+        length: Option<search_filter::Length>,
         /// Filter results by upload date
         #[clap(long)]
-        date: Option<SearchUploadDate>,
+        date: Option<search_filter::UploadDate>,
         /// Sort search resulus
         #[clap(long)]
-        order: Option<SearchOrder>,
+        order: Option<search_filter::Order>,
         /// Channel ID for searching channel videos
         #[clap(long)]
         channel: Option<String>,
@@ -366,47 +401,6 @@ enum CommentsOrder {
     Latest,
 }
 
-#[derive(Copy, Clone, ValueEnum)]
-enum SearchItemType {
-    Video,
-    Channel,
-    Playlist,
-}
-
-#[derive(Copy, Clone, ValueEnum)]
-enum SearchLength {
-    /// < 4min
-    Short,
-    /// 4-20min
-    Medium,
-    /// > 20min
-    Long,
-}
-
-#[derive(Copy, Clone, ValueEnum)]
-enum SearchUploadDate {
-    /// 1 hour old or newer
-    Hour,
-    /// 1 day old or newer
-    Day,
-    /// 1 week old or newer
-    Week,
-    /// 1 month old or newer
-    Month,
-    /// 1 year old or newer
-    Year,
-}
-
-#[derive(Copy, Clone, ValueEnum)]
-enum SearchOrder {
-    /// Sort by Like/Dislike ratio
-    Rating,
-    /// Sort by upload date
-    Date,
-    /// Sort by view count
-    Views,
-}
-
 #[derive(Copy, Clone, PartialEq, Eq, ValueEnum)]
 enum MusicSearchCategory {
     All,
@@ -419,13 +413,22 @@ enum MusicSearchCategory {
     Users,
 }
 
-#[derive(Copy, Clone, PartialEq, Eq, ValueEnum)]
-enum ClientTypeArg {
-    Desktop,
-    Mobile,
-    Tv,
-    Android,
-    Ios,
+#[derive(Copy, Clone, PartialEq, Eq, Debug)]
+enum Quality {
+    /// Audio-only download
+    Audio,
+    /// Video at the given max resolution
+    Video(u32),
+}
+
+fn parse_quality(s: &str) -> Result<Quality, String> {
+    if s.eq_ignore_ascii_case("audio") {
+        Ok(Quality::Audio)
+    } else {
+        s.parse::<u32>()
+            .map(Quality::Video)
+            .map_err(|e| format!("invalid quality: {e}"))
+    }
 }
 
 #[derive(Serialize)]
@@ -440,60 +443,6 @@ struct NewpipeSubscription {
     service_id: u16,
     url: String,
     name: String,
-}
-
-impl From<SearchItemType> for search_filter::ItemType {
-    fn from(value: SearchItemType) -> Self {
-        match value {
-            SearchItemType::Video => search_filter::ItemType::Video,
-            SearchItemType::Channel => search_filter::ItemType::Channel,
-            SearchItemType::Playlist => search_filter::ItemType::Playlist,
-        }
-    }
-}
-
-impl From<SearchLength> for search_filter::Length {
-    fn from(value: SearchLength) -> Self {
-        match value {
-            SearchLength::Short => search_filter::Length::Short,
-            SearchLength::Medium => search_filter::Length::Medium,
-            SearchLength::Long => search_filter::Length::Long,
-        }
-    }
-}
-
-impl From<SearchUploadDate> for search_filter::UploadDate {
-    fn from(value: SearchUploadDate) -> Self {
-        match value {
-            SearchUploadDate::Hour => search_filter::UploadDate::Hour,
-            SearchUploadDate::Day => search_filter::UploadDate::Day,
-            SearchUploadDate::Week => search_filter::UploadDate::Week,
-            SearchUploadDate::Month => search_filter::UploadDate::Month,
-            SearchUploadDate::Year => search_filter::UploadDate::Year,
-        }
-    }
-}
-
-impl From<SearchOrder> for search_filter::Order {
-    fn from(value: SearchOrder) -> Self {
-        match value {
-            SearchOrder::Rating => search_filter::Order::Rating,
-            SearchOrder::Date => search_filter::Order::Date,
-            SearchOrder::Views => search_filter::Order::Views,
-        }
-    }
-}
-
-impl From<ClientTypeArg> for ClientType {
-    fn from(value: ClientTypeArg) -> Self {
-        match value {
-            ClientTypeArg::Desktop => Self::Desktop,
-            ClientTypeArg::Mobile => Self::Mobile,
-            ClientTypeArg::Tv => Self::Tv,
-            ClientTypeArg::Android => Self::Android,
-            ClientTypeArg::Ios => Self::Ios,
-        }
-    }
 }
 
 impl From<SubscriptionFormat> for Format {
@@ -511,9 +460,9 @@ fn print_data<T: Serialize>(data: &T, format: Format, pretty: bool) {
     match format {
         Format::Json => {
             if pretty {
-                serde_json::to_writer_pretty(stdout, data).unwrap();
+                flexon::to_writer_pretty(stdout, data).unwrap();
             } else {
-                serde_json::to_writer(stdout, data).unwrap();
+                flexon::to_writer(stdout, data).unwrap();
             }
         }
         Format::Yaml => serde_yaml::to_writer(stdout, data).unwrap(),
@@ -744,9 +693,7 @@ fn print_comments(comments: &[Comment]) {
 fn print_richtext(text: &RichText) {
     for c in &text.0 {
         match c {
-            rustypipe::model::richtext::TextComponent::Text { text, style }
-                if !text.is_empty() =>
-            {
+            rustypipe::model::richtext::TextComponent::Text { text, style } if !text.is_empty() => {
                 let mut tstyle = owo_colors::Style::new();
 
                 if style.bold {
@@ -949,6 +896,37 @@ async fn run() -> anyhow::Result<()> {
     if cli.pot_cache {
         rp = rp.po_token_cache();
     }
+    #[cfg(feature = "chromey-po-token")]
+    {
+        if cli.chromey || cli.chromey_headful || cli.chromey_intercept_file.is_some() {
+            rp = rp.chromey_provider();
+        }
+        if let Some(path) = cli.chrome_executable {
+            rp = rp.chrome_executable(path);
+        }
+        if cli.chromey_no_botguard_fallback {
+            rp = rp.chromey_no_botguard_fallback();
+        }
+        if cli.chromey_headful {
+            rp = rp.chromey_headful(true);
+        }
+        if let Some(path) = cli.chromey_intercept_file.clone() {
+            rp = rp.chromey_intercept_file(path);
+            // Convenience: also set the env-var override so
+            // the downloader picks up the file the chromey
+            // provider will write. The env-var is the only
+            // way to pass the captured PoToken into the
+            // downloader (it doesn't go through
+            // `RustyPipe`).
+            std::env::set_var(
+                "RUSTYPIPE_SABR_PO_TOKEN_FILE",
+                cli.chromey_intercept_file
+                    .as_ref()
+                    .expect("checked above")
+                    .as_os_str(),
+            );
+        }
+    }
     if cli.auth {
         rp = rp.authenticated();
     }
@@ -958,36 +936,43 @@ async fn run() -> anyhow::Result<()> {
         Commands::Download {
             id,
             target,
-            resolution,
-            audio,
+            quality,
             parallel,
             music,
             limit,
             client_type,
         } => {
-            let url_target = rp.query().resolve_string(&id, false).await?;
+            let url_target = rp
+                .query()
+                .resolve_string(&id, AlbumResolution::No)
+                .await?;
 
             let mut filter = StreamFilter::new();
-            if let Some(res) = resolution {
-                if res == 0 {
-                    filter = filter
-                        .no_video()
-                        .audio_codecs([AudioCodec::Mp4a, AudioCodec::Opus]);
-                } else {
-                    filter = filter.video_max_res(res);
+            let mut audio_only = false;
+            if let Some(q) = quality {
+                match q {
+                    Quality::Audio => {
+                        filter = filter
+                            .no_video()
+                            .audio_codecs([AudioCodec::Mp4a, AudioCodec::Opus])
+                            .allow_abr_only();
+                        audio_only = true;
+                    }
+                    Quality::Video(res) => {
+                        filter = filter.video_max_res(res);
+                    }
                 }
             }
             let mut dl = DownloaderBuilder::new()
                 .rustypipe(&rp)
                 .multi_progress(multi.clone())
                 .path_precheck();
-            if audio {
+            if audio_only {
                 dl = dl.audio_tag().crop_cover();
-                filter = filter.no_video();
             }
             let dl = dl.stream_filter(filter).build();
 
-            let cts = client_type.map(|c| c.into_iter().map(ClientType::from).collect::<Vec<_>>());
+            let cts = client_type;
 
             match url_target {
                 UrlTarget::Video { id, .. } => {
@@ -995,7 +980,18 @@ async fn run() -> anyhow::Result<()> {
                 }
                 UrlTarget::Channel { id } => {
                     target.assert_dir();
-                    let mut channel = rp.query().channel_videos(id).await?;
+                    let mut channel = rp
+                        .query()
+                        .channel_content::<_, VideoItem>(id, ChannelContent::Videos, None)
+                        .await?
+                        .full()
+                        .ok_or_else(|| {
+                            rustypipe::error::Error::Extraction(
+                                rustypipe::error::ExtractionError::InvalidData(
+                                    "expected full channel response".into(),
+                                ),
+                            )
+                        })?;
                     channel.content.extend_limit(&rp.query(), limit).await?;
                     let videos = channel
                         .content
@@ -1067,7 +1063,10 @@ async fn run() -> anyhow::Result<()> {
                 return Ok(());
             }
 
-            let target = rp.query().resolve_string(&id, false).await?;
+            let target = rp
+                .query()
+                .resolve_string(&id, AlbumResolution::No)
+                .await?;
 
             match target {
                 UrlTarget::Video { id, .. } => {
@@ -1122,11 +1121,7 @@ async fn run() -> anyhow::Result<()> {
                         }
                     } else if player {
                         let player = if let Some(client_types) = client_type {
-                            let cts = client_types
-                                .into_iter()
-                                .map(ClientType::from)
-                                .collect::<Vec<_>>();
-                            rp.query().player_from_clients(&id, &cts).await
+                            rp.query().player_from_clients(&id, &client_types).await
                         } else {
                             rp.query().player(&id).await
                         }?;
@@ -1199,7 +1194,10 @@ async fn run() -> anyhow::Result<()> {
                 }
                 UrlTarget::Channel { id } => {
                     if music {
-                        let artist = rp.query().music_artist(&id, true).await?;
+                        let artist = rp
+                            .query()
+                            .music_artist(&id, MusicArtistAlbums::Include)
+                            .await?;
                         match format {
                             Some(format) => print_data(&artist, format, pretty),
                             None => {
@@ -1279,14 +1277,24 @@ async fn run() -> anyhow::Result<()> {
                     } else {
                         match tab {
                             ChannelTab::Videos | ChannelTab::Shorts | ChannelTab::Live => {
-                                let video_tab = match tab {
-                                    ChannelTab::Videos => ChannelVideoTab::Videos,
-                                    ChannelTab::Shorts => ChannelVideoTab::Shorts,
-                                    ChannelTab::Live => ChannelVideoTab::Live,
+                                let content = match tab {
+                                    ChannelTab::Videos => ChannelContent::Videos,
+                                    ChannelTab::Shorts => ChannelContent::Shorts,
+                                    ChannelTab::Live => ChannelContent::Live,
                                     _ => unreachable!(),
                                 };
-                                let mut channel =
-                                    rp.query().channel_videos_tab(&id, video_tab).await?;
+                                let mut channel = rp
+                                    .query()
+                                    .channel_content::<_, VideoItem>(&id, content, None)
+                                    .await?
+                                    .full()
+                                    .ok_or_else(|| {
+                                        rustypipe::error::Error::Extraction(
+                                            rustypipe::error::ExtractionError::InvalidData(
+                                                "expected full channel response".into(),
+                                            ),
+                                        )
+                                    })?;
 
                                 channel.content.extend_limit(rp.query(), limit).await?;
 
@@ -1319,7 +1327,22 @@ async fn run() -> anyhow::Result<()> {
                                 }
                             }
                             ChannelTab::Playlists => {
-                                let channel = rp.query().channel_playlists(&id).await?;
+                                let channel = rp
+                                    .query()
+                                    .channel_content::<_, PlaylistItem>(
+                                        &id,
+                                        ChannelContent::Playlists,
+                                        None,
+                                    )
+                                    .await?
+                                    .full()
+                                    .ok_or_else(|| {
+                                        rustypipe::error::Error::Extraction(
+                                            rustypipe::error::ExtractionError::InvalidData(
+                                                "expected full channel response".into(),
+                                            ),
+                                        )
+                                    })?;
 
                                 match format {
                                     Some(format) => print_data(&channel, format, pretty),
@@ -1497,7 +1520,22 @@ async fn run() -> anyhow::Result<()> {
             None => match channel {
                 Some(channel_id) => {
                     rustypipe::validate::channel_id(&channel_id)?;
-                    let channel = rp.query().channel_search(&channel_id, &query).await?;
+                    let channel = rp
+                        .query()
+                        .channel_content::<_, VideoItem>(
+                            &channel_id,
+                            ChannelContent::Search(&query),
+                            None,
+                        )
+                        .await?
+                        .full()
+                        .ok_or_else(|| {
+                            rustypipe::error::Error::Extraction(
+                                rustypipe::error::ExtractionError::InvalidData(
+                                    "expected full channel response".into(),
+                                ),
+                            )
+                        })?;
 
                     match format {
                         Some(format) => print_data(&channel, format, pretty),
@@ -1521,13 +1559,13 @@ async fn run() -> anyhow::Result<()> {
                 }
                 None => {
                     let filter = search_filter::SearchFilter::new()
-                        .item_type_opt(item_type.map(search_filter::ItemType::from))
-                        .length_opt(length.map(search_filter::Length::from))
-                        .date_opt(date.map(search_filter::UploadDate::from))
-                        .sort_opt(order.map(search_filter::Order::from));
+                        .item_type_opt(item_type)
+                        .length_opt(length)
+                        .date_opt(date)
+                        .sort_opt(order);
                     let mut res = rp
                         .query()
-                        .search_filter::<YouTubeItem, _>(&query, &filter)
+                        .search::<YouTubeItem, _>(&query, Some(&filter))
                         .await?;
                     res.items.extend_limit(rp.query(), limit).await?;
 
@@ -1544,42 +1582,63 @@ async fn run() -> anyhow::Result<()> {
                 }
             },
             Some(MusicSearchCategory::All) => {
-                let res = rp.query().music_search_main(&query).await?;
+                let res = rp
+                    .query()
+                    .music_search::<MusicItem, _>(&query, None)
+                    .await?;
                 print_music_search(&res, format, pretty, true);
             }
             Some(MusicSearchCategory::Tracks) => {
-                let mut res = rp.query().music_search_tracks(&query).await?;
+                let mut res = rp
+                    .query()
+                    .music_search::<TrackItem, _>(&query, Some(MusicSearchFilter::Tracks))
+                    .await?;
                 res.items.extend_limit(rp.query(), limit).await?;
                 print_music_search(&res, format, pretty, false);
             }
             Some(MusicSearchCategory::Videos) => {
-                let mut res = rp.query().music_search_videos(&query).await?;
+                let mut res = rp
+                    .query()
+                    .music_search::<TrackItem, _>(&query, Some(MusicSearchFilter::Videos))
+                    .await?;
                 res.items.extend_limit(rp.query(), limit).await?;
                 print_music_search(&res, format, pretty, false);
             }
             Some(MusicSearchCategory::Artists) => {
-                let mut res = rp.query().music_search_artists(&query).await?;
+                let mut res = rp
+                    .query()
+                    .music_search::<ArtistItem, _>(&query, Some(MusicSearchFilter::Artists))
+                    .await?;
                 res.items.extend_limit(rp.query(), limit).await?;
                 print_music_search(&res, format, pretty, false);
             }
             Some(MusicSearchCategory::Albums) => {
-                let mut res = rp.query().music_search_albums(&query).await?;
+                let mut res = rp
+                    .query()
+                    .music_search::<AlbumItem, _>(&query, Some(MusicSearchFilter::Albums))
+                    .await?;
                 res.items.extend_limit(rp.query(), limit).await?;
                 print_music_search(&res, format, pretty, false);
             }
-            Some(MusicSearchCategory::PlaylistsYtm | MusicSearchCategory::PlaylistsCommunity) => {
+            Some(
+                MusicSearchCategory::PlaylistsYtm | MusicSearchCategory::PlaylistsCommunity,
+            ) => {
+                let community = music == Some(MusicSearchCategory::PlaylistsCommunity);
                 let mut res = rp
                     .query()
-                    .music_search_playlists(
+                    .music_search::<MusicPlaylistItem, _>(
                         &query,
-                        music == Some(MusicSearchCategory::PlaylistsCommunity),
+                        Some(MusicSearchFilter::Playlists { community }),
                     )
                     .await?;
                 res.items.extend_limit(rp.query(), limit).await?;
                 print_music_search(&res, format, pretty, false);
             }
             Some(MusicSearchCategory::Users) => {
-                let mut res = rp.query().music_search_users(&query).await?;
+                let mut res = rp
+                    .query()
+                    .music_search::<UserItem, _>(&query, Some(MusicSearchFilter::Users))
+                    .await?;
                 res.items.extend_limit(rp.query(), limit).await?;
                 print_music_search(&res, format, pretty, false);
             }
@@ -1653,7 +1712,13 @@ async fn run() -> anyhow::Result<()> {
             feed,
         } => {
             if music {
-                let mut subscriptions = rp.query().music_saved_artists().await?;
+                let MusicSavedResult::Artists(mut subscriptions) = rp
+                    .query()
+                    .music_saved(MusicSavedKind::Artists)
+                    .await?
+                else {
+                    unreachable!()
+                };
                 subscriptions.extend_limit(rp.query(), limit).await?;
                 fmt_print_subscriptions(
                     &subscriptions.items,
@@ -1683,7 +1748,13 @@ async fn run() -> anyhow::Result<()> {
             music,
         } => {
             if music {
-                let mut playlists = rp.query().music_saved_playlists().await?;
+                let MusicSavedResult::Playlists(mut playlists) = rp
+                    .query()
+                    .music_saved(MusicSavedKind::Playlists)
+                    .await?
+                else {
+                    unreachable!()
+                };
                 playlists.extend_limit(rp.query(), limit).await?;
                 fmt_print_entities(&playlists.items, format, pretty, "Music playlists");
             } else {
@@ -1697,7 +1768,13 @@ async fn run() -> anyhow::Result<()> {
             pretty,
             limit,
         } => {
-            let mut albums = rp.query().music_saved_albums().await?;
+            let MusicSavedResult::Albums(mut albums) = rp
+                .query()
+                .music_saved(MusicSavedKind::Albums)
+                .await?
+            else {
+                unreachable!()
+            };
             albums.extend_limit(rp.query(), limit).await?;
             fmt_print_entities(&albums.items, format, pretty, "Saved albums");
         }
@@ -1706,7 +1783,13 @@ async fn run() -> anyhow::Result<()> {
             pretty,
             limit,
         } => {
-            let mut tracks = rp.query().music_saved_tracks().await?;
+            let MusicSavedResult::Tracks(mut tracks) = rp
+                .query()
+                .music_saved(MusicSavedKind::Tracks)
+                .await?
+            else {
+                unreachable!()
+            };
             tracks.extend_limit(rp.query(), limit).await?;
             fmt_print_tracks(&tracks.items, format, pretty, "Saved tracks");
         }
@@ -1716,10 +1799,18 @@ async fn run() -> anyhow::Result<()> {
             pretty,
         } => {
             if videos {
-                let releases = rp.query().music_new_videos().await?;
+                let MusicNewResult::Videos(releases) =
+                    rp.query().music_new(MusicNewKind::Videos).await?
+                else {
+                    unreachable!()
+                };
                 fmt_print_tracks(&releases, format, pretty, "New music videos");
             } else {
-                let releases = rp.query().music_new_albums().await?;
+                let MusicNewResult::Albums(releases) =
+                    rp.query().music_new(MusicNewKind::Albums).await?
+                else {
+                    unreachable!()
+                };
                 fmt_print_entities(&releases, format, pretty, "New albums");
             }
         }

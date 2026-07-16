@@ -2,21 +2,28 @@ use std::{borrow::Cow, fmt::Debug};
 
 use crate::{
     error::{Error, ExtractionError},
-    json::{JsonDoc, yt_music_header_title, yt_single_column_sections, ytq},
+    json::{yt_music_header_title, yt_single_column_sections, ytq, JsonDoc, JsonValue},
     model::{MusicGenre, MusicGenreItem, MusicGenreSection},
     request_body::ytbody,
     serializer::MapResult,
 };
 
 use super::{
-    response::{music_item::MusicListMapper, music_genres::NavigationButton, url_endpoint::NavigationEndpoint},
-    ClientType, MapJsonResponse, MapRespCtx, RustyPipeQuery,
+    response::{
+        music_genres::NavigationButtonRenderer,
+        music_item::{
+            map_music_items, music_carousel_node, music_grid_items, music_grid_node,
+            music_item_contents,
+        },
+        url_endpoint,
+    },
+    ClientType, MapEndpoint, MapRespCtx, RustyPipeQuery,
 };
 
 #[derive(Debug)]
-struct MusicGenresJson;
+struct MusicGenresEndpoint;
 #[derive(Debug)]
-struct MusicGenreJson;
+struct MusicGenreEndpoint;
 
 impl RustyPipeQuery {
     /// Get a list of moods and genres from YouTube Music
@@ -26,7 +33,7 @@ impl RustyPipeQuery {
             "browseId": "FEmusic_moods_and_genres",
         });
 
-        self.execute_request::<MusicGenresJson, _, _>(
+        self.execute_request::<MusicGenresEndpoint, _, _>(
             ClientType::DesktopMusic,
             "music_genres",
             "",
@@ -48,7 +55,7 @@ impl RustyPipeQuery {
             "params": genre_id,
         });
 
-        self.execute_request::<MusicGenreJson, _, _>(
+        self.execute_request::<MusicGenreEndpoint, _, _>(
             ClientType::DesktopMusic,
             "music_genre",
             genre_id,
@@ -59,8 +66,8 @@ impl RustyPipeQuery {
     }
 }
 
-impl MapJsonResponse<Vec<MusicGenreItem>> for MusicGenresJson {
-    fn map_json_response(
+impl MapEndpoint<Vec<MusicGenreItem>> for MusicGenresEndpoint {
+    fn map(
         json: &JsonDoc,
         _ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<Vec<MusicGenreItem>>, ExtractionError> {
@@ -69,44 +76,43 @@ impl MapJsonResponse<Vec<MusicGenreItem>> for MusicGenresJson {
             let section_items = sections.items();
             let i_start = section_items.len().saturating_sub(2);
             let mut warnings = Vec::new();
-            let genres = section_items
-                .into_iter()
-                .skip(i_start)
-                .enumerate()
-                .flat_map(|(i, section)| {
-                    let Some(grid) = section.query(ytq!(.gridRenderer)) else {
-                        return Vec::new();
-                    };
-                    let Some(contents) = grid.first_of(&[ytq!(.items), ytq!(.contents)]) else {
-                        return Vec::new();
-                    };
-                    let (buttons, mut grid_warnings) =
-                        contents.deserialize_items_lossy::<NavigationButton>();
-                    warnings.append(&mut grid_warnings);
-                    buttons
-                        .into_iter()
-                        .filter_map(move |section| match section {
-                            NavigationButton::MusicNavigationButtonRenderer(btn) => {
-                                Some(MusicGenreItem {
-                                    id: btn.click_command.browse_endpoint.params,
-                                    name: btn.button_text,
-                                    is_mood: i == 0,
-                                    color: btn.solid.left_stripe_color,
-                                })
-                            }
-                            NavigationButton::None => None,
-                        })
-                        .collect::<Vec<_>>()
-                })
-                .collect();
+            let mut genres = Vec::new();
+            for (i, section) in section_items.into_iter().skip(i_start).enumerate() {
+                let Some(grid) = music_grid_node(&section) else {
+                    continue;
+                };
+                let Some(contents) = music_grid_items(&grid) else {
+                    continue;
+                };
 
-            Ok(MapResult { c: genres, warnings })
+                for section in contents.items() {
+                    let Some(btn) = section.try_deserialize::<NavigationButtonRenderer>(
+                        ytq!(.musicNavigationButtonRenderer),
+                        &mut warnings,
+                    ) else {
+                        continue;
+                    };
+                    genres.push(MusicGenreItem {
+                        id: url_endpoint::browse_endpoint(&btn.click_command)
+                            .map(|ep| ep.browse_endpoint.params)
+                            .unwrap_or_default(),
+                        name: btn.button_text,
+                        is_mood: i == 0,
+                        color: btn.solid.left_stripe_color,
+                    });
+                }
+            }
+
+            Ok(MapResult {
+                c: genres,
+                warnings,
+            })
         })
     }
 }
 
-impl MapJsonResponse<MusicGenre> for MusicGenreJson {
-    fn map_json_response(
+impl MapEndpoint<MusicGenre> for MusicGenreEndpoint {
+    fn map(
         json: &JsonDoc,
         ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<MusicGenre>, ExtractionError> {
@@ -121,37 +127,27 @@ impl MapJsonResponse<MusicGenre> for MusicGenreJson {
                 .items()
                 .into_iter()
                 .filter_map(|section| {
-                    if let Some(shelf) = section.query(ytq!(.musicCarouselShelfRenderer)) {
+                    if let Some(shelf) = music_carousel_node(&section) {
                         let name = shelf
-                            .query(ytq!(.header.musicCarouselShelfBasicHeaderRenderer.title))
-                            .and_then(|node| node.text())
+                            .text_at(ytq!(
+                                .header.musicCarouselShelfBasicHeaderRenderer.title
+                            ))
                             .unwrap_or_default();
                         let subgenre_id = shelf
                             .query(ytq!(
                                 .header.musicCarouselShelfBasicHeaderRenderer.moreContentButton
                                     .buttonRenderer.navigationEndpoint
                             ))
+                            .and_then(|endpoint| endpoint.deserialize::<JsonValue>().ok())
+                            .and_then(|endpoint| url_endpoint::browse_endpoint(&endpoint))
                             .and_then(|endpoint| {
-                                if let Ok(NavigationEndpoint::Browse {
-                                    browse_endpoint, ..
-                                }) = endpoint.deserialize()
-                                {
-                                    if browse_endpoint.browse_id
-                                        == "FEmusic_moods_and_genres_category"
-                                    {
-                                        Some(browse_endpoint.params)
-                                    } else {
-                                        None
-                                    }
-                                } else {
-                                    None
-                                }
+                                (endpoint.browse_endpoint.browse_id
+                                    == "FEmusic_moods_and_genres_category")
+                                    .then_some(endpoint.browse_endpoint.params)
                             });
-                        let mut mapper = MusicListMapper::new(ctx.lang);
-                        if let Some(contents) = shelf.query(ytq!(.contents)) {
-                            mapper.map_response_node(&contents);
-                        }
-                        let mut mapped = mapper.conv_items();
+                        let mut mapped = music_item_contents(&shelf)
+                            .map(|contents| map_music_items(&contents, ctx.lang).0)
+                            .unwrap_or_default();
                         warnings.append(&mut mapped.warnings);
                         return Some(MusicGenreSection {
                             name,
@@ -160,16 +156,13 @@ impl MapJsonResponse<MusicGenre> for MusicGenreJson {
                         });
                     }
 
-                    if let Some(grid) = section.query(ytq!(.gridRenderer)) {
+                    if let Some(grid) = music_grid_node(&section) {
                         let name = grid
-                            .query(ytq!(.header.gridHeaderRenderer.title))
-                            .and_then(|node| node.text())
+                            .text_at(ytq!(.header.gridHeaderRenderer.title))
                             .unwrap_or_default();
-                        let mut mapper = MusicListMapper::new(ctx.lang);
-                        if let Some(items) = grid.query(ytq!(.items)) {
-                            mapper.map_response_node(&items);
-                        }
-                        let mut mapped = mapper.conv_items();
+                        let mut mapped = music_grid_items(&grid)
+                            .map(|items| map_music_items(&items, ctx.lang).0)
+                            .unwrap_or_default();
                         warnings.append(&mut mapped.warnings);
                         return Some(MusicGenreSection {
                             name,
@@ -209,7 +202,7 @@ mod tests {
         let json_path = path!(*TESTFILES / "music_genres" / "genres.json");
         let json = JsonDoc::new(fs::read_to_string(json_path).unwrap());
         let map_res: MapResult<Vec<model::MusicGenreItem>> =
-            MusicGenresJson::map_json_response(&json, &MapRespCtx::test("")).unwrap();
+            MusicGenresEndpoint::map(&json, &MapRespCtx::test("")).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -226,7 +219,7 @@ mod tests {
         let json_path = path!(*TESTFILES / "music_genres" / format!("genre_{name}.json"));
         let json = JsonDoc::new(fs::read_to_string(json_path).unwrap());
         let map_res: MapResult<model::MusicGenre> =
-            MusicGenreJson::map_json_response(&json, &MapRespCtx::test(id)).unwrap();
+            MusicGenreEndpoint::map(&json, &MapRespCtx::test(id)).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),

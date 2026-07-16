@@ -10,357 +10,344 @@ pub(crate) mod url_endpoint;
 pub(crate) mod video_details;
 pub(crate) mod video_item;
 
-pub(crate) use video_item::YouTubeListItem;
-pub(crate) use video_item::YouTubeListMapper;
+// Raw YouTube response shapes live in this module tree. Names that mirror
+// Innertube JSON, such as `*Renderer`, `*ViewModel`, and raw `*Data` structs,
+// are intentional here and should stay close to serde deserialization.
+//
+// Endpoint modules should prefer response-local helpers and mappers over
+// matching these shapes directly. That keeps YouTube layout churn contained
+// while still constructing public model structs at endpoint boundaries.
 
 #[cfg(feature = "rss")]
 pub(crate) mod channel_rss;
 #[cfg(feature = "rss")]
 pub(crate) use channel_rss::ChannelRss;
 
-use std::borrow::Cow;
 use std::collections::HashMap;
 use std::marker::PhantomData;
 
-use serde::{
-    de::{IgnoredAny, Visitor},
-    Deserialize,
-};
+use serde::{de::Visitor, Deserialize, Deserializer};
 use serde_with::{serde_as, VecSkipError};
 
-use crate::error::ExtractionError;
-use crate::serializer::text::{AttributedText, Text, TextComponent};
-use crate::serializer::{MapResult, VecSkipErrorWrap};
+use crate::deserialize_through_node;
+use crate::serializer::text::{AttributedText, TextComponent};
+use crate::yt_string_enum;
+use crate::{ytq, FromYtNode};
+use crate::{
+    error::ExtractionError,
+    json::{value_to_json_string, JsonValue},
+};
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct ContentRenderer<T> {
-    pub content: T,
-}
-
-/// Deserializes any object with an array field named `contents`, `tabs` or `items`.
-///
-/// Invalid items are skipped
-#[derive(Debug)]
-pub(crate) struct ContentsRenderer<T> {
-    pub contents: Vec<T>,
-}
-
-#[derive(Debug, Deserialize)]
-pub(crate) struct ContentsRendererLogged<T> {
-    #[serde(alias = "items")]
-    pub contents: MapResult<Vec<T>>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct Tab<T> {
-    pub tab_renderer: ContentRenderer<T>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct SectionList<T> {
-    pub section_list_renderer: ContentsRenderer<T>,
-}
-
-#[derive(Default, Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct ThumbnailsWrap {
-    #[serde(default)]
-    pub thumbnail: Thumbnails,
-}
-
-#[derive(Default, Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Default, Debug)]
 pub(crate) struct ImageView {
     pub image: Thumbnails,
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct AvatarViewModel {
-    pub avatar_view_model: ImageView,
-}
-
-/// List of images in different resolutions.
-/// Not only used for thumbnails, but also for avatars and banners.
-#[derive(Clone, Default, Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct Thumbnails {
-    #[serde(default, alias = "sources")]
-    pub thumbnails: Vec<Thumbnail>,
-}
-
-#[derive(Clone, Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct Thumbnail {
-    pub url: String,
-    #[serde(default)]
-    pub width: u32,
-    #[serde(default)]
-    pub height: u32,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct ContinuationItemRenderer {
-    pub continuation_endpoint: ContinuationEndpoint,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(untagged)]
-pub(crate) enum ContinuationEndpoint {
-    ContinuationCommand(ContinuationCommandWrap),
-    CommandExecutorCommand(CommandExecutorCommandWrap),
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct ContinuationCommandWrap {
-    pub continuation_command: ContinuationCommand,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct ContinuationCommand {
-    pub token: String,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct CommandExecutorCommandWrap {
-    pub command_executor_command: CommandExecutorCommand,
-}
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct CommandExecutorCommand {
-    #[serde_as(as = "VecSkipError<_>")]
-    commands: Vec<ContinuationCommandWrap>,
-}
-
-impl ContinuationEndpoint {
-    pub fn into_token(self) -> Option<String> {
-        match self {
-            Self::ContinuationCommand(cmd) => Some(cmd.continuation_command.token),
-            Self::CommandExecutorCommand(cmd) => cmd
-                .command_executor_command
-                .commands
-                .into_iter()
-                .next()
-                .map(|c| c.continuation_command.token),
-        }
+impl ImageView {
+    pub(crate) fn from_node(node: &crate::json::JsonNode<'_>) -> Option<Self> {
+        Some(Self {
+            image: Thumbnails::from_node(&node.query(crate::json::ytq!(.image))?)?,
+        })
     }
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+deserialize_through_node!(ImageView);
+
+/// List of images in different resolutions.
+/// Not only used for thumbnails, but also for avatars and banners.
+#[derive(Clone, Default, Debug)]
+pub(crate) struct Thumbnails {
+    pub thumbnails: Vec<Thumbnail>,
+}
+
+impl Thumbnails {
+    pub(crate) fn from_node(node: &crate::json::JsonNode<'_>) -> Option<Self> {
+        // `yt_thumbnails` already understands the `thumbnails` / `sources` alias
+        // and the `(root || .thumbnail)` indirection, so reuse it.
+        let raw_thumbnails = crate::json::yt_thumbnails(node);
+        Some(Self { thumbnails: raw_thumbnails.into_iter().map(Into::into).collect() })
+    }
+}
+
+deserialize_through_node!(Thumbnails);
+
+#[derive(Clone, Debug)]
+pub(crate) struct Thumbnail {
+    pub url: String,
+    pub width: u32,
+    pub height: u32,
+}
+
+impl From<crate::model::Thumbnail> for Thumbnail {
+    fn from(t: crate::model::Thumbnail) -> Self {
+        Self { url: t.url, width: t.width, height: t.height }
+    }
+}
+
+impl Thumbnail {
+    pub(crate) fn from_node(node: &crate::json::JsonNode<'_>) -> Option<Self> {
+        Some(Self {
+            url: node.query_str(crate::json::ytq!(.url))?,
+            width: node.query_u32(crate::json::ytq!(.width)).unwrap_or(0),
+            height: node.query_u32(crate::json::ytq!(.height)).unwrap_or(0),
+        })
+    }
+}
+
+deserialize_through_node!(Thumbnail);
+
+#[derive(Debug, Default)]
 pub(crate) struct Icon {
     pub icon_type: IconType,
 }
 
-#[derive(Clone, Copy, Debug, Deserialize, PartialEq, Eq, Hash)]
-#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
-pub(crate) enum IconType {
-    /// Checkmark for verified channels
-    Check,
-    /// Music note for verified artists
-    OfficialArtistBadge,
-    /// Like button
-    Like,
+impl Icon {
+    pub(crate) fn from_node(node: &crate::json::JsonNode<'_>) -> Option<Self> {
+        Some(Self {
+            icon_type: IconType::from_node(node)?,
+        })
+    }
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+deserialize_through_node!(Icon);
+
+yt_string_enum! {
+    pub(crate) enum IconType {
+        /// Checkmark for verified channels
+        Check = "CHECK" | "CHECK_CIRCLE_THICK" | "CHECK_CIRCLE_FILLED" | "VERIFIED",
+        /// Music note for verified artists
+        OfficialArtistBadge = "OFFICIAL_ARTIST_BADGE" | "OFFICIAL_MUSIC_BADGE",
+        /// Like button
+        Like = "LIKE",
+    }
+    default: IconType::Like
+}
+
+impl IconType {
+    pub(crate) fn from_node(node: &crate::json::JsonNode<'_>) -> Option<Self> {
+        let s = node.query_str(crate::json::ytq!(.iconType))?;
+        Self::from_str(&s)
+    }
+}
+
+#[derive(Debug)]
 pub(crate) struct ChannelBadge {
     pub metadata_badge_renderer: ChannelBadgeRenderer,
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+impl ChannelBadge {
+    pub(crate) fn from_node(node: &crate::json::JsonNode<'_>) -> Option<Self> {
+        Some(Self {
+            metadata_badge_renderer: ChannelBadgeRenderer::from_node(
+                &node.query(crate::json::ytq!(.metadataBadgeRenderer))?,
+            )?,
+        })
+    }
+}
+
+deserialize_through_node!(ChannelBadge);
+
+#[derive(Debug)]
 pub(crate) struct ChannelBadgeRenderer {
     pub style: ChannelBadgeStyle,
 }
 
-#[derive(Clone, Copy, Debug, Deserialize, PartialEq, Eq, Hash)]
-#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
-pub(crate) enum ChannelBadgeStyle {
-    BadgeStyleTypeVerified,
-    BadgeStyleTypeVerifiedArtist,
+impl ChannelBadgeRenderer {
+    pub(crate) fn from_node(node: &crate::json::JsonNode<'_>) -> Option<Self> {
+        Some(Self { style: ChannelBadgeStyle::from_node(node)? })
+    }
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+yt_string_enum! {
+    pub(crate) enum ChannelBadgeStyle {
+        BadgeStyleTypeVerified = "BADGE_STYLE_TYPE_VERIFIED",
+        BadgeStyleTypeVerifiedArtist = "BADGE_STYLE_TYPE_VERIFIED_ARTIST",
+    }
+    default: ChannelBadgeStyle::BadgeStyleTypeVerified
+}
+
+impl ChannelBadgeStyle {
+    pub(crate) fn from_node(node: &crate::json::JsonNode<'_>) -> Option<Self> {
+        let s = node.query_str(crate::json::ytq!(.style))?;
+        Self::from_str(&s)
+    }
+}
+
+#[derive(Debug)]
 pub(crate) struct Alert {
     pub alert_renderer: TextBox,
 }
 
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+impl Alert {
+    pub(crate) fn from_node(node: &crate::json::JsonNode<'_>) -> Option<Self> {
+        Some(Self {
+            alert_renderer: TextBox::from_node(
+                &node.query(crate::json::ytq!(.alertRenderer))?,
+            )?,
+        })
+    }
+}
+
+deserialize_through_node!(Alert);
+
+#[derive(Debug)]
 pub(crate) struct TextBox {
-    #[serde_as(as = "Text")]
     pub text: String,
 }
 
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+impl TextBox {
+    pub(crate) fn from_node(node: &crate::json::JsonNode<'_>) -> Option<Self> {
+        Some(Self {
+            text: node.text().unwrap_or_default(),
+        })
+    }
+}
+
+deserialize_through_node!(TextBox);
+
+#[derive(Debug)]
 pub(crate) struct SimpleHeaderRenderer {
-    #[serde_as(as = "Text")]
     pub title: String,
 }
 
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+impl SimpleHeaderRenderer {
+    pub(crate) fn from_node(node: &crate::json::JsonNode<'_>) -> Option<Self> {
+        Some(Self {
+            title: node_title(node).unwrap_or_default(),
+        })
+    }
+}
+
+deserialize_through_node!(SimpleHeaderRenderer);
+
+fn node_title(node: &crate::json::JsonNode<'_>) -> Option<String> {
+    node.query(crate::json::ytq!(.title)).and_then(|n| n.text())
+}
+
+#[derive(Debug, Default, FromYtNode)]
 pub(crate) struct TextComponentBox {
-    #[serde_as(as = "AttributedText")]
+    #[ytq_attributed_text]
     pub text: TextComponent,
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug, Default, FromYtNode)]
 pub(crate) struct AttachmentRun {
     pub element: AttachmentRunElement,
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug, Default, FromYtNode)]
 pub(crate) struct AttachmentRunElement {
-    #[serde(rename = "type")]
+    #[ytq(."type")]
     pub typ: AttachmentRunElementType,
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug, Default, FromYtNode)]
 pub(crate) struct AttachmentRunElementType {
     pub image_type: AttachmentRunElementImageType,
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug, Default, FromYtNode)]
 pub(crate) struct AttachmentRunElementImageType {
     pub image: AttachmentRunElementImage,
 }
 
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug, Default, FromYtNode)]
 pub(crate) struct AttachmentRunElementImage {
-    #[serde_as(as = "VecSkipError<_>")]
+    #[ytq_lossy]
     pub sources: Vec<AttachmentRunElementImageSource>,
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug, Default, FromYtNode)]
 pub(crate) struct AttachmentRunElementImageSource {
     pub client_resource: ClientResource,
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug, Default, FromYtNode)]
 pub(crate) struct ClientResource {
     pub image_name: IconName,
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
-pub enum IconName {
-    CheckCircleFilled,
-    #[serde(alias = "AUDIO_BADGE")]
-    MusicFilled,
+yt_string_enum! {
+    pub enum IconName {
+        CheckCircleFilled = "CHECK_CIRCLE_FILLED",
+        MusicFilled = "MUSIC_FILLED" | "AUDIO_BADGE",
+    }
+    default: IconName::CheckCircleFilled
 }
 
 // CONTINUATION
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct ContinuationActionWrap<T> {
-    #[serde(alias = "reloadContinuationItemsCommand")]
-    pub append_continuation_items_action: ContinuationAction<T>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct ContinuationAction<T> {
-    pub continuation_items: MapResult<Vec<T>>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug)]
 pub(crate) struct MusicContinuationData {
-    #[serde(alias = "nextRadioContinuationData")]
     pub next_continuation_data: MusicContinuationDataInner,
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+impl MusicContinuationData {
+    pub(crate) fn from_node(node: &crate::json::JsonNode<'_>) -> Option<Self> {
+        Some(Self {
+            next_continuation_data: MusicContinuationDataInner::from_node(node)?,
+        })
+    }
+}
+
+deserialize_through_node!(MusicContinuationData);
+
+#[derive(Debug)]
 pub(crate) struct MusicContinuationDataInner {
     pub continuation: String,
 }
 
+impl MusicContinuationDataInner {
+    pub(crate) fn from_node(node: &crate::json::JsonNode<'_>) -> Option<Self> {
+        let cont = node
+            .query(crate::json::ytq!(
+                .nextContinuationData.continuation
+                || .nextRadioContinuationData.continuation
+            ))
+            .and_then(|n| n.as_str())?;
+        Some(Self { continuation: cont.to_owned() })
+    }
+}
+
+deserialize_through_node!(MusicContinuationDataInner);
+
 // ERROR
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug)]
 pub(crate) struct ErrorResponse {
     pub error: ErrorResponseContent,
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+impl ErrorResponse {
+    pub(crate) fn from_node(node: &crate::json::JsonNode<'_>) -> Option<Self> {
+        Some(Self {
+            error: ErrorResponseContent::from_node(node)?,
+        })
+    }
+}
+
+deserialize_through_node!(ErrorResponse);
+
+#[derive(Debug)]
 pub(crate) struct ErrorResponseContent {
     pub message: String,
 }
 
-// DESERIALIZER
-
-impl<'de, T> Deserialize<'de> for ContentsRenderer<T>
-where
-    T: Deserialize<'de>,
-{
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-    where
-        D: serde::Deserializer<'de>,
-    {
-        struct ItemVisitor<T>(PhantomData<T>);
-
-        impl<'de, T> Visitor<'de> for ItemVisitor<T>
-        where
-            T: Deserialize<'de>,
-        {
-            type Value = ContentsRenderer<T>;
-
-            fn expecting(&self, formatter: &mut std::fmt::Formatter) -> std::fmt::Result {
-                formatter.write_str("map")
-            }
-
-            fn visit_map<A>(self, mut map: A) -> Result<Self::Value, A::Error>
-            where
-                A: serde::de::MapAccess<'de>,
-            {
-                let mut contents = None;
-
-                while let Some(k) = map.next_key::<Cow<'de, str>>()? {
-                    if k == "contents" || k == "tabs" || k == "items" {
-                        contents = Some(ContentsRenderer {
-                            contents: map.next_value::<VecSkipErrorWrap<T>>()?.0,
-                        });
-                    } else {
-                        map.next_value::<IgnoredAny>()?;
-                    }
-                }
-
-                contents.ok_or(serde::de::Error::missing_field("contents"))
-            }
-        }
-
-        deserializer.deserialize_map(ItemVisitor(PhantomData::<T>))
+impl ErrorResponseContent {
+    pub(crate) fn from_node(node: &crate::json::JsonNode<'_>) -> Option<Self> {
+        Some(Self {
+            message: node
+                .query(crate::json::ytq!(.error.message))
+                .or_else(|| node.query(crate::json::ytq!(.message)))
+                .and_then(|n| n.as_str())?
+                .to_owned(),
+        })
     }
 }
+
+deserialize_through_node!(ErrorResponseContent);
+
+// DESERIALIZER
 
 // MAPPING
 
@@ -495,7 +482,7 @@ where
                 entity_key: String,
                 payload: T,
             },
-            Error(serde_json::Value),
+            Error(JsonValue),
         }
 
         impl<'de, T> Visitor<'de> for SeqVisitor<T>
@@ -526,7 +513,7 @@ where
                         MutationOrError::Error(value) => {
                             warnings.push(format!(
                                 "error deserializing item: {}",
-                                serde_json::to_string(&value).unwrap_or_default()
+                                value_to_json_string(&value)
                             ));
                         }
                     }
@@ -542,31 +529,20 @@ where
 
 // PAGE HEADER
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct PageHeaderRendererContent<T> {
-    pub page_header_view_model: T,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug, Default, FromYtNode)]
 pub(crate) struct PhMetadataView {
     pub content_metadata_view_model: PhMetadataView2,
 }
 
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug, Default, FromYtNode)]
 pub(crate) struct PhMetadataView2 {
-    #[serde_as(as = "VecSkipError<_>")]
+    #[ytq_lossy]
     pub metadata_rows: Vec<PhMetadataRow>,
 }
 
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug, Default, FromYtNode)]
 pub(crate) struct PhMetadataRow {
-    #[serde_as(as = "VecSkipError<_>")]
+    #[ytq_lossy]
     pub metadata_parts: Vec<MetadataPart>,
 }
 
@@ -582,8 +558,7 @@ pub(crate) enum MetadataPart {
     AvatarStack { avatar_stack: AvatarStackInner },
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug, Default, FromYtNode)]
 pub(crate) struct AvatarStackInner {
     pub avatar_stack_view_model: TextComponentBox,
 }
@@ -616,18 +591,15 @@ pub(crate) enum ContentImage {
     },
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug, Default, FromYtNode)]
 pub(crate) struct ThumbnailViewModelWrap {
     pub thumbnail_view_model: ImageViewOl,
 }
 
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug, Default, FromYtNode)]
 pub(crate) struct ImageViewOl {
     pub image: Thumbnails,
-    #[serde_as(as = "VecSkipError<_>")]
+    #[ytq_lossy]
     pub overlays: Vec<ImageViewOverlay>,
 }
 

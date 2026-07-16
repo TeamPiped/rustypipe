@@ -55,7 +55,7 @@ All query methods are async, you need the tokio runtime to execute them.
 ```rust ignore
 let rp = RustyPipe::new();
 let rp = RustyPipe::builder().storage_dir("/app/data").build().unwrap();
-let channel = rp.query().lang(Language::De).channel_videos("UCl2mFZoRqjw_ELax4Yisf6w").await.unwrap();
+let channel = rp.query().lang(Language::De).channel_content::<_, rustypipe::model::VideoItem>("UCl2mFZoRqjw_ELax4Yisf6w", rustypipe::param::ChannelContent::Videos, None).await.unwrap().full().unwrap();
 ```
 
 Here are a few examples to get you started:
@@ -141,7 +141,9 @@ Last update: 2023-05-04
 ### Get a channel
 
 ```rust ignore
-use rustypipe::client::RustyPipe
+use rustypipe::client::RustyPipe;
+use rustypipe::model::VideoItem;
+use rustypipe::param::ChannelContent;
 
 #[tokio::main]
 async fn main() {
@@ -150,8 +152,14 @@ async fn main() {
     // Get the channel
     let channel = rp
         .query()
-        .channel_videos("UCl2mFZoRqjw_ELax4Yisf6w")
+        .channel_content::<_, VideoItem>(
+            "UCl2mFZoRqjw_ELax4Yisf6w",
+            ChannelContent::Videos,
+            None,
+        )
         .await
+        .unwrap()
+        .full()
         .unwrap();
 
     println!("Name: {}", channel.name);
@@ -242,6 +250,58 @@ by the RustyPipe crate. RustyPipe automatically detects the rustypipe-botguard b
 it is located in PATH or the current working directory. If your rustypipe-botguard
 binary is located at a different path, you can specify it with the `.botguard_bin(path)`
 option.
+
+### Real-browser (chromey) provider
+
+The botguard binary runs YouTube's BotGuard VM in a Deno+JSDOM environment. YouTube
+occasionally rejects the integrity tokens produced by that environment, which leads to
+`AttestationRequired` errors and 60-second-truncated SABR downloads. As an alternative
+or fallback, RustyPipe can mint PO tokens in a **real headless Chrome** via the
+[chromey](https://github.com/spider-rs/chromey) CDP crate. A real browser fingerprint
+is what GVS actually trusts.
+
+To enable it, build the workspace with the `chromey-po-token` cargo feature and
+opt-in on the builder:
+
+```toml
+rustypipe = { version = "...", features = ["chromey-po-token"] }
+rustypipe-cli = { version = "...", features = ["chromey-po-token"] }
+```
+
+```rust
+RustyPipe::builder()
+    .chromey_provider()
+    .chrome_executable("/usr/bin/chromium")  // optional, auto-detected otherwise
+    .build()
+```
+
+Or, from the CLI:
+
+```
+rustypipe --chromey download bnhV-OBnGCE -q audio -o ./music/
+rustypipe --chromey --chrome-executable /usr/bin/chromium download ...
+rustypipe --chromey --chromey-no-botguard-fallback download ...
+rustypipe --chromey-headful --chrome-executable /usr/bin/chromium download ...
+```
+
+When enabled, chromey is preferred over the botguard binary. On failure, rustypipe
+falls back to the botguard binary (disable with
+`.chromey_no_botguard_fallback()` or `--chromey-no-botguard-fallback`).
+
+By default the chromey provider launches Chrome in `--headless=new` mode. To launch
+a real Chrome window instead, pass `--chromey-headful` (CLI) or
+`.chromey_headful(true)` (builder). Headful mode is the most "real" environment we
+can present to the BotGuard VM and sidesteps the headless-only fingerprint checks.
+On a headless host pair it with `xvfb-run`:
+
+```
+xvfb-run -a rustypipe --chromey-headful --chrome-executable /usr/bin/chromium \
+    download bnhV-OBnGCE -q audio -o ./music/
+```
+
+The chromey provider requires a Chrome/Chromium binary on the host. It looks for
+`google-chrome`, `google-chrome-stable`, `chromium`, `chromium-browser`, the
+`CHROME` env var, and the standard macOS/Windows install locations.
 
 ## Authentication
 

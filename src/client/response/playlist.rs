@@ -1,118 +1,97 @@
-use serde::Deserialize;
-use serde_with::{serde_as, DefaultOnError, VecSkipError};
+use std::borrow::Cow;
 
-use crate::serializer::text::{AttributedText, Text, TextComponent, TextComponents};
-
-use super::{
-    url_endpoint::OnTapWrap, ContentRenderer, ImageView,
-    PageHeaderRendererContent, PhMetadataView, TextBox, ThumbnailsWrap,
+use crate::{
+    error::ExtractionError,
+    json::{yt_first_tab, yt_thumbnails, ytq, JsonNode},
+    serializer::text::TextComponents,
+    util::TryRemove,
 };
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) enum Header {
-    PlaylistHeaderRenderer(HeaderRenderer),
-    PageHeaderRenderer(ContentRenderer<PageHeaderRendererContent<PageHeaderRendererInner>>),
-}
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct HeaderRenderer {
-    pub playlist_id: String,
-    #[serde_as(as = "Text")]
-    pub title: String,
-    #[serde(default)]
-    #[serde_as(as = "DefaultOnError<Option<Text>>")]
-    pub description_text: Option<String>,
-    #[serde_as(as = "Text")]
-    pub num_videos_text: String,
-    pub owner_text: Option<TextComponent>,
-
-    // Alternative layout
-    pub playlist_header_banner: Option<PlaylistHeaderBanner>,
-    #[serde(default)]
-    pub byline: Vec<Byline>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct PlaylistHeaderBanner {
-    pub hero_playlist_thumbnail_renderer: ThumbnailsWrap,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct Byline {
-    pub playlist_byline_renderer: TextBox,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct PageHeaderRendererInner {
-    pub title: PhTitleView,
-    pub metadata: PhMetadataView,
-    pub actions: PhActions,
-    pub description: PhDescription,
-    pub hero_image: PhHeroImage,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct PhDescription {
-    pub description_preview_view_model: PhDescription2,
-}
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct PhDescription2 {
-    #[serde_as(as = "Option<AttributedText>")]
+pub(crate) struct SidebarInfo {
     pub description: Option<TextComponents>,
+    pub thumbnails: Option<Vec<crate::model::Thumbnail>>,
+    pub last_update_txt: Option<String>,
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct PhHeroImage {
-    pub content_preview_image_view_model: ImageView,
+pub(crate) fn video_list_node<'a>(root: &JsonNode<'a>) -> Result<JsonNode<'a>, ExtractionError> {
+    let browse = root.require(
+        ytq!(.contents.twoColumnBrowseResultsRenderer),
+        "two column browse results",
+    )?;
+    let tab = yt_first_tab(&browse).ok_or({
+        ExtractionError::InvalidData(Cow::Borrowed("twoColumnBrowseResultsRenderer empty"))
+    })?;
+    let sections = tab.require(
+        ytq!(.tabRenderer.content.sectionListRenderer.contents),
+        "section list renderer",
+    )?;
+    let section = sections
+        .items()
+        .into_iter()
+        .next()
+        .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
+            "sectionListRenderer empty",
+        )))?;
+    let item_section =
+        section.require(ytq!(.itemSectionRenderer.contents), "item section renderer")?;
+    let item = item_section
+        .items()
+        .into_iter()
+        .next()
+        .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
+            "itemSectionRenderer empty",
+        )))?;
+    item.query(ytq!(.(.playlistVideoListRenderer || .richGridRenderer).contents))
+        .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
+            "playlist video list empty",
+        )))
 }
 
-#[derive(Default, Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct PhTitleView {
-    pub dynamic_text_view_model: PhTitleInner,
-}
+pub(crate) fn sidebar_info(root: &JsonNode<'_>) -> Result<SidebarInfo, ExtractionError> {
+    let Some(sidebar) = root.query(ytq!(.sidebar)) else {
+        return Ok(SidebarInfo {
+            description: None,
+            thumbnails: None,
+            last_update_txt: None,
+        });
+    };
 
-#[serde_as]
-#[derive(Default, Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct PhTitleInner {
-    #[serde_as(as = "AttributedText")]
-    pub text: String,
-}
+    let sidebar_items = sidebar
+        .require(
+            ytq!(.playlistSidebarRenderer.items),
+            "playlist sidebar items",
+        )?
+        .items();
+    let primary = sidebar_items
+        .into_iter()
+        .next()
+        .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
+            "no primary sidebar",
+        )))?;
+    let info = primary.require(
+        ytq!(.playlistSidebarPrimaryInfoRenderer),
+        "playlist sidebar primary info",
+    )?;
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct PhActions {
-    pub flexible_actions_view_model: PhActions2,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct PhActions2 {
-    pub actions_rows: Vec<ActionsRow>,
-}
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct ActionsRow {
-    #[serde_as(as = "VecSkipError<_>")]
-    pub actions: Vec<ButtonAction>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct ButtonAction {
-    pub button_view_model: OnTapWrap,
+    Ok(SidebarInfo {
+        description: info
+            .query(ytq!(.description))
+            .and_then(|node| node.deserialize::<TextComponents>().ok())
+            .filter(|d| !d.0.is_empty()),
+        thumbnails: info
+            .query(ytq!(
+                .thumbnailRenderer.(.playlistVideoThumbnailRenderer || .playlistCustomThumbnailRenderer).thumbnail
+            ))
+            .map(|node| yt_thumbnails(&node)),
+        last_update_txt: info
+            .query(ytq!(.stats))
+            .map(|stats| {
+                stats
+                    .items()
+                    .into_iter()
+                    .filter_map(|item| item.text())
+                    .collect::<Vec<_>>()
+            })
+            .and_then(|mut stats| stats.try_swap_remove(2)),
+    })
 }
