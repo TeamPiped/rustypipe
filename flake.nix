@@ -24,14 +24,26 @@
 
                 pkgs.pkg-config
                 pkgs.gcc
+                pkgs.cmake
                 pkgs.just
                 pkgs.pre-commit
                 pkgs.cargo-nextest
                 pkgs.yq
+                pkgs.direnv
             ];
             buildInputs = [
                 pkgs.openssl
             ];
+            LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
+            BINDGEN_EXTRA_CLANG_ARGS = with pkgs; builtins.concatStringsSep " " [
+                "-isystem ${stdenv.cc.cc}/include/c++/${lib.getVersion stdenv.cc.cc}"
+                "-isystem ${stdenv.cc.cc}/include/c++/${lib.getVersion stdenv.cc.cc}/${stdenv.hostPlatform.config}"
+                "-idirafter ${stdenv.cc.cc.lib}/lib/clang/${lib.getVersion stdenv.cc.cc}/include"
+                "-idirafter ${glibc.dev}/include"
+              ];
+            shellHook = ''
+                export RUST_SRC_PATH="${rustToolchain}/lib/rustlib/src/rust/library"
+              '';
         };
       });
 }
