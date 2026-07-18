@@ -1845,7 +1845,7 @@ async fn music_search_main(#[case] typo: bool, rp: RustyPipe, unlocalized: bool)
             }
         })
         .unwrap_or_else(|| {
-            panic!("could not find track, got {:#?}", &items);
+            panic!("could not find track, got {:#?}", items);
         });
 
     assert_eq!(track.name, "Lieblingsmensch");
@@ -1889,7 +1889,7 @@ async fn music_search_main2(rp: RustyPipe, unlocalized: bool) {
             }
         })
         .unwrap_or_else(|| {
-            panic!("could not find artist, got {:#?}", &items);
+            panic!("could not find artist, got {:#?}", items);
         });
 
     if unlocalized {
@@ -1943,7 +1943,7 @@ async fn music_search_tracks(rp: RustyPipe, unlocalized: bool) {
         .iter()
         .find(|a| a.id == "BL-aIpCLWnU")
         .unwrap_or_else(|| {
-            panic!("could not find track, got {:#?}", &res.items.items);
+            panic!("could not find track, got {:#?}", res.items.items);
         });
 
     assert_eq!(track.name, "Black Mamba");
@@ -1978,7 +1978,7 @@ async fn music_search_videos(rp: RustyPipe, unlocalized: bool) {
         .iter()
         .find(|a| a.id == "ZeerrnuLi5E")
         .unwrap_or_else(|| {
-            panic!("could not find video, got {:#?}", &res.items.items);
+            panic!("could not find video, got {:#?}", res.items.items);
         });
 
     assert_eq!(track.name, "Black Mamba");
@@ -2094,7 +2094,7 @@ async fn music_search_albums(
         .iter()
         .find(|a| a.id == id)
         .unwrap_or_else(|| {
-            panic!("could not find album, got {:#?}", &res.items.items);
+            panic!("could not find album, got {:#?}", res.items.items);
         });
     assert_eq!(album.name, name);
 
@@ -2128,7 +2128,7 @@ async fn music_search_artists(rp: RustyPipe, unlocalized: bool) {
         .iter()
         .find(|a| a.id == "UCIh4j8fXWf2U0ro0qnGU8Mg")
         .unwrap_or_else(|| {
-            panic!("could not find artist, got {:#?}", &res.items.items);
+            panic!("could not find artist, got {:#?}", res.items.items);
         });
     if unlocalized {
         assert_eq!(artist.name, "Namika");
@@ -2165,7 +2165,7 @@ async fn music_search_playlists(rp: RustyPipe, unlocalized: bool) {
         .iter()
         .find(|p| p.id == "RDCLAK5uy_k7h5535MeHE8xmgHsrZx7HOKH4lb5vAfY")
         .unwrap_or_else(|| {
-            panic!("could not find playlist, got {:#?}", &res.items.items);
+            panic!("could not find playlist, got {:#?}", res.items.items);
         });
 
     if unlocalized {
@@ -2198,7 +2198,7 @@ async fn music_search_playlists_community(rp: RustyPipe) {
         .iter()
         .find(|p| p.id == "PLgAAMoX4rK3KhSGmIsN0LEoC3qowEr2Lz")
         .unwrap_or_else(|| {
-            panic!("could not find playlist, got {:#?}", &res.items.items);
+            panic!("could not find playlist, got {:#?}", res.items.items);
         });
 
     assert_eq!(
@@ -2229,7 +2229,7 @@ async fn music_search_users(rp: RustyPipe) {
         .iter()
         .find(|u| u.id == "UC-CeCRHc8D47hh8P_9MR5Vg")
         .unwrap_or_else(|| {
-            panic!("could not find user, got {:#?}", &res.items.items);
+            panic!("could not find user, got {:#?}", res.items.items);
         });
 
     assert_eq!(user.name, "amyprincesspink");

@@ -370,15 +370,14 @@ impl NavigationEndpoint {
             NavigationEndpoint::Browse {
                 browse_endpoint,
                 command_metadata,
-            } => Some(browse_endpoint.browse_id).filter(|_| {
-                browse_endpoint
-                    .browse_endpoint_context_supported_configs
-                    .map(|c| c.browse_endpoint_context_music_config.page_type == PageType::Playlist)
-                    .unwrap_or_default()
-                    || command_metadata
-                        .map(|c| c.web_command_metadata.web_page_type == PageType::Playlist)
-                        .unwrap_or_default()
-            }),
+            } => (browse_endpoint
+                .browse_endpoint_context_supported_configs
+                .map(|c| c.browse_endpoint_context_music_config.page_type == PageType::Playlist)
+                .unwrap_or_default()
+                || command_metadata
+                    .map(|c| c.web_command_metadata.web_page_type == PageType::Playlist)
+                    .unwrap_or_default())
+            .then_some(browse_endpoint.browse_id),
             NavigationEndpoint::Url { .. } => None,
             NavigationEndpoint::WatchPlaylist {
                 watch_playlist_endpoint,
