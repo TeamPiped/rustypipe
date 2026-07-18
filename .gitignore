@@ -6,3 +6,5 @@
 rustypipe_reports
 rustypipe_cache*.json
 bg_snapshot.bin
+
+.direnv/
