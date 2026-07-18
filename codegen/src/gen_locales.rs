@@ -4,11 +4,11 @@ use std::fs::File;
 use std::io::BufReader;
 
 use path_macro::path;
-use wreq::header;
-use wreq::Client;
 use serde::Deserialize;
 use serde_with::serde_as;
 use serde_with::VecSkipError;
+use wreq::header;
+use wreq::Client;
 
 use crate::model::Text;
 use crate::util::DICT_DIR;

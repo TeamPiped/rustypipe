@@ -744,9 +744,7 @@ fn print_comments(comments: &[Comment]) {
 fn print_richtext(text: &RichText) {
     for c in &text.0 {
         match c {
-            rustypipe::model::richtext::TextComponent::Text { text, style }
-                if !text.is_empty() =>
-            {
+            rustypipe::model::richtext::TextComponent::Text { text, style } if !text.is_empty() => {
                 let mut tstyle = owo_colors::Style::new();
 
                 if style.bold {

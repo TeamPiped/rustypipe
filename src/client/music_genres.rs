@@ -2,14 +2,17 @@ use std::{borrow::Cow, fmt::Debug};
 
 use crate::{
     error::{Error, ExtractionError},
-    json::{JsonDoc, yt_music_header_title, yt_single_column_sections, ytq},
+    json::{yt_music_header_title, yt_single_column_sections, ytq, JsonDoc},
     model::{MusicGenre, MusicGenreItem, MusicGenreSection},
     request_body::ytbody,
     serializer::MapResult,
 };
 
 use super::{
-    response::{music_item::MusicListMapper, music_genres::NavigationButton, url_endpoint::NavigationEndpoint},
+    response::{
+        music_genres::NavigationButton, music_item::MusicListMapper,
+        url_endpoint::NavigationEndpoint,
+    },
     ClientType, MapJsonResponse, MapRespCtx, RustyPipeQuery,
 };
 
@@ -100,7 +103,10 @@ impl MapJsonResponse<Vec<MusicGenreItem>> for MusicGenresJson {
                 })
                 .collect();
 
-            Ok(MapResult { c: genres, warnings })
+            Ok(MapResult {
+                c: genres,
+                warnings,
+            })
         })
     }
 }

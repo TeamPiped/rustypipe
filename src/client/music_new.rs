@@ -3,7 +3,7 @@ use std::borrow::Cow;
 use crate::{
     client::response::music_item::MusicListMapper,
     error::{Error, ExtractionError},
-    json::{JsonDoc, yt_single_column_sections, ytq},
+    json::{yt_single_column_sections, ytq, JsonDoc},
     model::{traits::FromYtItem, AlbumItem, TrackItem},
     request_body::ytbody,
     serializer::MapResult,

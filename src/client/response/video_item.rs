@@ -848,10 +848,7 @@ impl YouTubeListMapper<YouTubeItem> {
 
     pub(crate) fn map_response_node(&mut self, node: &JsonNode<'_>) {
         let (items, warnings) = node.deserialize_items_lossy::<YouTubeListItem>();
-        self.map_response(MapResult {
-            c: items,
-            warnings,
-        });
+        self.map_response(MapResult { c: items, warnings });
     }
 }
 
@@ -905,10 +902,7 @@ impl YouTubeListMapper<VideoItem> {
 
     pub(crate) fn map_response_node(&mut self, node: &JsonNode<'_>) {
         let (items, warnings) = node.deserialize_items_lossy::<YouTubeListItem>();
-        self.map_response(MapResult {
-            c: items,
-            warnings,
-        });
+        self.map_response(MapResult { c: items, warnings });
     }
 
     #[cfg(feature = "userdata")]
@@ -966,9 +960,6 @@ impl YouTubeListMapper<PlaylistItem> {
 
     pub(crate) fn map_response_node(&mut self, node: &JsonNode<'_>) {
         let (items, warnings) = node.deserialize_items_lossy::<YouTubeListItem>();
-        self.map_response(MapResult {
-            c: items,
-            warnings,
-        });
+        self.map_response(MapResult { c: items, warnings });
     }
 }

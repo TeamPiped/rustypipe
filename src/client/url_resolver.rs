@@ -2,7 +2,7 @@ use std::{borrow::Cow, fmt::Debug};
 
 use crate::{
     error::{Error, ExtractionError},
-    json::{JsonDoc, ytq},
+    json::{ytq, JsonDoc},
     model::UrlTarget,
     request_body::ytbody,
     serializer::MapResult,
@@ -10,8 +10,8 @@ use crate::{
 };
 
 use super::{
-    response::url_endpoint::NavigationEndpoint,
-    ClientType, MapJsonResponse, MapRespCtx, RustyPipeQuery,
+    response::url_endpoint::NavigationEndpoint, ClientType, MapJsonResponse, MapRespCtx,
+    RustyPipeQuery,
 };
 
 #[derive(Debug)]

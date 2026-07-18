@@ -191,11 +191,10 @@ type PlaylistPanelData = (
     Option<String>,
 );
 
-fn deserialize_playlist_panel(
-    panel: &JsonNode<'_>,
-) -> Result<PlaylistPanelData, ExtractionError> {
+fn deserialize_playlist_panel(panel: &JsonNode<'_>) -> Result<PlaylistPanelData, ExtractionError> {
     let contents = panel.require(ytq!(.contents), "playlist panel contents")?;
-    let (items, warnings) = contents.deserialize_items_lossy::<response::music_item::PlaylistPanelVideo>();
+    let (items, warnings) =
+        contents.deserialize_items_lossy::<response::music_item::PlaylistPanelVideo>();
     let ctoken = panel
         .query(ytq!(.continuations[0].nextRadioContinuationData.continuation))
         .and_then(|node| node.as_str());
@@ -291,7 +290,10 @@ impl MapJsonResponse<Lyrics> for MusicLyricsJson {
                 });
             }
 
-            let contents = root.require(ytq!(.contents.sectionListRenderer.contents), "lyrics contents")?;
+            let contents = root.require(
+                ytq!(.contents.sectionListRenderer.contents),
+                "lyrics contents",
+            )?;
             let shelf = contents
                 .items()
                 .into_iter()
@@ -301,11 +303,15 @@ impl MapJsonResponse<Lyrics> for MusicLyricsJson {
             let body = shelf
                 .query(ytq!(.description))
                 .and_then(|node| node.text())
-                .ok_or(ExtractionError::InvalidData(Cow::Borrowed("missing lyrics body")))?;
+                .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
+                    "missing lyrics body",
+                )))?;
             let footer = shelf
                 .query(ytq!(.footer))
                 .and_then(|node| node.text())
-                .ok_or(ExtractionError::InvalidData(Cow::Borrowed("missing lyrics footer")))?;
+                .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
+                    "missing lyrics footer",
+                )))?;
 
             Ok(MapResult {
                 c: Lyrics { body, footer },
@@ -334,8 +340,10 @@ impl MapJsonResponse<MusicRelated> for MusicRelatedJson {
                 });
             }
 
-            let contents_node =
-                root.require(ytq!(.contents.sectionListRenderer.contents), "related contents")?;
+            let contents_node = root.require(
+                ytq!(.contents.sectionListRenderer.contents),
+                "related contents",
+            )?;
             let (contents, mut warnings) =
                 contents_node.deserialize_items_lossy::<response::music_item::ItemSection>();
 

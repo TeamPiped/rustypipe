@@ -12,9 +12,7 @@ use super::{
     url_endpoint::{BrowseEndpoint, BrowseEndpointWrap, OnTap},
     ContinuationEndpoint, ContinuationItemRenderer, Icon, MusicContinuationData, Thumbnails,
 };
-use super::{
-    ChannelBadge, ContentsRendererLogged, ImageView, YouTubeListItem,
-};
+use super::{ChannelBadge, ContentsRendererLogged, ImageView, YouTubeListItem};
 
 /*
 #VIDEO DETAILS
@@ -354,11 +352,9 @@ impl VideoOwnerRenderer {
             .or_else(|| {
                 self.attributed_title.as_ref().and_then(|title| {
                     title.command_runs.iter().find_map(|run| {
-                        run.on_tap.as_ref().and_then(|tap| {
-                            tap.innertube_command
-                                .show_dialog_command
-                                .as_ref()
-                        })
+                        run.on_tap
+                            .as_ref()
+                            .and_then(|tap| tap.innertube_command.show_dialog_command.as_ref())
                     })
                 })
             })
@@ -378,11 +374,13 @@ impl VideoOwnerRenderer {
             .iter()
             .filter_map(|item| {
                 let title = &item.list_item_view_model.title;
-                let browse_id = title.command_runs.iter().find_map(|run| match &run.on_tap.innertube_command {
-                    super::url_endpoint::NavigationEndpoint::Browse { browse_endpoint, .. } => {
-                        Some(browse_endpoint.browse_id.clone())
+                let browse_id = title.command_runs.iter().find_map(|run| {
+                    match &run.on_tap.innertube_command {
+                        super::url_endpoint::NavigationEndpoint::Browse {
+                            browse_endpoint, ..
+                        } => Some(browse_endpoint.browse_id.clone()),
+                        _ => None,
                     }
-                    _ => None,
                 })?;
                 Some((browse_id, title.content.clone()))
             })

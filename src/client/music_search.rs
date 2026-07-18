@@ -3,7 +3,7 @@ use std::fmt::Debug;
 use crate::{
     client::response::music_item::{MusicCardShelf, MusicListMapper, MusicResponseItem},
     error::{Error, ExtractionError},
-    json::{JsonDoc, JsonNode, yt_continuation, ytq},
+    json::{yt_continuation, ytq, JsonDoc, JsonNode},
     model::{
         paginator::{ContinuationEndpoint, Paginator},
         traits::FromYtItem,
@@ -235,8 +235,7 @@ impl MapJsonResponse<MusicSearchSuggestion> for MusicSearchSuggestionJson {
                             if let Some(term) = suggestion.text() {
                                 terms.push(term);
                             }
-                        } else if let Ok(response_item) = item.deserialize::<MusicResponseItem>()
-                        {
+                        } else if let Ok(response_item) = item.deserialize::<MusicResponseItem>() {
                             mapper.add_response_item(response_item);
                         }
                     }
