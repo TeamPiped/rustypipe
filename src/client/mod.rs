@@ -1769,12 +1769,7 @@ impl RustyPipeQuery {
     /// # Parameters
     /// - `ctype`: Client type (`Desktop`, `DesktopMusic`, `Android`, ...)
     /// - `localized`: Whether to include the configured language and country
-    async fn get_context(
-        &self,
-        ctype: ClientType,
-        localized: bool,
-        visitor_data: &str,
-    ) -> Value {
+    async fn get_context(&self, ctype: ClientType, localized: bool, visitor_data: &str) -> Value {
         let (hl, gl) = if localized {
             (self.opts.lang, self.opts.country)
         } else {
@@ -2195,11 +2190,7 @@ impl RustyPipeQuery {
     ///
     /// Runs a single attempt, returns Ok with a erroneous RequestResult in case of a
     /// HTTP or mapping error so it can be retried/reported.
-    async fn execute_request_attempt<
-        R: MapJsonResponse<M> + Debug,
-        M,
-        B: Serialize + ?Sized,
-    >(
+    async fn execute_request_attempt<R: MapJsonResponse<M> + Debug, M, B: Serialize + ?Sized>(
         &self,
         ctype: ClientType,
         id: &str,
@@ -2291,11 +2282,7 @@ impl RustyPipeQuery {
     ///
     /// Runs up to n_request_attempts, returns Ok with a erroneous RequestResult in case of a
     /// HTTP or mapping error so it can be reported.
-    async fn execute_request_inner<
-        R: MapJsonResponse<M> + Debug,
-        M,
-        B: Serialize + ?Sized,
-    >(
+    async fn execute_request_inner<R: MapJsonResponse<M> + Debug, M, B: Serialize + ?Sized>(
         &self,
         ctype: ClientType,
         id: &str,
@@ -2442,11 +2429,7 @@ impl RustyPipeQuery {
     /// - `endpoint`: YouTube API endpoint (`https://www.youtube.com/youtubei/v1/<XYZ>?key=...`)
     /// - `body`: Serializable request body to be sent in json format
     /// - `ctx_src`: Context source (additional parameters for fetching and mapping, used to build the MapRespCtx)
-    async fn execute_request_ctx<
-        R: MapJsonResponse<M> + Debug,
-        M,
-        B: Serialize + ?Sized,
-    >(
+    async fn execute_request_ctx<R: MapJsonResponse<M> + Debug, M, B: Serialize + ?Sized>(
         &self,
         ctype: ClientType,
         operation: &str,
@@ -2629,11 +2612,7 @@ impl RustyPipeQuery {
     /// - `method`: HTTP method
     /// - `endpoint`: YouTube API endpoint (`https://www.youtube.com/youtubei/v1/<XYZ>?key=...`)
     /// - `body`: Serializable request body to be sent in json format
-    async fn execute_request<
-        R: MapJsonResponse<M> + Debug,
-        M,
-        B: Serialize + ?Sized,
-    >(
+    async fn execute_request<R: MapJsonResponse<M> + Debug, M, B: Serialize + ?Sized>(
         &self,
         ctype: ClientType,
         operation: &str,

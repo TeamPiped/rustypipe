@@ -55,10 +55,7 @@ pub fn extract_fns(player_js: &str) -> Result<(String, String), DeobfError> {
     let preprocessed = preprocess_player(player_js)?;
     verify_fns(&preprocessed)?;
 
-    Ok((
-        format!("{INIT}{preprocessed}"),
-        WRAPPERS.to_owned(),
-    ))
+    Ok((format!("{INIT}{preprocessed}"), WRAPPERS.to_owned()))
 }
 
 fn preprocess_player(player_js: &str) -> Result<String, DeobfError> {
@@ -148,7 +145,11 @@ fn modify_player<'a>(
     let prefix_end = if skip_first {
         func_body.statements[1].span().start as usize
     } else {
-        func_body.statements.first().map(|s| s.span().start as usize).unwrap_or(func_body.span.start as usize)
+        func_body
+            .statements
+            .first()
+            .map(|s| s.span().start as usize)
+            .unwrap_or(func_body.span.start as usize)
     };
     let suffix_start = func_body.span.end as usize - 1;
 
@@ -210,7 +211,10 @@ struct SolverCandidate {
     name: String,
 }
 
-fn find_solvers(statements: &[&Statement], source: &str) -> Result<Vec<SolverCandidate>, DeobfError> {
+fn find_solvers(
+    statements: &[&Statement],
+    source: &str,
+) -> Result<Vec<SolverCandidate>, DeobfError> {
     let mut solvers = Vec::new();
     for stmt in statements {
         if let Some(name) = extract_solver_name(stmt, source) {
@@ -295,10 +299,9 @@ fn statement_has_alr_yes(stmt: &Statement) -> bool {
                     .as_ref()
                     .is_some_and(|alt| statement_has_alr_yes(alt))
         }
-        Statement::ReturnStatement(ret) => ret
-            .argument
-            .as_ref()
-            .is_some_and(expression_has_alr_yes),
+        Statement::ReturnStatement(ret) => {
+            ret.argument.as_ref().is_some_and(expression_has_alr_yes)
+        }
         Statement::TryStatement(try_stmt) => {
             block_has_alr_yes(&try_stmt.block)
                 || try_stmt
@@ -416,10 +419,7 @@ fn verify_fns(preprocessed: &str) -> Result<(), DeobfError> {
         let nsig: String = ctx
             .eval_with_options(format!("deobf_nsig({testinp:?})").as_bytes(), eval_opts())
             .map_err(|e| DeobfError::Other(e.to_string().into()))?;
-        if nsig.is_empty()
-            || nsig.starts_with("enhanced_except_")
-            || nsig.ends_with(&testinp)
-        {
+        if nsig.is_empty() || nsig.starts_with("enhanced_except_") || nsig.ends_with(&testinp) {
             return Err(DeobfError::Other("nsig fn returned an exception".into()));
         }
         Ok(())

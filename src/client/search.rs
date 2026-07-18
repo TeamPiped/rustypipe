@@ -2,7 +2,7 @@ use std::fmt::Debug;
 
 use crate::{
     error::{Error, ExtractionError},
-    json::{JsonDoc, yt_estimated_results, yt_response_visitor_data, yt_search_primary_items},
+    json::{yt_estimated_results, yt_response_visitor_data, yt_search_primary_items, JsonDoc},
     model::{
         paginator::{ContinuationEndpoint, Paginator},
         traits::FromYtItem,
@@ -12,10 +12,7 @@ use crate::{
     request_body::ytbody,
 };
 
-use super::{
-    response,
-    ClientType, MapJsonResponse, MapRespCtx, MapResult, RustyPipeQuery,
-};
+use super::{response, ClientType, MapJsonResponse, MapRespCtx, MapResult, RustyPipeQuery};
 
 #[derive(Debug)]
 struct SearchJson;

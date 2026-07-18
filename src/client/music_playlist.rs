@@ -3,7 +3,7 @@ use std::{borrow::Cow, fmt::Debug};
 use crate::{
     client::response::url_endpoint::NavigationEndpoint,
     error::{Error, ExtractionError},
-    json::{JsonDoc, JsonNode, ytq},
+    json::{ytq, JsonDoc, JsonNode},
     model::{
         paginator::{ContinuationEndpoint, Paginator},
         richtext::RichText,
@@ -19,7 +19,9 @@ use self::response::url_endpoint::MusicPageType;
 use super::{
     response::{
         self,
-        music_item::{map_album_type, map_artist_id, map_artists, MusicListMapper, MusicMicroformat},
+        music_item::{
+            map_album_type, map_artist_id, map_artists, MusicListMapper, MusicMicroformat,
+        },
         music_playlist::{Contents, Header},
     },
     ClientType, MapJsonResponse, MapRespCtx, RustyPipeQuery,
@@ -164,7 +166,9 @@ struct MusicBrowseFields {
     microformat: MusicMicroformat,
 }
 
-fn deserialize_music_browse_fields(root: &JsonNode<'_>) -> Result<MusicBrowseFields, ExtractionError> {
+fn deserialize_music_browse_fields(
+    root: &JsonNode<'_>,
+) -> Result<MusicBrowseFields, ExtractionError> {
     Ok(MusicBrowseFields {
         contents: root
             .query(ytq!(.contents))
@@ -186,203 +190,201 @@ fn map_music_playlist_fields(
     fields: MusicBrowseFields,
     ctx: &MapRespCtx<'_>,
 ) -> Result<MapResult<MusicPlaylist>, ExtractionError> {
-        let contents = match fields.contents {
-            Some(c) => c,
-            None => {
-                if fields.microformat.microformat_data_renderer.noindex {
-                    return Err(ExtractionError::NotFound {
-                        id: ctx.id.to_owned(),
-                        msg: "no contents".into(),
-                    });
-                } else {
-                    return Err(ExtractionError::InvalidData("no contents".into()));
-                }
-            }
-        };
-
-        let (header, music_contents) = match contents {
-            Contents::SingleColumnBrowseResultsRenderer(c) => (
-                fields.header,
-                c.contents
-                    .into_iter()
-                    .next()
-                    .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no content")))?
-                    .tab_renderer
-                    .content
-                    .section_list_renderer,
-            ),
-            Contents::TwoColumnBrowseResultsRenderer {
-                secondary_contents,
-                tabs,
-            } => (
-                tabs.into_iter()
-                    .next()
-                    .and_then(|t| {
-                        t.tab_renderer
-                            .content
-                            .section_list_renderer
-                            .contents
-                            .into_iter()
-                            .next()
-                    })
-                    .or(fields.header),
-                secondary_contents.section_list_renderer,
-            ),
-        };
-        let shelf = music_contents
-            .contents
-            .into_iter()
-            .find_map(|section| match section {
-                response::music_item::ItemSection::MusicShelfRenderer(shelf) => Some(shelf),
-                _ => None,
-            })
-            .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
-                "no sectionListRenderer content",
-            )))?;
-
-        if let Some(playlist_id) = shelf.playlist_id {
-            if playlist_id != ctx.id {
-                return Err(ExtractionError::WrongResult(format!(
-                    "got wrong playlist id {}, expected {}",
-                    playlist_id, ctx.id
-                )));
+    let contents = match fields.contents {
+        Some(c) => c,
+        None => {
+            if fields.microformat.microformat_data_renderer.noindex {
+                return Err(ExtractionError::NotFound {
+                    id: ctx.id.to_owned(),
+                    msg: "no contents".into(),
+                });
+            } else {
+                return Err(ExtractionError::InvalidData("no contents".into()));
             }
         }
+    };
 
-        let mut mapper = MusicListMapper::new(ctx.lang);
-        mapper.map_response(shelf.contents);
-
-        let ctoken = mapper.ctoken.clone().or_else(|| {
-            shelf
-                .continuations
+    let (header, music_contents) = match contents {
+        Contents::SingleColumnBrowseResultsRenderer(c) => (
+            fields.header,
+            c.contents
                 .into_iter()
                 .next()
-                .map(|cont| cont.next_continuation_data.continuation)
-        });
-        let map_res = mapper.conv_items();
+                .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no content")))?
+                .tab_renderer
+                .content
+                .section_list_renderer,
+        ),
+        Contents::TwoColumnBrowseResultsRenderer {
+            secondary_contents,
+            tabs,
+        } => (
+            tabs.into_iter()
+                .next()
+                .and_then(|t| {
+                    t.tab_renderer
+                        .content
+                        .section_list_renderer
+                        .contents
+                        .into_iter()
+                        .next()
+                })
+                .or(fields.header),
+            secondary_contents.section_list_renderer,
+        ),
+    };
+    let shelf = music_contents
+        .contents
+        .into_iter()
+        .find_map(|section| match section {
+            response::music_item::ItemSection::MusicShelfRenderer(shelf) => Some(shelf),
+            _ => None,
+        })
+        .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
+            "no sectionListRenderer content",
+        )))?;
 
-        let track_count = if ctoken.is_some() {
-            header.as_ref().and_then(|h| {
-                let parts = h
-                    .music_detail_header_renderer
-                    .second_subtitle
-                    .split(|p| p == DOT_SEPARATOR)
-                    .collect::<Vec<_>>();
-                parts
-                    .get(usize::from(parts.len() > 2))
-                    .and_then(|txt| util::parse_numeric::<u64>(&txt[0]).ok())
-            })
-        } else {
-            Some(map_res.c.len() as u64)
-        };
+    if let Some(playlist_id) = shelf.playlist_id {
+        if playlist_id != ctx.id {
+            return Err(ExtractionError::WrongResult(format!(
+                "got wrong playlist id {}, expected {}",
+                playlist_id, ctx.id
+            )));
+        }
+    }
 
-        let related_ctoken = music_contents
+    let mut mapper = MusicListMapper::new(ctx.lang);
+    mapper.map_response(shelf.contents);
+
+    let ctoken = mapper.ctoken.clone().or_else(|| {
+        shelf
             .continuations
             .into_iter()
             .next()
-            .map(|c| c.next_continuation_data.continuation);
+            .map(|cont| cont.next_continuation_data.continuation)
+    });
+    let map_res = mapper.conv_items();
 
-        let (from_ytm, channel, name, thumbnail, description) = match header {
-            Some(header) => {
-                let h = header.music_detail_header_renderer;
-
-                let (from_ytm, channel) = match h.facepile {
-                    Some(facepile) => {
-                        let from_ytm = facepile.avatar_stack_view_model.text.starts_with("YouTube");
-                        let channel = facepile
-                            .avatar_stack_view_model
-                            .renderer_context
-                            .command_context
-                            .and_then(|c| {
-                                c.on_tap
-                                    .innertube_command
-                                    .music_page()
-                                    .filter(|p| p.typ == MusicPageType::User)
-                                    .map(|p| p.id)
-                            })
-                            .map(|id| ChannelId {
-                                id,
-                                name: facepile.avatar_stack_view_model.text,
-                            });
-
-                        (from_ytm && channel.is_none(), channel)
-                    }
-                    None => {
-                        let st = match h.strapline_text_one {
-                            Some(s) => s,
-                            None => h.subtitle,
-                        };
-
-                        let from_ytm = st.0.iter().any(util::is_ytm);
-                        let channel = st.0.into_iter().find_map(|c| ChannelId::try_from(c).ok());
-                        (from_ytm, channel)
-                    }
-                };
-
-                (
-                    from_ytm,
-                    channel,
-                    h.title,
-                    h.thumbnail.into(),
-                    h.description.map(TextComponents::from),
-                )
-            }
-            None => {
-                // Album playlists fetched via the playlist method dont include a header
-                let (album, cover) = map_res
-                    .c
-                    .iter()
-                    .find_map(|t: &TrackItem| {
-                        t.album.as_ref().map(|a| (a.clone(), t.cover.clone()))
-                    })
-                    .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
-                        "playlist without header or album items",
-                    )))?;
-
-                if !map_res.c.iter().all(|t| {
-                    t.unavailable
-                        || t.album
-                            .as_ref()
-                            .map(|a| a.id == album.id)
-                            .unwrap_or_default()
-                }) {
-                    return Err(ExtractionError::InvalidData(Cow::Borrowed(
-                        "album playlist containing items from different albums",
-                    )));
-                }
-
-                (true, None, album.name, cover, None)
-            }
-        };
-
-        Ok(MapResult {
-            c: MusicPlaylist {
-                id: ctx.id.to_owned(),
-                name,
-                thumbnail,
-                channel,
-                description: description.map(RichText::from),
-                track_count,
-                from_ytm,
-                tracks: Paginator::new_ext(
-                    track_count,
-                    map_res.c,
-                    ctoken,
-                    ctx.visitor_data.map(str::to_owned),
-                    ContinuationEndpoint::MusicBrowse,
-                    ctx.authenticated,
-                ),
-                related_playlists: Paginator::new_ext(
-                    None,
-                    Vec::new(),
-                    related_ctoken,
-                    ctx.visitor_data.map(str::to_owned),
-                    ContinuationEndpoint::MusicBrowse,
-                    ctx.authenticated,
-                ),
-            },
-            warnings: map_res.warnings,
+    let track_count = if ctoken.is_some() {
+        header.as_ref().and_then(|h| {
+            let parts = h
+                .music_detail_header_renderer
+                .second_subtitle
+                .split(|p| p == DOT_SEPARATOR)
+                .collect::<Vec<_>>();
+            parts
+                .get(usize::from(parts.len() > 2))
+                .and_then(|txt| util::parse_numeric::<u64>(&txt[0]).ok())
         })
+    } else {
+        Some(map_res.c.len() as u64)
+    };
+
+    let related_ctoken = music_contents
+        .continuations
+        .into_iter()
+        .next()
+        .map(|c| c.next_continuation_data.continuation);
+
+    let (from_ytm, channel, name, thumbnail, description) = match header {
+        Some(header) => {
+            let h = header.music_detail_header_renderer;
+
+            let (from_ytm, channel) = match h.facepile {
+                Some(facepile) => {
+                    let from_ytm = facepile.avatar_stack_view_model.text.starts_with("YouTube");
+                    let channel = facepile
+                        .avatar_stack_view_model
+                        .renderer_context
+                        .command_context
+                        .and_then(|c| {
+                            c.on_tap
+                                .innertube_command
+                                .music_page()
+                                .filter(|p| p.typ == MusicPageType::User)
+                                .map(|p| p.id)
+                        })
+                        .map(|id| ChannelId {
+                            id,
+                            name: facepile.avatar_stack_view_model.text,
+                        });
+
+                    (from_ytm && channel.is_none(), channel)
+                }
+                None => {
+                    let st = match h.strapline_text_one {
+                        Some(s) => s,
+                        None => h.subtitle,
+                    };
+
+                    let from_ytm = st.0.iter().any(util::is_ytm);
+                    let channel = st.0.into_iter().find_map(|c| ChannelId::try_from(c).ok());
+                    (from_ytm, channel)
+                }
+            };
+
+            (
+                from_ytm,
+                channel,
+                h.title,
+                h.thumbnail.into(),
+                h.description.map(TextComponents::from),
+            )
+        }
+        None => {
+            // Album playlists fetched via the playlist method dont include a header
+            let (album, cover) = map_res
+                .c
+                .iter()
+                .find_map(|t: &TrackItem| t.album.as_ref().map(|a| (a.clone(), t.cover.clone())))
+                .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
+                    "playlist without header or album items",
+                )))?;
+
+            if !map_res.c.iter().all(|t| {
+                t.unavailable
+                    || t.album
+                        .as_ref()
+                        .map(|a| a.id == album.id)
+                        .unwrap_or_default()
+            }) {
+                return Err(ExtractionError::InvalidData(Cow::Borrowed(
+                    "album playlist containing items from different albums",
+                )));
+            }
+
+            (true, None, album.name, cover, None)
+        }
+    };
+
+    Ok(MapResult {
+        c: MusicPlaylist {
+            id: ctx.id.to_owned(),
+            name,
+            thumbnail,
+            channel,
+            description: description.map(RichText::from),
+            track_count,
+            from_ytm,
+            tracks: Paginator::new_ext(
+                track_count,
+                map_res.c,
+                ctoken,
+                ctx.visitor_data.map(str::to_owned),
+                ContinuationEndpoint::MusicBrowse,
+                ctx.authenticated,
+            ),
+            related_playlists: Paginator::new_ext(
+                None,
+                Vec::new(),
+                related_ctoken,
+                ctx.visitor_data.map(str::to_owned),
+                ContinuationEndpoint::MusicBrowse,
+                ctx.authenticated,
+            ),
+        },
+        warnings: map_res.warnings,
+    })
 }
 
 impl MapJsonResponse<MusicPlaylist> for MusicPlaylistJson {
@@ -401,219 +403,217 @@ fn map_music_album_fields(
     fields: MusicBrowseFields,
     ctx: &MapRespCtx<'_>,
 ) -> Result<MapResult<MusicAlbum>, ExtractionError> {
-        let contents = match fields.contents {
-            Some(c) => c,
-            None => {
-                if fields.microformat.microformat_data_renderer.noindex {
-                    return Err(ExtractionError::NotFound {
-                        id: ctx.id.to_owned(),
-                        msg: "no contents".into(),
-                    });
-                } else {
-                    return Err(ExtractionError::InvalidData("no contents".into()));
-                }
-            }
-        };
-
-        let (header, sections) = match contents {
-            Contents::SingleColumnBrowseResultsRenderer(c) => (
-                fields.header,
-                c.contents
-                    .into_iter()
-                    .next()
-                    .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no content")))?
-                    .tab_renderer
-                    .content
-                    .section_list_renderer
-                    .contents,
-            ),
-            Contents::TwoColumnBrowseResultsRenderer {
-                secondary_contents,
-                tabs,
-            } => (
-                tabs.into_iter()
-                    .next()
-                    .and_then(|t| {
-                        t.tab_renderer
-                            .content
-                            .section_list_renderer
-                            .contents
-                            .into_iter()
-                            .next()
-                    })
-                    .or(fields.header),
-                secondary_contents.section_list_renderer.contents,
-            ),
-        };
-        let header = header
-            .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no header")))?
-            .music_detail_header_renderer;
-
-        let mut shelf = None;
-        let mut album_variants = None;
-        for section in sections {
-            match section {
-                response::music_item::ItemSection::MusicShelfRenderer(sh) => shelf = Some(sh),
-                response::music_item::ItemSection::MusicCarouselShelfRenderer(sh) => {
-                    let is_album_versions = sh
-                        .header
-                        .as_ref()
-                        .map(|h| {
-                            h.music_carousel_shelf_basic_header_renderer
-                                .title
-                                .first_str()
-                                == dictionary::entry(ctx.lang).album_versions_title
-                        })
-                        .unwrap_or_default();
-                    if is_album_versions {
-                        album_variants = Some(sh.contents);
-                    }
-                }
-                _ => (),
-            }
-        }
-        let shelf = shelf.ok_or(ExtractionError::InvalidData(Cow::Borrowed(
-            "no sectionListRenderer content",
-        )))?;
-
-        let mut subtitle_split = header.subtitle.split(util::DOT_SEPARATOR);
-
-        let (year_txt, artists_p) = match header.strapline_text_one {
-            // New (2column) album layout
-            Some(sl) => {
-                let year_txt = subtitle_split
-                    .try_swap_remove(1)
-                    .and_then(|t| t.0.first().map(|c| c.as_str().to_owned()));
-                (year_txt, Some(sl))
-            }
-            // Old album layout
-            None => match subtitle_split.len() {
-                3.. => {
-                    let year_txt = subtitle_split
-                        .swap_remove(2)
-                        .0
-                        .first()
-                        .map(|c| c.as_str().to_owned());
-                    (year_txt, subtitle_split.try_swap_remove(1))
-                }
-                2 => {
-                    // The second part may either be the year or the artist
-                    let p2 = subtitle_split.swap_remove(1);
-                    let is_year =
-                        p2.0.len() == 1 && p2.0[0].as_str().chars().all(|c| c.is_ascii_digit());
-                    if is_year {
-                        (Some(p2.0[0].as_str().to_owned()), None)
-                    } else {
-                        (None, Some(p2))
-                    }
-                }
-                _ => (None, None),
-            },
-        };
-
-        let (artists, by_va) = map_artists(artists_p);
-        let album_type_txt = subtitle_split
-            .into_iter()
-            .next()
-            .map(|part| part.to_string())
-            .unwrap_or_default();
-
-        let album_type = map_album_type(album_type_txt.as_str(), ctx.lang);
-        let year = year_txt.and_then(|txt| util::parse_numeric(&txt).ok());
-
-        fn map_playlist_id(ep: &NavigationEndpoint) -> Option<String> {
-            if let NavigationEndpoint::WatchPlaylist {
-                watch_playlist_endpoint,
-            } = ep
-            {
-                Some(watch_playlist_endpoint.playlist_id.to_owned())
+    let contents = match fields.contents {
+        Some(c) => c,
+        None => {
+            if fields.microformat.microformat_data_renderer.noindex {
+                return Err(ExtractionError::NotFound {
+                    id: ctx.id.to_owned(),
+                    msg: "no contents".into(),
+                });
             } else {
-                None
+                return Err(ExtractionError::InvalidData("no contents".into()));
             }
         }
+    };
 
-        let playlist_id = fields
-            .microformat
-            .microformat_data_renderer
-            .url_canonical
-            .and_then(|x| {
-                x.strip_prefix("https://music.youtube.com/playlist?list=")
-                    .map(str::to_owned)
-            });
-        let (playlist_id, artist_id) = header
-            .menu
-            .or_else(|| header.buttons.into_iter().next())
-            .map(|menu| {
-                (
-                    playlist_id.or_else(|| {
-                        menu.menu_renderer
-                            .top_level_buttons
-                            .iter()
-                            .find_map(|btn| {
-                                map_playlist_id(&btn.button_renderer.navigation_endpoint)
-                            })
-                            .or_else(|| {
-                                menu.menu_renderer.items.iter().find_map(|itm| {
-                                    map_playlist_id(
-                                        &itm.menu_navigation_item_renderer.navigation_endpoint,
-                                    )
-                                })
-                            })
-                    }),
-                    map_artist_id(menu.menu_renderer.items),
-                )
-            })
-            .unwrap_or_default();
-        let artist_id = artist_id.or_else(|| artists.first().and_then(|a| a.id.clone()));
+    let (header, sections) = match contents {
+        Contents::SingleColumnBrowseResultsRenderer(c) => (
+            fields.header,
+            c.contents
+                .into_iter()
+                .next()
+                .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no content")))?
+                .tab_renderer
+                .content
+                .section_list_renderer
+                .contents,
+        ),
+        Contents::TwoColumnBrowseResultsRenderer {
+            secondary_contents,
+            tabs,
+        } => (
+            tabs.into_iter()
+                .next()
+                .and_then(|t| {
+                    t.tab_renderer
+                        .content
+                        .section_list_renderer
+                        .contents
+                        .into_iter()
+                        .next()
+                })
+                .or(fields.header),
+            secondary_contents.section_list_renderer.contents,
+        ),
+    };
+    let header = header
+        .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no header")))?
+        .music_detail_header_renderer;
 
-        let second_subtitle_parts = header
-            .second_subtitle
-            .split(|p| p == DOT_SEPARATOR)
-            .collect::<Vec<_>>();
-        let track_count = second_subtitle_parts
-            .get(usize::from(second_subtitle_parts.len() > 2))
-            .and_then(|txt| util::parse_numeric::<u16>(&txt[0]).ok());
-
-        let mut mapper = MusicListMapper::with_album(
-            ctx.lang,
-            artists.clone(),
-            by_va,
-            AlbumId {
-                id: ctx.id.to_owned(),
-                name: header.title.clone(),
-            },
-        );
-        mapper.map_response(shelf.contents);
-        let tracks_res = mapper.conv_items();
-        let mut warnings = tracks_res.warnings;
-
-        let mut variants_mapper = MusicListMapper::new(ctx.lang);
-        if let Some(res) = album_variants {
-            variants_mapper.map_response(res);
+    let mut shelf = None;
+    let mut album_variants = None;
+    for section in sections {
+        match section {
+            response::music_item::ItemSection::MusicShelfRenderer(sh) => shelf = Some(sh),
+            response::music_item::ItemSection::MusicCarouselShelfRenderer(sh) => {
+                let is_album_versions = sh
+                    .header
+                    .as_ref()
+                    .map(|h| {
+                        h.music_carousel_shelf_basic_header_renderer
+                            .title
+                            .first_str()
+                            == dictionary::entry(ctx.lang).album_versions_title
+                    })
+                    .unwrap_or_default();
+                if is_album_versions {
+                    album_variants = Some(sh.contents);
+                }
+            }
+            _ => (),
         }
-        let mut variants_res = variants_mapper.conv_items();
-        warnings.append(&mut variants_res.warnings);
+    }
+    let shelf = shelf.ok_or(ExtractionError::InvalidData(Cow::Borrowed(
+        "no sectionListRenderer content",
+    )))?;
 
-        Ok(MapResult {
-            c: MusicAlbum {
-                id: ctx.id.to_owned(),
-                playlist_id,
-                name: header.title,
-                cover: header.thumbnail.into(),
-                artists,
-                artist_id,
-                description: header
-                    .description
-                    .map(|t| RichText::from(TextComponents::from(t))),
-                album_type,
-                year,
-                by_va,
-                track_count: track_count.unwrap_or(tracks_res.c.len() as u16),
-                tracks: tracks_res.c,
-                variants: variants_res.c,
-            },
-            warnings,
+    let mut subtitle_split = header.subtitle.split(util::DOT_SEPARATOR);
+
+    let (year_txt, artists_p) = match header.strapline_text_one {
+        // New (2column) album layout
+        Some(sl) => {
+            let year_txt = subtitle_split
+                .try_swap_remove(1)
+                .and_then(|t| t.0.first().map(|c| c.as_str().to_owned()));
+            (year_txt, Some(sl))
+        }
+        // Old album layout
+        None => match subtitle_split.len() {
+            3.. => {
+                let year_txt = subtitle_split
+                    .swap_remove(2)
+                    .0
+                    .first()
+                    .map(|c| c.as_str().to_owned());
+                (year_txt, subtitle_split.try_swap_remove(1))
+            }
+            2 => {
+                // The second part may either be the year or the artist
+                let p2 = subtitle_split.swap_remove(1);
+                let is_year =
+                    p2.0.len() == 1 && p2.0[0].as_str().chars().all(|c| c.is_ascii_digit());
+                if is_year {
+                    (Some(p2.0[0].as_str().to_owned()), None)
+                } else {
+                    (None, Some(p2))
+                }
+            }
+            _ => (None, None),
+        },
+    };
+
+    let (artists, by_va) = map_artists(artists_p);
+    let album_type_txt = subtitle_split
+        .into_iter()
+        .next()
+        .map(|part| part.to_string())
+        .unwrap_or_default();
+
+    let album_type = map_album_type(album_type_txt.as_str(), ctx.lang);
+    let year = year_txt.and_then(|txt| util::parse_numeric(&txt).ok());
+
+    fn map_playlist_id(ep: &NavigationEndpoint) -> Option<String> {
+        if let NavigationEndpoint::WatchPlaylist {
+            watch_playlist_endpoint,
+        } = ep
+        {
+            Some(watch_playlist_endpoint.playlist_id.to_owned())
+        } else {
+            None
+        }
+    }
+
+    let playlist_id = fields
+        .microformat
+        .microformat_data_renderer
+        .url_canonical
+        .and_then(|x| {
+            x.strip_prefix("https://music.youtube.com/playlist?list=")
+                .map(str::to_owned)
+        });
+    let (playlist_id, artist_id) = header
+        .menu
+        .or_else(|| header.buttons.into_iter().next())
+        .map(|menu| {
+            (
+                playlist_id.or_else(|| {
+                    menu.menu_renderer
+                        .top_level_buttons
+                        .iter()
+                        .find_map(|btn| map_playlist_id(&btn.button_renderer.navigation_endpoint))
+                        .or_else(|| {
+                            menu.menu_renderer.items.iter().find_map(|itm| {
+                                map_playlist_id(
+                                    &itm.menu_navigation_item_renderer.navigation_endpoint,
+                                )
+                            })
+                        })
+                }),
+                map_artist_id(menu.menu_renderer.items),
+            )
         })
+        .unwrap_or_default();
+    let artist_id = artist_id.or_else(|| artists.first().and_then(|a| a.id.clone()));
+
+    let second_subtitle_parts = header
+        .second_subtitle
+        .split(|p| p == DOT_SEPARATOR)
+        .collect::<Vec<_>>();
+    let track_count = second_subtitle_parts
+        .get(usize::from(second_subtitle_parts.len() > 2))
+        .and_then(|txt| util::parse_numeric::<u16>(&txt[0]).ok());
+
+    let mut mapper = MusicListMapper::with_album(
+        ctx.lang,
+        artists.clone(),
+        by_va,
+        AlbumId {
+            id: ctx.id.to_owned(),
+            name: header.title.clone(),
+        },
+    );
+    mapper.map_response(shelf.contents);
+    let tracks_res = mapper.conv_items();
+    let mut warnings = tracks_res.warnings;
+
+    let mut variants_mapper = MusicListMapper::new(ctx.lang);
+    if let Some(res) = album_variants {
+        variants_mapper.map_response(res);
+    }
+    let mut variants_res = variants_mapper.conv_items();
+    warnings.append(&mut variants_res.warnings);
+
+    Ok(MapResult {
+        c: MusicAlbum {
+            id: ctx.id.to_owned(),
+            playlist_id,
+            name: header.title,
+            cover: header.thumbnail.into(),
+            artists,
+            artist_id,
+            description: header
+                .description
+                .map(|t| RichText::from(TextComponents::from(t))),
+            album_type,
+            year,
+            by_va,
+            track_count: track_count.unwrap_or(tracks_res.c.len() as u16),
+            tracks: tracks_res.c,
+            variants: variants_res.c,
+        },
+        warnings,
+    })
 }
 
 impl MapJsonResponse<MusicAlbum> for MusicPlaylistJson {
@@ -670,11 +670,8 @@ mod tests {
     fn map_music_album(#[case] name: &str, #[case] id: &str) {
         let json_path = path!(*TESTFILES / "music_playlist" / format!("album_{name}.json"));
         let json = JsonDoc::new(std::fs::read_to_string(json_path).unwrap());
-        let map_res: MapResult<model::MusicAlbum> = MusicPlaylistJson::map_json_response(
-            &json,
-            &MapRespCtx::test(id),
-        )
-        .unwrap();
+        let map_res: MapResult<model::MusicAlbum> =
+            MusicPlaylistJson::map_json_response(&json, &MapRespCtx::test(id)).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),

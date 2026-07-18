@@ -1,7 +1,7 @@
 use std::fmt::Debug;
 
 use crate::error::{Error, ExtractionError};
-use crate::json::{JsonDoc, JsonNode, yt_continuation, yt_estimated_results, ytq};
+use crate::json::{yt_continuation, yt_estimated_results, ytq, JsonDoc, JsonNode};
 use crate::model::{
     paginator::{ContinuationEndpoint, Paginator},
     traits::FromYtItem,
@@ -13,14 +13,11 @@ use crate::serializer::MapResult;
 #[cfg(feature = "userdata")]
 use crate::model::{HistoryItem, TrackItem, VideoItem};
 
+#[cfg(feature = "userdata")]
+use super::response::{music_item::MusicShelf, MusicContinuationData};
 use super::response::{
     music_item::{map_queue_item, MusicListMapper, PlaylistPanelVideo},
     YouTubeListItem,
-};
-#[cfg(feature = "userdata")]
-use super::response::{
-    music_item::MusicShelf,
-    MusicContinuationData,
 };
 use super::{response, ClientType, MapJsonResponse, MapRespCtx, MapRespOptions, RustyPipeQuery};
 
@@ -217,7 +214,10 @@ fn map_music_continuation_contents<'a>(
     }
 }
 
-fn music_continuation_token(continuations: &[JsonNode<'_>], mapper: &MusicListMapper) -> Option<String> {
+fn music_continuation_token(
+    continuations: &[JsonNode<'_>],
+    mapper: &MusicListMapper,
+) -> Option<String> {
     mapper
         .ctoken
         .clone()

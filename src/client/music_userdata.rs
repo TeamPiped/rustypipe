@@ -6,7 +6,7 @@ use crate::{
         ClientType, MapJsonResponse, RustyPipeQuery,
     },
     error::{Error, ExtractionError},
-    json::{JsonDoc, JsonNode, yt_continuation, ytq},
+    json::{yt_continuation, ytq, JsonDoc, JsonNode},
     model::{
         paginator::{ContinuationEndpoint, Paginator},
         AlbumItem, ArtistItem, HistoryItem, MusicPlaylist, MusicPlaylistItem, TrackItem,
@@ -148,9 +148,7 @@ impl RustyPipeQuery {
     }
 }
 
-fn yt_music_history_sections<'a>(
-    root: &'a JsonNode<'a>,
-) -> Result<JsonNode<'a>, ExtractionError> {
+fn yt_music_history_sections<'a>(root: &'a JsonNode<'a>) -> Result<JsonNode<'a>, ExtractionError> {
     root.first_of(&[
         ytq!(
             .contents.singleColumnBrowseResultsRenderer.tabs[0].tabRenderer.content

@@ -1,6 +1,6 @@
 use crate::{
     error::{Error, ExtractionError},
-    json::{JsonDoc, yt_single_column_sections, ytq},
+    json::{yt_single_column_sections, ytq, JsonDoc},
     model::{MusicCharts, TrackItem},
     param::Country,
     request_body::ytbody,
@@ -95,7 +95,9 @@ impl MapJsonResponse<MusicCharts> for MusicChartsJson {
                         mapper_top.map_response_node(&contents);
                         top_playlist_id = Some(id);
                     }
-                    Some((MusicPageType::Playlist { .. }, id)) if trending_playlist_id.is_none() => {
+                    Some((MusicPageType::Playlist { .. }, id))
+                        if trending_playlist_id.is_none() =>
+                    {
                         mapper_trending.map_response_node(&contents);
                         trending_playlist_id = Some(id);
                     }

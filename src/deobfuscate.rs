@@ -4,10 +4,10 @@ use std::collections::HashMap;
 
 use once_cell::sync::Lazy;
 use regex::Regex;
-use wreq::Client;
 use ress::tokens::{Keyword, Punct, Token};
 use rquickjs::{Context, Runtime};
 use serde::{Deserialize, Serialize};
+use wreq::Client;
 
 use crate::{
     error::{internal::DeobfError, Error},

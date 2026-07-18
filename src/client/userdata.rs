@@ -3,7 +3,7 @@ use std::fmt::Debug;
 use crate::{
     client::{ClientType, MapJsonResponse, MapRespCtx, MapRespOptions, RustyPipeQuery},
     error::{Error, ExtractionError},
-    json::{JsonDoc, yt_two_column_list_items},
+    json::{yt_two_column_list_items, JsonDoc},
     model::{
         paginator::{ContinuationEndpoint, Paginator},
         ChannelItem, HistoryItem, Playlist, PlaylistItem, VideoItem,

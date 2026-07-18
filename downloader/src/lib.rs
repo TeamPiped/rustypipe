@@ -19,7 +19,6 @@ use futures_util::stream::{self, StreamExt, TryStreamExt};
 use once_cell::sync::Lazy;
 use rand::RngExt;
 use regex::Regex;
-use wreq::{header, Client, StatusCode, Url};
 use rustypipe::{
     client::{ClientType, RustyPipe},
     model::{
@@ -33,6 +32,7 @@ use tokio::{
     io::AsyncWriteExt,
     process::Command,
 };
+use wreq::{header, Client, StatusCode, Url};
 
 #[cfg(feature = "indicatif")]
 use indicatif::{MultiProgress, ProgressBar, ProgressStyle};

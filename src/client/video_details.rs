@@ -2,7 +2,7 @@ use std::{collections::HashMap, fmt::Debug};
 
 use crate::{
     error::{Error, ExtractionError},
-    json::{JsonDoc, JsonNode, yt_response_visitor_data, ytq},
+    json::{yt_response_visitor_data, ytq, JsonDoc, JsonNode},
     model::{
         paginator::{ContinuationEndpoint, Paginator},
         ChannelTag, Chapter, Comment, Verification, VideoDetails, VideoItem,
@@ -82,7 +82,9 @@ struct VideoDetailsFields {
     visitor_data: Option<String>,
 }
 
-fn deserialize_video_details_fields(root: &JsonNode<'_>) -> Result<VideoDetailsFields, ExtractionError> {
+fn deserialize_video_details_fields(
+    root: &JsonNode<'_>,
+) -> Result<VideoDetailsFields, ExtractionError> {
     Ok(VideoDetailsFields {
         contents: root
             .query(ytq!(.contents))
@@ -105,73 +107,72 @@ fn map_video_details_fields(
     fields: VideoDetailsFields,
     ctx: &MapRespCtx<'_>,
 ) -> Result<MapResult<VideoDetails>, ExtractionError> {
-        let mut warnings = Vec::new();
+    let mut warnings = Vec::new();
 
-        let contents = fields.contents.ok_or_else(|| ExtractionError::NotFound {
-            id: ctx.id.to_owned(),
-            msg: "no content".into(),
-        })?;
-        let current_video_endpoint =
-            fields.current_video_endpoint
-                .ok_or_else(|| ExtractionError::NotFound {
-                    id: ctx.id.to_owned(),
-                    msg: "no current_video_endpoint".into(),
-                })?;
-
-        let video_id = current_video_endpoint.watch_endpoint.video_id;
-        if ctx.id != video_id {
-            return Err(ExtractionError::WrongResult(format!(
-                "got wrong video id {}, expected {}",
-                video_id, ctx.id
-            )));
-        }
-
-        let mut primary_results = contents
-            .two_column_watch_next_results
-            .results
-            .results
-            .contents
+    let contents = fields.contents.ok_or_else(|| ExtractionError::NotFound {
+        id: ctx.id.to_owned(),
+        msg: "no content".into(),
+    })?;
+    let current_video_endpoint =
+        fields
+            .current_video_endpoint
             .ok_or_else(|| ExtractionError::NotFound {
-                id: ctx.id.into(),
-                msg: "no primary_results".into(),
+                id: ctx.id.to_owned(),
+                msg: "no current_video_endpoint".into(),
             })?;
-        warnings.append(&mut primary_results.warnings);
 
-        let mut primary_info = None;
-        let mut secondary_info = None;
-        let mut comment_count_section = None;
-        let mut comment_ctoken_section = None;
+    let video_id = current_video_endpoint.watch_endpoint.video_id;
+    if ctx.id != video_id {
+        return Err(ExtractionError::WrongResult(format!(
+            "got wrong video id {}, expected {}",
+            video_id, ctx.id
+        )));
+    }
 
-        primary_results.c.into_iter().for_each(|r| match r {
-            response::video_details::VideoResultsItem::VideoPrimaryInfoRenderer { .. } => {
-                primary_info = Some(r);
-            }
-            response::video_details::VideoResultsItem::VideoSecondaryInfoRenderer { .. } => {
-                secondary_info = Some(r);
-            }
-            response::video_details::VideoResultsItem::ItemSectionRenderer(section) => {
-                match section {
-                    response::video_details::ItemSection::CommentsEntryPoint { contents } => {
-                        comment_count_section = contents.into_iter().next();
-                    }
-                    response::video_details::ItemSection::CommentItemSection { contents } => {
-                        comment_ctoken_section = contents.into_iter().next();
-                    }
-                    response::video_details::ItemSection::None => {}
-                }
-            }
-            response::video_details::VideoResultsItem::None => {}
-        });
+    let mut primary_results = contents
+        .two_column_watch_next_results
+        .results
+        .results
+        .contents
+        .ok_or_else(|| ExtractionError::NotFound {
+            id: ctx.id.into(),
+            msg: "no primary_results".into(),
+        })?;
+    warnings.append(&mut primary_results.warnings);
 
-        let (title, view_count, like_count, publish_date, publish_date_txt, is_live) =
-            match primary_info {
-                Some(response::video_details::VideoResultsItem::VideoPrimaryInfoRenderer {
-                    title,
-                    view_count,
-                    video_actions,
-                    date_text,
-                }) => {
-                    let like_text = video_actions
+    let mut primary_info = None;
+    let mut secondary_info = None;
+    let mut comment_count_section = None;
+    let mut comment_ctoken_section = None;
+
+    primary_results.c.into_iter().for_each(|r| match r {
+        response::video_details::VideoResultsItem::VideoPrimaryInfoRenderer { .. } => {
+            primary_info = Some(r);
+        }
+        response::video_details::VideoResultsItem::VideoSecondaryInfoRenderer { .. } => {
+            secondary_info = Some(r);
+        }
+        response::video_details::VideoResultsItem::ItemSectionRenderer(section) => match section {
+            response::video_details::ItemSection::CommentsEntryPoint { contents } => {
+                comment_count_section = contents.into_iter().next();
+            }
+            response::video_details::ItemSection::CommentItemSection { contents } => {
+                comment_ctoken_section = contents.into_iter().next();
+            }
+            response::video_details::ItemSection::None => {}
+        },
+        response::video_details::VideoResultsItem::None => {}
+    });
+
+    let (title, view_count, like_count, publish_date, publish_date_txt, is_live) =
+        match primary_info {
+            Some(response::video_details::VideoResultsItem::VideoPrimaryInfoRenderer {
+                title,
+                view_count,
+                video_actions,
+                date_text,
+            }) => {
+                let like_text = video_actions
                     .menu_renderer
                     .top_level_buttons
                     .into_iter()
@@ -188,163 +189,162 @@ fn map_video_details_fields(
                             _ => None
                         }
                     });
-                    (
-                        title,
-                        // view count field contains `No views` if the view count is zero
-                        view_count
-                            .as_ref()
-                            .and_then(|vc| {
-                                util::parse_numeric(&vc.video_view_count_renderer.view_count).ok()
-                            })
-                            .unwrap_or_default(),
-                        // accessibility_data contains no digits if the like count is hidden,
-                        // so we ignore parse errors here for now
-                        like_text.and_then(|txt| util::parse_numeric(&txt).ok()),
-                        date_text.as_deref().and_then(|txt| {
-                            timeago::parse_textual_date_or_warn(
-                                ctx.lang,
-                                ctx.utc_offset,
-                                txt,
-                                &mut warnings,
-                            )
-                        }),
-                        date_text,
-                        view_count
-                            .map(|vc| vc.video_view_count_renderer.is_live)
-                            .unwrap_or_default(),
-                    )
-                }
-                _ => {
-                    return Err(ExtractionError::InvalidData(
-                        "could not find primary_info".into(),
-                    ))
-                }
-            };
-
-        let comment_count = comment_count_section.and_then(|s| {
-            util::parse_large_numstr_or_warn::<u64>(
-                &s.comments_entry_point_header_renderer.comment_count,
-                ctx.lang,
-                &mut warnings,
-            )
-        });
-
-        let comment_ctoken = comment_ctoken_section.and_then(|s| {
-            s.continuation_item_renderer
-                .continuation_endpoint
-                .into_token()
-        });
-
-        let (owner, description, is_ccommons) = match secondary_info {
-            Some(response::video_details::VideoResultsItem::VideoSecondaryInfoRenderer {
-                owner,
-                description,
-                attributed_description,
-                metadata_row_container,
-            }) => {
-                let is_ccommons = metadata_row_container
-                    .map(|c| {
-                        c.metadata_row_container_renderer.rows.iter().any(|cr| {
-                            cr.metadata_row_renderer.contents.iter().any(|links| {
-                                links.0.iter().any(|link| match link {
-                                    crate::serializer::text::TextComponent::Web {
-                                        text: _,
-                                        url,
-                                    } => url == "https://www.youtube.com/t/creative_commons",
-                                    _ => false,
-                                })
-                            })
+                (
+                    title,
+                    // view count field contains `No views` if the view count is zero
+                    view_count
+                        .as_ref()
+                        .and_then(|vc| {
+                            util::parse_numeric(&vc.video_view_count_renderer.view_count).ok()
                         })
-                    })
-                    .unwrap_or_default();
-
-                let desc = description
-                    .or(attributed_description)
-                    .unwrap_or_default()
-                    .into();
-
-                (owner.video_owner_renderer, desc, is_ccommons)
+                        .unwrap_or_default(),
+                    // accessibility_data contains no digits if the like count is hidden,
+                    // so we ignore parse errors here for now
+                    like_text.and_then(|txt| util::parse_numeric(&txt).ok()),
+                    date_text.as_deref().and_then(|txt| {
+                        timeago::parse_textual_date_or_warn(
+                            ctx.lang,
+                            ctx.utc_offset,
+                            txt,
+                            &mut warnings,
+                        )
+                    }),
+                    date_text,
+                    view_count
+                        .map(|vc| vc.video_view_count_renderer.is_live)
+                        .unwrap_or_default(),
+                )
             }
             _ => {
                 return Err(ExtractionError::InvalidData(
-                    "could not find secondary_info".into(),
+                    "could not find primary_info".into(),
                 ))
             }
         };
 
-        let collaborator_channels = owner.collaborator_channels();
-        let first_collaborator = collaborator_channels.first().cloned();
-        let owner_avatar: Vec<crate::model::Thumbnail> =
-            owner.thumbnail_or_avatar_stack().into();
-        let owner_verification = owner.badges.into();
-        let owner_subscriber_count = owner.subscriber_count_text.as_ref().and_then(|txt| {
-            util::parse_large_numstr_or_warn(txt, ctx.lang, &mut warnings)
-        });
-        let mut collaborators = collaborator_channels
-            .iter()
-            .map(|(id, name)| ChannelTag {
-                id: id.clone(),
-                name: name.clone(),
-                avatar: owner_avatar.clone(),
-                verification: owner_verification,
-                subscriber_count: owner_subscriber_count,
-            })
-            .collect::<Vec<_>>();
+    let comment_count = comment_count_section.and_then(|s| {
+        util::parse_large_numstr_or_warn::<u64>(
+            &s.comments_entry_point_header_renderer.comment_count,
+            ctx.lang,
+            &mut warnings,
+        )
+    });
 
-        let (channel_id, channel_name) = if let Some(title) = &owner.title {
-            match title {
-                crate::serializer::text::TextComponent::Browse {
-                    text,
-                    page_type,
-                    browse_id,
-                    ..
-                } => match page_type {
-                    response::url_endpoint::PageType::Channel => (browse_id.clone(), text.clone()),
-                    _ => {
-                        return Err(ExtractionError::InvalidData(
-                            "invalid channel link type".into(),
-                        ))
-                    }
-                },
-                _ => return Err(ExtractionError::InvalidData("invalid channel link".into())),
-            }
-        } else if let Some((id, name)) = first_collaborator {
-            (id, name)
-        } else {
-            return Err(ExtractionError::InvalidData("invalid channel link".into()));
-        };
+    let comment_ctoken = comment_ctoken_section.and_then(|s| {
+        s.continuation_item_renderer
+            .continuation_endpoint
+            .into_token()
+    });
 
-        if !collaborators.is_empty() {
-            collaborators[0].id = channel_id.clone();
-            collaborators[0].name = channel_name.clone();
-        }
-
-        let visitor_data = fields
-            .visitor_data
-            .or_else(|| ctx.visitor_data.map(str::to_owned));
-        let recommended = contents
-            .two_column_watch_next_results
-            .secondary_results
-            .and_then(|sr| {
-                sr.secondary_results.results.map(|r| {
-                    let mut res = map_recommendations(
-                        r,
-                        sr.secondary_results.continuations,
-                        visitor_data.clone(),
-                        ctx,
-                    );
-                    warnings.append(&mut res.warnings);
-                    res.c
+    let (owner, description, is_ccommons) = match secondary_info {
+        Some(response::video_details::VideoResultsItem::VideoSecondaryInfoRenderer {
+            owner,
+            description,
+            attributed_description,
+            metadata_row_container,
+        }) => {
+            let is_ccommons = metadata_row_container
+                .map(|c| {
+                    c.metadata_row_container_renderer.rows.iter().any(|cr| {
+                        cr.metadata_row_renderer.contents.iter().any(|links| {
+                            links.0.iter().any(|link| match link {
+                                crate::serializer::text::TextComponent::Web { text: _, url } => {
+                                    url == "https://www.youtube.com/t/creative_commons"
+                                }
+                                _ => false,
+                            })
+                        })
+                    })
                 })
+                .unwrap_or_default();
+
+            let desc = description
+                .or(attributed_description)
+                .unwrap_or_default()
+                .into();
+
+            (owner.video_owner_renderer, desc, is_ccommons)
+        }
+        _ => {
+            return Err(ExtractionError::InvalidData(
+                "could not find secondary_info".into(),
+            ))
+        }
+    };
+
+    let collaborator_channels = owner.collaborator_channels();
+    let first_collaborator = collaborator_channels.first().cloned();
+    let owner_avatar: Vec<crate::model::Thumbnail> = owner.thumbnail_or_avatar_stack().into();
+    let owner_verification = owner.badges.into();
+    let owner_subscriber_count = owner
+        .subscriber_count_text
+        .as_ref()
+        .and_then(|txt| util::parse_large_numstr_or_warn(txt, ctx.lang, &mut warnings));
+    let mut collaborators = collaborator_channels
+        .iter()
+        .map(|(id, name)| ChannelTag {
+            id: id.clone(),
+            name: name.clone(),
+            avatar: owner_avatar.clone(),
+            verification: owner_verification,
+            subscriber_count: owner_subscriber_count,
+        })
+        .collect::<Vec<_>>();
+
+    let (channel_id, channel_name) = if let Some(title) = &owner.title {
+        match title {
+            crate::serializer::text::TextComponent::Browse {
+                text,
+                page_type,
+                browse_id,
+                ..
+            } => match page_type {
+                response::url_endpoint::PageType::Channel => (browse_id.clone(), text.clone()),
+                _ => {
+                    return Err(ExtractionError::InvalidData(
+                        "invalid channel link type".into(),
+                    ))
+                }
+            },
+            _ => return Err(ExtractionError::InvalidData("invalid channel link".into())),
+        }
+    } else if let Some((id, name)) = first_collaborator {
+        (id, name)
+    } else {
+        return Err(ExtractionError::InvalidData("invalid channel link".into()));
+    };
+
+    if !collaborators.is_empty() {
+        collaborators[0].id = channel_id.clone();
+        collaborators[0].name = channel_name.clone();
+    }
+
+    let visitor_data = fields
+        .visitor_data
+        .or_else(|| ctx.visitor_data.map(str::to_owned));
+    let recommended = contents
+        .two_column_watch_next_results
+        .secondary_results
+        .and_then(|sr| {
+            sr.secondary_results.results.map(|r| {
+                let mut res = map_recommendations(
+                    r,
+                    sr.secondary_results.continuations,
+                    visitor_data.clone(),
+                    ctx,
+                );
+                warnings.append(&mut res.warnings);
+                res.c
             })
-            .unwrap_or_default();
+        })
+        .unwrap_or_default();
 
-        let mut engagement_panels = fields.engagement_panels;
-        warnings.append(&mut engagement_panels.warnings);
+    let mut engagement_panels = fields.engagement_panels;
+    warnings.append(&mut engagement_panels.warnings);
 
-        let mut chapter_panel = None;
-        let mut comment_panel = None;
-        engagement_panels.c.into_iter().for_each(|panel| {
+    let mut chapter_panel = None;
+    let mut comment_panel = None;
+    engagement_panels.c.into_iter().for_each(|panel| {
             match panel.engagement_panel_section_list_renderer {
                 Some(
                     response::video_details::EngagementPanelRenderer::EngagementPanelMacroMarkersDescriptionChapters {
@@ -364,78 +364,78 @@ fn map_video_details_fields(
             }
         });
 
-        let chapters = chapter_panel
-            .map(|chapters| {
-                let mut content = chapters.macro_markers_list_renderer.contents;
-                warnings.append(&mut content.warnings);
-                content
-                    .c
-                    .into_iter()
-                    .map(|item| Chapter {
-                        name: item.macro_markers_list_item_renderer.title,
-                        position: item
-                            .macro_markers_list_item_renderer
-                            .on_tap
-                            .watch_endpoint
-                            .start_time_seconds,
-                        thumbnail: item.macro_markers_list_item_renderer.thumbnail.into(),
-                    })
-                    .collect::<Vec<_>>()
-            })
-            .unwrap_or_default();
-
-        let latest_comments_ctoken = comment_panel.and_then(|comments| {
-            let mut items = comments
-                .engagement_panel_title_header_renderer
-                .menu
-                .sort_filter_sub_menu_renderer
-                .sub_menu_items;
-            items
-                .try_swap_remove(1)
-                .and_then(|c| c.service_endpoint.into_token())
-        });
-
-        Ok(MapResult {
-            c: VideoDetails {
-                id: video_id,
-                name: title,
-                description,
-                channel: ChannelTag {
-                    id: channel_id,
-                    name: channel_name,
-                    avatar: owner_avatar,
-                    verification: owner_verification,
-                    subscriber_count: owner_subscriber_count,
-                },
-                collaborators,
-                view_count,
-                like_count,
-                publish_date,
-                publish_date_txt,
-                is_live,
-                is_ccommons,
-                chapters,
-                recommended,
-                top_comments: Paginator::new_ext(
-                    comment_count,
-                    Vec::new(),
-                    comment_ctoken,
-                    visitor_data.clone(),
-                    ContinuationEndpoint::Next,
-                    ctx.authenticated,
-                ),
-                latest_comments: Paginator::new_ext(
-                    comment_count,
-                    Vec::new(),
-                    latest_comments_ctoken,
-                    visitor_data.clone(),
-                    ContinuationEndpoint::Next,
-                    ctx.authenticated,
-                ),
-                visitor_data,
-            },
-            warnings,
+    let chapters = chapter_panel
+        .map(|chapters| {
+            let mut content = chapters.macro_markers_list_renderer.contents;
+            warnings.append(&mut content.warnings);
+            content
+                .c
+                .into_iter()
+                .map(|item| Chapter {
+                    name: item.macro_markers_list_item_renderer.title,
+                    position: item
+                        .macro_markers_list_item_renderer
+                        .on_tap
+                        .watch_endpoint
+                        .start_time_seconds,
+                    thumbnail: item.macro_markers_list_item_renderer.thumbnail.into(),
+                })
+                .collect::<Vec<_>>()
         })
+        .unwrap_or_default();
+
+    let latest_comments_ctoken = comment_panel.and_then(|comments| {
+        let mut items = comments
+            .engagement_panel_title_header_renderer
+            .menu
+            .sort_filter_sub_menu_renderer
+            .sub_menu_items;
+        items
+            .try_swap_remove(1)
+            .and_then(|c| c.service_endpoint.into_token())
+    });
+
+    Ok(MapResult {
+        c: VideoDetails {
+            id: video_id,
+            name: title,
+            description,
+            channel: ChannelTag {
+                id: channel_id,
+                name: channel_name,
+                avatar: owner_avatar,
+                verification: owner_verification,
+                subscriber_count: owner_subscriber_count,
+            },
+            collaborators,
+            view_count,
+            like_count,
+            publish_date,
+            publish_date_txt,
+            is_live,
+            is_ccommons,
+            chapters,
+            recommended,
+            top_comments: Paginator::new_ext(
+                comment_count,
+                Vec::new(),
+                comment_ctoken,
+                visitor_data.clone(),
+                ContinuationEndpoint::Next,
+                ctx.authenticated,
+            ),
+            latest_comments: Paginator::new_ext(
+                comment_count,
+                Vec::new(),
+                latest_comments_ctoken,
+                visitor_data.clone(),
+                ContinuationEndpoint::Next,
+                ctx.authenticated,
+            ),
+            visitor_data,
+        },
+        warnings,
+    })
 }
 
 impl MapJsonResponse<VideoDetails> for VideoDetailsJson {
@@ -476,88 +476,88 @@ fn map_video_comments_fields(
     fields: VideoCommentsFields,
     ctx: &MapRespCtx<'_>,
 ) -> Result<MapResult<Paginator<Comment>>, ExtractionError> {
-        let received_endpoints = fields.on_response_received_endpoints;
-        let mut warnings = Vec::new();
+    let received_endpoints = fields.on_response_received_endpoints;
+    let mut warnings = Vec::new();
 
-        let mut comments = Vec::new();
-        let mut comment_count = None;
-        let mut ctoken = None;
+    let mut comments = Vec::new();
+    let mut comment_count = None;
+    let mut ctoken = None;
 
-        let mut mutations = if let Some(upd) = fields.framework_updates {
-            let mut m = upd.entity_batch_update.mutations;
-            warnings.append(&mut m.warnings);
-            m.items
-        } else {
-            HashMap::new()
-        };
+    let mut mutations = if let Some(upd) = fields.framework_updates {
+        let mut m = upd.entity_batch_update.mutations;
+        warnings.append(&mut m.warnings);
+        m.items
+    } else {
+        HashMap::new()
+    };
 
-        received_endpoints.c.into_iter().for_each(|citem| {
-            let mut items = citem.append_continuation_items_action.continuation_items;
-            warnings.append(&mut items.warnings);
-            items.c.into_iter().for_each(|item| match item {
-                response::video_details::CommentListItem::CommentThreadRenderer(thread) => {
-                    if let Some(comment) = thread.comment {
-                        comments.push(map_comment(
-                            comment.comment_renderer,
-                            Some(thread.replies),
-                            thread.rendering_priority,
-                            ctx.lang,
-                            &mut warnings,
-                        ));
-                    } else if let Some(vm) = thread.comment_view_model {
-                        if let Some(c) = map_comment_vm(
-                            vm.comment_view_model,
-                            &mut mutations,
-                            Some(thread.replies),
-                            thread.rendering_priority,
-                            ctx.lang,
-                            &mut warnings,
-                        ) {
-                            comments.push(c);
-                        }
-                    } else {
-                        warnings.push(
-                            "comment does not contain comment or commentViewModel field".to_owned(),
-                        );
-                    }
-                }
-                response::video_details::CommentListItem::CommentRenderer(comment) => {
+    received_endpoints.c.into_iter().for_each(|citem| {
+        let mut items = citem.append_continuation_items_action.continuation_items;
+        warnings.append(&mut items.warnings);
+        items.c.into_iter().for_each(|item| match item {
+            response::video_details::CommentListItem::CommentThreadRenderer(thread) => {
+                if let Some(comment) = thread.comment {
                     comments.push(map_comment(
-                        comment,
-                        None,
-                        response::video_details::CommentPriority::RenderingPriorityUnknown,
+                        comment.comment_renderer,
+                        Some(thread.replies),
+                        thread.rendering_priority,
                         ctx.lang,
                         &mut warnings,
                     ));
-                }
-                response::video_details::CommentListItem::CommentViewModel(vm) => {
+                } else if let Some(vm) = thread.comment_view_model {
                     if let Some(c) = map_comment_vm(
-                        vm,
+                        vm.comment_view_model,
                         &mut mutations,
-                        None,
-                        response::video_details::CommentPriority::RenderingPriorityUnknown,
+                        Some(thread.replies),
+                        thread.rendering_priority,
                         ctx.lang,
                         &mut warnings,
                     ) {
                         comments.push(c);
                     }
+                } else {
+                    warnings.push(
+                        "comment does not contain comment or commentViewModel field".to_owned(),
+                    );
                 }
-                response::video_details::CommentListItem::ContinuationItemRenderer(cont) => {
-                    if ctoken.is_none() {
-                        ctoken = cont.into_token();
-                    }
+            }
+            response::video_details::CommentListItem::CommentRenderer(comment) => {
+                comments.push(map_comment(
+                    comment,
+                    None,
+                    response::video_details::CommentPriority::RenderingPriorityUnknown,
+                    ctx.lang,
+                    &mut warnings,
+                ));
+            }
+            response::video_details::CommentListItem::CommentViewModel(vm) => {
+                if let Some(c) = map_comment_vm(
+                    vm,
+                    &mut mutations,
+                    None,
+                    response::video_details::CommentPriority::RenderingPriorityUnknown,
+                    ctx.lang,
+                    &mut warnings,
+                ) {
+                    comments.push(c);
                 }
-                response::video_details::CommentListItem::CommentsHeaderRenderer { count_text } => {
-                    comment_count = count_text
-                        .and_then(|txt| util::parse_numeric_or_warn::<u64>(&txt, &mut warnings));
+            }
+            response::video_details::CommentListItem::ContinuationItemRenderer(cont) => {
+                if ctoken.is_none() {
+                    ctoken = cont.into_token();
                 }
-            });
+            }
+            response::video_details::CommentListItem::CommentsHeaderRenderer { count_text } => {
+                comment_count = count_text
+                    .and_then(|txt| util::parse_numeric_or_warn::<u64>(&txt, &mut warnings));
+            }
         });
+    });
 
-        Ok(MapResult {
-            c: Paginator::new(comment_count, comments, ctoken),
-            warnings,
-        })
+    Ok(MapResult {
+        c: Paginator::new(comment_count, comments, ctoken),
+        warnings,
+    })
 }
 
 impl MapJsonResponse<Paginator<Comment>> for VideoCommentsJson {

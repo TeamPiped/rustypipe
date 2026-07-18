@@ -4,8 +4,8 @@ use serde_with::{serde_as, DefaultOnError, VecSkipError};
 use crate::serializer::text::{AttributedText, Text, TextComponent, TextComponents};
 
 use super::{
-    url_endpoint::OnTapWrap, ContentRenderer, ImageView,
-    PageHeaderRendererContent, PhMetadataView, TextBox, ThumbnailsWrap,
+    url_endpoint::OnTapWrap, ContentRenderer, ImageView, PageHeaderRendererContent, PhMetadataView,
+    TextBox, ThumbnailsWrap,
 };
 
 #[derive(Debug, Deserialize)]

@@ -4,7 +4,7 @@ use time::OffsetDateTime;
 
 use crate::{
     error::{Error, ExtractionError},
-    json::{JsonDoc, JsonNode, yt_first_tab, yt_response_visitor_data, yt_thumbnails, ytq},
+    json::{yt_first_tab, yt_response_visitor_data, yt_thumbnails, ytq, JsonDoc, JsonNode},
     model::{
         paginator::{ContinuationEndpoint, Paginator},
         richtext::RichText,
@@ -15,10 +15,7 @@ use crate::{
     util::{self, dictionary, timeago, TryRemove},
 };
 
-use super::{
-    response,
-    ClientType, MapJsonResponse, MapRespCtx, MapResult, RustyPipeQuery,
-};
+use super::{response, ClientType, MapJsonResponse, MapRespCtx, MapResult, RustyPipeQuery};
 
 #[derive(Debug)]
 struct PlaylistJson;
@@ -63,21 +60,29 @@ fn yt_playlist_video_list<'a>(root: &JsonNode<'a>) -> Result<JsonNode<'a>, Extra
         ytq!(.tabRenderer.content.sectionListRenderer.contents),
         "section list renderer",
     )?;
-    let section = sections.items().into_iter().next().ok_or({
-        ExtractionError::InvalidData(Cow::Borrowed("sectionListRenderer empty"))
-    })?;
-    let item_section = section.require(
-        ytq!(.itemSectionRenderer.contents),
-        "item section renderer",
-    )?;
-    let item = item_section.items().into_iter().next().ok_or({
-        ExtractionError::InvalidData(Cow::Borrowed("itemSectionRenderer empty"))
-    })?;
+    let section = sections
+        .items()
+        .into_iter()
+        .next()
+        .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
+            "sectionListRenderer empty",
+        )))?;
+    let item_section =
+        section.require(ytq!(.itemSectionRenderer.contents), "item section renderer")?;
+    let item = item_section
+        .items()
+        .into_iter()
+        .next()
+        .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
+            "itemSectionRenderer empty",
+        )))?;
     item.first_of(&[
         ytq!(.playlistVideoListRenderer.contents),
         ytq!(.richGridRenderer.contents),
     ])
-    .ok_or(ExtractionError::InvalidData(Cow::Borrowed("playlist video list empty")))
+    .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
+        "playlist video list empty",
+    )))
 }
 
 impl MapJsonResponse<Playlist> for PlaylistJson {
@@ -116,13 +121,15 @@ impl MapJsonResponse<Playlist> for PlaylistJson {
                         info.query(ytq!(.description))
                             .and_then(|node| node.deserialize::<TextComponents>().ok())
                             .filter(|d| !d.0.is_empty()),
-                        info.query(ytq!(.thumbnailRenderer.playlistVideoThumbnailRenderer.thumbnail))
-                            .or_else(|| {
-                                info.query(
-                                    ytq!(.thumbnailRenderer.playlistCustomThumbnailRenderer.thumbnail),
-                                )
-                            })
-                            .map(|node| yt_thumbnails(&node)),
+                        info.query(
+                            ytq!(.thumbnailRenderer.playlistVideoThumbnailRenderer.thumbnail),
+                        )
+                        .or_else(|| {
+                            info.query(
+                                ytq!(.thumbnailRenderer.playlistCustomThumbnailRenderer.thumbnail),
+                            )
+                        })
+                        .map(|node| yt_thumbnails(&node)),
                         info.query(ytq!(.stats))
                             .map(|stats| {
                                 stats
@@ -239,11 +246,9 @@ impl MapJsonResponse<Playlist> for PlaylistJson {
             }
 
             let description = description.or(description2).map(RichText::from);
-            let thumbnails = thumbnails
-                .or_else(|| thumbnails2.map(|t| t.into()))
-                .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
-                    "no thumbnail found",
-                )))?;
+            let thumbnails = thumbnails.or_else(|| thumbnails2.map(|t| t.into())).ok_or(
+                ExtractionError::InvalidData(Cow::Borrowed("no thumbnail found")),
+            )?;
             let last_update = last_update_txt
                 .as_deref()
                 .or(last_update_txt2.as_deref())

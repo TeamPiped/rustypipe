@@ -6,7 +6,9 @@ use url::Url;
 use crate::{
     client::response::YouTubeListItem,
     error::{Error, ExtractionError},
-    json::{JsonDoc, JsonNode, yt_response_visitor_data, yt_two_column_list_items_from_browse, ytq},
+    json::{
+        yt_response_visitor_data, yt_two_column_list_items_from_browse, ytq, JsonDoc, JsonNode,
+    },
     model::{
         paginator::{ContinuationEndpoint, Paginator},
         Channel, ChannelInfo, PlaylistItem, Verification, VideoItem,
@@ -25,10 +27,7 @@ enum ChannelTab {
     Search,
 }
 
-use super::{
-    response,
-    ClientType, MapJsonResponse, MapRespCtx, MapRespOptions, RustyPipeQuery,
-};
+use super::{response, ClientType, MapJsonResponse, MapRespCtx, MapRespOptions, RustyPipeQuery};
 
 #[derive(Debug)]
 struct ChannelJson;
@@ -261,9 +260,9 @@ fn map_channel_content<'a>(
             } else if url.ends_with("/streams") {
                 has_live = true;
             }
-        } else if let Some(sl) = tab_renderer(tab).and_then(|tr| {
-            tr.query(ytq!(.content.sectionListRenderer.contents))
-        }) {
+        } else if let Some(sl) =
+            tab_renderer(tab).and_then(|tr| tr.query(ytq!(.content.sectionListRenderer.contents)))
+        {
             if let Some(first) = sl.items().first() {
                 if let Ok(YouTubeListItem::ChannelAgeGateRenderer {
                     channel_title,
@@ -464,7 +463,8 @@ fn map_channel_shell<'a>(
             msg: "no microformat".into(),
         })?
         .deserialize::<response::channel::MicroformatDataRenderer>()?;
-    let visitor_data = yt_response_visitor_data(root).or_else(|| ctx.visitor_data.map(str::to_owned));
+    let visitor_data =
+        yt_response_visitor_data(root).or_else(|| ctx.visitor_data.map(str::to_owned));
 
     let channel_data = map_channel(
         MapChannelData {
@@ -570,8 +570,8 @@ impl MapJsonResponse<ChannelInfo> for ChannelAboutJson {
             let lang = Language::En;
 
             if let Some(endpoints) = root.query(ytq!(.onResponseReceivedEndpoints)) {
-                let (eps, _) = endpoints
-                    .deserialize_items_lossy::<response::ContinuationActionWrap<
+                let (eps, _) =
+                    endpoints.deserialize_items_lossy::<response::ContinuationActionWrap<
                         response::channel::AboutChannelRendererWrap,
                     >>();
                 let ep = eps
@@ -607,15 +607,20 @@ impl MapJsonResponse<ChannelInfo> for ChannelAboutJson {
                         id: about.channel_id,
                         url: about.canonical_channel_url,
                         description: about.description,
-                        subscriber_count: about
-                            .subscriber_count_text
-                            .and_then(|txt| util::parse_large_numstr_or_warn(&txt, lang, &mut warnings)),
+                        subscriber_count: about.subscriber_count_text.and_then(|txt| {
+                            util::parse_large_numstr_or_warn(&txt, lang, &mut warnings)
+                        }),
                         video_count: about
                             .video_count_text
                             .and_then(|txt| util::parse_numeric_or_warn(&txt, &mut warnings)),
                         create_date: about.joined_date_text.and_then(|txt| {
-                            timeago::parse_textual_date_or_warn(lang, ctx.utc_offset, &txt, &mut warnings)
-                                .map(OffsetDateTime::date)
+                            timeago::parse_textual_date_or_warn(
+                                lang,
+                                ctx.utc_offset,
+                                &txt,
+                                &mut warnings,
+                            )
+                            .map(OffsetDateTime::date)
                         }),
                         view_count: about
                             .view_count_text
@@ -820,9 +825,11 @@ mod tests {
     fn map_channel_info() {
         let json_path = path!(*TESTFILES / "channel" / "channel_info.json");
         let json = JsonDoc::new(fs::read_to_string(json_path).unwrap());
-        let map_res: MapResult<ChannelInfo> =
-            ChannelAboutJson::map_json_response(&json, &MapRespCtx::test("UC2DjFE7Xf11U-RZqWBigcVOQ"))
-                .unwrap();
+        let map_res: MapResult<ChannelInfo> = ChannelAboutJson::map_json_response(
+            &json,
+            &MapRespCtx::test("UC2DjFE7Xf11U-RZqWBigcVOQ"),
+        )
+        .unwrap();
 
         assert!(
             map_res.warnings.is_empty(),

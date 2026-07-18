@@ -5,8 +5,7 @@ use crate::serializer::text::{AttributedText, Text, TextComponents};
 
 use super::{
     music_item::{
-        Button, ItemSection, MusicContentsRenderer, MusicItemMenuEntry,
-        MusicThumbnailRenderer,
+        Button, ItemSection, MusicContentsRenderer, MusicItemMenuEntry, MusicThumbnailRenderer,
     },
     url_endpoint::OnTapWrap,
     ContentsRenderer, SectionList, Tab,

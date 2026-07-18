@@ -1,15 +1,12 @@
 use crate::{
     error::{Error, ExtractionError},
-    json::{JsonDoc, yt_two_column_list_items},
+    json::{yt_two_column_list_items, JsonDoc},
     model::VideoItem,
     request_body::ytbody,
     serializer::MapResult,
 };
 
-use super::{
-    response,
-    ClientType, MapJsonResponse, MapRespCtx, RustyPipeQuery,
-};
+use super::{response, ClientType, MapJsonResponse, MapRespCtx, RustyPipeQuery};
 
 #[derive(Debug)]
 struct TrendingJson;
@@ -59,10 +56,7 @@ mod tests {
     use rstest::rstest;
 
     use super::*;
-    use crate::{
-        model::VideoItem,
-        util::tests::TESTFILES,
-    };
+    use crate::{model::VideoItem, util::tests::TESTFILES};
 
     #[rstest]
     #[case::base("videos")]

@@ -3,11 +3,7 @@ use serde_with::{serde_as, DefaultOnError};
 
 use crate::serializer::text::Text;
 
-use super::{
-    music_item::{
-        Button, MusicThumbnailRenderer,
-    },
-};
+use super::music_item::{Button, MusicThumbnailRenderer};
 
 /// Artist page header renderers
 #[derive(Debug, Deserialize)]

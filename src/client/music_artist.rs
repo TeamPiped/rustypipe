@@ -10,7 +10,7 @@ use crate::{
         MapRespOptions,
     },
     error::{Error, ExtractionError},
-    json::{JsonDoc, JsonNode, ytq},
+    json::{ytq, JsonDoc, JsonNode},
     model::{
         paginator::Paginator, traits::FromYtItem, AlbumItem, AlbumType, ArtistId, MusicArtist,
         MusicItem,
@@ -25,8 +25,8 @@ use super::{
     pagination::MusicContinuationJson,
     response::{
         self,
-        music_item::{Grid, MusicListMapper, MusicMicroformat, SingleColumnBrowseResult},
         music_artist::Header,
+        music_item::{Grid, MusicListMapper, MusicMicroformat, SingleColumnBrowseResult},
         url_endpoint::PageType,
         SectionList, Tab,
     },
@@ -153,7 +153,9 @@ struct MusicArtistFields {
     microformat: MusicMicroformat,
 }
 
-fn deserialize_music_artist_fields(root: &JsonNode<'_>) -> Result<MusicArtistFields, ExtractionError> {
+fn deserialize_music_artist_fields(
+    root: &JsonNode<'_>,
+) -> Result<MusicArtistFields, ExtractionError> {
     Ok(MusicArtistFields {
         contents: root
             .query(ytq!(.contents))
@@ -431,54 +433,54 @@ fn map_first_album_page(
     fields: MusicArtistAlbumsFields,
     ctx: &MapRespCtx<'_>,
 ) -> Result<MapResult<FirstAlbumPage>, ExtractionError> {
-        let Some(header) = fields.header else {
-            return Err(ExtractionError::NotFound {
-                id: ctx.id.into(),
-                msg: "no header".into(),
-            });
-        };
+    let Some(header) = fields.header else {
+        return Err(ExtractionError::NotFound {
+            id: ctx.id.into(),
+            msg: "no header".into(),
+        });
+    };
 
-        let grids = fields
-            .contents
-            .single_column_browse_results_renderer
-            .contents
-            .into_iter()
-            .next()
-            .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no content")))?
-            .tab_renderer
-            .content
-            .section_list_renderer
-            .contents;
+    let grids = fields
+        .contents
+        .single_column_browse_results_renderer
+        .contents
+        .into_iter()
+        .next()
+        .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no content")))?
+        .tab_renderer
+        .content
+        .section_list_renderer
+        .contents;
 
-        let artist_id = ArtistId {
-            id: Some(ctx.id.to_owned()),
-            name: header.music_header_renderer.title,
-        };
-        let mut mapper = MusicListMapper::with_artist(ctx.lang, artist_id.clone());
-        let mut ctoken = None;
-        for grid in grids {
-            mapper.map_response(grid.grid_renderer.items);
-            if ctoken.is_none() {
-                ctoken = grid
-                    .grid_renderer
-                    .continuations
-                    .into_iter()
-                    .next()
-                    .map(|g| g.next_continuation_data.continuation);
-            }
+    let artist_id = ArtistId {
+        id: Some(ctx.id.to_owned()),
+        name: header.music_header_renderer.title,
+    };
+    let mut mapper = MusicListMapper::with_artist(ctx.lang, artist_id.clone());
+    let mut ctoken = None;
+    for grid in grids {
+        mapper.map_response(grid.grid_renderer.items);
+        if ctoken.is_none() {
+            ctoken = grid
+                .grid_renderer
+                .continuations
+                .into_iter()
+                .next()
+                .map(|g| g.next_continuation_data.continuation);
         }
+    }
 
-        let mapped = mapper.group_items();
+    let mapped = mapper.group_items();
 
-        Ok(MapResult {
-            c: FirstAlbumPage {
-                albums: mapped.c.albums,
-                ctoken,
-                artist: artist_id,
-                visitor_data: ctx.visitor_data.map(str::to_owned),
-            },
-            warnings: mapped.warnings,
-        })
+    Ok(MapResult {
+        c: FirstAlbumPage {
+            albums: mapped.c.albums,
+            ctoken,
+            artist: artist_id,
+            visitor_data: ctx.visitor_data.map(str::to_owned),
+        },
+        warnings: mapped.warnings,
+    })
 }
 
 fn albums_param(filter: Option<AlbumFilter>, order: Option<AlbumOrder>) -> String {
@@ -557,8 +559,7 @@ mod tests {
                 }
                 let json = JsonDoc::new(std::fs::read_to_string(cont_path).unwrap());
                 let map_res: MapResult<Paginator<MusicItem>> =
-                    MusicContinuationJson::map_json_response(&json, &MapRespCtx::test(id))
-                        .unwrap();
+                    MusicContinuationJson::map_json_response(&json, &MapRespCtx::test(id)).unwrap();
                 assert!(!map_res.c.items.is_empty());
                 artist.albums.extend(
                     map_res
@@ -578,9 +579,11 @@ mod tests {
         let json_path = path!(*TESTFILES / "music_artist" / "artist_default.json");
         let json = JsonDoc::new(std::fs::read_to_string(json_path).unwrap());
 
-        let map_res: MapResult<MusicArtist> =
-            MusicArtistJson::map_json_response(&json, &MapRespCtx::test("UClmXPfaYhXOYsNn_QUyheWQ"))
-                .unwrap();
+        let map_res: MapResult<MusicArtist> = MusicArtistJson::map_json_response(
+            &json,
+            &MapRespCtx::test("UClmXPfaYhXOYsNn_QUyheWQ"),
+        )
+        .unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -596,7 +599,10 @@ mod tests {
         let json = JsonDoc::new(std::fs::read_to_string(json_path).unwrap());
 
         let res: Result<MapResult<MusicArtist>, ExtractionError> =
-            MusicArtistJson::map_json_response(&json, &MapRespCtx::test("UCLkAepWjdylmXSltofFvsYQ"));
+            MusicArtistJson::map_json_response(
+                &json,
+                &MapRespCtx::test("UCLkAepWjdylmXSltofFvsYQ"),
+            );
         let e = res.unwrap_err();
 
         match e {

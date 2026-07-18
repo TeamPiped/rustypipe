@@ -89,9 +89,14 @@ impl JsonDoc {
 
         let value = self.resolve_value(path)?;
         let json = if let Some(v) = value.as_str() {
-            serde_json::to_string(v).map_err(|e| ExtractionError::InvalidData(e.to_string().into()))?
+            serde_json::to_string(v)
+                .map_err(|e| ExtractionError::InvalidData(e.to_string().into()))?
         } else if let Some(v) = value.as_bool() {
-            if v { "true".to_owned() } else { "false".to_owned() }
+            if v {
+                "true".to_owned()
+            } else {
+                "false".to_owned()
+            }
         } else if value.is_null() {
             "null".to_owned()
         } else if let Some(v) = value.as_u64() {
@@ -255,10 +260,7 @@ pub(crate) fn yt_continuation(node: &JsonNode<'_>) -> Option<String> {
 }
 
 pub(crate) fn tab_renderer<'a>(tab: &JsonNode<'a>) -> Option<JsonNode<'a>> {
-    tab.first_of(&[
-        ytq!(.tabRenderer),
-        ytq!(.expandableTabRenderer.tabRenderer),
-    ])
+    tab.first_of(&[ytq!(.tabRenderer), ytq!(.expandableTabRenderer.tabRenderer)])
 }
 
 pub(crate) fn yt_tab_list_contents<'a>(tab: &JsonNode<'a>) -> Option<JsonNode<'a>> {
@@ -266,7 +268,9 @@ pub(crate) fn yt_tab_list_contents<'a>(tab: &JsonNode<'a>) -> Option<JsonNode<'a
         let rich = tr.query(ytq!(.content.richGridRenderer.contents));
         let section = tr.query(ytq!(.content.sectionListRenderer.contents));
         match (rich, section) {
-            (Some(rich), Some(section)) if rich.items().is_empty() && !section.items().is_empty() => {
+            (Some(rich), Some(section))
+                if rich.items().is_empty() && !section.items().is_empty() =>
+            {
                 Some(section)
             }
             (Some(rich), _) if !rich.items().is_empty() => Some(rich),
@@ -310,12 +314,10 @@ pub(crate) fn yt_single_column_sections<'a>(
     if let Some(items) = yt_selected_tab_list_items(&browse) {
         return Ok(items);
     }
-    let tab = yt_first_tab(&browse).ok_or_else(|| {
-        ExtractionError::InvalidData("no tab in single column browse".into())
-    })?;
-    yt_tab_list_contents(&tab).ok_or_else(|| {
-        ExtractionError::InvalidData("no section list contents".into())
-    })
+    let tab = yt_first_tab(&browse)
+        .ok_or_else(|| ExtractionError::InvalidData("no tab in single column browse".into()))?;
+    yt_tab_list_contents(&tab)
+        .ok_or_else(|| ExtractionError::InvalidData("no section list contents".into()))
 }
 
 pub(crate) fn yt_two_column_list_items_from_browse<'a>(
@@ -324,7 +326,11 @@ pub(crate) fn yt_two_column_list_items_from_browse<'a>(
     yt_selected_tab_list_items(browse).or_else(|| {
         browse
             .first_of(&[ytq!(.tabs), ytq!(.contents)])
-            .and_then(|tabs| tabs.items().into_iter().find_map(|tab| yt_tab_list_contents(&tab)))
+            .and_then(|tabs| {
+                tabs.items()
+                    .into_iter()
+                    .find_map(|tab| yt_tab_list_contents(&tab))
+            })
     })
 }
 
@@ -335,9 +341,8 @@ pub(crate) fn yt_two_column_list_items<'a>(
         ytq!(.contents.twoColumnBrowseResultsRenderer),
         "two column browse results",
     )?;
-    yt_two_column_list_items_from_browse(&browse).ok_or_else(|| {
-        ExtractionError::InvalidData("no list contents in tab".into())
-    })
+    yt_two_column_list_items_from_browse(&browse)
+        .ok_or_else(|| ExtractionError::InvalidData("no list contents in tab".into()))
 }
 
 pub(crate) fn yt_search_primary_items<'a>(
@@ -351,8 +356,11 @@ pub(crate) fn yt_search_primary_items<'a>(
 }
 
 pub(crate) fn yt_estimated_results(root: &JsonNode<'_>) -> Option<u64> {
-    root.query(ytq!(.estimatedResults))
-        .and_then(|node| node.as_str().and_then(|s| s.parse().ok()).or_else(|| node.as_u64()))
+    root.query(ytq!(.estimatedResults)).and_then(|node| {
+        node.as_str()
+            .and_then(|s| s.parse().ok())
+            .or_else(|| node.as_u64())
+    })
 }
 
 pub(crate) fn yt_response_visitor_data(root: &JsonNode<'_>) -> Option<String> {
@@ -366,24 +374,31 @@ pub(crate) fn yt_music_header_title(root: &JsonNode<'_>) -> Option<String> {
 }
 
 pub(crate) fn yt_thumbnails(node: &JsonNode<'_>) -> Vec<Thumbnail> {
-    node.first_of(&[ytq!(.thumbnails), ytq!(.sources), ytq!(.thumbnail.thumbnails)])
-        .map(|items| {
-            items.items()
-                .into_iter()
-                .filter_map(|item| {
-                    Some(Thumbnail {
-                        url: item.query(ytq!(.url))?.as_str()?,
-                        width: item.query(ytq!(.width)).and_then(|v| v.as_u64()).unwrap_or_default()
-                            as u32,
-                        height: item
-                            .query(ytq!(.height))
-                            .and_then(|v| v.as_u64())
-                            .unwrap_or_default() as u32,
-                    })
+    node.first_of(&[
+        ytq!(.thumbnails),
+        ytq!(.sources),
+        ytq!(.thumbnail.thumbnails),
+    ])
+    .map(|items| {
+        items
+            .items()
+            .into_iter()
+            .filter_map(|item| {
+                Some(Thumbnail {
+                    url: item.query(ytq!(.url))?.as_str()?,
+                    width: item
+                        .query(ytq!(.width))
+                        .and_then(|v| v.as_u64())
+                        .unwrap_or_default() as u32,
+                    height: item
+                        .query(ytq!(.height))
+                        .and_then(|v| v.as_u64())
+                        .unwrap_or_default() as u32,
                 })
-                .collect()
-        })
-        .unwrap_or_default()
+            })
+            .collect()
+    })
+    .unwrap_or_default()
 }
 
 macro_rules! __yt_path {

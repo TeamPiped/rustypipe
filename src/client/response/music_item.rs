@@ -2,7 +2,7 @@ use serde::Deserialize;
 use serde_with::{rust::deserialize_ignore_any, serde_as, DefaultOnError, VecSkipError};
 
 use crate::{
-    json::{JsonNode, ytq},
+    json::{ytq, JsonNode},
     model::{
         self, traits::FromYtItem, AlbumId, AlbumItem, AlbumType, ArtistId, ArtistItem, ChannelId,
         MusicItem, MusicItemType, MusicPlaylistItem, TrackItem, UserItem,
@@ -19,8 +19,8 @@ use super::{
     url_endpoint::{
         BrowseEndpointWrap, MusicPage, MusicPageType, MusicVideoType, NavigationEndpoint, PageType,
     },
-    ContentsRenderer, ContinuationEndpoint, MusicContinuationData,
-    SimpleHeaderRenderer, Thumbnails, ThumbnailsWrap,
+    ContentsRenderer, ContinuationEndpoint, MusicContinuationData, SimpleHeaderRenderer,
+    Thumbnails, ThumbnailsWrap,
 };
 
 #[cfg(feature = "userdata")]
