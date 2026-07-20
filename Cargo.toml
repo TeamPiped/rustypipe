@@ -34,7 +34,7 @@ oxc_ast = "0.133.0"
 oxc_parser = "0.133.0"
 oxc_span = "0.133.0"
 phf = "0.13.1"
-phf_codegen = "0.13.1"
+phf_codegen = "0.14.0"
 quick-xml = {version = "0.40.1", features = ["serialize"]}
 rand = "0.10.1"
 regex = "1.6.0"
