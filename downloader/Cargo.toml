@@ -42,7 +42,7 @@ indicatif = { workspace = true, optional = true }
 filenamify.workspace = true
 tracing.workspace = true
 time.workspace = true
-lofty = { version = "0.22.0", optional = true }
+lofty = { version = "0.25.0", optional = true }
 image = { version = "0.25.0", optional = true, default-features = false, features = [
     "rayon",
     "jpeg",
