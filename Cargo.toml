@@ -24,7 +24,7 @@ repository = "https://codeberg.org/ThetaDev/rustypipe"
 
 [workspace.dependencies]
 data-encoding = "2.0.0"
-fancy-regex = "0.18.0"
+fancy-regex = "0.19.0"
 flexon = {version = "0.4.6", default-features = false, features = ["simd", "runtime-detection", "serde"]}
 futures-util = "0.3.31"
 localzone = "0.3.1"
