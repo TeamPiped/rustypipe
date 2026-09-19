@@ -70,14 +70,20 @@ fn yt_playlist_video_list<'a>(root: &JsonNode<'a>) -> Result<JsonNode<'a>, Extra
         ytq!(.itemSectionRenderer.contents),
         "item section renderer",
     )?;
-    let item = item_section.items().into_iter().next().ok_or({
-        ExtractionError::InvalidData(Cow::Borrowed("itemSectionRenderer empty"))
-    })?;
-    item.first_of(&[
-        ytq!(.playlistVideoListRenderer.contents),
-        ytq!(.richGridRenderer.contents),
-    ])
-    .ok_or(ExtractionError::InvalidData(Cow::Borrowed("playlist video list empty")))
+    if let Some(list) = item_section.items().into_iter().next().and_then(|item| {
+        item.first_of(&[
+            ytq!(.playlistVideoListRenderer.contents),
+            ytq!(.richGridRenderer.contents),
+        ])
+    }) {
+        return Ok(list);
+    }
+    if item_section.items().is_empty() {
+        return Err(ExtractionError::InvalidData(Cow::Borrowed(
+            "itemSectionRenderer empty",
+        )));
+    }
+    Ok(item_section)
 }
 
 impl MapJsonResponse<Playlist> for PlaylistJson {
@@ -302,6 +308,7 @@ mod tests {
     #[case::live("live", "UULVvqRdlKsE5Q8mf8YXbdIJLw")]
     #[case::pageheader("20241011_pageheader", "PLT2w2oBf1TZKyvY_M6JsASs73m-wjLzH5")]
     #[case::cmdexecutor("20250316_cmdexecutor", "PLbZIPy20-1pN7mqjckepWF78ndb6ci_qi")]
+    #[case::lockup("20260920_lockup", "PLRCwNR3H9ZNKQTzdmu3qlwei9_74VIwg7")]
     fn map_playlist_data(#[case] name: &str, #[case] id: &str) {
         let json_path = path!(*TESTFILES / "playlist" / format!("playlist_{name}.json"));
         let json = JsonDoc::new(fs::read_to_string(json_path).unwrap());
